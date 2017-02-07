@@ -7,7 +7,7 @@ C# Library for interacting with the Eve Online ESI API.
 To use, utilize the ***ESISharp*** namespace and create one of the following objects:
 
 * *EveSwagger.Public()*
-* *EveSwagger.Authenticated( **ClientID**, **SecretKey** )*
+* *EveSwagger.Authenticated(* ***ClientID***, ***SecretKey*** *)*
     * **ClientID** is required for authenticated access.
 	* **SecretKey** is optional, but will grant you a Refresh Token for future access.
 
