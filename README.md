@@ -1,4 +1,4 @@
-# ***ESISharp*** 
+# ***ESISharp***
 
 C# Library for interacting with the Eve Online ESI API.
 
