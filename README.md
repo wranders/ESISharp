@@ -2,6 +2,8 @@
 
 C# Library for interacting with the Eve Online ESI API.
 
+[![GitHub release](https://img.shields.io/github/release/wranders/ESISharp.svg)](https://github.com/wranders/ESISharp/releases/latest)
+
 ---
 
 To use, utilize the ***ESISharp*** namespace and create one of the following objects:
