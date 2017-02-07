@@ -30,4 +30,8 @@ To create or repair the required registry key, run *EveSwagger.SSO.VerifyCallbac
 
 ---
 
+Requires Json.NET
+
+---
+
 EVE Online © 2016 [CCP hf.](https://www.ccpgames.com/)
