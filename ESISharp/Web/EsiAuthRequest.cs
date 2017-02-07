@@ -9,7 +9,7 @@ namespace ESISharp.Web
 {
     internal class EsiAuthRequest
     {
-        private readonly EveSwagger.Authenticated ESI;
+        private readonly EveSwagger.Authenticated SwaggerObject;
         private readonly string BaseUrl = "https://esi.tech.ccp.is";
         private readonly Route Route;
         private readonly string Path;
@@ -18,29 +18,29 @@ namespace ESISharp.Web
 
         internal EsiAuthRequest(EveSwagger es, string path)
         {
-            ESI = (EveSwagger.Authenticated)es;
-            Route = ESI.Route;
+            SwaggerObject = (EveSwagger.Authenticated)es;
+            Route = SwaggerObject.Route;
             Path = path;
-            DataSource = ESI.DataSource;
+            DataSource = SwaggerObject.DataSource;
         }
 
         private bool VerifyCredentials()
         {
-            if (ESI.SSO.AuthToken == null && ESI.SSO.ImplicitToken == null)
+            if (SwaggerObject.SSO.AuthToken == null && SwaggerObject.SSO.ImplicitToken == null)
             {
-                ESI.SSO.Authorize();
+                SwaggerObject.SSO.Authorize();
                 return true;
             }
             else
             {
-                if (!ESI.SSO.RequestedScopes.Contains(Scope.None) || ESI.SSO.ReauthorizeScopes) {
-                    ESI.SSO.Authorize();
+                if (!SwaggerObject.SSO.RequestedScopes.Contains(Scope.None) || SwaggerObject.SSO.ReauthorizeScopes) {
+                    SwaggerObject.SSO.Authorize();
                     return true;
                 }
 
-                if (!ESI.SSO.IsTokenValid())
+                if (!SwaggerObject.SSO.IsTokenValid())
                 {
-                    ESI.SSO.RefreshAccessToken();
+                    SwaggerObject.SSO.RefreshAccessToken();
                     return true;
                 }
             }
@@ -49,15 +49,15 @@ namespace ESISharp.Web
 
         private string ActiveAccessToken()
         {
-            if (ESI.SSO.AuthToken != null || ESI.SSO.ImplicitToken != null)
+            if (SwaggerObject.SSO.AuthToken != null || SwaggerObject.SSO.ImplicitToken != null)
             {
-                if(ESI.SSO.GrantType == OAuthGrant.Authorization)
+                if(SwaggerObject.SSO.GrantType == OAuthGrant.Authorization)
                 {
-                    return ESI.SSO.AuthToken.AccessToken;
+                    return SwaggerObject.SSO.AuthToken.AccessToken;
                 }
                 else
                 {
-                    return ESI.SSO.ImplicitToken.AccessToken;
+                    return SwaggerObject.SSO.ImplicitToken.AccessToken;
                 }
             }
             return string.Empty;
@@ -67,7 +67,7 @@ namespace ESISharp.Web
         {
             while (VerifyCredentials())
             {
-                Task<string> Response = GetAsync(RequestUrl);
+                var Response = GetAsync(RequestUrl);
                 Response.Wait();
                 return Response.Result;
             }
@@ -78,9 +78,9 @@ namespace ESISharp.Web
         {
             while (VerifyCredentials())
             {
-                string ArgString = Utils.ConstructUrlArgs(args);
-                string ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                Task<string> Response = GetAsync(ArgumentRequest);
+                var ArgString = Utils.ConstructUrlArgs(args);
+                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
+                var Response = GetAsync(ArgumentRequest);
                 Response.Wait();
                 return Response.Result;
             }
@@ -89,20 +89,17 @@ namespace ESISharp.Web
 
         private async Task<string> GetAsync(string url)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Response = await client.GetAsync(url);
-                return await Response.Content.ReadAsStringAsync();
-            }
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var Response = await SwaggerObject.QueryClient.GetAsync(url);
+            return await Response.Content.ReadAsStringAsync();
         }
 
         internal string Post(object data)
         {
             while (VerifyCredentials())
             {
-                Task<string> Response = PostAsync(RequestUrl, data);
+                var Response = PostAsync(RequestUrl, data);
                 Response.Wait();
                 return Response.Result;
             }
@@ -113,9 +110,9 @@ namespace ESISharp.Web
         {
             while (VerifyCredentials())
             {
-                string ArgString = Utils.ConstructUrlArgs(args);
-                string ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                Task<string> Response = PostAsync(ArgumentRequest, data);
+                var ArgString = Utils.ConstructUrlArgs(args);
+                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
+                var Response = PostAsync(ArgumentRequest, data);
                 Response.Wait();
                 return Response.Result;
             }
@@ -124,22 +121,19 @@ namespace ESISharp.Web
 
         private async Task<string> PostAsync(string url, object data)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string JsonString = JsonConvert.SerializeObject(data);
-                HttpContent PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage Response = await client.PostAsync(url, PostData);
-                return await Response.Content.ReadAsStringAsync();
-            }
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var JsonString = JsonConvert.SerializeObject(data);
+            var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
+            var Response = await SwaggerObject.QueryClient.PostAsync(url, PostData);
+            return await Response.Content.ReadAsStringAsync();
         }
 
         internal string Put(object data)
         {
             while (VerifyCredentials())
             {
-                Task<string> Response = PutAsync(RequestUrl, data);
+                var Response = PutAsync(RequestUrl, data);
                 Response.Wait();
                 return Response.Result;
             }
@@ -150,9 +144,9 @@ namespace ESISharp.Web
         {
             while (VerifyCredentials())
             {
-                string ArgString = Utils.ConstructUrlArgs(args);
-                string ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                Task<string> Response = PutAsync(ArgumentRequest, data);
+                var ArgString = Utils.ConstructUrlArgs(args);
+                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
+                var Response = PutAsync(ArgumentRequest, data);
                 Response.Wait();
                 return Response.Result;
             }
@@ -161,22 +155,19 @@ namespace ESISharp.Web
 
         private async Task<string> PutAsync(string url, object data)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string JsonString = JsonConvert.SerializeObject(data);
-                HttpContent PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage Response = await client.PutAsync(url, PutData);
-                return await Response.Content.ReadAsStringAsync();
-            }
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var JsonString = JsonConvert.SerializeObject(data);
+            var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
+            var Response = await SwaggerObject.QueryClient.PutAsync(url, PutData);
+            return await Response.Content.ReadAsStringAsync();
         }
 
         internal string Delete()
         {
             while (VerifyCredentials())
             {
-                Task<string> Response = DeleteAsync(RequestUrl);
+                var Response = DeleteAsync(RequestUrl);
                 Response.Wait();
                 return Response.Result;
             }
@@ -187,7 +178,7 @@ namespace ESISharp.Web
         {
             while (VerifyCredentials())
             {
-                Task<string> Response = DeleteAsync(RequestUrl, data);
+                var Response = DeleteAsync(RequestUrl, data);
                 Response.Wait();
                 return Response.Result;
             }
@@ -196,27 +187,21 @@ namespace ESISharp.Web
 
         private async Task<string> DeleteAsync(string url)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Response = await client.DeleteAsync(url);
-                return await Response.Content.ReadAsStringAsync();
-            }
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var Response = await SwaggerObject.QueryClient.DeleteAsync(url);
+            return await Response.Content.ReadAsStringAsync();
         }
 
         private async Task<string> DeleteAsync(string url, object data)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string JsonString = JsonConvert.SerializeObject(data);
-                HttpRequestMessage Message = new HttpRequestMessage(HttpMethod.Delete, url);
-                Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage Response =  await client.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead);
-                return await Response.Content.ReadAsStringAsync();
-            }
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var JsonString = JsonConvert.SerializeObject(data);
+            var Message = new HttpRequestMessage(HttpMethod.Delete, url);
+            Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
+            var Response =  await SwaggerObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead);
+            return await Response.Content.ReadAsStringAsync();
         }
     }
 }

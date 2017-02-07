@@ -36,9 +36,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error id one is encountered</returns>
         public string DeleteContacts(int CharacterID, List<int> CharactersToDelete)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            object Data = CharactersToDelete.ToArray();
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/contacts/";
+            var Data = CharactersToDelete.ToArray();
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete(Data);
         }
 
@@ -62,9 +62,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of objects representing contacts</returns>
         public string GetContacts(int CharacterID, int? Page)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            object Data = new { page = Page };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/contacts/";
+            var Data = new { page = Page };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -149,10 +149,10 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string AddContacts(int CharacterID, float Standing, List<int> NewContactCharacterIDs, bool Watch, long? LabelID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            object PostData = NewContactCharacterIDs.ToArray();
-            object UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/contacts/";
+            var PostData = NewContactCharacterIDs.ToArray();
+            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(PostData, UrlData);
         }
 
@@ -237,10 +237,10 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string EditContacts(int CharacterID, float Standing, List<int> ContactCharacterIDs, bool Watch, long? LabelID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            object PutData = ContactCharacterIDs.ToArray();
-            object UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/contacts/";
+            var PutData = ContactCharacterIDs.ToArray();
+            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(PutData, UrlData);
         }
 
@@ -252,8 +252,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array containing Objects containing label ID and label name</returns>
         public string GetLabels(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/contacts/labels/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/contacts/labels/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

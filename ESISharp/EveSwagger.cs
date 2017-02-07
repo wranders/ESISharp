@@ -1,5 +1,6 @@
 ﻿using ESISharp.Enumerations;
 using ESISharp.ESIPath;
+using System.Net.Http;
 
 namespace ESISharp
 {
@@ -11,6 +12,7 @@ namespace ESISharp
         internal DataSource DataSource = DataSource.Tranquility;
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
+        internal HttpClient QueryClient = new HttpClient();
 
         /// <summary>
         /// Set the Eve Server to retrieve data from

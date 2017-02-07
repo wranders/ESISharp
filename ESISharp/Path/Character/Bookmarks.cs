@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing bookmarks</returns>
         public string GetAll(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/bookmarks/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/bookmarks/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -35,8 +35,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing folders</returns>
         public string GetFolders(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/bookmarks/folders/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/bookmarks/folders/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

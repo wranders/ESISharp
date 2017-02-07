@@ -21,8 +21,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Schematic name and cycle time</returns>
         public string GetSchematicInfo(int SchematicID)
         {
-            string Path = $"/universe/schematics/{SchematicID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/schematics/{SchematicID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

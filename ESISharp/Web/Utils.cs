@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.Collections;
 
@@ -12,11 +9,11 @@ namespace ESISharp.Web
     {
         internal static string ConstructUrlArgs(object data)
         {
-            var properties = from p in data.GetType().GetProperties()
-                             where p.GetValue(data, null) != null
-                             where GetPropertyValue(p.GetValue(data, null)) != null
-                             select p.Name + "=" + WebUtility.HtmlEncode(GetPropertyValue(p.GetValue(data)));
-            return "&" + string.Join("&", properties.ToArray());
+            var properties = data.GetType()
+                             .GetProperties()
+                             .Where(p => p.GetValue(data, null) != null && GetPropertyValue(p.GetValue(data, null)) != null)
+                             .Select(p => $"{ p.Name }={ WebUtility.HtmlEncode(GetPropertyValue(p.GetValue(data))) }");
+            return $"&{string.Join("&", properties)}";
         }
 
         private static string GetPropertyValue(object value)

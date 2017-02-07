@@ -20,8 +20,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Facility information</returns>
         public string GetFacilities()
         {
-            string Path = "/industry/facilities/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/industry/facilities/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -31,8 +31,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Solar System ID and related activities and cost indices</returns>
         public string GetIndices()
         {
-            string Path = "/industry/systems/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/industry/systems/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

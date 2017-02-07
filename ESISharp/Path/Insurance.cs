@@ -20,8 +20,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Type ID, cost, name, and payout </returns>
         public string GetPrices()
         {
-            string Path = "/insurance/prices/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/insurance/prices/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

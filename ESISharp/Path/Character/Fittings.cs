@@ -25,8 +25,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing fits</returns>
         public string GetAll(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/fittings/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/fittings/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -42,7 +42,7 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string Create(int CharacterID, string FittingName, string Description, int ShipTypeId, List<FittingItem> FittingItems)
         {
-            Fitting Fitting = new Fitting(FittingName, Description, ShipTypeId, FittingItems);
+            var Fitting = new Fitting(FittingName, Description, ShipTypeId, FittingItems);
             return Create(CharacterID, Fitting);
         }
 
@@ -55,8 +55,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string Create(int CharacterID, Fitting Fitting)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/fittings/";
-            object Data = new
+            var Path = $"/characters/{CharacterID.ToString()}/fittings/";
+            var Data = new
             {
                 name = Fitting.Name,
                 description = Fitting.Description,
@@ -76,8 +76,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string Delete(int CharacterID, int FittingID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/fittings/{FittingID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/fittings/{FittingID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
     }

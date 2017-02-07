@@ -20,8 +20,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of all War IDs</returns>
         public string GetWars()
         {
-            string Path = "/wars/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/wars/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -32,8 +32,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing all war information</returns>
         public string GetWarInfo(int WarID)
         {
-            string Path = $"/wars/{WarID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/wars/{WarID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -44,8 +44,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of all related Killmail IDs and Base64 Hashes</returns>
         public string GetWarKills(int WarID)
         {
-            string Path = $"/wars/{WarID.ToString()}/killmails/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/wars/{WarID.ToString()}/killmails/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

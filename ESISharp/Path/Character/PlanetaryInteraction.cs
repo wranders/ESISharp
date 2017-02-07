@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing planets and their colony information</returns>
         public string GetColonies(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/planets/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/planets/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -36,8 +36,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing link, pin, and route arrays</returns>
         public string GetColonyLayout(int CharacterID, int PlanetID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/planets/{PlanetID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/planets/{PlanetID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

@@ -21,8 +21,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Type ID, average price and adjusted price</returns>
         public string GetPrices()
         {
-            string Path = "/markets/prices/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/markets/prices/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -34,9 +34,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array with Object containing market statistics</returns>
         public string GetRegionMarketHistory(int RegionID, int TypeID)
         {
-            string Path = $"/markets/{RegionID.ToString()}/history/";
-            object Data = new { type_id = TypeID };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/markets/{RegionID.ToString()}/history/";
+            var Data = new { type_id = TypeID };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -108,14 +108,14 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects representing market orders</returns>
         public string GetRegionOrders(int RegionID, int? TypeID, string OrderType, int Page)
         {
-            string Path = $"/markets/{RegionID.ToString()}/orders/";
-            object Data = new
+            var Path = $"/markets/{RegionID.ToString()}/orders/";
+            var Data = new
             {
                 type_id = TypeID,
                 order_type = OrderType,
                 page = Page
             };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -150,9 +150,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects representing market orders</returns>
         public string GetStructureOrders(long StructureID, int Page)
         {
-            string Path = $"/markets/structures/{StructureID.ToString()}/";
-            object Data = new { page = Page };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/markets/structures/{StructureID.ToString()}/";
+            var Data = new { page = Page };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }

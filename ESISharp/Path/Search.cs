@@ -231,15 +231,15 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing search results</returns>
         public string SearchPublic(string Query, List<string> Categories, bool Strict, string Language)
         {
-            string Path = "/search/";
-            object Data = new
+            var Path = "/search/";
+            var Data = new
             {
                 search = Query,
                 categories = Categories.ToArray(),
                 language = Language,
                 strict = Strict
             };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -504,15 +504,15 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing search results</returns>
         public string SearchAuthenticated(int CharacterID, string Query, List<string> Categories, bool Strict, string Language)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/search/";
-            object Data = new
+            var Path = $"/characters/{CharacterID.ToString()}/search/";
+            var Data = new
             {
                 search = Query,
                 categories = Categories.ToArray(),
                 language = Language,
                 strict = Strict
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }

@@ -20,8 +20,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing campaign information</returns>
         public string GetCampaigns()
         {
-            string Path = "/sovereignty/campaigns/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/sovereignty/campaigns/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -31,8 +31,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing structure information</returns>
         public string GetStructures()
         {
-            string Path = "/sovereignty/structures/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/sovereignty/structures/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

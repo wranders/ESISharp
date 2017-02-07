@@ -35,9 +35,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of objects representing calendar events</returns>
         public string GetEventSummaries(int CharacterID, int? FromEventID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/calendar/";
-            object Data = new { from_event = FromEventID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/calendar/";
+            var Data = new { from_event = FromEventID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -50,8 +50,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing event information</returns>
         public string GetEvent(int CharacterID, int EventID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -78,9 +78,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Nothing normally, error if one is encountered</returns>
         public string RespondToEvent(int CharacterID, int EventID, string Response)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
-            object Data = new { response = Response };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
+            var Data = new { response = Response };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
     }

@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing home location type, location ID, and an array of objects representing clones</returns>
         public string GetClones(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/clones/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/clones/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

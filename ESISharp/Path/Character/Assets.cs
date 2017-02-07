@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns></returns>
         public string GetAll(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID}/assets/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID}/assets/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

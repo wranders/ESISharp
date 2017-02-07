@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects containing related wallet IDs and balances</returns>
         public string GetWallets(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/wallets/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/wallets/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
 
         }

@@ -20,8 +20,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing incursion information</returns>
         public string GetList()
         {
-            string Path = "/incursions/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/incursions/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

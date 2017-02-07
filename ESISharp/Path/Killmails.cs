@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Killmail information</returns>
         public string GetSingle(int KillmailID, string KillmailHash)
         {
-            string Path = $"/killmails/{KillmailID.ToString()}/{KillmailHash}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/killmails/{KillmailID.ToString()}/{KillmailHash}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

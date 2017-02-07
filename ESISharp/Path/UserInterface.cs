@@ -51,9 +51,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string SetWaypoint(long DestinationID, bool ClearWaypoints, bool AddToBeginning)
         {
-            string Path = "/ui/autopilot/waypoint/";
-            object Data = new { destination_id = DestinationID, clear_other_waypoints = ClearWaypoints, add_to_beginning = AddToBeginning };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = "/ui/autopilot/waypoint/";
+            var Data = new { destination_id = DestinationID, clear_other_waypoints = ClearWaypoints, add_to_beginning = AddToBeginning };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -65,9 +65,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string OpenContract(int ContractID)
         {
-            string Path = "/ui/openwindow/contract/";
-            object Data = new { contract_id = ContractID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = "/ui/openwindow/contract/";
+            var Data = new { contract_id = ContractID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -79,9 +79,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string OpenInfo(int TargetID)
         {
-            string Path = "/ui/openwindow/information/";
-            object Data = new { target_id = TargetID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = "/ui/openwindow/information/";
+            var Data = new { target_id = TargetID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -93,9 +93,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string OpenMarketDetails(int TypeID)
         {
-            string Path = "/ui/openwindow/marketdetails/";
-            object Data = new { type_id = TypeID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = "/ui/openwindow/marketdetails/";
+            var Data = new { type_id = TypeID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -218,8 +218,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string NewMail(string Body, string Subject, List<int> Recipients, int CorpOrAllianceID, int MailingListID)
         {
-            string Path = "/ui/openwindow/newmail/";
-            object Data = new
+            var Path = "/ui/openwindow/newmail/";
+            var Data = new
             {
                 body = Body,
                 subject = Subject,
@@ -227,7 +227,7 @@ namespace ESISharp.ESIPath
                 to_corp_or_alliance_id = CorpOrAllianceID,
                 to_mailing_list_id = MailingListID
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(Data);
         }
     }

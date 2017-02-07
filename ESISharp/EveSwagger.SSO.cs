@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 
 namespace ESISharp
@@ -26,12 +27,14 @@ namespace ESISharp
         internal bool ReauthorizeScopes = false;
 
         internal string AuthRouterFilePath => Path.Combine(AuthRouterFileDirectory, AuthRouterFileName + ".exe");
-        internal string CallbackUrl => WebUtility.UrlEncode(string.Concat(CallbackProtocol, @"://"));
-        internal string ScopesUrl => WebUtility.UrlEncode(string.Join(" ", RequestedScopes.Select(s => s.Value)));
+        internal string CallbackUrl => string.Concat(CallbackProtocol, @"://");
+        internal string ScopesUrl => string.Join(" ", RequestedScopes.Select(s => s.Value));
 
         internal AuthToken AuthToken;
         internal ImplicitToken ImplicitToken;
         internal OAuthGrant GrantType = OAuthGrant.Implicit;
+
+        private static HttpClient SsoClient = new HttpClient();
 
         internal Sso(string AppClientID)
         {

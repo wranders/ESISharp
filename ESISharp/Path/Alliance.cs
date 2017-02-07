@@ -21,8 +21,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Alliance IDs</returns>
         public string GetAll()
         {
-            string Path = "/alliances/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/alliances/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -43,9 +43,9 @@ namespace ESISharp.ESIPath
         /// /// <returns>JSON Array of associated IDs and Names</returns>
         public string GetNames(List<long> AllianceIDs)
         {
-            string Path = "/alliances/names/";
-            object Data = new { alliance_ids = AllianceIDs.ToArray() };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/alliances/names/";
+            var Data = new { alliance_ids = AllianceIDs.ToArray() };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -56,8 +56,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Alliance Name, Date Founded, Executor Corporation, and Ticker</returns>
         public string GetInformation(int AllianceID)
         {
-            string Path = $"/alliances/{AllianceID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/alliances/{AllianceID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -68,8 +68,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Member Corporations</returns>
         public string GetCorporations(int AllianceID)
         {
-            string Path = $"/alliances/{AllianceID.ToString()}/corporations/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/alliances/{AllianceID.ToString()}/corporations/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -80,8 +80,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing URLs for 64x64 and 128x128 Alliance Icons</returns>
         public string GetIcons(int AllianceID)
         {
-            string Path = $"/alliances/{AllianceID.ToString()}/icons/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/alliances/{AllianceID.ToString()}/icons/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }

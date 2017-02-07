@@ -23,8 +23,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing free move status, registered status, voice enabled status, and MOTD</returns>
         public string GetInformation(long FleetID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -62,9 +62,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error if one is encountered</returns>
         public string Update(long FleetID, string MOTD, bool? FreeMove)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/";
-            object Data = new { motd = MOTD, is_free_move = FreeMove };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/";
+            var Data = new { motd = MOTD, is_free_move = FreeMove };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
 
@@ -76,8 +76,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing member information</returns>
         public string GetMembers(long FleetID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/members/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/members/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -201,15 +201,15 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string Invite(long FleetID, int CharacterID, string Role, long? WingID, long? SquadID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/members/";
-            object Data = new
+            var Path = $"/fleets/{FleetID.ToString()}/members/";
+            var Data = new
             {
                 character_id = CharacterID,
                 role = Role,
                 squad_id = SquadID,
                 wing_id = WingID
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -222,8 +222,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string KickMember(long FleetID, int MemberID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -268,14 +268,14 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string MoveMember(long FleetID, int MemberID, string Role, long WingID, long SquadID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
-            object Data = new
+            var Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
+            var Data = new
             {
                 role = Role,
                 squad_id = SquadID,
                 wing_id = WingID
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
 
@@ -288,8 +288,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string DeleteSquad(long FleetID, long SquadID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -303,12 +303,12 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string RenameSquad(long FleetID, long SquadID, string Name)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
-            object Data = new
+            var Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
+            var Data = new
             {
                 name = Name
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
 
@@ -320,8 +320,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string GetWings(long FleetID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/wings/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/wings/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -333,8 +333,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string CreateWing(long FleetID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/wings/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/wings/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(new { });
         }
 
@@ -347,8 +347,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string DeleteWing(long FleetID, long WingID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -362,9 +362,9 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string RenameWing(long FleetID, long WingID, string Name)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
-            object Data = new { name = Name };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
+            var Data = new { name = Name };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
 
@@ -377,8 +377,8 @@ namespace ESISharp.ESIPath
         /// <returns>Normally nothing, error is one was encountered</returns>
         public string CreateSquad(long FleetID, long WingID)
         {
-            string Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/squads/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/squads/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(new { });
         }
     }

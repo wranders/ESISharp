@@ -33,9 +33,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array with Objects containing character IDs and names</returns>
         public string GetNames(List<long> CharacterIDs)
         {
-            string Path = "/characters/names/";
-            object Data = new { character_ids = CharacterIDs.ToArray() };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/characters/names/";
+            var Data = new { character_ids = CharacterIDs.ToArray() };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -46,8 +46,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing character's public information</returns>
         public string GetPublicInformation(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -58,8 +58,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing corporation ID, active status, record ID, and start date</returns>
         public string GetCorporationHistory(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/corporationhistory/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/corporationhistory/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -70,8 +70,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing URLs for 64x64, 128x128, 256x256, and 512x512 portraits</returns>
         public string GetPortraits(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/portrait/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/portrait/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -142,9 +142,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing cost in hundredths</returns>
         public string CalculateCSPACharge(int CharacterID, List<int> CharactersToCheck)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/cspa/";
-            object Data = new { characters = CharactersToCheck.ToArray() };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/cspa/";
+            var Data = new { characters = CharactersToCheck.ToArray() };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -156,8 +156,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing character's current solar system ID, and structure ID if docked</returns>
         public string GetLocation(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/location/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/location/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -169,8 +169,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing character's current ship id, name, and type ID</returns>
         public string GetCurrentShip(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/ship/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/ship/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

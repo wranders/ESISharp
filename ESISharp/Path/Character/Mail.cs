@@ -88,9 +88,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing mails</returns>
         public string GetHeaders(int CharacterID, List<long> Labels, int? LastMailID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/";
-            object Data = new { labels = Labels.ToArray(), last_mail_id = LastMailID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/";
+            var Data = new { labels = Labels.ToArray(), last_mail_id = LastMailID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -191,15 +191,15 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one was encountered</returns>
         public string SendNew(int CharacterID, EveMail Mail)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/";
-            object Data = new
+            var Path = $"/characters/{CharacterID.ToString()}/mail/";
+            var Data = new
             {
                 approved_cost = Mail.ApprovedCost,
                 body = Mail.Body,
                 recipients = Mail.Recipients.Select(r => new { recipient_id = r.RecipientID, recipient_type = r.RecipientType }).ToArray(),
                 subject = Mail.Subject
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -211,8 +211,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing total unread count and array of label objects containing label information</returns>
         public string GetLabels(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -251,13 +251,13 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one was encountered</returns>
         public string CreateLabel(int CharacterID, string Name, string Color)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
-            object Data = new
+            var Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
+            var Data = new
             {
                 color = Color,
                 name = Name
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -270,8 +270,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one was encountered</returns>
         public string DeleteLabel(int CharacterID, int LabelID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/labels/{LabelID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/labels/{LabelID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -283,8 +283,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects containing mailing list name and mailing list ID</returns>
         public string GetMailingListSubscriptions(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/lists/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/lists/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -297,8 +297,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one was encountered</returns>
         public string DeleteMail(int CharacterID, int MailID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -311,8 +311,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object representing an Eve Mail</returns>
         public string GetMail(int CharacterID, int MailID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -367,13 +367,13 @@ namespace ESISharp.ESIPath.Character
         /// <returns>Normally nothing, error if one was encountered</returns>
         public string UpdateMail(int CharacterID, int MailID, List<int> LabelIDs, bool? Read)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            object Data = new
+            var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
+            var Data = new
             {
                 labels = LabelIDs,
                 read = Read
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(Data);
         }
     }

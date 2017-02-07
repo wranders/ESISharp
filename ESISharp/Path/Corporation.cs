@@ -32,9 +32,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array with Objects containing Corporation ID and Name</returns>
         public string GetNames(List<long> CorpIDs)
         {
-            string Path = "/corporations/names/";
-            object Data = new { corporation_ids = CorpIDs.ToArray() };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/corporations/names/";
+            var Data = new { corporation_ids = CorpIDs.ToArray() };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -45,8 +45,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing alliance ID, CEO ID, name, member count, and ticker</returns>
         public string GetInformation(int CorpID)
         {
-            string Path = $"/corporations/{CorpID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/corporations/{CorpID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -57,8 +57,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing alliance ID, open status, record ID, and date joined</returns>
         public string GetAllianceHistory(int CorpID)
         {
-            string Path = $"/corporations/{CorpID.ToString()}/alliancehistory/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/corporations/{CorpID.ToString()}/alliancehistory/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -69,8 +69,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing URLs for 64x64, 128x128, ans 256x256 icons</returns>
         public string GetIcons(int CorpID)
         {
-            string Path = $"/corporations/{CorpID.ToString()}/icons/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/corporations/{CorpID.ToString()}/icons/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -93,8 +93,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing a character ID</returns>
         public string GetMembers(int CorpID)
         {
-            string Path = $"/corporations/{CorpID.ToString()}/members/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/corporations/{CorpID.ToString()}/members/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -106,8 +106,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing a character ID</returns>
         public string GetMemberRoles(int CorpID)
         {
-            string Path = $"/corporations/{CorpID.ToString()}/roles/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/corporations/{CorpID.ToString()}/roles/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

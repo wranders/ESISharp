@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Bloodline base attributes</returns>
         public string GetBloodlines()
         {
-            string Path = "/universe/bloodlines/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/bloodlines/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -33,8 +33,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of item categories</returns>
         public string GetItemCategories()
         {
-            string Path = "/universe/categories/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/categories/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -45,8 +45,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing category name, groups, ID and published status</returns>
         public string GetItemCategoryInfo(int CategoryID)
         {
-            string Path = $"/universe/categories/{CategoryID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/categories/{CategoryID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -56,8 +56,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Faction base attributes</returns>
         public string GetFactions()
         {
-            string Path = "/universe/factions/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/factions/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -67,8 +67,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array containing Item Group IDs</returns>
         public string GetItemGroups()
         {
-            string Path = "/universe/groups/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/groups/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -79,8 +79,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Group name, Group ID, Category ID, containing types, and published status</returns>
         public string GetItemGroupInfo(int GroupID)
         {
-            string Path = $"/universe/groups/{GroupID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/groups/{GroupID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -101,9 +101,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Category ID, Type ID, and name</returns>
         public string GetTypeNamesAndCategories(List<int> TypeIDs)
         {
-            string Path = "/universe/names/";
-            object Data = new { ids = TypeIDs.ToArray() };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/names/";
+            var Data = new { ids = TypeIDs.ToArray() };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Post(Data);
         }
 
@@ -113,8 +113,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of objects containing Race's Alliance ID, description, name, and Race ID</returns>
         public string GetRaces()
         {
-            string Path = "/universe/races/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/races/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -125,8 +125,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing station name and solar system ID where it's located</returns>
         public string GetStationInfo(int StationID)
         {
-            string Path = $"/universe/stations/{StationID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/stations/{StationID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -136,8 +136,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array containing Structure IDs</returns>
         public string GetPublicStructures()
         {
-            string Path = "/universe/structures/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/structures/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -148,8 +148,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing solar system name</returns>
         public string GetSystemInfo(int SystemID)
         {
-            string Path = $"/universe/systems/{SystemID.ToString()}/";
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/systems/{SystemID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
 
@@ -169,9 +169,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array containing Type IDs</returns>
         public string GetTypes(int Page)
         {
-            string Path = "/universe/types/";
-            object Data = new { page = Page.ToString() };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = "/universe/types/";
+            var Data = new { page = Page.ToString() };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -204,9 +204,9 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing Type description, Group ID, name, Type ID, and published status</returns>
         public string GetTypeInfo(int TypeID, string Language)
         {
-            string Path = $"/universe/types/{TypeID.ToString()}/";
-            object Data = new { language = Language };
-            EsiRequest EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var Path = $"/universe/types/{TypeID.ToString()}/";
+            var Data = new { language = Language };
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -229,8 +229,8 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Object containing structure name and solar system ID where it's located</returns>
         public string GetStructureInfo(long StructureID)
         {
-            string Path = $"/universe/structures/{StructureID.ToString()}/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/universe/structures/{StructureID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

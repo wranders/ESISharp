@@ -22,8 +22,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects representing individual skills in queue</returns>
         public string GetQueue(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/skillqueue/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/skillqueue/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -35,8 +35,8 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing total skill points and Array of Objects representing individual skills</returns>
         public string GetSkills(int CharacterID)
         {
-            string Path = $"/characters/{CharacterID.ToString()}/skills/";
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID.ToString()}/skills/";
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get();
         }
     }

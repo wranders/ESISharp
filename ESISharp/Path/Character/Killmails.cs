@@ -47,9 +47,9 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Array of Objects containing killmail base64 hashes and killmail IDs</returns>
         public string GetRecent(int CharacterID, int MaxCount, int? MaxKillID)
         {
-            string Path = $"/characters/{CharacterID}/killmails/recent/";
-            object Data = new { max_count = MaxCount, max_kill_id = MaxKillID };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var Path = $"/characters/{CharacterID}/killmails/recent/";
+            var Data = new { max_count = MaxCount, max_kill_id = MaxKillID };
+            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }
