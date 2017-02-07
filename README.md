@@ -18,7 +18,7 @@ After that, follow the paths and supply the required information.
 ---
 
 The refresh token can be retrieved using *EveSwagger.SSO.GetRefreshToken()*<br/>
-The refresh token can be set using *EveSwagger.SSO.SetRefreshToken(**Token**)*
+The refresh token can be set using *EveSwagger.SSO.SetRefreshToken(* ***Token*** *)*
 
 ESISharp includes an executable that catches the response from Eve SSO and routes it back to ESISharp.<br/>
 It's filename, location, and operating protocol is fully configurable for your application.<br/>
