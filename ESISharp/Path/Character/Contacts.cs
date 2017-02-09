@@ -76,7 +76,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
         /// <param name="NewContactCharacterID">(Int32) Character ID</param>
         /// <returns>Normally nothing, error if one is encountered</returns>
-        public string AddContact(int CharacterID, float Standing, int NewContactCharacterID)
+        public string AddContacts(int CharacterID, float Standing, int NewContactCharacterID)
         {
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, false, null);
         }
@@ -90,7 +90,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="NewContactCharacterID">(Int32) Character ID</param>
         /// <param name="Watch">(Boolean) Watch</param>
         /// <returns>Normally nothing, error if one is encountered</returns>
-        public string AddContact(int CharacterID, float Standing, int NewContactCharacterID, bool Watch)
+        public string AddContacts(int CharacterID, float Standing, int NewContactCharacterID, bool Watch)
         {
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, Watch, null);
         }
@@ -105,7 +105,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="Watch">(Boolean) Watch</param>
         /// <param name="LabelID">(Int64) Contact Label</param>
         /// <returns>Normally nothing, error if one is encountered</returns>
-        public string AddContact(int CharacterID, float Standing, int NewContactCharacterID, bool Watch, long LabelID)
+        public string AddContacts(int CharacterID, float Standing, int NewContactCharacterID, bool Watch, long LabelID)
         {
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, Watch, LabelID);
         }
@@ -151,7 +151,8 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var PostData = NewContactCharacterIDs.ToArray();
-            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
+            var Label = (LabelID == null) ? 0 : LabelID;
+            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
             var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Post(PostData, UrlData);
         }
@@ -239,7 +240,8 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var PutData = ContactCharacterIDs.ToArray();
-            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = LabelID.ToString() };
+            var Label = (LabelID == null) ? 0 : LabelID;
+            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
             var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
             return EsiAuthRequest.Put(PutData, UrlData);
         }

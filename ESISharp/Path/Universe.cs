@@ -51,6 +51,29 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>
+        /// Get Constellations
+        /// </summary>
+        /// <returns>JSON Array of constellation IDs</returns>
+        public string GetConstellations()
+        {
+            var Path = "/universe/constellations/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
+        /// Get Constellation Information
+        /// </summary>
+        /// <param name="ConstellationID">(Int32) Constellation ID</param>
+        /// <returns>JSON Object containing constellatio name, constellation ID, region ID, array of system IDs, and an object containing XYZ position.</returns>
+        public string GetConstellationInfo(int ConstellationID)
+        {
+            var Path = $"/universe/constellations/{ConstellationID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
         /// Get Factions
         /// </summary>
         /// <returns>JSON Object containing Faction base attributes</returns>
@@ -85,6 +108,18 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>
+        /// Get Moon Information
+        /// </summary>
+        /// <param name="MoonID">(Int32) Moon ID</param>
+        /// <returns>JSON Object containing moon ID, moon name, system ID, and an object containing XYZ position.</returns>
+        public string GetMoonInformation(int MoonID)
+        {
+            var Path = $"/universe/moons/{MoonID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
         /// Get Type Name and Category
         /// </summary>
         /// <param name="TypeID">(Int32) Type ID</param>
@@ -108,12 +143,59 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>
+        /// Get Planet Information
+        /// </summary>
+        /// <param name="PlanetID">(Int32) Planet ID</param>
+        /// <returns>JSON Object conatining planet name, planet ID, system ID, type ID, and an objecting containing XYZ position.</returns>
+        public string GetPlanetInformation(int PlanetID)
+        {
+            var Path = $"/universe/planets/{PlanetID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
         /// Get Races
         /// </summary>
         /// <returns>JSON Array of objects containing Race's Alliance ID, description, name, and Race ID</returns>
         public string GetRaces()
         {
             var Path = "/universe/races/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
+        /// Get Regions
+        /// </summary>
+        /// <returns>JSON Array containing region IDs</returns>
+        public string GetRegions()
+        {
+            var Path = "/universe/regions/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
+        /// Get Region Information
+        /// </summary>
+        /// <param name="RegionID">(Int32) Region ID</param>
+        /// <returns>JSON Object containing region ID, name, description, and an array of constellations.</returns>
+        public string GetRegionInformation(int RegionID)
+        {
+            var Path = $"/universe/regions/{RegionID.ToString()}/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
+        /// Get Stargate Information
+        /// </summary>
+        /// <param name="StargateID">(Int32) Stargate ID</param>
+        /// <returns>JSON Object containing stargate ID, system ID, type ID, name, object containing destination system ID and stargate ID, and an object containing XYZ position.</returns>
+        public string GetStargateInformation(int StargateID)
+        {
+            var Path = $"/universe/stargates/{StargateID.ToString()}/";
             var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }
@@ -137,6 +219,17 @@ namespace ESISharp.ESIPath
         public string GetPublicStructures()
         {
             var Path = "/universe/structures/";
+            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>
+        /// Get Solar Systems
+        /// </summary>
+        /// <returns>JSON Array containing system IDs</returns>
+        public string GetSystems()
+        {
+            var Path = "/universe/systems/";
             var EsiRequest = new EsiRequest(SwaggerObject, Path);
             return EsiRequest.Get();
         }

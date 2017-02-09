@@ -4,6 +4,8 @@ using ESISharp.Enumerations;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System;
+using System.Web;
 
 namespace ESISharp.Web
 {
