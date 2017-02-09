@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Bookmark paths
-    /// </summary>
+    /// <summary>Authenticated Character Bookmark paths</summary>
     public class CharacterBookmarks
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Character's Bookmarks
-        /// </summary>
+        /// <summary>Get All Character's Bookmarks</summary>
         /// <remarks>Requires SSO Authentication, uses "read_character_bookmarks" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects representing bookmarks</returns>
@@ -27,9 +23,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Get Character's Bookmark Folders
-        /// </summary>
+        /// <summary>Get Character's Bookmark Folders</summary>
         /// <remarks>Requires SSO Authentication, uses "read_character_bookmarks" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects representing folders</returns>

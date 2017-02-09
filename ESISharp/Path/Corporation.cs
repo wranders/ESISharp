@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Corporation paths
-    /// </summary>
+    /// <summary>Public Corporation paths</summary>
     public class Corporation
     {
         protected EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Corporation Name
-        /// </summary>
+        /// <summary>Get Corporation Name</summary>
         /// <param name="CorpID">(Int64) Corporation ID</param>
         /// <returns>JSON Array with Object containing Corporation ID and Name</returns>
         public string GetNames(long CorpID)
@@ -25,9 +21,7 @@ namespace ESISharp.ESIPath
             return GetNames(new List<long>() { CorpID });
         }
 
-        /// <summary>
-        /// Get Corporation Names
-        /// </summary>
+        /// <summary>Get Corporation Names</summary>
         /// <param name="CorpID">(Int64 List) Corporation ID</param>
         /// <returns>JSON Array with Objects containing Corporation ID and Name</returns>
         public string GetNames(List<long> CorpIDs)
@@ -38,9 +32,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Get Public Corporation Information
-        /// </summary>
+        /// <summary>Get Public Corporation Information</summary>
         /// <param name="CorpID">(Int32) Corporation ID</param>
         /// <returns>JSON Object containing alliance ID, CEO ID, name, member count, and ticker</returns>
         public string GetInformation(int CorpID)
@@ -50,9 +42,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Corporation's Alliance History
-        /// </summary>
+        /// <summary>Get Corporation's Alliance History</summary>
         /// <param name="CorpID">(Int32) Corporation ID</param>
         /// <returns>JSON Array of Objects containing alliance ID, open status, record ID, and date joined</returns>
         public string GetAllianceHistory(int CorpID)
@@ -62,9 +52,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Corporation's Icons
-        /// </summary>
+        /// <summary>Get Corporation's Icons</summary>
         /// <param name="CorpID">(Int32) Corporation ID</param>
         /// <returns>JSON Object containing URLs for 64x64, 128x128, ans 256x256 icons</returns>
         public string GetIcons(int CorpID)
@@ -75,9 +63,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Corporation paths
-    /// </summary>
+    /// <summary>Public and Authenticated Corporation paths</summary>
     public class AuthCorporation : Corporation
     {
         internal AuthCorporation(EveSwagger e) : base(e)
@@ -85,9 +71,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Corporation's Members
-        /// </summary>
+        /// <summary>Get Corporation's Members</summary>
         /// <remarks>Requires SSO Authentication, using "read_corporation_membership" scope</remarks>
         /// <param name="CorpID">(Int32) Corporation ID</param>
         /// <returns>JSON Array of Objects containing a character ID</returns>
@@ -98,9 +82,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Get Corporation Member's Roles
-        /// </summary>
+        /// <summary>Get Corporation Member's Roles</summary>
         /// <remarks>Requires SSO Authentication, using "read_corporation_membership" scope</remarks>
         /// <param name="CorpID">(Int32) Corporation ID</param>
         /// <returns>JSON Array of Objects containing a character ID</returns>

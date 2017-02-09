@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Authenticated User Interface paths
-    /// </summary>
+    /// <summary>Authenticated User Interface paths</summary>
     public class UserInterface
     {
         private readonly EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Add a waypoint to the current route.
-        /// </summary>
+        /// <summary>Add a waypoint to the current route</summary>
         /// <remarks> Requires SSO Authentication and "write_waypoint" scope</remarks>
         /// <param name="DestinationID">(Int64) Destination ID</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
@@ -26,10 +22,8 @@ namespace ESISharp.ESIPath
             return SetWaypoint(DestinationID, false, false);
         }
 
-        /// <summary>
-        /// Add a waypoint to the current route.
-        /// <para />If <paramref name="ClearWaypoints"/> is true, the current route will be cleared.
-        /// </summary>
+        /// <summary>Add a waypoint to the current route.
+        /// <para>If <paramref name="ClearWaypoints"/> is true, the current route will be cleared.</para></summary>
         /// <remarks> Requires SSO Authentication and "write_waypoint" scope</remarks>
         /// <param name="DestinationID">(Int64) Destination ID</param>
         /// <param name="ClearWaypoints">(Boolean) Clear Current Waypoints</param>
@@ -39,11 +33,9 @@ namespace ESISharp.ESIPath
             return SetWaypoint(DestinationID, ClearWaypoints, false);
         }
 
-        /// <summary>
-        /// Add a waypoint to the current route.
-        /// <para />If <paramref name="ClearWaypoints"/> is true, the current route will be cleared.
-        /// <para />If <paramref name="AddToBeginning"/> is true, the specified waypoint will be prepended to the current route.
-        /// </summary>
+        /// <summary>Add a waypoint to the current route.
+        /// <para>If <paramref name="ClearWaypoints"/> is true, the current route will be cleared.</para>
+        /// <para>If <paramref name="AddToBeginning"/> is true, the specified waypoint will be prepended to the current route.</para></summary>
         /// <remarks> Requires SSO Authentication and "write_waypoint" scope</remarks>
         /// <param name="DestinationID">(Int64) Destination ID</param>
         /// <param name="ClearWaypoints">(Boolean) Clear Current Waypoints</param>
@@ -57,9 +49,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(null, Data);
         }
 
-        /// <summary>
-        /// Open Contract Window.
-        /// </summary>
+        /// <summary>Open Contract Window</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="ContractID">(Int32) Contract ID</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
@@ -71,9 +61,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(null, Data);
         }
 
-        /// <summary>
-        /// Open Information Window.
-        /// </summary>
+        /// <summary>Open Information Window</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="TargetID">(Int32) Target ID</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
@@ -85,9 +73,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(null, Data);
         }
 
-        /// <summary>
-        /// Open Market Details.
-        /// </summary>
+        /// <summary>Open Market Details</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
@@ -99,9 +85,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(null, Data);
         }
 
-        /// <summary>
-        /// Open empty mail composer.
-        /// </summary>
+        /// <summary>Open empty mail composer</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <returns>Normally nothing, error if one was encountered.</returns>
         public string NewMail()
@@ -109,9 +93,7 @@ namespace ESISharp.ESIPath
             return NewMail(string.Empty, string.Empty, new List<int>() { 0 }, 0, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body.
-        /// </summary>
+        /// <summary>Open mail composer with filled body</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
@@ -120,9 +102,7 @@ namespace ESISharp.ESIPath
             return NewMail(Body, string.Empty, new List<int>() { 0 }, 0, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
@@ -132,9 +112,7 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, new List<int>() { 0 }, 0, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject with one recipient.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject with one recipient</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
@@ -145,10 +123,8 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, new List<int>() { Recipient }, 0, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject, with one recipient and Corporation/Alliance group. 
-        /// <para/>If no individual recipient, set 0.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject, with one recipient and Corporation/Alliance group. 
+        /// <para>If no individual recipient, set 0.</para></summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
@@ -160,11 +136,9 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, new List<int>() { Recipient }, CorpOrAllianceID, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject, with one recipient, Corporation/Alliance, and Mailing List. 
-        /// <para/>If no individual recipient, set 0. 
-        /// <para/>If no Corporation/Alliance recipient, set 0.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject, with one recipient, Corporation/Alliance, and Mailing List. 
+        /// <para>If no individual recipient, set 0.</para>
+        /// <para>If no Corporation/Alliance recipient, set 0.</para></summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message body</param>
         /// <param name="Subject">(String) Message subject</param>
@@ -177,9 +151,7 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, new List<int>() { Recipient }, CorpOrAllianceID, MailingListID);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject, with list of recipients.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject, with list of recipients</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
@@ -190,9 +162,7 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, Recipients, 0, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject, with list of recipients and Corporation/Alliance ID.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject, with list of recipients and Corporation/Alliance ID</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
@@ -204,11 +174,9 @@ namespace ESISharp.ESIPath
             return NewMail(Body, Subject, Recipients, CorpOrAllianceID, 0);
         }
 
-        /// <summary>
-        /// Open mail composer with filled body and subject, with list of recipient, Corporation/Alliance, and Mailing List. 
-        /// <para/>If no individual recipient, set 0. 
-        /// <para/>If no Corporation/Alliance recipient, set 0.
-        /// </summary>
+        /// <summary>Open mail composer with filled body and subject, with list of recipient, Corporation/Alliance, and Mailing List. 
+        /// <para>If no individual recipient, set 0.</para>
+        /// <para>If no Corporation/Alliance recipient, set 0.</para></summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>

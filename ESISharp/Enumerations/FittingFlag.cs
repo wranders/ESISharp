@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Fitting Location Flags
-    /// </summary>
+    /// <summary>Fitting Location Flags</summary>
     public class FittingFlag
     {
         /// <summary>Ship Low Slot #1</summary>

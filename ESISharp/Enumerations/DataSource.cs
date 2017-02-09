@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Eve Server data source
-    /// </summary>
+    /// <summary>Eve Server data source</summary>
     public class DataSource
     {
         /// <summary>Tranquility Server</summary>

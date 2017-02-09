@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Contact paths
-    /// </summary>
+    /// <summary>Authenticated Character Contact paths</summary>
     public class CharacterContacts
     {
         protected EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Delete Contact
-        /// </summary>
+        /// <summary>Delete Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="CharacterToDelete">(Int32) CharacterID</param>
@@ -27,9 +23,7 @@ namespace ESISharp.ESIPath.Character
             return DeleteContacts(CharacterID, new List<int>() { CharacterToDelete });
         }
 
-        /// <summary>
-        /// Delete a Character's Contact
-        /// </summary>
+        /// <summary>Delete a Character's Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="CharactersToDelete">(Int32 List) CharacterID</param>
@@ -42,9 +36,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Delete(Data);
         }
 
-        /// <summary>
-        /// Get Character's Contacts (First Page)
-        /// </summary>
+        /// <summary>Get Character's Contacts (First Page)</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of objects representing contacts</returns>
@@ -53,9 +45,7 @@ namespace ESISharp.ESIPath.Character
             return GetContacts(CharacterID, null);
         }
 
-        /// <summary>
-        /// Get Character's Contacts (Specified Page)
-        /// </summary>
+        /// <summary>Get Character's Contacts (Specified Page)</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Page">(Int32) Page</param>
@@ -68,9 +58,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -81,9 +69,7 @@ namespace ESISharp.ESIPath.Character
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, false, null);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -95,9 +81,7 @@ namespace ESISharp.ESIPath.Character
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, Watch, null);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -110,9 +94,7 @@ namespace ESISharp.ESIPath.Character
             return AddContacts(CharacterID, Standing, new List<int>() { NewContactCharacterID }, Watch, LabelID);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -123,9 +105,7 @@ namespace ESISharp.ESIPath.Character
             return AddContacts(CharacterID, Standing, NewContactCharacterIDs, false, null);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -137,9 +117,7 @@ namespace ESISharp.ESIPath.Character
             return AddContacts(CharacterID, Standing, NewContactCharacterIDs, Watch, null);
         }
 
-        /// <summary>
-        /// Add Contact
-        /// </summary>
+        /// <summary>Add Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -157,9 +135,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Post(PostData, UrlData);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -170,9 +146,7 @@ namespace ESISharp.ESIPath.Character
             return EditContacts(CharacterID, Standing, new List<int>() { ContactCharacterID }, false, null);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -184,9 +158,7 @@ namespace ESISharp.ESIPath.Character
             return EditContacts(CharacterID, Standing, new List<int>() { ContactCharacterID }, Watch, null);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -199,9 +171,7 @@ namespace ESISharp.ESIPath.Character
             return EditContacts(CharacterID, Standing, new List<int>() { ContactCharacterID }, Watch, LabelID);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -212,9 +182,7 @@ namespace ESISharp.ESIPath.Character
             return EditContacts(CharacterID, Standing, ContactCharacterIDs, false, null);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -226,9 +194,7 @@ namespace ESISharp.ESIPath.Character
             return EditContacts(CharacterID, Standing, ContactCharacterIDs, Watch, null);
         }
 
-        /// <summary>
-        /// Edit Contact
-        /// </summary>
+        /// <summary>Edit Contact</summary>
         /// <remarks>Requires SSO Authentication, using "write_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Standing">(Float) Standing, -10 to 10</param>
@@ -246,9 +212,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Put(PutData, UrlData);
         }
 
-        /// <summary>
-        /// Get Contact Labels
-        /// </summary>
+        /// <summary>Get Contact Labels</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array containing Objects containing label ID and label name</returns>

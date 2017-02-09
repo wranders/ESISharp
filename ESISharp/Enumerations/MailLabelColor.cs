@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Mail Label Color
-    /// </summary>
+    /// <summary>Mail Label Color</summary>
     public class MailLabelColor
     {
         /// <summary>White</summary>

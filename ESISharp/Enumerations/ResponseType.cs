@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// API Response Data Types
-    /// </summary>
+    /// <summary>API Response Data Types</summary>
     public class ResponseType
     {
         /// <summary>JSON</summary>

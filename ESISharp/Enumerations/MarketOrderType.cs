@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Market Order Types
-    /// </summary>
+    /// <summary>Market Order Types</summary>
     public class MarketOrderType
     {
         /// <summary>All Orders</summary>

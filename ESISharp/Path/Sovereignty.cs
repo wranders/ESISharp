@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Sovereignty path
-    /// </summary>
+    /// <summary>Public Sovereignty path</summary>
     public class Sovereignty
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Sovereignty Campaigns
-        /// </summary>
+        /// <summary>Get All Sovereignty Campaigns</summary>
         /// <returns>JSON Array of Objects containing campaign information</returns>
         public string GetCampaigns()
         {
@@ -25,9 +21,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get All Sovereignty Stuctures
-        /// </summary>
+        /// <summary>Get All Sovereignty Stuctures</summary>
         /// <returns>JSON Array of Objects containing structure information</returns>
         public string GetStructures()
         {
@@ -37,9 +31,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated paths
-    /// </summary>
+    /// <summary>Public and Authenticated paths</summary>
     public class AuthSovereignty : Sovereignty
     {
         internal AuthSovereignty(EveSwagger e) : base(e)

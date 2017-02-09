@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// ESI Version
-    /// </summary>
+    /// <summary>ESI Version</summary>
     public class Route
     {
         /// <summary>Latest</summary>

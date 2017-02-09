@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Mail Recipient Types
-    /// </summary>
+    /// <summary>Mail Recipient Types</summary>
     public class MailRecipientType
     {
         /// <summary>Alliance</summary>

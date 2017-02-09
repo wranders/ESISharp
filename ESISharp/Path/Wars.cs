@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Wars paths
-    /// </summary>
+    /// <summary>Public Wars paths</summary>
     public class Wars
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Wars
-        /// </summary>
+        /// <summary>Get All Wars</summary>
         /// <returns>JSON Array of all War IDs</returns>
         public string GetWars()
         {
@@ -25,9 +21,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get War Information
-        /// </summary>
+        /// <summary>Get War Information</summary>
         /// <param name="WarID">(Int32) War ID</param>
         /// <returns>JSON Object containing all war information</returns>
         public string GetWarInfo(int WarID)
@@ -37,9 +31,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get all War Killmails
-        /// </summary>
+        /// <summary>Get all War Killmails</summary>
         /// <param name="WarID">(Int32) War ID</param>
         /// <returns>JSON Array of all related Killmail IDs and Base64 Hashes</returns>
         public string GetWarKills(int WarID)
@@ -50,9 +42,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Wars paths
-    /// </summary>
+    /// <summary>Public and Authenticated Wars paths</summary>
     public class AuthWars : Wars
     {
         internal AuthWars(EveSwagger e) : base(e)

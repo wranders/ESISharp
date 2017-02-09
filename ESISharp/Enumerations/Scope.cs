@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// SSO Scopes
-    /// </summary>
+    /// <summary>SSO Scopes</summary>
     public class Scope
     {
         internal Scope(string val)

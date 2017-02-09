@@ -6,9 +6,7 @@ using System.Linq;
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Mail paths
-    /// </summary>
+    /// <summary>Authenticated Character Mail paths</summary>
     public class CharacterMail
     {
         protected EveSwagger SwaggerObject;
@@ -18,9 +16,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Return Mail Headers (50 most recent)
-        /// </summary>
+        /// <summary>Return Mail Headers (50 most recent)</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects representing mails</returns>
@@ -29,9 +25,7 @@ namespace ESISharp.ESIPath.Character
             return GetHeaders(CharacterID, null, null);
         }
 
-        /// <summary>
-        /// Return Mail Headers with the specified label
-        /// </summary>
+        /// <summary>Return Mail Headers with the specified label</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Label">(Int64) Mail Label</param>
@@ -41,9 +35,7 @@ namespace ESISharp.ESIPath.Character
             return GetHeaders(CharacterID, new List<long>() { Label }, null);
         }
 
-        /// <summary>
-        /// Return Mail Headers with the specified label
-        /// </summary>
+        /// <summary>Return Mail Headers with the specified label</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Labels">(Int64) Mail Label</param>
@@ -53,9 +45,7 @@ namespace ESISharp.ESIPath.Character
             return GetHeaders(CharacterID, Labels, null);
         }
 
-        /// <summary>
-        /// Return Mail Headers up to and including specified mail ID
-        /// </summary>
+        /// <summary>Return Mail Headers up to and including specified mail ID</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="LastMailID">(Int32) Last Mail ID to include</param>
@@ -65,9 +55,7 @@ namespace ESISharp.ESIPath.Character
             return GetHeaders(CharacterID, null, LastMailID);
         }
 
-        /// <summary>
-        /// Return Mail Headers with specified label up to and including specified mail ID
-        /// </summary>
+        /// <summary>Return Mail Headers with specified label up to and including specified mail ID</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Label">(Int64) Mail Label</param>
@@ -78,9 +66,7 @@ namespace ESISharp.ESIPath.Character
             return GetHeaders(CharacterID, new List<long>() { Label }, LastMailID);
         }
 
-        /// <summary>
-        /// Return Mail Headers with the specified label
-        /// </summary>
+        /// <summary>Return Mail Headers with the specified label</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Labels">(Int64) Mail Label</param>
@@ -94,9 +80,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -109,9 +93,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, RecipientID, RecipientType));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -124,9 +106,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, RecipientID, RecipientType));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -138,9 +118,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipient));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -152,9 +130,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipients));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -167,9 +143,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipient, ApprovedCost));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailBody">(String) Message Body</param>
@@ -182,9 +156,7 @@ namespace ESISharp.ESIPath.Character
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipients, ApprovedCost));
         }
 
-        /// <summary>
-        /// Send a new Mail
-        /// </summary>
+        /// <summary>Send a new Mail</summary>
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Mail">(EveMail) Eve Mail Object</param>
@@ -203,9 +175,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Get Mail Labels
-        /// </summary>
+        /// <summary>Get Mail Labels</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing total unread count and array of label objects containing label information</returns>
@@ -216,9 +186,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Create a Mail Label
-        /// </summary>
+        /// <summary>Create a Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
@@ -228,9 +196,7 @@ namespace ESISharp.ESIPath.Character
             return CreateLabel(CharacterID, Name, MailLabelColor.White);
         }
 
-        /// <summary>
-        /// Create a Mail Label
-        /// </summary>
+        /// <summary>Create a Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
@@ -241,9 +207,7 @@ namespace ESISharp.ESIPath.Character
             return CreateLabel(CharacterID, Name, Color.Value);
         }
 
-        /// <summary>
-        /// Create a Mail Label
-        /// </summary>
+        /// <summary>Create a Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
@@ -261,9 +225,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Delete Mail Label
-        /// </summary>
+        /// <summary>Delete Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="LabelID">(Int32) Mail Label ID</param>
@@ -275,9 +237,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Delete();
         }
 
-        /// <summary>
-        /// Get All Mailing List Subscriptions
-        /// </summary>
+        /// <summary>Get All Mailing List Subscriptions</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects containing mailing list name and mailing list ID</returns>
@@ -288,9 +248,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Delete Mail
-        /// </summary>
+        /// <summary>Delete Mail</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
@@ -302,9 +260,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Delete();
         }
 
-        /// <summary>
-        /// Get A Single Mail
-        /// </summary>
+        /// <summary>Get A Single Mail</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
@@ -316,9 +272,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Update Mail Metadata
-        /// </summary>
+        /// <summary>Update Mail Metadata</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
@@ -329,9 +283,7 @@ namespace ESISharp.ESIPath.Character
             return UpdateMail(CharacterID, MailID, null, Read);
         }
 
-        /// <summary>
-        /// Update Mail Metadata
-        /// </summary>
+        /// <summary>Update Mail Metadata</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
@@ -342,9 +294,7 @@ namespace ESISharp.ESIPath.Character
             return UpdateMail(CharacterID, MailID, new List<int>() { LabelID }, null);
         }
 
-        /// <summary>
-        /// Update Mail Metadata
-        /// </summary>
+        /// <summary>Update Mail Metadata</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
@@ -356,9 +306,7 @@ namespace ESISharp.ESIPath.Character
             return UpdateMail(CharacterID, MailID, new List<int>() { LabelID }, Read);
         }
 
-        /// <summary>
-        /// Update Mail Metadata
-        /// </summary>
+        /// <summary>Update Mail Metadata</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>

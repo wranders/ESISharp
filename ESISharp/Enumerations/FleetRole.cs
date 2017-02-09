@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Fleet Roles
-    /// </summary>
+    /// <summary>Fleet Roles</summary>
     public class FleetRole
     {
         /// <summary>Fleet Commander Role</summary>
