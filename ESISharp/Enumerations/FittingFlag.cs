@@ -40,21 +40,21 @@
         public static readonly FittingFlag MidSlot7 = new FittingFlag(26);
 
         /// <summary>Ship High Slot #1</summary>
-        public static readonly FittingFlag HighSlot0 = new FittingFlag(19);
+        public static readonly FittingFlag HighSlot0 = new FittingFlag(27);
         /// <summary>Ship High Slot #2</summary>
-        public static readonly FittingFlag HighSlot1 = new FittingFlag(20);
+        public static readonly FittingFlag HighSlot1 = new FittingFlag(28);
         /// <summary>Ship High Slot #3</summary>
-        public static readonly FittingFlag HighSlot2 = new FittingFlag(21);
+        public static readonly FittingFlag HighSlot2 = new FittingFlag(29);
         /// <summary>Ship High Slot #4</summary>
-        public static readonly FittingFlag HighSlot3 = new FittingFlag(22);
+        public static readonly FittingFlag HighSlot3 = new FittingFlag(30);
         /// <summary>Ship High Slot #5</summary>
-        public static readonly FittingFlag HighSlot4 = new FittingFlag(23);
+        public static readonly FittingFlag HighSlot4 = new FittingFlag(31);
         /// <summary>Ship High Slot #6</summary>
-        public static readonly FittingFlag HighSlot5 = new FittingFlag(24);
+        public static readonly FittingFlag HighSlot5 = new FittingFlag(32);
         /// <summary>Ship High Slot #7</summary>
-        public static readonly FittingFlag HighSlot6 = new FittingFlag(25);
+        public static readonly FittingFlag HighSlot6 = new FittingFlag(33);
         /// <summary>Ship High Slot #8</summary>
-        public static readonly FittingFlag HighSlot7 = new FittingFlag(26);
+        public static readonly FittingFlag HighSlot7 = new FittingFlag(34);
 
         /// <summary>Ship Rig Slot #1</summary>
         public static readonly FittingFlag RigSlot0 = new FittingFlag(92);
