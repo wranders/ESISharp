@@ -4,26 +4,24 @@ using ESISharp.Enumerations;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using System;
-using System.Web;
 
 namespace ESISharp.Web
 {
     internal class EsiRequest
     {
-        private readonly EveSwagger.Public SwaggerObject;
+        private readonly EveSwagger.Public PublicSwaggerObject;
         private readonly string BaseUrl = "https://esi.tech.ccp.is";
         private readonly Route Route;
         private readonly string Path;
         private readonly DataSource DataSource;
         private string RequestUrl => string.Concat(string.Concat(BaseUrl, Route.Value), string.Concat(Path, "?datasource=" + DataSource.Value));
 
-        internal EsiRequest(EveSwagger es, string path)
+        internal EsiRequest(EveSwagger SwaggerObject, string RequestPath)
         {
-            SwaggerObject = (EveSwagger.Public)es;
-            Route = SwaggerObject.Route;
-            Path = path;
-            DataSource = SwaggerObject.DataSource;
+            PublicSwaggerObject = (EveSwagger.Public)SwaggerObject;
+            Route = PublicSwaggerObject.Route;
+            Path = RequestPath;
+            DataSource = PublicSwaggerObject.DataSource;
         }
 
         internal string Get()
@@ -33,34 +31,34 @@ namespace ESISharp.Web
             return Response.Result;
         }
 
-        internal string Get(object args)
+        internal string Get(object QueryArguments)
         {
-            var ArgString = Utils.ConstructUrlArgs(args);
+            var ArgString = Utils.ConstructUrlArgs(QueryArguments);
             var ArgumentRequest = string.Concat(RequestUrl, ArgString);
             var Response = GetAsync(ArgumentRequest);
             Response.Wait();
             return Response.Result;
         }
 
-        private async Task<string> GetAsync(string url)
+        private async Task<string> GetAsync(string Url)
         {
-            var response = await SwaggerObject.QueryClient.GetAsync(url);
+            var response = await PublicSwaggerObject.QueryClient.GetAsync(Url);
             return await response.Content.ReadAsStringAsync();
         }
 
-        internal string Post(object data)
+        internal string Post(object Data)
         {
-            var Response = PostAsync(RequestUrl, data);
+            var Response = PostAsync(RequestUrl, Data);
             Response.Wait();
             return Response.Result;
         }
 
-        private async Task<string> PostAsync(string url, object data)
+        private async Task<string> PostAsync(string Url, object Data)
         {
-            SwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var JsonString = JsonConvert.SerializeObject(data);
+            PublicSwaggerObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var JsonString = JsonConvert.SerializeObject(Data);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response = await SwaggerObject.QueryClient.PostAsync(url, PostData);
+            var Response = await PublicSwaggerObject.QueryClient.PostAsync(Url, PostData);
             return await Response.Content.ReadAsStringAsync();
         }
     }
