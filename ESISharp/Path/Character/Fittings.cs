@@ -5,9 +5,7 @@ using System.Linq;
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Fitting paths
-    /// </summary>
+    /// <summary>Authenticated Character Fitting paths</summary>
     public class CharacterFittings
     {
         protected EveSwagger SwaggerObject;
@@ -17,9 +15,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Character's Fittings
-        /// </summary>
+        /// <summary>Get All Character's Fittings</summary>
         /// <remarks>Requires SSO Authentication, using "read_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects representing fits</returns>
@@ -30,9 +26,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Create A Fitting
-        /// </summary>
+        /// <summary>Create A Fitting</summary>
         /// <remarks>Requires SSO Authentication, using "write_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="FittingName">(String) Fitting Name</param>
@@ -46,9 +40,7 @@ namespace ESISharp.ESIPath.Character
             return Create(CharacterID, Fitting);
         }
 
-        /// <summary>
-        /// Create A Fitting
-        /// </summary>
+        /// <summary>Create A Fitting</summary>
         /// <remarks>Requires SSO Authentication, using "write_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Fitting">(Fitting) Fitting</param>
@@ -67,9 +59,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Delete A Fitting
-        /// </summary>
+        /// <summary>Delete A Fitting</summary>
         /// <remarks>Requires SSO Authentication, using "write_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="FittingID">(Int32) Fitting ID</param>

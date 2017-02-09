@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Asset paths
-    /// </summary>
+    /// <summary>Authenticated Character Asset paths</summary>
     public class CharacterAssets
     {
         protected EveSwagger SwaggerObject;
@@ -14,12 +12,10 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Character's Assets
-        /// </summary>
+        /// <summary>Get All Character's Assets</summary>
         /// <remarks>Requires SSO Authentication, using "read_assets" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns></returns>
+        /// <returns>JSON Array of objects representing items</returns>
         public string GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID}/assets/";

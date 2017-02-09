@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Universe paths
-    /// </summary>
+    /// <summary>Public Universe paths</summary>
     public class Universe
     {
         protected EveSwagger SwaggerObject;
@@ -16,9 +14,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Bloodlines
-        /// </summary>
+        /// <summary>Get Bloodlines</summary>
         /// <returns>JSON Object containing Bloodline base attributes</returns>
         public string GetBloodlines()
         {
@@ -27,9 +23,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Item Categories
-        /// </summary>
+        /// <summary>Get Item Categories</summary>
         /// <returns>JSON Array of item categories</returns>
         public string GetItemCategories()
         {
@@ -38,9 +32,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Item Category information
-        /// </summary>
+        /// <summary>Get Item Category information</summary>
         /// <param name="CategoryID">(Int32) Catergory ID</param>
         /// <returns>JSON Object containing category name, groups, ID and published status</returns>
         public string GetItemCategoryInfo(int CategoryID)
@@ -50,9 +42,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Constellations
-        /// </summary>
+        /// <summary>Get Constellations</summary>
         /// <returns>JSON Array of constellation IDs</returns>
         public string GetConstellations()
         {
@@ -61,9 +51,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Constellation Information
-        /// </summary>
+        /// <summary>Get Constellation Information</summary>
         /// <param name="ConstellationID">(Int32) Constellation ID</param>
         /// <returns>JSON Object containing constellatio name, constellation ID, region ID, array of system IDs, and an object containing XYZ position.</returns>
         public string GetConstellationInfo(int ConstellationID)
@@ -73,9 +61,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Factions
-        /// </summary>
+        /// <summary>Get Factions</summary>
         /// <returns>JSON Object containing Faction base attributes</returns>
         public string GetFactions()
         {
@@ -84,9 +70,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Item Groups
-        /// </summary>
+        /// <summary>Get Item Groups</summary>
         /// <returns>JSON Array containing Item Group IDs</returns>
         public string GetItemGroups()
         {
@@ -95,9 +79,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Item Group Information
-        /// </summary>
+        /// <summary>Get Item Group Information</summary>
         /// <param name="CategoryID">(Int32) Item Group ID</param>
         /// <returns>JSON Object containing Group name, Group ID, Category ID, containing types, and published status</returns>
         public string GetItemGroupInfo(int GroupID)
@@ -107,9 +89,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Moon Information
-        /// </summary>
+        /// <summary>Get Moon Information</summary>
         /// <param name="MoonID">(Int32) Moon ID</param>
         /// <returns>JSON Object containing moon ID, moon name, system ID, and an object containing XYZ position.</returns>
         public string GetMoonInformation(int MoonID)
@@ -119,9 +99,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Type Name and Category
-        /// </summary>
+        /// <summary>Get Type Name and Category</summary>
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <returns>JSON Array with Object containing Category ID, Type ID, and name</returns>
         public string GetTypeNamesAndCategories(int TypeID)
@@ -129,9 +107,7 @@ namespace ESISharp.ESIPath
             return GetTypeNamesAndCategories(new List<int>() { TypeID });
         }
 
-        /// <summary>
-        /// Get Type Names and Categories
-        /// </summary>
+        /// <summary>Get Type Names and Categories</summary>
         /// <param name="TypeID">(Int32 List) Type ID</param>
         /// <returns>JSON Array of Objects containing Category ID, Type ID, and name</returns>
         public string GetTypeNamesAndCategories(List<int> TypeIDs)
@@ -142,9 +118,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Get Planet Information
-        /// </summary>
+        /// <summary>Get Planet Information</summary>
         /// <param name="PlanetID">(Int32) Planet ID</param>
         /// <returns>JSON Object conatining planet name, planet ID, system ID, type ID, and an objecting containing XYZ position.</returns>
         public string GetPlanetInformation(int PlanetID)
@@ -154,9 +128,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Races
-        /// </summary>
+        /// <summary>Get Races</summary>
         /// <returns>JSON Array of objects containing Race's Alliance ID, description, name, and Race ID</returns>
         public string GetRaces()
         {
@@ -165,9 +137,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Regions
-        /// </summary>
+        /// <summary>Get Regions</summary>
         /// <returns>JSON Array containing region IDs</returns>
         public string GetRegions()
         {
@@ -176,9 +146,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Region Information
-        /// </summary>
+        /// <summary>Get Region Information</summary>
         /// <param name="RegionID">(Int32) Region ID</param>
         /// <returns>JSON Object containing region ID, name, description, and an array of constellations.</returns>
         public string GetRegionInformation(int RegionID)
@@ -188,9 +156,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Stargate Information
-        /// </summary>
+        /// <summary>Get Stargate Information</summary>
         /// <param name="StargateID">(Int32) Stargate ID</param>
         /// <returns>JSON Object containing stargate ID, system ID, type ID, name, object containing destination system ID and stargate ID, and an object containing XYZ position.</returns>
         public string GetStargateInformation(int StargateID)
@@ -200,9 +166,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Station Information
-        /// </summary>
+        /// <summary>Get Station Information</summary>
         /// <param name="StationID">(Int32) Station ID</param>
         /// <returns>JSON Object containing station name and solar system ID where it's located</returns>
         public string GetStationInfo(int StationID)
@@ -212,9 +176,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Public Structures
-        /// </summary>
+        /// <summary>Get Public Structures</summary>
         /// <returns>JSON Array containing Structure IDs</returns>
         public string GetPublicStructures()
         {
@@ -223,9 +185,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Solar Systems
-        /// </summary>
+        /// <summary>Get Solar Systems</summary>
         /// <returns>JSON Array containing system IDs</returns>
         public string GetSystems()
         {
@@ -234,9 +194,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Solar System Information
-        /// </summary>
+        /// <summary>Get Solar System Information</summary>
         /// <param name="SystemID">(Int32) System ID</param>
         /// <returns>JSON Object containing solar system name</returns>
         public string GetSystemInfo(int SystemID)
@@ -246,18 +204,14 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get All Type IDs (First Page)
-        /// </summary>
+        /// <summary>Get All Type IDs (First Page)</summary>
         /// <returns>JSON Array containing Type IDs</returns>
         public string GetTypes()
         {
             return GetTypes(1);
         }
 
-        /// <summary>
-        /// Get All Type IDs (Specified Page)
-        /// </summary>
+        /// <summary>Get All Type IDs (Specified Page)</summary>
         /// <param name="Page">(Int32) Page Number</param>
         /// <returns>JSON Array containing Type IDs</returns>
         public string GetTypes(int Page)
@@ -268,9 +222,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Get Type Information
-        /// </summary>
+        /// <summary>Get Type Information</summary>
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <returns>JSON Object containing Type description, Group ID, name, Type ID, and published status</returns>
         public string GetTypeInfo(int TypeID)
@@ -278,9 +230,7 @@ namespace ESISharp.ESIPath
             return GetTypeInfo(TypeID, Language.English.Value);
         }
 
-        /// <summary>
-        /// Get Type Information
-        /// </summary>
+        /// <summary>Get Type Information</summary>
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <param name="Language">(Language) Language</param>
         /// <returns>JSON Object containing Type description, Group ID, name, Type ID, and published status</returns>
@@ -289,9 +239,7 @@ namespace ESISharp.ESIPath
             return GetTypeInfo(TypeID, Language.Value);
         }
 
-        /// <summary>
-        /// Get Type Information
-        /// </summary>
+        /// <summary>Get Type Information</summary>
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <param name="Language">(String) Language</param>
         /// <returns>JSON Object containing Type description, Group ID, name, Type ID, and published status</returns>
@@ -304,9 +252,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Universe paths
-    /// </summary>
+    /// <summary>Public and Authenticated Universe paths</summary>
     public class AuthUniverse : Universe
     {
         internal AuthUniverse(EveSwagger e) : base(e)
@@ -314,9 +260,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Structure Information
-        /// </summary>
+        /// <summary>Get Structure Information</summary>
         /// <remarks>Requires SSO Authentication with "read_structurs" scope.</remarks>
         /// <param name="StructureID">(Int64) Structure ID</param>
         /// <returns>JSON Object containing structure name and solar system ID where it's located</returns>

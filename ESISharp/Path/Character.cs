@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Character Paths
-    /// </summary>
+    /// <summary>Public Character Paths</summary>
     public class CharacterMain
     {
         protected EveSwagger SwaggerObject;
@@ -16,9 +14,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Character's Name
-        /// </summary>
+        /// <summary>Get Character's Name</summary>
         /// <param name="CharacterID">(Int64) CharacterID</param>
         /// <returns>JSON Array with Object containing character ID and name</returns>
         public string GetNames(long CharacterID)
@@ -26,9 +22,7 @@ namespace ESISharp.ESIPath
             return GetNames(new List<long>() { CharacterID });
         }
 
-        /// <summary>
-        /// Get Character's Name
-        /// </summary>
+        /// <summary>Get Character's Name</summary>
         /// <param name="CharacterIDs">(Int64 List) CharacterIDs</param>
         /// <returns>JSON Array with Objects containing character IDs and names</returns>
         public string GetNames(List<long> CharacterIDs)
@@ -39,9 +33,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Get Character's Public Information
-        /// </summary>
+        /// <summary>Get Character's Public Information</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing character's public information</returns>
         public string GetPublicInformation(int CharacterID)
@@ -51,9 +43,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Character's Corporation History
-        /// </summary>
+        /// <summary>Get Character's Corporation History</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects containing corporation ID, active status, record ID, and start date</returns>
         public string GetCorporationHistory(int CharacterID)
@@ -63,9 +53,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Character's Portraits
-        /// </summary>
+        /// <summary>Get Character's Portraits</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing URLs for 64x64, 128x128, 256x256, and 512x512 portraits</returns>
         public string GetPortraits(int CharacterID)
@@ -76,9 +64,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Authenticated Character Paths
-    /// </summary>
+    /// <summary>Authenticated Character Paths</summary>
     public class AuthCharacterMain : CharacterMain
     {
         /// <summary>Assets paths</summary>
@@ -121,9 +107,7 @@ namespace ESISharp.ESIPath
             Wallet = new CharacterWallet(SwaggerObject);
         }
 
-        /// <summary>
-        /// Get CSPA charge
-        /// </summary>
+        /// <summary>Get CSPA charge</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) CharacterID</param>
         /// <param name="CharacterToCheck">(Int32) Character ID of contact</param>
@@ -133,9 +117,7 @@ namespace ESISharp.ESIPath
             return CalculateCSPACharge(CharacterID, new List<int>() { CharacterToCheck });
         }
 
-        /// <summary>
-        /// Get CSPA charge
-        /// </summary>
+        /// <summary>Get CSPA charge</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) CharacterID</param>
         /// <param name="CharactersToCheck">(Int32) Character IDs of contacts</param>
@@ -148,9 +130,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Get Character's Location
-        /// </summary>
+        /// <summary>Get Character's Location</summary>
         /// <remarks>Requires SSO Authentication, using "read_location" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing character's current solar system ID, and structure ID if docked</returns>
@@ -161,9 +141,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Get Character's current ship
-        /// </summary>
+        /// <summary>Get Character's current ship</summary>
         /// <remarks>Requires SSO Authentication, using "read_ship" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing character's current ship id, name, and type ID</returns>

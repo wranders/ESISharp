@@ -4,9 +4,7 @@ using System.Net.Http;
 
 namespace ESISharp
 {
-    /// <summary>
-    /// Object for interfacing with the ESI API
-    /// </summary>
+    /// <summary>Object for interfacing with the ESI API</summary>
     public class EveSwagger
     {
         internal DataSource DataSource = DataSource.Tranquility;
@@ -14,36 +12,28 @@ namespace ESISharp
         internal Route Route = Route.Latest;
         internal HttpClient QueryClient = new HttpClient();
 
-        /// <summary>
-        /// Set the Eve Server to retrieve data from
-        /// </summary>
+        /// <summary>Set the Eve Server to retrieve data from</summary>
         /// <param name="NewDataSource">(DataSource) Eve Server</param>
         public void SetDataSource(DataSource NewDataSource)
         {
             DataSource = NewDataSource;
         }
 
-        /// <summary>
-        /// Set data response type
-        /// </summary>
+        /// <summary>Set data response type</summary>
         /// <param name="NewResponseType">(ResponseType) Data Type</param>
         public void SetResponseType(ResponseType NewResponseType)
         {
             ResponseType = NewResponseType;
         }
 
-        /// <summary>
-        /// Set ESI version to use
-        /// </summary>
+        /// <summary>Set ESI version to use</summary>
         /// <param name="NewRoute"></param>
         public void SetRoute(Route NewRoute)
         {
             Route = NewRoute;
         }
 
-        /// <summary>
-        /// Public API paths
-        /// </summary>
+        /// <summary>Public API paths</summary>
         public class Public : EveSwagger
         {
             /// <summary>Public Alliance paths</summary>
@@ -73,9 +63,7 @@ namespace ESISharp
             /// <summary>Public Wars paths</summary>
             public Wars Wars;
 
-            /// <summary>
-            /// Construct Public ESI interface
-            /// </summary>
+            /// <summary>Construct Public ESI interface</summary>
             public Public()
             {
                 Alliance = new Alliance(this);
@@ -94,9 +82,7 @@ namespace ESISharp
             }
         }
 
-        /// <summary>
-        /// Public and Authenticated paths
-        /// </summary>
+        /// <summary>Public and Authenticated paths</summary>
         public class Authenticated : EveSwagger
         {
             /// <summary>SSO Authentication settings</summary>
@@ -132,9 +118,7 @@ namespace ESISharp
             /// <summary>Public and Authenticated Wars paths</summary>
             public AuthWars Wars;
 
-            /// <summary>
-            /// Construct Authenticated ESI interface
-            /// </summary>
+            /// <summary>Construct Authenticated ESI interface</summary>
             /// <param name="AppClientID">(String) Application Client ID</param>
             public Authenticated(string AppClientID)
             {
@@ -142,9 +126,7 @@ namespace ESISharp
                 AuthInit();
             }
 
-            /// <summary>
-            /// Construct Authenticated ESI interface
-            /// </summary>
+            /// <summary>Construct Authenticated ESI interface</summary>
             /// <param name="AppClientID">(String) Application Client ID</param>
             /// <param name="AppSecretKey">(String) Application Secret Key</param>
             public Authenticated(string AppClientID, string AppSecretKey)

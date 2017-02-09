@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Skill paths
-    /// </summary>
+    /// <summary>Authenticated Character Skill paths</summary>
     public class CharacterSkills
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Character's current Skill Queue
-        /// </summary>
+        /// <summary>Get Character's current Skill Queue</summary>
         /// <remarks>Requires SSO Authentication, using "read_skillqueue" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects representing individual skills in queue</returns>
@@ -27,9 +23,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Get Character's Skills
-        /// </summary>
+        /// <summary>Get Character's Skills</summary>
         /// <remarks>Requires SSO Authentication, using "read_skills" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Object containing total skill points and Array of Objects representing individual skills</returns>

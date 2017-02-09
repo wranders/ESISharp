@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Industry paths
-    /// </summary>
+    /// <summary>Public Industry paths</summary>
     public class Industry
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get List of Industry Facilities
-        /// </summary>
+        /// <summary>Get List of Industry Facilities</summary>
         /// <returns>JSON Array of Objects containing Facility information</returns>
         public string GetFacilities()
         {
@@ -25,9 +21,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get List of Solar System Cost Indices
-        /// </summary>
+        /// <summary>Get List of Solar System Cost Indices</summary>
         /// <returns>JSON Array of Objects containing Solar System ID and related activities and cost indices</returns>
         public string GetIndices()
         {
@@ -37,9 +31,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Industry paths
-    /// </summary>
+    /// <summary>Public and Authenticated Industry paths</summary>
     public class AuthIndustry : Industry
     {
         internal AuthIndustry(EveSwagger e) : base(e)

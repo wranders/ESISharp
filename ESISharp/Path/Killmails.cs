@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Killmail paths
-    /// </summary>
+    /// <summary>Public Killmail paths</summary>
     public class Killmails
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get A Single Killmail
-        /// </summary>
+        /// <summary>Get A Single Killmail</summary>
         /// <param name="KillmailID">(Int32) Killmail ID</param>
         /// <param name="KillmailHash">(String) Base64 Killmail Hash</param>
         /// <returns>JSON Object containing Killmail information</returns>
@@ -28,9 +24,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated paths
-    /// </summary>
+    /// <summary>Public and Authenticated paths</summary>
     public class AuthKillmails : Killmails
     {
         internal AuthKillmails(EveSwagger e) : base(e)

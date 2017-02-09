@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Search Categories
-    /// </summary>
+    /// <summary>Search Categories</summary>
     public class SearchCategory
     {
         /// <summary>All Categories</summary>

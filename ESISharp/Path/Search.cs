@@ -5,9 +5,7 @@ using System.Linq;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Search paths
-    /// </summary>
+    /// <summary>Public Search paths</summary>
     public class Search
     {
         protected EveSwagger SwaggerObject;
@@ -17,9 +15,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <returns>JSON Object containing search results</returns>
         public string SearchPublic(string Query)
@@ -27,9 +23,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { SearchCategory.All.Value }, false, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
         /// <returns>JSON Object containing search results</returns>
@@ -38,9 +32,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { SearchCategory.All.Value }, Strict, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(SearchCategory) Category to search</param>
         /// <returns>JSON Object containing search results</returns>
@@ -49,9 +41,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category.Value }, false, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(String) Category to search</param>
         /// <returns>JSON Object containing search results</returns>
@@ -60,9 +50,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category }, false, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(SearchCategory List) Categories to search</param>
         /// <returns>JSON Object containing search results</returns>
@@ -71,9 +59,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories.ConvertAll(c => c.ToString()).ToList(), false, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(String List) Categories to search</param>
         /// <returns>JSON Object containing search results</returns>
@@ -82,9 +68,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories, false, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(SearchCategory) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -94,9 +78,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category.Value }, Strict, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(String) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -106,9 +88,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category }, Strict, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(SearchCategory List) Categories to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -118,9 +98,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(String List) Categories to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -130,9 +108,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories, Strict, Language.English);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(SearchCategory) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -143,9 +119,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category.Value }, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(String) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -156,9 +130,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category }, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(SearchCategory List) Categories to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -169,9 +141,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(String List) Categoired to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -182,9 +152,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(SearchCategory) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -195,9 +163,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category.Value }, Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Category">(String) Category to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -208,9 +174,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, new List<string>() { Category }, Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(SearchCategory List) Categories to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -221,9 +185,7 @@ namespace ESISharp.ESIPath
             return SearchPublic(Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Public Search
-        /// </summary>
+        /// <summary>Perform Public Search</summary>
         /// <param name="Query">(String) Search Query</param>
         /// <param name="Categories">(String List) Categories to search</param>
         /// <param name="Strict">(Boolean) Strictly match query</param>
@@ -244,9 +206,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Search paths
-    /// </summary>
+    /// <summary>Public and Authenticated Search paths</summary>
     public class AuthSearch : Search
     {
         internal AuthSearch(EveSwagger e) : base(e)
@@ -254,9 +214,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -266,9 +224,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { SearchCategory.All.Value }, false, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -279,9 +235,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { SearchCategory.All.Value }, Strict, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -292,9 +246,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category.Value }, false, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -305,9 +257,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories.ConvertAll(c => c.ToString()).ToList(), false, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -318,9 +268,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category }, false, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -331,9 +279,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories, false, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -345,9 +291,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category.Value }, Strict, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -359,9 +303,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -373,9 +315,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category }, Strict, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -387,9 +327,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories, Strict, Language.English.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -402,9 +340,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category.Value }, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -417,9 +353,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -432,9 +366,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category }, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -447,9 +379,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories, Strict, Language.Value);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -462,9 +392,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category.Value }, Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -477,9 +405,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, Categories.ConvertAll(c => c.ToString()).ToList(), Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>
@@ -492,9 +418,7 @@ namespace ESISharp.ESIPath
             return SearchAuthenticated(CharacterID, Query, new List<string>() { Category }, Strict, Language);
         }
 
-        /// <summary>
-        /// Perform Authenticated search
-        /// </summary>
+        /// <summary>Perform Authenticated search</summary>
         /// <remarks>Requires SSO Authentication, including "search_structures" scope</remarks>
         /// <param name="CharacterID">(Int32) Chracter ID</param>
         /// <param name="Query">(String) Search Query</param>

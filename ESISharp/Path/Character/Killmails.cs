@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Killmail paths
-    /// </summary>
+    /// <summary>Authenticated Character Killmail paths</summary>
     public class CharacterKillMails
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Recent Killmails (50 max)
-        /// </summary>
+        /// <summary>Get Recent Killmails (50 max)</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of Objects containing killmail base64 hashes and killmail IDs</returns>
@@ -25,9 +21,7 @@ namespace ESISharp.ESIPath.Character
             return GetRecent(CharacterID, 50, null);
         }
 
-        /// <summary>
-        /// Get Recent Killmails
-        /// </summary>
+        /// <summary>Get Recent Killmails</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MaxCount">(Int32) Max number if killmails to return</param>
@@ -37,9 +31,7 @@ namespace ESISharp.ESIPath.Character
             return GetRecent(CharacterID, MaxCount, null);
         }
 
-        /// <summary>
-        /// Get Recent Killmails
-        /// </summary>
+        /// <summary>Get Recent Killmails</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MaxCount">(Int32) Max number if killmails to return</param>

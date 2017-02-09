@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Alliance paths
-    /// </summary>
+    /// <summary>Public Alliance paths</summary>
     public class Alliance
     {
         protected EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get All Alliance IDs
-        /// </summary>
+        /// <summary>Get All Alliance IDs</summary>
         /// <returns>JSON Array of Alliance IDs</returns>
         public string GetAll()
         {
@@ -26,9 +22,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Alliance Name from ID
-        /// </summary>
+        /// <summary>Get Alliance Name from ID</summary>
         /// <param name="AllianceID">(Int64) Alliance ID</param>
         /// <returns>JSON Array of associated ID and Name</returns>
         public string GetNames(long AllianceID)
@@ -36,11 +30,9 @@ namespace ESISharp.ESIPath
             return GetNames(new List<long>() { AllianceID });
         }
 
-        /// <summary>
-        /// Get Alliance Names from List if IDs
-        /// </summary>
+        /// <summary>Get Alliance Names from List if IDs</summary>
         /// <param name="AllianceIDs">List(Int64) Alliance IDs</param>
-        /// /// <returns>JSON Array of associated IDs and Names</returns>
+        /// <returns>JSON Array of associated IDs and Names</returns>
         public string GetNames(List<long> AllianceIDs)
         {
             var Path = "/alliances/names/";
@@ -49,9 +41,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Get Alliance Information
-        /// </summary>
+        /// <summary>Get Alliance Information</summary>
         /// <param name="AllianceID">(Int32) Alliance ID</param>
         /// <returns>JSON Object containing Alliance Name, Date Founded, Executor Corporation, and Ticker</returns>
         public string GetInformation(int AllianceID)
@@ -61,9 +51,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Alliance's Member Corporations
-        /// </summary>
+        /// <summary>Get Alliance's Member Corporations</summary>
         /// <param name="AllianceID">(Int32) Alliance ID</param>
         /// <returns>JSON Array of Member Corporations</returns>
         public string GetCorporations(int AllianceID)
@@ -73,9 +61,7 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
-        /// <summary>
-        /// Get Alliance Icons
-        /// </summary>
+        /// <summary>Get Alliance Icons</summary>
         /// <param name="AllianceID">(Int32) Alliance ID</param>
         /// <returns>JSON Object containing URLs for 64x64 and 128x128 Alliance Icons</returns>
         public string GetIcons(int AllianceID)
@@ -86,9 +72,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Alliance paths
-    /// </summary>
+    /// <summary>Public and Authenticated Alliance paths</summary>
     public class AuthAlliance : Alliance
     {
         internal AuthAlliance(EveSwagger e) : base(e)

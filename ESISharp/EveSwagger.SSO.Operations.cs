@@ -14,9 +14,7 @@ using System.Web;
 
 namespace ESISharp
 {
-    /// <summary>
-    /// SSO Authentication Operations
-    /// </summary>
+    /// <summary>SSO Authentication Operations</summary>
     public partial class Sso
     {
         internal void Authorize()
@@ -209,10 +207,7 @@ namespace ESISharp
             Command.SetValue("", RouterCommand);
         }
 
-        /// <summary>
-        /// Verify information of the callback protocol.
-        /// <para/>Key will be create if it doesn't exist, or overwritten if there is an error.
-        /// </summary>
+        /// <summary>Verify information of the callback protocol.<para>Key will be create if it doesn't exist, or overwritten if there is an error.</para></summary>
         public void VerifyCallbackProtocolRegistyKey()
         {
             var Protocol = CallbackProtocol;

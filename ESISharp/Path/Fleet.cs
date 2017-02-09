@@ -3,9 +3,7 @@ using ESISharp.Web;
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Authenticated Fleet paths
-    /// </summary>
+    /// <summary>Authenticated Fleet paths</summary>
     public class Fleet
     {
         protected EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Fleet Information
-        /// </summary>
+        /// <summary>Get Fleet Information</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <returns>JSON Object containing free move status, registered status, voice enabled status, and MOTD</returns>
@@ -28,9 +24,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Update Fleet
-        /// </summary>
+        /// <summary>Update Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MOTD">(String) Fleet Message of the Day (MOTD)</param>
@@ -40,9 +34,7 @@ namespace ESISharp.ESIPath
             return Update(FleetID, MOTD, null);
         }
 
-        /// <summary>
-        /// Update Fleet
-        /// </summary>
+        /// <summary>Update Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="FreeMove">(Boolean) Free-Move status</param>
@@ -52,9 +44,7 @@ namespace ESISharp.ESIPath
             return Update(FleetID, null, FreeMove);
         }
 
-        /// <summary>
-        /// Update Fleet
-        /// </summary>
+        /// <summary>Update Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MOTD">(String) Fleet Message of the Day (MOTD)</param>
@@ -68,9 +58,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Put(Data);
         }
 
-        /// <summary>
-        /// Get Fleet Members
-        /// </summary>
+        /// <summary>Get Fleet Members</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <returns>JSON Array of Objects containing member information</returns>
@@ -81,9 +69,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet as Squad Member
-        /// </summary>
+        /// <summary>Invite a Character to Fleet as Squad Member</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -93,9 +79,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, null, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet as Squad Member in the specified Wing
-        /// </summary>
+        /// <summary>Invite a Character to Fleet as Squad Member in the specified Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -106,9 +90,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, WingID, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet as Squad Member in the specified Wing and Squad
-        /// </summary>
+        /// <summary>Invite a Character to Fleet as Squad Member in the specified Wing and Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -120,9 +102,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, WingID, SquadID);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -133,9 +113,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, Role.Value, null, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -146,9 +124,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, Role, null, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role in the specified Wing
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role in the specified Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -160,9 +136,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, Role.Value, WingID, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role in the specified Wing
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role in the specified Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -174,9 +148,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, Role, WingID, null);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role in the specified Wing
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role in the specified Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -189,9 +161,7 @@ namespace ESISharp.ESIPath
             return Invite(FleetID, CharacterID, Role.Value, WingID, SquadID);
         }
 
-        /// <summary>
-        /// Invite a Character to Fleet with a specific role in the specified Wing
-        /// </summary>
+        /// <summary>Invite a Character to Fleet with a specific role in the specified Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -213,9 +183,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(Data);
         }
 
-        /// <summary>
-        /// Kick Member from Fleet
-        /// </summary>
+        /// <summary>Kick Member from Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MemberID">(Int32) Member's Character ID</param>
@@ -227,9 +195,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Delete();
         }
 
-        /// <summary>
-        /// Move Fleet Member
-        /// </summary>
+        /// <summary>Move Fleet Member</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MemberID">(Int32) Member's Character ID</param>
@@ -241,9 +207,7 @@ namespace ESISharp.ESIPath
             return MoveMember(FleetID, MemberID, FleetRole.SquadMember.Value, WingID, SquadID);
         }
 
-        /// <summary>
-        /// Move Fleet Member
-        /// </summary>
+        /// <summary>Move Fleet Member</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MemberID">(Int32) Member's Character ID</param>
@@ -256,9 +220,7 @@ namespace ESISharp.ESIPath
             return MoveMember(FleetID, MemberID, Role.Value, WingID, SquadID);
         }
 
-        /// <summary>
-        /// Move Fleet Member
-        /// </summary>
+        /// <summary>Move Fleet Member</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MemberID">(Int32) Member's Character ID</param>
@@ -279,9 +241,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Put(Data);
         }
 
-        /// <summary>
-        /// Delete Squad
-        /// </summary>
+        /// <summary>Delete Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
@@ -293,9 +253,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Delete();
         }
 
-        /// <summary>
-        /// Rename Squad
-        /// </summary>
+        /// <summary>Rename Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
@@ -312,9 +270,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Put(Data);
         }
 
-        /// <summary>
-        /// Get Wings in Fleet
-        /// </summary>
+        /// <summary>Get Wings in Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <returns>Normally nothing, error is one was encountered</returns>
@@ -325,9 +281,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Create a Wing
-        /// </summary>
+        /// <summary>Create a Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <returns>Normally nothing, error is one was encountered</returns>
@@ -338,9 +292,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Post(new { });
         }
 
-        /// <summary>
-        /// Delete Wing
-        /// </summary>
+        /// <summary>Delete Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
@@ -352,9 +304,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Delete();
         }
 
-        /// <summary>
-        /// Rename Wing
-        /// </summary>
+        /// <summary>Rename Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
@@ -368,9 +318,7 @@ namespace ESISharp.ESIPath
             return EsiAuthRequest.Put(Data);
         }
 
-        /// <summary>
-        /// Create Squad
-        /// </summary>
+        /// <summary>Create Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>

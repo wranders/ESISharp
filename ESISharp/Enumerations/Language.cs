@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Data Language
-    /// </summary>
+    /// <summary>Data Language</summary>
     public class Language
     {
         /// <summary>English Language</summary>

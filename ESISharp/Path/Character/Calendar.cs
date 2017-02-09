@@ -3,9 +3,7 @@ using ESISharp.Web;
 
 namespace ESISharp.ESIPath.Character
 {
-    /// <summary>
-    /// Authenticated Character Calendar paths
-    /// </summary>
+    /// <summary>Authenticated Character Calendar paths</summary>
     public class CharacterCalendar
     {
         protected EveSwagger SwaggerObject;
@@ -15,9 +13,7 @@ namespace ESISharp.ESIPath.Character
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get Calendar Events (Returns the next 50 upcoming events)
-        /// </summary>
+        /// <summary>Get Calendar Events (Returns the next 50 upcoming events)</summary>
         /// <remarks>Requires SSO Authentication, using "read_calendar_events" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>JSON Array of objects representing calendar events</returns>
@@ -26,9 +22,7 @@ namespace ESISharp.ESIPath.Character
             return GetEventSummaries(CharacterID, null);
         }
 
-        /// <summary>
-        /// Get Calendar Events (Returns the next 50 events after provided event)
-        /// </summary>
+        /// <summary>Get Calendar Events (Returns the next 50 events after provided event)</summary>
         /// <remarks>Requires SSO Authentication, using "read_calendar_events" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="FromEventID">(Boolean) Starting Event ID</param>
@@ -41,9 +35,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get(Data);
         }
 
-        /// <summary>
-        /// Get specific Calendar Event
-        /// </summary>
+        /// <summary>Get specific Calendar Event</summary>
         /// <remarks>Requires SSO Authentication, using "read_calendar_events" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="EventID">(Int32) EventID</param>
@@ -55,9 +47,7 @@ namespace ESISharp.ESIPath.Character
             return EsiAuthRequest.Get();
         }
 
-        /// <summary>
-        /// Responsd to Calendar Event
-        /// </summary>
+        /// <summary>Responsd to Calendar Event</summary>
         /// <remarks>Requires SSO Authentication, using "respond_calendar_events" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="EventID">(Int32) Event ID</param>
@@ -68,9 +58,7 @@ namespace ESISharp.ESIPath.Character
             return RespondToEvent(CharacterID, EventID, Response.Value);
         }
 
-        /// <summary>
-        /// Responsd to Calendar Event
-        /// </summary>
+        /// <summary>Responsd to Calendar Event</summary>
         /// <remarks>Requires SSO Authentication, using "respond_calendar_events" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="EventID">(Int32) Event ID</param>

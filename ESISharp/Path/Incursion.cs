@@ -2,9 +2,7 @@
 
 namespace ESISharp.ESIPath
 {
-    /// <summary>
-    /// Public Incursion paths
-    /// </summary>
+    /// <summary>Public Incursion paths</summary>
     public class Incursions
     {
         protected EveSwagger SwaggerObject;
@@ -14,9 +12,7 @@ namespace ESISharp.ESIPath
             SwaggerObject = e;
         }
 
-        /// <summary>
-        /// Get List of Incursions
-        /// </summary>
+        /// <summary>Get List of Incursions</summary>
         /// <returns>JSON Array of Objects containing incursion information</returns>
         public string GetList()
         {
@@ -26,9 +22,7 @@ namespace ESISharp.ESIPath
         }
     }
 
-    /// <summary>
-    /// Public and Authenticated Incursion paths
-    /// </summary>
+    /// <summary>Public and Authenticated Incursion paths</summary>
     public class AuthIncursions : Incursions
     {
         internal AuthIncursions(EveSwagger e) : base(e)

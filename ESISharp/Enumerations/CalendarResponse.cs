@@ -1,8 +1,6 @@
 ﻿namespace ESISharp.Enumerations
 {
-    /// <summary>
-    /// Calendar Responses
-    /// </summary>
+    /// <summary>Calendar Responses</summary>
     public class CalendarResponse
     {
         /// <summary>Accept Event</summary>
