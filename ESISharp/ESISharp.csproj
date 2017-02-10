@@ -56,6 +56,8 @@
     <Compile Include="Enumerations\MarketOrderType.cs" />
     <Compile Include="Enumerations\OAuthGrant.cs" />
     <Compile Include="Enumerations\SearchCategory.cs" />
+    <Compile Include="EveSwagger.Cache.cs" />
+    <Compile Include="EveSwagger.Cache.Utility.cs" />
     <Compile Include="EveSwagger.SSO.Operations.cs" />
     <Compile Include="EveSwagger.SSO.cs" />
     <Compile Include="Object\Fitting.cs" />
@@ -65,7 +67,7 @@
     <Compile Include="Enumerations\ResponseType.cs" />
     <Compile Include="Enumerations\Route.cs" />
     <Compile Include="Enumerations\Scope.cs" />
-    <Compile Include="EveSwagger.cs" />
+    <Compile Include="ESIEve.cs" />
     <Compile Include="Path\Character\Assets.cs" />
     <Compile Include="Path\Character\Bookmarks.cs" />
     <Compile Include="Path\Character\Calendar.cs" />

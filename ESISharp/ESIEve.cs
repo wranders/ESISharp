@@ -5,12 +5,18 @@ using System.Net.Http;
 namespace ESISharp
 {
     /// <summary>Object for interfacing with the ESI API</summary>
-    public class EveSwagger
+    public class ESIEve
     {
         internal DataSource DataSource = DataSource.Tranquility;
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
         internal HttpClient QueryClient = new HttpClient();
+        internal Cache Cache;
+
+        internal ESIEve()
+        {
+            Cache = new Cache();
+        }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
         /// <param name="NewDataSource">(DataSource) Eve Server</param>
@@ -34,7 +40,7 @@ namespace ESISharp
         }
 
         /// <summary>Public API paths</summary>
-        public class Public : EveSwagger
+        public class Public : ESIEve
         {
             /// <summary>Public Alliance paths</summary>
             public Alliance Alliance;
@@ -64,7 +70,7 @@ namespace ESISharp
             public Wars Wars;
 
             /// <summary>Construct Public ESI interface</summary>
-            public Public()
+            public Public() : base()
             {
                 Alliance = new Alliance(this);
                 Character = new CharacterMain(this);
@@ -83,7 +89,7 @@ namespace ESISharp
         }
 
         /// <summary>Public and Authenticated paths</summary>
-        public class Authenticated : EveSwagger
+        public class Authenticated : ESIEve
         {
             /// <summary>SSO Authentication settings</summary>
             public Sso SSO;
@@ -120,7 +126,7 @@ namespace ESISharp
 
             /// <summary>Construct Authenticated ESI interface</summary>
             /// <param name="AppClientID">(String) Application Client ID</param>
-            public Authenticated(string AppClientID)
+            public Authenticated(string AppClientID) : base()
             {
                 SSO = new Sso(AppClientID);
                 AuthInit();
@@ -129,7 +135,7 @@ namespace ESISharp
             /// <summary>Construct Authenticated ESI interface</summary>
             /// <param name="AppClientID">(String) Application Client ID</param>
             /// <param name="AppSecretKey">(String) Application Secret Key</param>
-            public Authenticated(string AppClientID, string AppSecretKey)
+            public Authenticated(string AppClientID, string AppSecretKey) : base()
             {
                 SSO = new Sso(AppClientID, AppSecretKey);
                 AuthInit();

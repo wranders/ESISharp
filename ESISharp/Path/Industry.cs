@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Industry paths</summary>
     public class Industry
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Industry(EveSwagger e)
+        internal Industry(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get List of Industry Facilities</summary>
@@ -17,7 +17,7 @@ namespace ESISharp.ESIPath
         public string GetFacilities()
         {
             var Path = "/industry/facilities/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -26,7 +26,7 @@ namespace ESISharp.ESIPath
         public string GetIndices()
         {
             var Path = "/industry/systems/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -34,9 +34,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Industry paths</summary>
     public class AuthIndustry : Industry
     {
-        internal AuthIndustry(EveSwagger e) : base(e)
+        internal AuthIndustry(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }

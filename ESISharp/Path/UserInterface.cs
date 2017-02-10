@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath
     /// <summary>Authenticated User Interface paths</summary>
     public class UserInterface
     {
-        private readonly EveSwagger SwaggerObject;
+        private readonly ESIEve EasyObject;
 
-        internal UserInterface(EveSwagger e)
+        internal UserInterface(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Add a waypoint to the current route</summary>
@@ -45,7 +45,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/ui/autopilot/waypoint/";
             var Data = new { destination_id = DestinationID, clear_other_waypoints = ClearWaypoints, add_to_beginning = AddToBeginning };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -57,7 +57,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/ui/openwindow/contract/";
             var Data = new { contract_id = ContractID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -69,7 +69,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/ui/openwindow/information/";
             var Data = new { target_id = TargetID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -81,7 +81,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/ui/openwindow/marketdetails/";
             var Data = new { type_id = TypeID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(null, Data);
         }
 
@@ -195,7 +195,7 @@ namespace ESISharp.ESIPath
                 to_corp_or_alliance_id = CorpOrAllianceID,
                 to_mailing_list_id = MailingListID
             };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(Data);
         }
     }

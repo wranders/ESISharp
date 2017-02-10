@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Killmail paths</summary>
     public class Killmails
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Killmails(EveSwagger e)
+        internal Killmails(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get A Single Killmail</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath
         public string GetSingle(int KillmailID, string KillmailHash)
         {
             var Path = $"/killmails/{KillmailID.ToString()}/{KillmailHash}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -27,9 +27,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated paths</summary>
     public class AuthKillmails : Killmails
     {
-        internal AuthKillmails(EveSwagger e) : base(e)
+        internal AuthKillmails(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }

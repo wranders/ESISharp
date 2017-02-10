@@ -7,11 +7,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Universe paths</summary>
     public class Universe
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Universe(EveSwagger e)
+        internal Universe(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Bloodlines</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath
         public string GetBloodlines()
         {
             var Path = "/universe/bloodlines/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -28,7 +28,7 @@ namespace ESISharp.ESIPath
         public string GetItemCategories()
         {
             var Path = "/universe/categories/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -38,7 +38,7 @@ namespace ESISharp.ESIPath
         public string GetItemCategoryInfo(int CategoryID)
         {
             var Path = $"/universe/categories/{CategoryID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -47,7 +47,7 @@ namespace ESISharp.ESIPath
         public string GetConstellations()
         {
             var Path = "/universe/constellations/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -57,7 +57,7 @@ namespace ESISharp.ESIPath
         public string GetConstellationInfo(int ConstellationID)
         {
             var Path = $"/universe/constellations/{ConstellationID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -66,7 +66,7 @@ namespace ESISharp.ESIPath
         public string GetFactions()
         {
             var Path = "/universe/factions/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -75,7 +75,7 @@ namespace ESISharp.ESIPath
         public string GetItemGroups()
         {
             var Path = "/universe/groups/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -85,7 +85,7 @@ namespace ESISharp.ESIPath
         public string GetItemGroupInfo(int GroupID)
         {
             var Path = $"/universe/groups/{GroupID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -95,7 +95,7 @@ namespace ESISharp.ESIPath
         public string GetMoonInformation(int MoonID)
         {
             var Path = $"/universe/moons/{MoonID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -114,7 +114,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/universe/names/";
             var Data = new { ids = TypeIDs.ToArray() };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Post(Data);
         }
 
@@ -124,7 +124,7 @@ namespace ESISharp.ESIPath
         public string GetPlanetInformation(int PlanetID)
         {
             var Path = $"/universe/planets/{PlanetID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -133,7 +133,7 @@ namespace ESISharp.ESIPath
         public string GetRaces()
         {
             var Path = "/universe/races/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -142,7 +142,7 @@ namespace ESISharp.ESIPath
         public string GetRegions()
         {
             var Path = "/universe/regions/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -152,7 +152,7 @@ namespace ESISharp.ESIPath
         public string GetRegionInformation(int RegionID)
         {
             var Path = $"/universe/regions/{RegionID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -162,7 +162,7 @@ namespace ESISharp.ESIPath
         public string GetStargateInformation(int StargateID)
         {
             var Path = $"/universe/stargates/{StargateID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -172,7 +172,7 @@ namespace ESISharp.ESIPath
         public string GetStationInfo(int StationID)
         {
             var Path = $"/universe/stations/{StationID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -181,7 +181,7 @@ namespace ESISharp.ESIPath
         public string GetPublicStructures()
         {
             var Path = "/universe/structures/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -190,7 +190,7 @@ namespace ESISharp.ESIPath
         public string GetSystems()
         {
             var Path = "/universe/systems/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -200,7 +200,7 @@ namespace ESISharp.ESIPath
         public string GetSystemInfo(int SystemID)
         {
             var Path = $"/universe/systems/{SystemID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -218,7 +218,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/universe/types/";
             var Data = new { page = Page.ToString() };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -247,7 +247,7 @@ namespace ESISharp.ESIPath
         {
             var Path = $"/universe/types/{TypeID.ToString()}/";
             var Data = new { language = Language };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -255,9 +255,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Universe paths</summary>
     public class AuthUniverse : Universe
     {
-        internal AuthUniverse(EveSwagger e) : base(e)
+        internal AuthUniverse(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Structure Information</summary>
@@ -267,7 +267,7 @@ namespace ESISharp.ESIPath
         public string GetStructureInfo(long StructureID)
         {
             var Path = $"/universe/structures/{StructureID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

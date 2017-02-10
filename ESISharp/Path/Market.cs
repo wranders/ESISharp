@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Market paths</summary>
     public class Market
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Market(EveSwagger e)
+        internal Market(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>List Market Prices</summary>
@@ -18,7 +18,7 @@ namespace ESISharp.ESIPath
         public string GetPrices()
         {
             var Path = "/markets/prices/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -30,7 +30,7 @@ namespace ESISharp.ESIPath
         {
             var Path = $"/markets/{RegionID.ToString()}/history/";
             var Data = new { type_id = TypeID };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -97,7 +97,7 @@ namespace ESISharp.ESIPath
                 order_type = OrderType,
                 page = Page
             };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -105,9 +105,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Market paths</summary>
     public class AuthMarket : Market
     {
-        internal AuthMarket(EveSwagger e) : base(e)
+        internal AuthMarket(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Market Orders posted in a Structure (First Page)</summary>
@@ -128,7 +128,7 @@ namespace ESISharp.ESIPath
         {
             var Path = $"/markets/structures/{StructureID.ToString()}/";
             var Data = new { page = Page };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }
