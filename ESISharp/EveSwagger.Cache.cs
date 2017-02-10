@@ -49,5 +49,10 @@ namespace ESISharp
         public string ArgumentsHash;
         public string Expiration;
         public string Data;
+
+        internal CacheObject()
+        {
+
+        }
     }
 }
