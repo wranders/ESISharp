@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,29 +8,6 @@ using System.Threading.Tasks;
 
 namespace ESISharp.CacheUtility
 {
-    internal static class Time
-    {
-        internal static string GetUtcUnixTime()
-        {
-            var UtcTime = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
-            return (UtcTime.Days * 24 * 60 * 60 + UtcTime.Hours * 60 * 60 + UtcTime.Minutes * 60 + UtcTime.Seconds).ToString("G", CultureInfo.InvariantCulture);
-        }
-
-        internal static DateTime UnixTimeToDateTime(string UnixTime)
-        {
-            var UnixTimeEpochUtc = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            double UnixTimeSeconds;
-            if (double.TryParse(UnixTime, out UnixTimeSeconds))
-            {
-                return UnixTimeEpochUtc.AddSeconds(UnixTimeSeconds);
-            }
-            else
-            {
-                return UnixTimeEpochUtc;
-            }
-        }
-    }
-
     internal static class File
     {
         internal static Stream ReadFile(string FileName)
@@ -41,7 +17,7 @@ namespace ESISharp.CacheUtility
             var Uri = new Uri(FileName);
             if (Uri.IsFile && !System.IO.File.Exists(Uri.LocalPath))
                 return null;
-            while(true)
+            while (true)
             {
                 try
                 {
@@ -75,6 +51,53 @@ namespace ESISharp.CacheUtility
                 Success = false;
             }
             return Success;
+        }
+
+        private static FileStream GetFileStream(string FilePath, FileMode Mode, FileAccess Access)
+            => new FileStream(FilePath, Mode, Access, FileShare.None, 4096, true);
+
+        private static void Copy(string SourceFileName, string DestinationFileName)
+        {
+            using (var SourceStream = GetFileStream(SourceFileName, FileMode.Open, FileAccess.Read))
+            using (var DestinationStream = GetFileStream(DestinationFileName, FileMode.Create, FileAccess.Write))
+                SourceStream.CopyTo(DestinationStream);
+        }
+
+        private static bool MakeWritable(FileInfo File)
+        {
+            if (!File.IsReadOnly)
+                return true;
+
+            File.IsReadOnly = false;
+            return true;
+        }
+
+        private static bool EnsureWritable(string FileName)
+        {
+            var File = new FileInfo(FileName);
+            return !File.Exists || MakeWritable(File);
+        }
+
+        internal static void CopyFile(string SourceFileName, string DestinationFileName)
+        {
+            if (!EnsureWritable(DestinationFileName))
+                return;
+            Copy(SourceFileName, DestinationFileName);
+            var DestinationFile = new FileInfo(DestinationFileName);
+            DestinationFile.Refresh();
+            DestinationFile.IsReadOnly = false;
+        }
+
+        internal static void OverwriteFile(string DestinationFile, string FileContents)
+        {
+            if (DestinationFile == null)
+                return;
+            if (FileContents == null)
+                return;
+            var TemporaryFileName = Path.GetTempFileName();
+            SaveFile(FileContents, TemporaryFileName);
+            CopyFile(TemporaryFileName, DestinationFile);
+            DeleteFile(TemporaryFileName);
         }
 
         internal static string SetCacheDirectory(string DirectoryLocation, string DirectoryName, bool Initialize)
@@ -112,24 +135,33 @@ namespace ESISharp.CacheUtility
         {
             var TrimChars = new char[] { '/' };
             var TrimmedPath = Path.Trim(TrimChars);
-            var ReplacedPath = TrimmedPath.Replace(TrimChars.First(), '-');
-
-            return ReplacedPath;
-        }
-    }
-
-    internal static class Encoding
-    {
-        internal static string Base64Encode(string PlainText)
-        {
-            var PlainTextBytes = System.Text.Encoding.UTF8.GetBytes(PlainText);
-            return Convert.ToBase64String(PlainTextBytes);
+            return TrimmedPath.Replace(TrimChars.First(), '-');
         }
 
-        internal static string Base64Decode(string EncodedText)
+        internal static bool GetCacheFile(string CacheDirectory, string FileName, string FileExtension, out string CacheFile)
         {
-            var EncodedTextBytes = Convert.FromBase64String(EncodedText);
-            return System.Text.Encoding.UTF8.GetString(EncodedTextBytes);
+            var CacheFiles = Directory.EnumerateFiles(CacheDirectory, FileName, SearchOption.AllDirectories)
+                .Where(f => f.EndsWith(FileExtension)).ToList();
+            
+            if(CacheFiles.Any())
+            {
+                if(CacheFiles.Count == 1)
+                {
+                    CacheFile = CacheFiles.FirstOrDefault();
+                    return true;
+                }
+                else
+                {
+                    CacheFiles.ForEach(f => File.DeleteFile(f));
+                    CacheFile = string.Empty;
+                    return false;
+                }
+            }
+            else
+            {
+                CacheFile = string.Empty;
+                return false;
+            }
         }
     }
 }
