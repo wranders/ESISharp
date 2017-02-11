@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Globalization;
 
 namespace ESISharp.CacheUtility
 {
     internal static class Time
     {
-        internal static string GetUtcUnixTime()
+        private static readonly DateTime UnixTimeEpochUtc = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+
+        internal static DateTime UnixTimeToDateTime(double UnixTime)
         {
-            var UtcTime = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
-            return (UtcTime.Days * 24 * 60 * 60 + UtcTime.Hours * 60 * 60 + UtcTime.Minutes * 60 + UtcTime.Seconds).ToString("G", CultureInfo.InvariantCulture);
+            return UnixTimeEpochUtc.Add(TimeSpan.FromSeconds(UnixTime));
         }
 
-        internal static DateTime UnixTimeToDateTime(string UnixTime)
+        internal static double DateTimeToUnixTime(DateTime DateTime)
         {
-            var UnixTimeEpochUtc = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            double UnixTimeSeconds;
-            if (double.TryParse(UnixTime, out UnixTimeSeconds))
-            {
-                return UnixTimeEpochUtc.AddSeconds(UnixTimeSeconds);
-            }
-            else
-            {
-                return UnixTimeEpochUtc;
-            }
+            return (DateTime - UnixTimeEpochUtc).TotalSeconds;
         }
     }
 

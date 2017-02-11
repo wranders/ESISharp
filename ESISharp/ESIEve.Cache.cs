@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,6 @@ namespace ESISharp
             }
 
             var CacheFileName = Utility.File.PathToFileName(PathName);
-            var ArgumentHash = Utility.Encoding.Base64Encode(Arguments);
 
             string CacheFile;
             if (Utility.File.GetCacheFile(CacheDirectory, CacheFileName, CacheExtension, out CacheFile))
@@ -54,15 +54,15 @@ namespace ESISharp
                     FileContents = Reader.ReadToEnd();
                 }
                 var CacheObjects = JsonConvert.DeserializeObject<List<CacheObject>>(FileContents);
+                var ArgumentHash = Utility.Encoding.Base64Encode(Arguments);
                 var QueryMatch = CacheObjects.Where(p => p.ArgumentsHash == ArgumentHash).ToList();
                 if (QueryMatch.Count == 1)
                 {
                     var CacheMatch = QueryMatch.FirstOrDefault();
-                    var CacheTime = Utility.Time.UnixTimeToDateTime(CacheMatch.Expiration);
-                    var CacheAge = DateTime.Now - CacheTime;
+                    var CacheAge = DateTime.Now - Utility.Time.UnixTimeToDateTime(CacheMatch.Expiration);
                     if (CacheAge.CompareTo(TimeSpan.Zero) < 0)
                     {
-                        CachedFile = Utility.Encoding.Base64Decode(CacheMatch.Data);
+                        CachedFile = Utility.Encoding.Base64Decode(CacheMatch.DataHash);
                         return true;
                     }
                     else
@@ -89,12 +89,44 @@ namespace ESISharp
                 return false;
             }
         }
+
+        internal void Set(string PathName, string Arguments, string Data, HttpResponseHeaders Headers)
+        {
+            if (string.IsNullOrWhiteSpace(PathName) || string.IsNullOrWhiteSpace(Data))
+                return;
+
+            var CacheFileName = Utility.File.PathToFileName(PathName);
+
+            var NewCacheObject = new CacheObject();
+            NewCacheObject.ArgumentsHash = Utility.Encoding.Base64Encode(Arguments);
+            NewCacheObject.DataHash = Utility.Encoding.Base64Encode(Data);
+            NewCacheObject.Expiration = Utility.Time.DateTimeToUnixTime(DateTime.Parse(Headers.GetValues("expires").First()));
+
+            string CacheFile;
+            if(Utility.File.GetCacheFile(CacheDirectory, CacheFileName, CacheExtension, out CacheFile))
+            {
+                string FileContents;
+                using (var Reader = new StreamReader(Utility.File.ReadFile(CacheFile)))
+                {
+                    FileContents = Reader.ReadToEnd();
+                }
+                var CacheObjects = JsonConvert.DeserializeObject<List<CacheObject>>(FileContents);
+                CacheObjects.Add(NewCacheObject);
+                var JsonCacheFile = JsonConvert.SerializeObject(CacheObjects);
+                Utility.File.OverwriteFile(CacheFileName, JsonCacheFile);
+            }
+            else
+            {
+                var JsonCacheFile = JsonConvert.SerializeObject(new List<CacheObject>() { NewCacheObject });
+                Utility.File.SaveFile(JsonCacheFile, Path.Combine(CacheDirectory, CacheFileName, CacheExtension));
+            }
+        }
     }
 
     internal class CacheObject
     {
         internal string ArgumentsHash { get; set; }
-        internal string Expiration { get; set; }
-        internal string Data { get; set; }
+        internal double Expiration { get; set; }
+        internal string DataHash { get; set; }
     }
 }
