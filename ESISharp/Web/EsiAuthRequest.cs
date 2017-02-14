@@ -16,7 +16,7 @@ namespace ESISharp.Web
         private readonly DataSource DataSource;
         private string RequestUrl => $"{BaseUrl}{Route.Value}{Path}?datasource={DataSource.Value}";
 
-        private static readonly object AuthLock = new object();
+        private readonly object AuthLock = new object();
 
         internal EsiAuthRequest(ESIEve EsiObject, string RequestPath)
         {
