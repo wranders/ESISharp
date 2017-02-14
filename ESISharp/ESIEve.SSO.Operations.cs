@@ -120,7 +120,6 @@ namespace ESISharp
                 "authorization_code",
                 "code",
                 AuthCode);
-            GetAccessTokenTask.Wait();
             return GetAccessTokenTask.Result;
         }
 
@@ -130,7 +129,6 @@ namespace ESISharp
                 "refresh_token",
                 "refresh_token",
                 AuthToken.RefreshToken);
-            GetAccessTokenTask.Wait();
             AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessToken(GetAccessTokenTask.Result));
             AuthToken = new AuthToken(Token.access_token, Token.token_type, Token.refresh_token, Token.expires_in);
         }
@@ -141,7 +139,6 @@ namespace ESISharp
                 "refresh_token",
                 "refresh_token",
                 RefreshToken);
-            GetAccessTokenTask.Wait();
             AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessTokenTask.Result);
             AuthToken = new AuthToken(Token.access_token, Token.token_type, Token.refresh_token, Token.expires_in);
         }
@@ -155,8 +152,8 @@ namespace ESISharp
                 {
                     new KeyValuePair<string, string>("grant_type", Grant),
                     new KeyValuePair<string, string>(CodeType, Code)
-                }));
-            ResponseString = await Response.Content.ReadAsStringAsync();
+                })).ConfigureAwait(false);
+            ResponseString = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return ResponseString;
         }
 
@@ -185,6 +182,33 @@ namespace ESISharp
             }
             else
             {
+                return true;
+            }
+        }
+
+        internal bool VerifyCredentials()
+        {
+            lock (AuthLock)
+            {
+                if (AuthToken == null && ImplicitToken == null)
+                {
+                    Authorize();
+                    return true;
+                }
+                else
+                {
+                    if (!RequestedScopes.Contains(Scope.None) || ReauthorizeScopes)
+                    {
+                        Authorize();
+                        return true;
+                    }
+
+                    if (!IsTokenValid())
+                    {
+                        RefreshAccessToken();
+                        return true;
+                    }
+                }
                 return true;
             }
         }

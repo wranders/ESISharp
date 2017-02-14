@@ -7,11 +7,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Character Paths</summary>
     public class CharacterMain
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterMain(EveSwagger e)
+        internal CharacterMain(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Character's Name</summary>
@@ -29,7 +29,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/characters/names/";
             var Data = new { character_ids = CharacterIDs.ToArray() };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -39,7 +39,7 @@ namespace ESISharp.ESIPath
         public string GetPublicInformation(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -49,7 +49,7 @@ namespace ESISharp.ESIPath
         public string GetCorporationHistory(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/corporationhistory/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -59,7 +59,7 @@ namespace ESISharp.ESIPath
         public string GetPortraits(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/portrait/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -90,21 +90,21 @@ namespace ESISharp.ESIPath
         /// <summary>Wallet paths</summary>
         public CharacterWallet Wallet;
 
-        internal AuthCharacterMain(EveSwagger e) : base(e)
+        internal AuthCharacterMain(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = (EveSwagger.Authenticated)e;
+            EasyObject = (ESIEve.Authenticated)EasyEve;
 
-            Assets = new CharacterAssets(SwaggerObject);
-            Bookmarks = new CharacterBookmarks(SwaggerObject);
-            Calendar = new CharacterCalendar(SwaggerObject);
-            Clones = new CharacterClones(SwaggerObject);
-            Contacts = new CharacterContacts(SwaggerObject);
-            Fittings = new CharacterFittings(SwaggerObject);
-            Killmails = new CharacterKillMails(SwaggerObject);
-            Mail = new CharacterMail(SwaggerObject);
-            PlanetaryInteraction = new CharacterPlanetaryInteraction(SwaggerObject);
-            Skills = new CharacterSkills(SwaggerObject);
-            Wallet = new CharacterWallet(SwaggerObject);
+            Assets = new CharacterAssets(EasyObject);
+            Bookmarks = new CharacterBookmarks(EasyObject);
+            Calendar = new CharacterCalendar(EasyObject);
+            Clones = new CharacterClones(EasyObject);
+            Contacts = new CharacterContacts(EasyObject);
+            Fittings = new CharacterFittings(EasyObject);
+            Killmails = new CharacterKillMails(EasyObject);
+            Mail = new CharacterMail(EasyObject);
+            PlanetaryInteraction = new CharacterPlanetaryInteraction(EasyObject);
+            Skills = new CharacterSkills(EasyObject);
+            Wallet = new CharacterWallet(EasyObject);
         }
 
         /// <summary>Get CSPA charge</summary>
@@ -126,7 +126,7 @@ namespace ESISharp.ESIPath
         {
             var Path = $"/characters/{CharacterID.ToString()}/cspa/";
             var Data = new { characters = CharactersToCheck.ToArray() };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -137,7 +137,7 @@ namespace ESISharp.ESIPath
         public string GetLocation(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/location/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -148,7 +148,7 @@ namespace ESISharp.ESIPath
         public string GetCurrentShip(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/ship/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Planetary Interaction (PI) paths</summary>
     public class PlanetaryInteraction
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal PlanetaryInteraction(EveSwagger e)
+        internal PlanetaryInteraction(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Planetary Interaction Schematic</summary>
@@ -18,7 +18,7 @@ namespace ESISharp.ESIPath
         public string GetSchematicInfo(int SchematicID)
         {
             var Path = $"/universe/schematics/{SchematicID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -26,9 +26,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
     public class AuthPlanetaryInteraction : PlanetaryInteraction
     {
-        internal AuthPlanetaryInteraction(EveSwagger e) : base(e)
+        internal AuthPlanetaryInteraction(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }
