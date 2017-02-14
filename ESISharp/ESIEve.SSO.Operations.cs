@@ -186,6 +186,33 @@ namespace ESISharp
             }
         }
 
+        internal bool VerifyCredentials()
+        {
+            lock (AuthLock)
+            {
+                if (AuthToken == null && ImplicitToken == null)
+                {
+                    Authorize();
+                    return true;
+                }
+                else
+                {
+                    if (!RequestedScopes.Contains(Scope.None) || ReauthorizeScopes)
+                    {
+                        Authorize();
+                        return true;
+                    }
+
+                    if (!IsTokenValid())
+                    {
+                        RefreshAccessToken();
+                        return true;
+                    }
+                }
+                return true;
+            }
+        }
+
         internal void CreateRegistryKeys()
         {
             var Protocol = CallbackProtocol;

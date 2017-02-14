@@ -56,9 +56,6 @@
     <Compile Include="Enumerations\MarketOrderType.cs" />
     <Compile Include="Enumerations\OAuthGrant.cs" />
     <Compile Include="Enumerations\SearchCategory.cs" />
-    <Compile Include="ESIEve.Cache.cs" />
-    <Compile Include="ESIEve.Cache.Utility.cs" />
-    <Compile Include="ESIEve.Cache.Utility.File.cs" />
     <Compile Include="ESIEve.SSO.Operations.cs" />
     <Compile Include="ESIEve.SSO.cs" />
     <Compile Include="Object\Fitting.cs" />

@@ -16,41 +16,12 @@ namespace ESISharp.Web
         private readonly DataSource DataSource;
         private string RequestUrl => $"{BaseUrl}{Route.Value}{Path}?datasource={DataSource.Value}";
 
-        private readonly object AuthLock = new object();
-
         internal EsiAuthRequest(ESIEve EsiObject, string RequestPath)
         {
             AuthenticatedEasyObject = (ESIEve.Authenticated)EsiObject;
             Route = AuthenticatedEasyObject.Route;
             Path = RequestPath;
             DataSource = AuthenticatedEasyObject.DataSource;
-        }
-
-        private bool VerifyCredentials()
-        {
-            lock(AuthLock)
-            {
-                if (AuthenticatedEasyObject.SSO.AuthToken == null && AuthenticatedEasyObject.SSO.ImplicitToken == null)
-                {
-                    AuthenticatedEasyObject.SSO.Authorize();
-                    return true;
-                }
-                else
-                {
-                    if (!AuthenticatedEasyObject.SSO.RequestedScopes.Contains(Scope.None) || AuthenticatedEasyObject.SSO.ReauthorizeScopes)
-                    {
-                        AuthenticatedEasyObject.SSO.Authorize();
-                        return true;
-                    }
-
-                    if (!AuthenticatedEasyObject.SSO.IsTokenValid())
-                    {
-                        AuthenticatedEasyObject.SSO.RefreshAccessToken();
-                        return true;
-                    }
-                }
-                return true;
-            }
         }
 
         private string ActiveAccessToken()
@@ -71,7 +42,7 @@ namespace ESISharp.Web
 
         internal string Get()
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var Response = GetAsync(RequestUrl);
                 return Response.Result;
@@ -81,7 +52,7 @@ namespace ESISharp.Web
 
         internal string Get(object QueryArguments)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
                 var ArgumentRequest = string.Concat(RequestUrl, ArgString);
@@ -101,7 +72,7 @@ namespace ESISharp.Web
 
         internal string Post(object Data)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var Response = PostAsync(RequestUrl, Data);
                 return Response.Result;
@@ -111,7 +82,7 @@ namespace ESISharp.Web
 
         internal string Post(object Data, object QueryArguments)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
                 var ArgumentRequest = string.Concat(RequestUrl, ArgString);
@@ -133,7 +104,7 @@ namespace ESISharp.Web
 
         internal string Put(object Data)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var Response = PutAsync(RequestUrl, Data);
                 return Response.Result;
@@ -143,7 +114,7 @@ namespace ESISharp.Web
 
         internal string Put(object Data, object QueryArguments)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
                 var ArgumentRequest = string.Concat(RequestUrl, ArgString);
@@ -165,7 +136,7 @@ namespace ESISharp.Web
 
         internal string Delete()
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var Response = DeleteAsync(RequestUrl);
                 return Response.Result;
@@ -175,7 +146,7 @@ namespace ESISharp.Web
 
         internal string Delete(object Data)
         {
-            while (VerifyCredentials())
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
                 var Response = DeleteAsync(RequestUrl, Data);
                 return Response.Result;

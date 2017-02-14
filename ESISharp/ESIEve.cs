@@ -12,11 +12,9 @@ namespace ESISharp
         internal Route Route = Route.Latest;
         internal HttpClient QueryClient = new HttpClient();
 
-        internal Cache Cache;
-
         internal ESIEve()
         {
-            Cache = new Cache();
+
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
