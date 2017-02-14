@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Contact paths</summary>
     public class CharacterContacts
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterContacts(EveSwagger e)
+        internal CharacterContacts(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Delete Contact</summary>
@@ -32,7 +32,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var Data = CharactersToDelete.ToArray();
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Delete(Data);
         }
 
@@ -54,7 +54,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var Data = new { page = Page };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -131,7 +131,7 @@ namespace ESISharp.ESIPath.Character
             var PostData = NewContactCharacterIDs.ToArray();
             var Label = (LabelID == null) ? 0 : LabelID;
             var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(PostData, UrlData);
         }
 
@@ -208,7 +208,7 @@ namespace ESISharp.ESIPath.Character
             var PutData = ContactCharacterIDs.ToArray();
             var Label = (LabelID == null) ? 0 : LabelID;
             var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Put(PutData, UrlData);
         }
 
@@ -219,7 +219,7 @@ namespace ESISharp.ESIPath.Character
         public string GetLabels(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/labels/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

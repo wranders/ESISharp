@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Asset paths</summary>
     public class CharacterAssets
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterAssets(EveSwagger e)
+        internal CharacterAssets(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get All Character's Assets</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID}/assets/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

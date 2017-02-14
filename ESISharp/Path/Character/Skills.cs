@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Skill paths</summary>
     public class CharacterSkills
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterSkills(EveSwagger e)
+        internal CharacterSkills(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Character's current Skill Queue</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetQueue(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/skillqueue/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -30,7 +30,7 @@ namespace ESISharp.ESIPath.Character
         public string GetSkills(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/skills/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Killmail paths</summary>
     public class CharacterKillMails
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterKillMails(EveSwagger e)
+        internal CharacterKillMails(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Recent Killmails (50 max)</summary>
@@ -41,7 +41,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID}/killmails/recent/";
             var Data = new { max_count = MaxCount, max_kill_id = MaxKillID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }

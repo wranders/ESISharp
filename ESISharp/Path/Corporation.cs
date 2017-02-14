@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Corporation paths</summary>
     public class Corporation
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Corporation(EveSwagger e)
+        internal Corporation(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Corporation Name</summary>
@@ -28,7 +28,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/corporations/names/";
             var Data = new { corporation_ids = CorpIDs.ToArray() };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -38,7 +38,7 @@ namespace ESISharp.ESIPath
         public string GetInformation(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -48,7 +48,7 @@ namespace ESISharp.ESIPath
         public string GetAllianceHistory(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/alliancehistory/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -58,7 +58,7 @@ namespace ESISharp.ESIPath
         public string GetIcons(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/icons/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -66,9 +66,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Corporation paths</summary>
     public class AuthCorporation : Corporation
     {
-        internal AuthCorporation(EveSwagger e) : base(e)
+        internal AuthCorporation(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Corporation's Members</summary>
@@ -78,7 +78,7 @@ namespace ESISharp.ESIPath
         public string GetMembers(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/members/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -89,7 +89,7 @@ namespace ESISharp.ESIPath
         public string GetMemberRoles(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/roles/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

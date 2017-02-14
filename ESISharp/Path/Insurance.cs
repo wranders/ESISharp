@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Insurance paths</summary>
     public class Insurance
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Insurance(EveSwagger e)
+        internal Insurance(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Insurace Information</summary>
@@ -17,7 +17,7 @@ namespace ESISharp.ESIPath
         public string GetPrices()
         {
             var Path = "/insurance/prices/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -25,9 +25,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Insurance paths</summary>
     public class AuthInsurance : Insurance
     {
-        internal AuthInsurance(EveSwagger e) : base(e)
+        internal AuthInsurance(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }

@@ -8,11 +8,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Search paths</summary>
     public class Search
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Search(EveSwagger e)
+        internal Search(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Perform Public Search</summary>
@@ -201,7 +201,7 @@ namespace ESISharp.ESIPath
                 language = Language,
                 strict = Strict
             };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
     }
@@ -209,9 +209,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Search paths</summary>
     public class AuthSearch : Search
     {
-        internal AuthSearch(EveSwagger e) : base(e)
+        internal AuthSearch(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Perform Authenticated search</summary>
@@ -436,7 +436,7 @@ namespace ESISharp.ESIPath
                 language = Language,
                 strict = Strict
             };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
     }

@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Bookmark paths</summary>
     public class CharacterBookmarks
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterBookmarks(EveSwagger e)
+        internal CharacterBookmarks(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get All Character's Bookmarks</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/bookmarks/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -30,7 +30,7 @@ namespace ESISharp.ESIPath.Character
         public string GetFolders(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/bookmarks/folders/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Calendar paths</summary>
     public class CharacterCalendar
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterCalendar(EveSwagger e)
+        internal CharacterCalendar(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Calendar Events (Returns the next 50 upcoming events)</summary>
@@ -31,7 +31,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/calendar/";
             var Data = new { from_event = FromEventID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -43,7 +43,7 @@ namespace ESISharp.ESIPath.Character
         public string GetEvent(int CharacterID, int EventID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -68,7 +68,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/";
             var Data = new { response = Response };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Put(Data);
         }
     }

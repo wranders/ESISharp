@@ -8,11 +8,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Fitting paths</summary>
     public class CharacterFittings
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterFittings(EveSwagger e)
+        internal CharacterFittings(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get All Character's Fittings</summary>
@@ -22,7 +22,7 @@ namespace ESISharp.ESIPath.Character
         public string GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/fittings/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -55,7 +55,7 @@ namespace ESISharp.ESIPath.Character
                 ship_type_id = Fitting.ShipTypeID,
                 items = Fitting.Items.Select(item => new { type_id = item.TypeID, quantity = item.Quantity, flag = item.Flag }).ToArray()
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -67,7 +67,7 @@ namespace ESISharp.ESIPath.Character
         public string Delete(int CharacterID, int FittingID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/fittings/{FittingID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Delete();
         }
     }

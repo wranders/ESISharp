@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Planetary Interaction (PI) paths</summary>
     public class CharacterPlanetaryInteraction
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterPlanetaryInteraction(EveSwagger e)
+        internal CharacterPlanetaryInteraction(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Character's PI Colonies</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetColonies(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/planets/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -31,7 +31,7 @@ namespace ESISharp.ESIPath.Character
         public string GetColonyLayout(int CharacterID, int PlanetID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/planets/{PlanetID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

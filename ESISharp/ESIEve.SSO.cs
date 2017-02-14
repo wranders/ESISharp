@@ -33,6 +33,8 @@ namespace ESISharp
 
         private static HttpClient SsoClient = new HttpClient();
 
+        private readonly object AuthLock = new object();
+
         internal Sso(string AppClientID)
         {
             ClientID = AppClientID;

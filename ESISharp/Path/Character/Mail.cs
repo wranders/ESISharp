@@ -9,11 +9,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Mail paths</summary>
     public class CharacterMail
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterMail(EveSwagger e)
+        internal CharacterMail(ESIEve e)
         {
-            SwaggerObject = e;
+            EasyObject = e;
         }
 
         /// <summary>Return Mail Headers (50 most recent)</summary>
@@ -76,7 +76,7 @@ namespace ESISharp.ESIPath.Character
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/";
             var Data = new { labels = Labels.ToArray(), last_mail_id = LastMailID };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get(Data);
         }
 
@@ -171,7 +171,7 @@ namespace ESISharp.ESIPath.Character
                 recipients = Mail.Recipients.Select(r => new { recipient_id = r.RecipientID, recipient_type = r.RecipientType }).ToArray(),
                 subject = Mail.Subject
             };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -182,7 +182,7 @@ namespace ESISharp.ESIPath.Character
         public string GetLabels(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -221,7 +221,7 @@ namespace ESISharp.ESIPath.Character
                 color = Color,
                 name = Name
             };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Post(Data);
         }
 
@@ -233,7 +233,7 @@ namespace ESISharp.ESIPath.Character
         public string DeleteLabel(int CharacterID, int LabelID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/labels/{LabelID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -244,7 +244,7 @@ namespace ESISharp.ESIPath.Character
         public string GetMailingListSubscriptions(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/lists/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -256,7 +256,7 @@ namespace ESISharp.ESIPath.Character
         public string DeleteMail(int CharacterID, int MailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Delete();
         }
 
@@ -268,7 +268,7 @@ namespace ESISharp.ESIPath.Character
         public string GetMail(int CharacterID, int MailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
 
@@ -321,7 +321,7 @@ namespace ESISharp.ESIPath.Character
                 labels = LabelIDs,
                 read = Read
             };
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Put(Data);
         }
     }

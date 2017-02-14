@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Wallet paths</summary>
     public class CharacterWallet
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterWallet(EveSwagger e)
+        internal CharacterWallet(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Character's wallets and balances</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetWallets(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/wallets/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
 
         }

@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath.Character
     /// <summary>Authenticated Character Clone paths</summary>
     public class CharacterClones
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal CharacterClones(EveSwagger e)
+        internal CharacterClones(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get Character's Clones</summary>
@@ -19,7 +19,7 @@ namespace ESISharp.ESIPath.Character
         public string GetClones(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/clones/";
-            var EsiAuthRequest = new EsiAuthRequest(SwaggerObject, Path);
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
         }
     }

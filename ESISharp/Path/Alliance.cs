@@ -6,11 +6,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Alliance paths</summary>
     public class Alliance
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Alliance(EveSwagger e)
+        internal Alliance(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get All Alliance IDs</summary>
@@ -18,7 +18,7 @@ namespace ESISharp.ESIPath
         public string GetAll()
         {
             var Path = "/alliances/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -37,7 +37,7 @@ namespace ESISharp.ESIPath
         {
             var Path = "/alliances/names/";
             var Data = new { alliance_ids = AllianceIDs.ToArray() };
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get(Data);
         }
 
@@ -47,7 +47,7 @@ namespace ESISharp.ESIPath
         public string GetInformation(int AllianceID)
         {
             var Path = $"/alliances/{AllianceID.ToString()}/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -57,7 +57,7 @@ namespace ESISharp.ESIPath
         public string GetCorporations(int AllianceID)
         {
             var Path = $"/alliances/{AllianceID.ToString()}/corporations/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
 
@@ -67,7 +67,7 @@ namespace ESISharp.ESIPath
         public string GetIcons(int AllianceID)
         {
             var Path = $"/alliances/{AllianceID.ToString()}/icons/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -75,9 +75,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Alliance paths</summary>
     public class AuthAlliance : Alliance
     {
-        internal AuthAlliance(EveSwagger e) : base(e)
+        internal AuthAlliance(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }

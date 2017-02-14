@@ -5,11 +5,11 @@ namespace ESISharp.ESIPath
     /// <summary>Public Incursion paths</summary>
     public class Incursions
     {
-        protected EveSwagger SwaggerObject;
+        protected ESIEve EasyObject;
 
-        internal Incursions(EveSwagger e)
+        internal Incursions(ESIEve EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
 
         /// <summary>Get List of Incursions</summary>
@@ -17,7 +17,7 @@ namespace ESISharp.ESIPath
         public string GetList()
         {
             var Path = "/incursions/";
-            var EsiRequest = new EsiRequest(SwaggerObject, Path);
+            var EsiRequest = new EsiRequest(EasyObject, Path);
             return EsiRequest.Get();
         }
     }
@@ -25,9 +25,9 @@ namespace ESISharp.ESIPath
     /// <summary>Public and Authenticated Incursion paths</summary>
     public class AuthIncursions : Incursions
     {
-        internal AuthIncursions(EveSwagger e) : base(e)
+        internal AuthIncursions(ESIEve EasyEve) : base(EasyEve)
         {
-            SwaggerObject = e;
+            EasyObject = EasyEve;
         }
     }
 }
