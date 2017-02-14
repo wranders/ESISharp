@@ -28,6 +28,7 @@ namespace ESISharp
             }
 
             var LocalRequestedScopes = RequestedScopes;
+            var PipeName = Guid.NewGuid().ToString();
 
             var SsoBuilder = new UriBuilder("https://login.eveonline.com/oauth/authorize");
             var Query = HttpUtility.ParseQueryString(SsoBuilder.Query);
@@ -39,7 +40,7 @@ namespace ESISharp
             {
                 Query["response_type"] = "token";
             }
-            Query["state"] = State;
+            Query["state"] = PipeName;
             Query["redirect_uri"] = CallbackUrl;
             Query["client_id"] = ClientID;
             Query["scope"] = ScopesUrl;
@@ -47,7 +48,7 @@ namespace ESISharp
 
             System.Diagnostics.Process.Start(SsoBuilder.ToString());
 
-            var Server = new NamedPipeServerStream("ESISharpAuth");
+            var Server = new NamedPipeServerStream(PipeName);
             var Reader = new StreamReader(Server);
             Server.WaitForConnection();
             var AuthRouterReply = Reader.ReadLine();
