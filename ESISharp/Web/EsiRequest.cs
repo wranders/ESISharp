@@ -16,9 +16,9 @@ namespace ESISharp.Web
         private readonly DataSource DataSource;
         private string RequestUrl => $"{BaseUrl}{Route.Value}{Path}?datasource={DataSource.Value}";
 
-        internal EsiRequest(ESIEve SwaggerObject, string RequestPath)
+        internal EsiRequest(ESIEve EsiObject, string RequestPath)
         {
-            EasyObject = SwaggerObject;
+            EasyObject = EsiObject;
             Route = EasyObject.Route;
             Path = RequestPath;
             DataSource = EasyObject.DataSource;

@@ -11,6 +11,7 @@ namespace ESISharp
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
         internal HttpClient QueryClient = new HttpClient();
+
         internal Cache Cache;
 
         internal ESIEve()

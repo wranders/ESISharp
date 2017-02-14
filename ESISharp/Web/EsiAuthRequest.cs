@@ -16,9 +16,11 @@ namespace ESISharp.Web
         private readonly DataSource DataSource;
         private string RequestUrl => $"{BaseUrl}{Route.Value}{Path}?datasource={DataSource.Value}";
 
-        internal EsiAuthRequest(ESIEve SwaggerObject, string RequestPath)
+        private static readonly object AuthLock = new object();
+
+        internal EsiAuthRequest(ESIEve EsiObject, string RequestPath)
         {
-            AuthenticatedEasyObject = (ESIEve.Authenticated)SwaggerObject;
+            AuthenticatedEasyObject = (ESIEve.Authenticated)EsiObject;
             Route = AuthenticatedEasyObject.Route;
             Path = RequestPath;
             DataSource = AuthenticatedEasyObject.DataSource;
@@ -26,7 +28,7 @@ namespace ESISharp.Web
 
         private bool VerifyCredentials()
         {
-            lock(this)
+            lock(AuthLock)
             {
                 if (AuthenticatedEasyObject.SSO.AuthToken == null && AuthenticatedEasyObject.SSO.ImplicitToken == null)
                 {
