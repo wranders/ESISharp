@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.IO.Pipes;
+using System.Web;
 
 namespace EveSSOAuthRouter
 {
@@ -7,7 +8,11 @@ namespace EveSSOAuthRouter
     {
         static void Main(string[] args)
         {
-            NamedPipeClientStream Client = new NamedPipeClientStream("ESISharpAuth");
+            if (args.Length == 0 || args[0].IndexOf("state=") < 0)
+                return;
+
+            var Query = HttpUtility.ParseQueryString(args[0]);
+            NamedPipeClientStream Client = new NamedPipeClientStream(Query["state"]);
             StreamWriter Writer = new StreamWriter(Client);
 
             try
@@ -19,7 +24,7 @@ namespace EveSSOAuthRouter
                 Client.WaitForPipeDrain();
                 Client.Close();
             }
-            catch(IOException)
+            catch (IOException)
             {
                 Client.Dispose();
             }

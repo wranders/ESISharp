@@ -18,7 +18,6 @@ namespace ESISharp
         internal string AuthRouterFileDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         internal string AuthRouterFileName = "EveSSOAuthRouter";
         internal string CallbackProtocol = "eveosso";
-        internal string State = "esisharp";
         internal List<Scope> AuthorizedScopes = new List<Scope>() { Scope.None };
         internal List<Scope> RequestedScopes = new List<Scope>() { Scope.None };
         internal bool ReauthorizeScopes = false;
@@ -102,13 +101,6 @@ namespace ESISharp
         public void SetGrantType(OAuthGrant Grant)
         {
             GrantType = Grant;
-        }
-
-        /// <summary>Set the SSO state</summary>
-        /// <param name="SSOState">(String) State</param>
-        public void SetState(string SSOState)
-        {
-            State = SSOState;
         }
 
         /// <summary>Add a Scope to Request</summary>
