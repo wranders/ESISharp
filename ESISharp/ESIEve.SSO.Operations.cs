@@ -214,6 +214,40 @@ namespace ESISharp
             }
         }
 
+        /// <summary>Request information about the authorization token.</summary>
+        /// <returns>An object containing the returned information, or null if the request failed</returns>
+        public TokenVerification VerifyToken()
+        {
+            while (VerifyCredentials())
+            {
+                string Token;
+                if (AuthToken != null && GrantType == OAuthGrant.Authorization)
+                {
+                    Token = AuthToken.AccessToken;
+                }
+                else if (ImplicitToken != null && GrantType == OAuthGrant.Implicit)
+                {
+                    Token = ImplicitToken.AccessToken;
+                }
+                else
+                {
+                    return null;
+                }
+
+                var VerificationClient = new HttpClient();
+                VerificationClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                VerificationClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var Response = VerificationClient.GetAsync("https://login.eveonline.com/oauth/verify").Result;
+                if (Response.StatusCode != System.Net.HttpStatusCode.OK)
+                    return null;
+
+                var Json = Response.Content.ReadAsStringAsync().Result;
+                var Result = JsonConvert.DeserializeObject<TokenVerification>(Json);
+                return Result;
+            }
+            return null;
+        }
+
         internal void CreateRegistryKeys()
         {
             var Protocol = CallbackProtocol;
@@ -274,6 +308,29 @@ namespace ESISharp
                 catch (NullReferenceException)
                 {
                     CreateRegistryKeys();
+                }
+            }
+        }
+
+        public class TokenVerification
+        {
+            public int CharacterID { get; set; }
+            public string CharacterName { get; set; }
+            public DateTime ExpiresOn { get; set; }
+            public List<Scope> Scopes { get; set; } = new List<Scope>();
+            public string TokenType { get; set; }
+            public string CharacterOwnerHash { get; set; }
+
+            [JsonConstructor]
+            private TokenVerification(string Scopes)
+            {
+                var Split = Scopes.Split(' ');
+                foreach(var s in Split)
+                {
+                    Scope Scope;
+                    if (!Scope.Lookup.TryGetValue(s, out Scope))
+                        Scope = new Scope(s);
+                    this.Scopes.Add(Scope);
                 }
             }
         }

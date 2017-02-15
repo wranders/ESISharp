@@ -1,11 +1,16 @@
-﻿namespace ESISharp.Enumerations
+﻿using System.Collections.Generic;
+
+namespace ESISharp.Enumerations
 {
     /// <summary>SSO Scopes</summary>
     public class Scope
     {
+        internal static Dictionary<string, Scope> Lookup = new Dictionary<string, Scope>();
+
         internal Scope(string val)
         {
             Value = val;
+            Lookup.Add(val, this);
         }
 
         /// <summary>SSO Scope</summary>
