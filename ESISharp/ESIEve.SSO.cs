@@ -193,6 +193,17 @@ namespace ESISharp
             if (AuthToken == null) return string.Empty;
             return AuthToken.RefreshToken;
         }
+
+        /// <summary>Force authorization immediately rather than waiting until it is needed</summary>
+        /// <returns>(Boolean) Success or failure</returns>
+        public bool ForceAuthorization()
+        {
+            while(VerifyCredentials())
+            {
+                return (AuthToken != null || ImplicitToken != null) && IsTokenValid();
+            }
+            return false;
+        }
     }
 
     internal class ImplicitToken
