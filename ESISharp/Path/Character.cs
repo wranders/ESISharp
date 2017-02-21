@@ -81,6 +81,8 @@ namespace ESISharp.ESIPath
         public CharacterFittings Fittings;
         /// <summary>Killmails paths</summary>
         public CharacterKillMails Killmails;
+        /// <summary>Loyalty Point paths</summary>
+        public CharacterLoyalty Loyalty;
         /// <summary>Mail paths</summary>
         public CharacterMail Mail;
         /// <summary>Planetary Interaction (PI) paths</summary>
@@ -100,6 +102,7 @@ namespace ESISharp.ESIPath
             Clones = new CharacterClones(EasyObject);
             Contacts = new CharacterContacts(EasyObject);
             Fittings = new CharacterFittings(EasyObject);
+            Loyalty = new CharacterLoyalty(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);
             Mail = new CharacterMail(EasyObject);
             PlanetaryInteraction = new CharacterPlanetaryInteraction(EasyObject);

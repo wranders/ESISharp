@@ -64,6 +64,8 @@ namespace ESISharp
             public Insurance Insurance;
             /// <summary>Public Killmails paths</summary>
             public Killmails Killmails;
+            /// <summary>Loyalty Points paths</summary>
+            public Loyalty Loyalty;
             /// <summary>Public Market paths</summary>
             public Market Market;
             /// <summary>Public Planetary Interaction (PI) paths</summary>
@@ -87,6 +89,7 @@ namespace ESISharp
                 Industry = new Industry(this);
                 Insurance = new Insurance(this);
                 Killmails = new Killmails(this);
+                Loyalty = new Loyalty(this);
                 Market = new Market(this);
                 PlanetaryInteraction = new PlanetaryInteraction(this);
                 Search = new Search(this);
@@ -117,6 +120,8 @@ namespace ESISharp
             public AuthInsurance Insurance;
             /// <summary>Public and Authenticated Killmail paths</summary>
             public AuthKillmails Killmails;
+            /// <summary>Public and Authenticated Loyalty Point paths</summary>
+            public AuthLoyalty Loyalty;
             /// <summary>Public and Authenticated Market paths</summary>
             public AuthMarket Market;
             /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
@@ -159,6 +164,7 @@ namespace ESISharp
                 Industry = new AuthIndustry(this);
                 Insurance = new AuthInsurance(this);
                 Killmails = new AuthKillmails(this);
+                Loyalty = new AuthLoyalty(this);
                 Market = new AuthMarket(this);
                 PlanetaryInteraction = new AuthPlanetaryInteraction(this);
                 Search = new AuthSearch(this);

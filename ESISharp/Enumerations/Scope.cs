@@ -90,6 +90,13 @@ namespace ESISharp.Enumerations
             public static readonly Scope ReadKillmails = new Scope("esi-killmails.read_killmails.v1");
         }
 
+        /// <summary>Loyalty Point Scopes</summary>
+        public static class Loyalty
+        {
+            /// <summary>Read Character Loyalty Points</summary>
+            public static readonly Scope ReadLoyalty = new Scope("esi-characters.read_loyalty.v1");
+        }
+
         /// <summary>Location Scopes</summary>
         public static class Location
         {
