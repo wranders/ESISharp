@@ -10,7 +10,9 @@ namespace ESISharp
         internal DataSource DataSource = DataSource.Tranquility;
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
+
         internal HttpClient QueryClient = new HttpClient();
+        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp)";
 
         internal ESIEve()
         {
@@ -36,6 +38,13 @@ namespace ESISharp
         public void SetRoute(Route NewRoute)
         {
             Route = NewRoute;
+        }
+
+        /// <summary>Set ESISharp User Agent</summary>
+        /// <param name="ApplicationUserAgent">(String) User Agent</param>
+        public void SetUserAgent(string ApplicationUserAgent)
+        {
+            UserAgent = ApplicationUserAgent;
         }
 
         /// <summary>Public API paths</summary>
