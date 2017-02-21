@@ -1,11 +1,16 @@
-﻿namespace ESISharp.Enumerations
+﻿using System.Collections.Generic;
+
+namespace ESISharp.Enumerations
 {
     /// <summary>SSO Scopes</summary>
     public class Scope
     {
+        internal static Dictionary<string, Scope> Lookup = new Dictionary<string, Scope>();
+
         internal Scope(string val)
         {
             Value = val;
+            Lookup.Add(val, this);
         }
 
         /// <summary>SSO Scope</summary>
@@ -83,6 +88,13 @@
         {
             /// <summary>Read Killmails Scope</summary>
             public static readonly Scope ReadKillmails = new Scope("esi-killmails.read_killmails.v1");
+        }
+
+        /// <summary>Loyalty Point Scopes</summary>
+        public static class Loyalty
+        {
+            /// <summary>Read Character Loyalty Points</summary>
+            public static readonly Scope ReadLoyalty = new Scope("esi-characters.read_loyalty.v1");
         }
 
         /// <summary>Location Scopes</summary>

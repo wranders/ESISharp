@@ -40,6 +40,7 @@ namespace ESISharp.Web
 
         private async Task<string> GetAsync(string Url)
         {
+            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
             var response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
@@ -52,6 +53,7 @@ namespace ESISharp.Web
 
         private async Task<string> PostAsync(string Url, object Data)
         {
+            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
             EasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var JsonString = JsonConvert.SerializeObject(Data);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
