@@ -63,6 +63,10 @@ namespace ESISharp.Enumerations
         {
             /// <summary>Read Corporation Membership Scope</summary>
             public static readonly Scope ReadCorporationMembership = new Scope("esi-corporations.read_corporation_membership.v1");
+            /// <summary>Read Corporation Structures Scope</summary>
+            public static readonly Scope ReadCorporationStructures = new Scope("esi-corporations.read_structures.v1");
+            /// <summary>Write Corporation Structures Scope</summary>
+            public static readonly Scope WriteCorporationStructures = new Scope("esi-corporations.write_structures.v1");
         }
 
         /// <summary>Fitting Scopes</summary>

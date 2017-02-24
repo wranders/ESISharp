@@ -70,6 +70,25 @@ namespace ESISharp.ESIPath
             return EsiRequest.Get();
         }
 
+        /// <summary>Get Graphic IDs</summary>
+        /// <returns>JSON Array of graphic ID integers</returns>
+        public string GetGraphics()
+        {
+            var Path = "/universe/graphics/";
+            var EsiRequest = new EsiRequest(EasyObject, Path);
+            return EsiRequest.Get();
+        }
+
+        /// <summary>Get Graphic information</summary>
+        /// <param name="GraphicID">(Int32) Graphic ID</param>
+        /// <returns>JSON Object containing the graphic ID and graphic file path</returns>
+        public string GetGraphicInformation(int GraphicID)
+        {
+            var Path = $"/universe/graphics/{GraphicID.ToString()}/";
+            var EsiRequest = new EsiRequest(EasyObject, Path);
+            return EsiRequest.Get();
+        }
+
         /// <summary>Get Item Groups</summary>
         /// <returns>JSON Array containing Item Group IDs</returns>
         public string GetItemGroups()

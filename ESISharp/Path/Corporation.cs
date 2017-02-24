@@ -1,4 +1,5 @@
-﻿using ESISharp.Web;
+﻿using ESISharp.Object;
+using ESISharp.Web;
 using System.Collections.Generic;
 
 namespace ESISharp.ESIPath
@@ -34,7 +35,7 @@ namespace ESISharp.ESIPath
 
         /// <summary>Get Public Corporation Information</summary>
         /// <param name="CorpID">(Int32) Corporation ID</param>
-        /// <returns>JSON Object containing alliance ID, CEO ID, name, member count, and ticker</returns>
+        /// <returns>JSON Object Corporation public information</returns>
         public string GetInformation(int CorpID)
         {
             var Path = $"/corporations/{CorpID.ToString()}/";
@@ -91,6 +92,38 @@ namespace ESISharp.ESIPath
             var Path = $"/corporations/{CorpID.ToString()}/roles/";
             var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
             return EsiAuthRequest.Get();
+        }
+
+        /// <summary>Get Corporation Stuctures (First Page)</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>JSON Array of objects representing stuctures and their information</returns>
+        public string GetStructures(int CorporationID)
+        {
+            return GetStructures(CorporationID, 1);
+        }
+
+        /// <summary>Get Corporation Stuctures</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>JSON Array of objects representing stuctures and their information</returns>
+        public string GetStructures(int CorporationID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID}/structures/";
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
+            var Data = new { page = Page };
+            return EsiAuthRequest.Get(Data);
+        }
+
+        /// <summary>Update a Structure's Vulnerability windows</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="StructureID">(Int64) Structure ID</param>
+        /// <param name="Periods">(StructureVulnerabilityPeriod List) Vulnerability Periods</param>
+        /// <returns>Normally nothing, error if one is encountered</returns>
+        public string UpdateStructureVulnerabilitySchedule(int CorporationID, long StructureID, List<StructureVulnerabilityPeriod> Periods)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/structures/{StructureID.ToString()}/";
+            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
+            return EsiAuthRequest.Put(Periods);
         }
     }
 }
