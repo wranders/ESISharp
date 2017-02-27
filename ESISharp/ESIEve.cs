@@ -11,7 +11,9 @@ namespace ESISharp
         internal DataSource DataSource = DataSource.Tranquility;
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
+
         internal HttpClient QueryClient = new HttpClient();
+        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp)";
 
         internal ESIEve()
         {
@@ -39,6 +41,13 @@ namespace ESISharp
             Route = NewRoute;
         }
 
+        /// <summary>Set ESISharp User Agent</summary>
+        /// <param name="ApplicationUserAgent">(String) User Agent</param>
+        public void SetUserAgent(string ApplicationUserAgent)
+        {
+            UserAgent = ApplicationUserAgent;
+        }
+
         /// <summary>Public API paths</summary>
         public class Public : ESIEve
         {
@@ -48,6 +57,8 @@ namespace ESISharp
             public CharacterMain Character;
             /// <summary>Public Corporation paths</summary>
             public Corporation Corporation;
+            /// <summary>Public Dogma paths</summary>
+            public Dogma Dogma;
             /// <summary>Public Incursions paths</summary>
             public Incursions Incursions;
             /// <summary>Public Industry paths</summary>
@@ -56,6 +67,8 @@ namespace ESISharp
             public Insurance Insurance;
             /// <summary>Public Killmails paths</summary>
             public Killmails Killmails;
+            /// <summary>Loyalty Points paths</summary>
+            public Loyalty Loyalty;
             /// <summary>Public Market paths</summary>
             public Market Market;
             /// <summary>Public Planetary Interaction (PI) paths</summary>
@@ -75,10 +88,12 @@ namespace ESISharp
                 Alliance = new Alliance(this);
                 Character = new CharacterMain(this);
                 Corporation = new Corporation(this);
+                Dogma = new Dogma(this);
                 Incursions = new Incursions(this);
                 Industry = new Industry(this);
                 Insurance = new Insurance(this);
                 Killmails = new Killmails(this);
+                Loyalty = new Loyalty(this);
                 Market = new Market(this);
                 PlanetaryInteraction = new PlanetaryInteraction(this);
                 Search = new Search(this);
@@ -99,6 +114,8 @@ namespace ESISharp
             public AuthCharacterMain Character;
             /// <summary>Public and Authenticated Corporation paths</summary>
             public AuthCorporation Corporation;
+            /// <summary>Public and Authenticated Dogma paths</summary>
+            public AuthDogma Dogma;
             /// <summary>Authenticated Fleet paths</summary>
             public Fleet Fleet;
             /// <summary>Public and Authenticated Incursion paths</summary>
@@ -109,6 +126,8 @@ namespace ESISharp
             public AuthInsurance Insurance;
             /// <summary>Public and Authenticated Killmail paths</summary>
             public AuthKillmails Killmails;
+            /// <summary>Public and Authenticated Loyalty Point paths</summary>
+            public AuthLoyalty Loyalty;
             /// <summary>Public and Authenticated Market paths</summary>
             public AuthMarket Market;
             /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
@@ -146,11 +165,13 @@ namespace ESISharp
                 Alliance = new AuthAlliance(this);
                 Character = new AuthCharacterMain(this);
                 Corporation = new AuthCorporation(this);
+                Dogma = new AuthDogma(this);
                 Fleet = new Fleet(this);
                 Incursions = new AuthIncursions(this);
                 Industry = new AuthIndustry(this);
                 Insurance = new AuthInsurance(this);
                 Killmails = new AuthKillmails(this);
+                Loyalty = new AuthLoyalty(this);
                 Market = new AuthMarket(this);
                 PlanetaryInteraction = new AuthPlanetaryInteraction(this);
                 Search = new AuthSearch(this);
