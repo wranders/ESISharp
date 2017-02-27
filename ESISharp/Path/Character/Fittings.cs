@@ -44,7 +44,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="ShipTypeId">(Int32) Ship Type ID</param>
         /// <param name="FittingItems">(FittingItem List) Fitting Items</param>
         /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Create(int CharacterID, string FittingName, string Description, int ShipTypeId, List<FittingItem> FittingItems)
+        public string Create(int CharacterID, string FittingName, string Description, int ShipTypeId, IEnumerable<FittingItem> FittingItems)
         {
             var Fitting = new Fitting(FittingName, Description, ShipTypeId, FittingItems);
             return Create(CharacterID, Fitting);
@@ -68,7 +68,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="ShipTypeId">(Int32) Ship Type ID</param>
         /// <param name="FittingItems">(FittingItem List) Fitting Items</param>
         /// <returns>Normally nothing, error if one is encountered</returns>
-        public async Task<string> CreateAsync(int CharacterID, string FittingName, string Description, int ShipTypeId, List<FittingItem> FittingItems)
+        public async Task<string> CreateAsync(int CharacterID, string FittingName, string Description, int ShipTypeId, IEnumerable<FittingItem> FittingItems)
         {
             var Fitting = new Fitting(FittingName, Description, ShipTypeId, FittingItems);
             return await CreateAsync(CharacterID, Fitting).ConfigureAwait(false);

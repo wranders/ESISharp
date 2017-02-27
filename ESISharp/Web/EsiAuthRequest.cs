@@ -40,19 +40,12 @@ namespace ESISharp.Web
             return string.Empty;
         }
 
-        internal string Get()
+        internal async Task<string> GetAsync()
         {
-            var Response = GetAsync();
-            return Response.Result;
+            return await GetAsync(null).ConfigureAwait(false);
         }
 
-        internal string Get(object QueryArguments)
-        {
-            var Response = GetAsync(QueryArguments);
-            return Response.Result;
-        }
-
-        internal async Task<string> GetAsync(object QueryArguments = null)
+        internal async Task<string> GetAsync(object QueryArguments)
         {
             var Url = RequestUrl;
             if(QueryArguments != null)
@@ -70,19 +63,12 @@ namespace ESISharp.Web
             return string.Empty;
         }
 
-        internal string Post(object Data)
+        internal async Task<string> PostAsync(object Data)
         {
-            var Response = PostAsync(Data);
-            return Response.Result;
+            return await PostAsync(Data, null).ConfigureAwait(false);
         }
 
-        internal string Post(object Data, object QueryArguments)
-        {
-            var Response = PostAsync(Data, QueryArguments);
-            return Response.Result;
-        }
-
-        internal async Task<string> PostAsync(object Data, object QueryArguments = null)
+        internal async Task<string> PostAsync(object Data, object QueryArguments)
         {
             var Url = RequestUrl;
             if (QueryArguments != null)
@@ -102,19 +88,12 @@ namespace ESISharp.Web
             return string.Empty;
         }
 
-        internal string Put(object Data)
+        internal async Task<string> PutAsync(object Data)
         {
-            var Response = PutAsync(Data);
-            return Response.Result;
+            return await PutAsync(Data, null).ConfigureAwait(false);
         }
 
-        internal string Put(object Data, object QueryArguments)
-        {
-            var Response = PutAsync(Data, QueryArguments);
-            return Response.Result;
-        }
-
-        internal async Task<string> PutAsync(object Data, object QueryArguments = null)
+        internal async Task<string> PutAsync(object Data, object QueryArguments)
         {
             var Url = RequestUrl;
             if (QueryArguments != null)
@@ -132,18 +111,6 @@ namespace ESISharp.Web
                 return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             return string.Empty;
-        }
-
-        internal string Delete()
-        {
-            var Response = DeleteAsync();
-            return Response.Result;
-        }
-
-        internal string Delete(object Data)
-        {
-            var Response = DeleteAsync(Data);
-            return Response.Result;
         }
 
         internal async Task<string> DeleteAsync()

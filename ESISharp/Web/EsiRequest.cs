@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using ESISharp.Enumerations;
 using System.Net.Http;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 
 namespace ESISharp.Web
 {
@@ -24,19 +23,12 @@ namespace ESISharp.Web
             DataSource = EasyObject.DataSource;
         }
 
-        internal string Get()
+        internal async Task<string> GetAsync()
         {
-            var Response = GetAsync();
-            return Response.Result;
+            return await GetAsync(null).ConfigureAwait(false);
         }
 
-        internal string Get(object QueryArguments)
-        {
-            var Response = GetAsync(QueryArguments);
-            return Response.Result;
-        }
-
-        internal async Task<string> GetAsync(object QueryArguments = null)
+        internal async Task<string> GetAsync(object QueryArguments)
         {
             var Url = RequestUrl;
             if (QueryArguments != null)
@@ -47,12 +39,6 @@ namespace ESISharp.Web
 
             var response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-
-        internal string Post(object Data)
-        {
-            var Response = PostAsync(Data);
-            return Response.Result;
         }
 
         internal async Task<string> PostAsync(object Data)

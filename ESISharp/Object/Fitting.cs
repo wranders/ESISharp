@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ESISharp.Enumerations;
 
 namespace ESISharp.Object
@@ -32,12 +33,12 @@ namespace ESISharp.Object
         /// <param name="FittingDescription">(String) Fitting Description</param>
         /// <param name="FittingShipTypeID">(Int32) Ship Type ID</param>
         /// <param name="FittingItems">(FittingItem List) Fitting Items</param>
-        public Fitting(string FittingName, string FittingDescription, int FittingShipTypeID, List<FittingItem> FittingItems)
+        public Fitting(string FittingName, string FittingDescription, int FittingShipTypeID, IEnumerable<FittingItem> FittingItems)
         {
             Name = FittingName;
             Description = FittingDescription;
             ShipTypeID = FittingShipTypeID;
-            Items = FittingItems;
+            Items = FittingItems.ToList();
         }
 
         /// <summary>Create a new Ship Fitting</summary>

@@ -1,5 +1,6 @@
 ﻿using ESISharp.Enumerations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ESISharp.Object
 {
@@ -95,11 +96,11 @@ namespace ESISharp.Object
         /// <param name="MailBody">(String) Message Body</param>
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipients">(Recipient List) Recipients</param>
-        public EveMail(string MailBody, string MailSubject, List<Recipient> MailRecipients)
+        public EveMail(string MailBody, string MailSubject, IEnumerable<Recipient> MailRecipients)
         {
             Body = MailBody;
             Subject = MailSubject;
-            Recipients = MailRecipients;
+            Recipients = MailRecipients.ToList();
         }
 
         /// <summary>Create a new Eve Mail</summary>
@@ -107,12 +108,12 @@ namespace ESISharp.Object
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipients">(Recipient List) Recipients</param>
         /// <param name="MailApprovedCost">(Int32) Approved maximum CSPA ISK cost</param>
-        public EveMail(string MailBody, string MailSubject, List<Recipient> MailRecipient, int MailApprovedCost)
+        public EveMail(string MailBody, string MailSubject, IEnumerable<Recipient> MailRecipient, int MailApprovedCost)
         {
             ApprovedCost = MailApprovedCost;
             Body = MailBody;
             Subject = MailSubject;
-            Recipients = MailRecipient;
+            Recipients = MailRecipient.ToList();
         }
     }
 

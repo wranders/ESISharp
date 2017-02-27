@@ -219,7 +219,7 @@ namespace ESISharp.ESIPath
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipients">(Int32 List) Recipient Character IDs</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, List<int> Recipients)
+        public string NewMail(string Body, string Subject, IEnumerable<int> Recipients)
         {
             return NewMail(Body, Subject, Recipients, 0, 0);
         }
@@ -323,7 +323,7 @@ namespace ESISharp.ESIPath
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipients">(Int32 List) Recipient Character IDs</param>
         /// <returns>Normally nothing, error if one was encountered.</returns>
-        public async Task<string> NewMailAsync(string Body, string Subject, List<int> Recipients)
+        public async Task<string> NewMailAsync(string Body, string Subject, IEnumerable<int> Recipients)
         {
             return await NewMailAsync(Body, Subject, Recipients, 0, 0).ConfigureAwait(false);
         }
