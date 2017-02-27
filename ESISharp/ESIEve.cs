@@ -1,6 +1,7 @@
 ﻿using ESISharp.Enumerations;
 using ESISharp.ESIPath;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace ESISharp
 {
@@ -14,7 +15,7 @@ namespace ESISharp
 
         internal ESIEve()
         {
-
+            QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>

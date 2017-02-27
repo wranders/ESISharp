@@ -65,7 +65,6 @@ namespace ESISharp.Web
         private async Task<string> GetAsync(string Url)
         {
             AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var Response = await AuthenticatedEasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
             return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
@@ -95,7 +94,6 @@ namespace ESISharp.Web
         private async Task<string> PostAsync(string Url, object Data)
         {
             AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var JsonString = JsonConvert.SerializeObject(Data);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
             var Response = await AuthenticatedEasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
@@ -127,7 +125,6 @@ namespace ESISharp.Web
         private async Task<string> PutAsync(string Url, object Data)
         {
             AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var JsonString = JsonConvert.SerializeObject(Data);
             var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
             var Response = await AuthenticatedEasyObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false);
@@ -157,7 +154,6 @@ namespace ESISharp.Web
         private async Task<string> DeleteAsync(string Url)
         {
             AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var Response = await AuthenticatedEasyObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false);
             return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
@@ -165,7 +161,6 @@ namespace ESISharp.Web
         private async Task<string> DeleteAsync(string Url, object Data)
         {
             AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var JsonString = JsonConvert.SerializeObject(Data);
             var Message = new HttpRequestMessage(HttpMethod.Delete, Url);
             Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");

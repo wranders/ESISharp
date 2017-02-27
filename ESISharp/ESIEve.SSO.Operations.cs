@@ -148,7 +148,6 @@ namespace ESISharp
         {
             string ResponseString;
             SsoClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(ClientID + ":" + SecretKey));
-            SsoClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage Response = await SsoClient.PostAsync(new Uri("https://login.eveonline.com/oauth/token"), new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("grant_type", Grant),
@@ -243,7 +242,14 @@ namespace ESISharp
 
                 var Json = Response.Content.ReadAsStringAsync().Result;
                 var Result = JsonConvert.DeserializeObject<TokenVerification>(Json);
-                return Result;
+                if (!RequestedScopes.Contains(Scope.None) && !RequestedScopes.TrueForAll(x => Result.Scopes.Contains(x)))
+                {
+                    ReauthorizeScopes = true;
+                }
+                else
+                {
+                    return Result;
+                }
             }
             return null;
         }

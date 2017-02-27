@@ -74,10 +74,21 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array containing Item Group IDs</returns>
         public string GetItemGroups()
         {
-            var Path = "/universe/groups/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return GetItemGroups(1);
         }
+
+        /// <summary>Get Item Groups</summary>
+        /// /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>JSON Array containing Item Group IDs</returns>
+        public string GetItemGroups(int Page)
+        {
+            var Path = "/universe/groups/";
+            var Data = new { page = Page.ToString() };
+            var EsiRequest = new EsiRequest(EasyObject, Path);
+            return EsiRequest.Get(Data);
+        }
+        
+
 
         /// <summary>Get Item Group Information</summary>
         /// <param name="CategoryID">(Int32) Item Group ID</param>
