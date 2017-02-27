@@ -1,6 +1,7 @@
 ﻿using ESISharp.Enumerations;
 using ESISharp.ESIPath;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace ESISharp
 {
@@ -16,7 +17,8 @@ namespace ESISharp
 
         internal ESIEve()
         {
-
+            QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+            QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
@@ -45,6 +47,8 @@ namespace ESISharp
         public void SetUserAgent(string ApplicationUserAgent)
         {
             UserAgent = ApplicationUserAgent;
+            QueryClient.DefaultRequestHeaders.UserAgent.Clear();
+            QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
         }
 
         /// <summary>Public API paths</summary>

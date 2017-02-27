@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 
 namespace ESISharp
@@ -30,16 +31,21 @@ namespace ESISharp
         internal ImplicitToken ImplicitToken;
         internal OAuthGrant GrantType = OAuthGrant.Implicit;
 
-        private static HttpClient SsoClient = new HttpClient();
+        private HttpClient SsoClient = new HttpClient();
 
         private readonly object AuthLock = new object();
 
-        internal Sso(string AppClientID)
+        internal Sso()
+        {
+            SsoClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        internal Sso(string AppClientID) : this()
         {
             ClientID = AppClientID;
         }
 
-        internal Sso(string AppClientID, string AppSecretKey)
+        internal Sso(string AppClientID, string AppSecretKey) : this()
         {
             ClientID = AppClientID;
             SecretKey = AppSecretKey;
@@ -121,7 +127,7 @@ namespace ESISharp
 
         /// <summary>Add multiple Scopes to Request</summary>
         /// <param name="NewScopes">(Scope List) New Scopes</param>
-        public void AddScope(List<Scope> NewScopes)
+        public void AddScope(IEnumerable<Scope> NewScopes)
         {
             foreach (Scope NewScope in NewScopes)
             {
@@ -150,7 +156,7 @@ namespace ESISharp
 
         /// <summary>Remove multiple scopes</summary>
         /// <param name="OldScopes">(Scope List) Scopes to remove</param>
-        public void RemoveScope(List<Scope> OldScopes)
+        public void RemoveScope(IEnumerable<Scope> OldScopes)
         {
             foreach (Scope OldScope in OldScopes)
             {
@@ -170,6 +176,7 @@ namespace ESISharp
         public void ClearRequestedScopes()
         {
             RequestedScopes = new List<Scope>() { Scope.None };
+            ReauthorizeScopes = false;
         }
 
         /// <summary>Get currently Requested Scopes</summary>

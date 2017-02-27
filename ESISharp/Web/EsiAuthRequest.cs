@@ -40,142 +40,106 @@ namespace ESISharp.Web
             return string.Empty;
         }
 
-        internal string Get()
+        internal async Task<string> GetAsync()
         {
-            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
-            {
-                var Response = GetAsync(RequestUrl);
-                return Response.Result;
-            }
-            return string.Empty;
+            return await GetAsync(null).ConfigureAwait(false);
         }
 
-        internal string Get(object QueryArguments)
+        internal async Task<string> GetAsync(object QueryArguments)
         {
-            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
+            var Url = RequestUrl;
+            if(QueryArguments != null)
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
-                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                var Response = GetAsync(ArgumentRequest);
-                return Response.Result;
+                Url = string.Concat(Url, ArgString);
             }
-            return string.Empty;
-        }
 
-        private async Task<string> GetAsync(string Url)
-        {
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", AuthenticatedEasyObject.UserAgent);
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var Response = await AuthenticatedEasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
-            return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-
-        internal string Post(object Data)
-        {
             while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
-                var Response = PostAsync(RequestUrl, Data);
-                return Response.Result;
+                AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+                var Response = await AuthenticatedEasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
+                return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             return string.Empty;
         }
 
-        internal string Post(object Data, object QueryArguments)
+        internal async Task<string> PostAsync(object Data)
         {
-            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
+            return await PostAsync(Data, null).ConfigureAwait(false);
+        }
+
+        internal async Task<string> PostAsync(object Data, object QueryArguments)
+        {
+            var Url = RequestUrl;
+            if (QueryArguments != null)
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
-                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                var Response = PostAsync(ArgumentRequest, Data);
-                return Response.Result;
+                Url = string.Concat(Url, ArgString);
             }
-            return string.Empty;
-        }
 
-        private async Task<string> PostAsync(string Url, object Data)
-        {
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", AuthenticatedEasyObject.UserAgent);
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var JsonString = JsonConvert.SerializeObject(Data);
-            var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response = await AuthenticatedEasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
-            return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-
-        internal string Put(object Data)
-        {
             while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
-                var Response = PutAsync(RequestUrl, Data);
-                return Response.Result;
+                AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+                var JsonString = JsonConvert.SerializeObject(Data);
+                var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
+                var Response = await AuthenticatedEasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
+                return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             return string.Empty;
         }
 
-        internal string Put(object Data, object QueryArguments)
+        internal async Task<string> PutAsync(object Data)
         {
-            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
+            return await PutAsync(Data, null).ConfigureAwait(false);
+        }
+
+        internal async Task<string> PutAsync(object Data, object QueryArguments)
+        {
+            var Url = RequestUrl;
+            if (QueryArguments != null)
             {
                 var ArgString = Utils.ConstructUrlArgs(QueryArguments);
-                var ArgumentRequest = string.Concat(RequestUrl, ArgString);
-                var Response = PutAsync(ArgumentRequest, Data);
-                return Response.Result;
+                Url = string.Concat(Url, ArgString);
             }
-            return string.Empty;
-        }
 
-        private async Task<string> PutAsync(string Url, object Data)
-        {
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", AuthenticatedEasyObject.UserAgent);
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var JsonString = JsonConvert.SerializeObject(Data);
-            var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response = await AuthenticatedEasyObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false);
-            return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-
-        internal string Delete()
-        {
             while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
-                var Response = DeleteAsync(RequestUrl);
-                return Response.Result;
+                AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+                var JsonString = JsonConvert.SerializeObject(Data);
+                var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
+                var Response = await AuthenticatedEasyObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false);
+                return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             return string.Empty;
         }
 
-        internal string Delete(object Data)
+        internal async Task<string> DeleteAsync()
         {
+            var Url = RequestUrl;
+
             while (AuthenticatedEasyObject.SSO.VerifyCredentials())
             {
-                var Response = DeleteAsync(RequestUrl, Data);
-                return Response.Result;
+                AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+                var Response = await AuthenticatedEasyObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false);
+                return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             return string.Empty;
         }
 
-        private async Task<string> DeleteAsync(string Url)
+        internal async Task<string> DeleteAsync(object Data)
         {
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", AuthenticatedEasyObject.UserAgent);
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var Response = await AuthenticatedEasyObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false);
-            return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-
-        private async Task<string> DeleteAsync(string Url, object Data)
-        {
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", AuthenticatedEasyObject.UserAgent);
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-            AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var JsonString = JsonConvert.SerializeObject(Data);
-            var Message = new HttpRequestMessage(HttpMethod.Delete, Url);
-            Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response =  await AuthenticatedEasyObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var Url = RequestUrl;
+            
+            while (AuthenticatedEasyObject.SSO.VerifyCredentials())
+            {
+                AuthenticatedEasyObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
+                var JsonString = JsonConvert.SerializeObject(Data);
+                var Message = new HttpRequestMessage(HttpMethod.Delete, Url);
+                Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
+                var Response = await AuthenticatedEasyObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                return await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            }
+            return string.Empty;
         }
     }
 }

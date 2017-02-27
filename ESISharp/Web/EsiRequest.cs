@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using ESISharp.Enumerations;
 using System.Net.Http;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 
 namespace ESISharp.Web
 {
@@ -24,37 +23,28 @@ namespace ESISharp.Web
             DataSource = EasyObject.DataSource;
         }
 
-        internal string Get()
+        internal async Task<string> GetAsync()
         {
-            var Response = GetAsync(RequestUrl);
-            return Response.Result;
+            return await GetAsync(null).ConfigureAwait(false);
         }
 
-        internal string Get(object QueryArguments)
+        internal async Task<string> GetAsync(object QueryArguments)
         {
-            var ArgString = Utils.ConstructUrlArgs(QueryArguments);
-            var ArgumentRequest = string.Concat(RequestUrl, ArgString);
-            var Response = GetAsync(ArgumentRequest);
-            return Response.Result;
-        }
+            var Url = RequestUrl;
+            if (QueryArguments != null)
+            {
+                var ArgString = Utils.ConstructUrlArgs(QueryArguments);
+                Url = string.Concat(Url, ArgString);
+            }
 
-        private async Task<string> GetAsync(string Url)
-        {
-            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
             var response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 
-        internal string Post(object Data)
+        internal async Task<string> PostAsync(object Data)
         {
-            var Response = PostAsync(RequestUrl, Data);
-            return Response.Result;
-        }
+            var Url = RequestUrl;
 
-        private async Task<string> PostAsync(string Url, object Data)
-        {
-            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
-            EasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var JsonString = JsonConvert.SerializeObject(Data);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
             var Response = await EasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
