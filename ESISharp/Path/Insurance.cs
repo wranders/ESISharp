@@ -1,4 +1,5 @@
 ﻿using ESISharp.Web;
+using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
@@ -16,9 +17,16 @@ namespace ESISharp.ESIPath
         /// <returns>JSON Array of Objects containing Type ID, cost, name, and payout </returns>
         public string GetPrices()
         {
+            return GetPricesAsync().Result;
+        }
+
+        /// <summary>Get Insurace Information</summary>
+        /// <returns>JSON Array of Objects containing Type ID, cost, name, and payout </returns>
+        public async Task<string> GetPricesAsync()
+        {
             var Path = "/insurance/prices/";
             var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return await EsiRequest.GetAsync().ConfigureAwait(false);
         }
     }
 

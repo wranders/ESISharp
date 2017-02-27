@@ -26,35 +26,39 @@ namespace ESISharp.Web
 
         internal string Get()
         {
-            var Response = GetAsync(RequestUrl);
+            var Response = GetAsync();
             return Response.Result;
         }
 
         internal string Get(object QueryArguments)
         {
-            var ArgString = Utils.ConstructUrlArgs(QueryArguments);
-            var ArgumentRequest = string.Concat(RequestUrl, ArgString);
-            var Response = GetAsync(ArgumentRequest);
+            var Response = GetAsync(QueryArguments);
             return Response.Result;
         }
 
-        private async Task<string> GetAsync(string Url)
+        internal async Task<string> GetAsync(object QueryArguments = null)
         {
-            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
+            var Url = RequestUrl;
+            if (QueryArguments != null)
+            {
+                var ArgString = Utils.ConstructUrlArgs(QueryArguments);
+                Url = string.Concat(Url, ArgString);
+            }
+
             var response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 
         internal string Post(object Data)
         {
-            var Response = PostAsync(RequestUrl, Data);
+            var Response = PostAsync(Data);
             return Response.Result;
         }
 
-        private async Task<string> PostAsync(string Url, object Data)
+        internal async Task<string> PostAsync(object Data)
         {
-            EasyObject.QueryClient.DefaultRequestHeaders.Add("User-Agent", EasyObject.UserAgent);
-            EasyObject.QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var Url = RequestUrl;
+
             var JsonString = JsonConvert.SerializeObject(Data);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
             var Response = await EasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);

@@ -1,4 +1,5 @@
 ﻿using ESISharp.Web;
+using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath.Character
 {
@@ -18,9 +19,18 @@ namespace ESISharp.ESIPath.Character
         /// <returns>JSON Object containing home location type, location ID, and an array of objects representing clones</returns>
         public string GetClones(int CharacterID)
         {
+            return GetClonesAsync(CharacterID).Result;
+        }
+
+        /// <summary>Get Character's Clones</summary>
+        /// <remarks>Requires SSO Authentication, using "read_clones" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>JSON Object containing home location type, location ID, and an array of objects representing clones</returns>
+        public async Task<string> GetClonesAsync(int CharacterID)
+        {
             var Path = $"/characters/{CharacterID.ToString()}/clones/";
             var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return await EsiAuthRequest.GetAsync().ConfigureAwait(false);
         }
     }
 }
