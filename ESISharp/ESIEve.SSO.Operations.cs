@@ -30,7 +30,7 @@ namespace ESISharp
             var LocalRequestedScopes = RequestedScopes;
             var PipeName = Guid.NewGuid().ToString();
 
-            var SsoBuilder = new UriBuilder("https://login.eveonline.com/oauth/authorize");
+            var SsoBuilder = new UriBuilder("https://login.eveonline.com/oauth/authorize/");
             var Query = HttpUtility.ParseQueryString(SsoBuilder.Query);
             if (GrantType == OAuthGrant.Authorization && SecretKey != null)
             {

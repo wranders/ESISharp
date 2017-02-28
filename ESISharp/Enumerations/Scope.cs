@@ -5,12 +5,16 @@ namespace ESISharp.Enumerations
     /// <summary>SSO Scopes</summary>
     public class Scope
     {
-        internal static Dictionary<string, Scope> Lookup = new Dictionary<string, Scope>();
+        internal static readonly Dictionary<string, Scope> Lookup = new Dictionary<string, Scope>();
 
         internal Scope(string val)
         {
             Value = val;
-            Lookup.Add(val, this);
+            
+            if(val != string.Empty)
+            {
+                Lookup.Add(val, this);
+            }
         }
 
         /// <summary>SSO Scope</summary>
