@@ -177,6 +177,42 @@ namespace ESISharp.ESIPath
             var EsiRequest = new EsiRequest(EasyObject, Path);
             return await EsiRequest.GetAsync(Data).ConfigureAwait(false);
         }
+
+
+        /// <summary>Get Market Groups</summary>
+        /// <returns>JSON Array containing Market Group IDs</returns>
+        public string GetMarketGroups()
+        {
+            return GetMarketGroupsAsync().Result;
+        }
+
+
+        /// <summary>Get Market Groups</summary>
+        /// <returns>JSON Array containing Market Group IDs</returns>
+        public async Task<string> GetMarketGroupsAsync()
+        {
+            var Path = "/markets/groups/";
+            var EsiRequest = new EsiRequest(EasyObject, Path);
+            return await EsiRequest.GetAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>Get Market Group Information</summary>
+        /// <param name="GroupID">(Int32) Market Group ID</param>
+        /// <returns>JSON Object containing the group name, description, ID, parent ID, and an array of type IDs</returns>
+        public string GetMarketGroupInfo(int GroupID)
+        {
+            return GetMarketGroupInfoAsync(GroupID).Result;
+        }
+
+        /// <summary>Get Market Group Information</summary>
+        /// <param name="GroupID">(Int32) Market Group ID</param>
+        /// <returns>JSON Object containing the group name, description, ID, parent ID, and an array of type IDs</returns>
+        public async Task<string> GetMarketGroupInfoAsync(int GroupID)
+        {
+            var Path = $"/markets/groups/{GroupID.ToString()}/";
+            var EsiRequest = new EsiRequest(EasyObject, Path);
+            return await EsiRequest.GetAsync().ConfigureAwait(false);
+        }
     }
 
     /// <summary>Public and Authenticated Market paths</summary>
