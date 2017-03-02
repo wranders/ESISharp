@@ -184,7 +184,7 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get Item Group Information</summary>
-        /// <param name="CategoryID">(Int32) Item Group ID</param>
+        /// <param name="GroupID">(Int32) Item Group ID</param>
         /// <returns>JSON Object containing Group name, Group ID, Category ID, containing types, and published status</returns>
         public string GetItemGroupInfo(int GroupID)
         {
@@ -192,7 +192,7 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get Item Group Information</summary>
-        /// <param name="CategoryID">(Int32) Item Group ID</param>
+        /// <param name="GroupID">(Int32) Item Group ID</param>
         /// <returns>JSON Object containing Group name, Group ID, Category ID, containing types, and published status</returns>
         public async Task<string> GetItemGroupInfoAsync(int GroupID)
         {
