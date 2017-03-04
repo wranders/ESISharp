@@ -21,7 +21,7 @@ Request examples:
 * `ESIEve.Alliance.GetAll().Execute()` - Request, returns **EsiResponse**
 * `ESIEve.Alliance.GetAll().ExecuteAsync()` - Request, returns **Task\<EsiResponse>** 
 * `ESIEve.Alliance.GetAll().Route("v1").Execute()` - Request a specific route/version
-* ```ESIEve.Alliance.GetAll().DataSource( DataSource.Singularity ).Execute()``` - Request a specific DataSource (server)
+* ```ESIEve.Alliance.GetAll().DataSource( DataSource.Singularity ).Execute()``` - Request a specific DataSource
 * Route and DataSource specifications can be use together and in any order.
 
 `EsiResponse` object structure:
