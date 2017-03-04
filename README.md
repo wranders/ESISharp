@@ -25,20 +25,20 @@ Request examples:
 * Route and DataSource specifications can be use together and in any order.
 
 `EsiResponse` object structure:
-|Parameter Name|Parameter Type|
-|-|-|
-|`Body`|String|
-|`Code`|System.Net.HttpStatusCode|
-|`Headers`|EsiResponseHeaders|
+| Parameter Name | Parameter Type            |
+| -------------- | :-----------------------: |
+| `Body`         | String                    |
+| `Code`         | System.Net.HttpStatusCode |
+| `Headers`      | EsiResponseHeaders        |
 
 `EsiResponseHeaders` object structure:
-|Parameter Name|Parameter Type|Description|
-|-|-|-|
-|`ContentType`|String|Response body format|
-|`Date`|DateTime|Time the request was made|
-|`Expires`|DateTime|Time the request data will be invalid|
-|`LastModified`|DateTime|Time the request data was last modified by CCP|
-|`Warning`|String|(Optional) Response warning message if one was returned
+| Parameter Name | Parameter Type | Description                                             |
+| -------------- | :------------: | ------------------------------------------------------- | 
+| `ContentType`  | String         | Response body format                                    |
+| `Date`         | DateTime       | Time the request was made                               |
+| `Expires`      | DateTime       | Time the request data will be invalid                   |
+| `LastModified` | DateTime       | Time the request data was last modified by CCP          |
+| `Warning`      | String         | (Optional) Response warning message if one was returned |
 
 ---
 
