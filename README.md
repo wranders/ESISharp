@@ -18,22 +18,22 @@ The Authenticated object has access to both Public and Authenticated paths.
 Requests are made with a fluent builder pattern. Requests return the EsiResponse object.
 
 Request examples:
-* To make a request, returning **EsiResponse**: `ESIEve.Alliance.GetAll().Execute()`
-* To make a request, returning **Task\<EsiResponse>**: `ESIEve.Alliance.GetAll().ExecuteAsync()`
-* To make a request from a specified route/version: `ESIEve.Alliance.GetAll().Route("v1").Execute()`
-* To make a request to a different server: `ESIEve.Alliance.GetAll().DataSource( DataSource.Singularity ).Execute()`
+* `ESIEve.Alliance.GetAll().Execute()` - Request, returns **EsiResponse**
+* `ESIEve.Alliance.GetAll().ExecuteAsync()` - Request, returns **Task\<EsiResponse>** 
+* `ESIEve.Alliance.GetAll().Route("v1").Execute()` - Request a specific route/version
+* ```ESIEve.Alliance.GetAll().DataSource( DataSource.Singularity ).Execute()``` - Request a specific DataSource (server)
 * Route and DataSource specifications can be use together and in any order.
 
 `EsiResponse` object structure:
 | Parameter Name | Parameter Type            |
-| -------------- | :-----------------------: |
+| -------------- | ------------------------- |
 | `Body`         | String                    |
 | `Code`         | System.Net.HttpStatusCode |
 | `Headers`      | EsiResponseHeaders        |
 
 `EsiResponseHeaders` object structure:
 | Parameter Name | Parameter Type | Description                                             |
-| -------------- | :------------: | ------------------------------------------------------- | 
+| -------------- | -------------- | ------------------------------------------------------- | 
 | `ContentType`  | String         | Response body format                                    |
 | `Date`         | DateTime       | Time the request was made                               |
 | `Expires`      | DateTime       | Time the request data will be invalid                   |
