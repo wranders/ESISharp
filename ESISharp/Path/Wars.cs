@@ -14,55 +14,39 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get All Wars</summary>
-        /// <returns>JSON Array of all War IDs</returns>
-        public string GetWars()
-        {
-            return GetWarsAsync().Result;
-        }
-
-        /// <summary>Get All Wars</summary>
-        /// <returns>JSON Array of all War IDs</returns>
-        public async Task<string> GetWarsAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetWars()
         {
             var Path = "/wars/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get War Information</summary>
         /// <param name="WarID">(Int32) War ID</param>
-        /// <returns>JSON Object containing all war information</returns>
-        public string GetWarInfo(int WarID)
-        {
-            return GetWarInfoAsync(WarID).Result;
-        }
-
-        /// <summary>Get War Information</summary>
-        /// <param name="WarID">(Int32) War ID</param>
-        /// <returns>JSON Object containing all war information</returns>
-        public async Task<string> GetWarInfoAsync(int WarID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetWarInfo(int WarID)
         {
             var Path = $"/wars/{WarID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
-        /// <summary>Get all War Killmails</summary>
+        /// <summary>Get War Killmails (First Page)</summary>
         /// <param name="WarID">(Int32) War ID</param>
-        /// <returns>JSON Array of all related Killmail IDs and Base64 Hashes</returns>
-        public string GetWarKills(int WarID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetWarKills(int WarID)
         {
-            return GetWarKillsAsync(WarID).Result;
+            return GetWarKills(WarID, 1);
         }
 
-        /// <summary>Get all War Killmails</summary>
+        /// <summary>Get War Killmails</summary>
         /// <param name="WarID">(Int32) War ID</param>
-        /// <returns>JSON Array of all related Killmail IDs and Base64 Hashes</returns>
-        public async Task<string> GetWarKillsAsync(int WarID)
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetWarKills(int WarID, int Page)
         {
             var Path = $"/wars/{WarID.ToString()}/killmails/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            var Data = new { page = Page };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
     }
 

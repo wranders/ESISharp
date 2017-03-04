@@ -318,13 +318,20 @@ namespace ESISharp
             }
         }
 
+        /// <summary>Verified SSO Token Information</summary>
         public class TokenVerification
         {
+            /// <summary>Character ID</summary>
             public int CharacterID { get; set; }
+            /// <summary>Character Name</summary>
             public string CharacterName { get; set; }
+            /// <summary>Token Expiration Time</summary>
             public DateTime ExpiresOn { get; set; }
+            /// <summary>Authorized Scopes</summary>
             public List<Scope> Scopes { get; set; } = new List<Scope>();
+            /// <summary>Token Type</summary>
             public string TokenType { get; set; }
+            /// <summary>Character Owner Hash</summary>
             public string CharacterOwnerHash { get; set; }
 
             [JsonConstructor]

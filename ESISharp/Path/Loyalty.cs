@@ -1,5 +1,4 @@
 ﻿using ESISharp.Web;
-using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
@@ -15,20 +14,11 @@ namespace ESISharp.ESIPath
 
         /// <summary>Get Corporation Loyalty Point (LP) store offers</summary>
         /// <param name="CorporationID">(Int32) Corporation ID</param>
-        /// <returns>JSON array of objects representing items and their associated LP store information</returns>
-        public string GetStoreOffers(int CorporationID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStoreOffers(int CorporationID)
         {
-            return GetStoreOffersAsync(CorporationID).Result;
-        }
-
-        /// <summary>Get Corporation Loyalty Point (LP) store offers</summary>
-        /// <param name="CorporationID">(Int32) Corporation ID</param>
-        /// <returns>JSON array of objects representing items and their associated LP store information</returns>
-        public async Task<string> GetStoreOffersAsync(int CorporationID)
-        {
-            var Path = $"/loyalty/stores/{CorporationID}/offers/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            var Path = $"/loyalty/stores/{CorporationID.ToString()}/offers/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

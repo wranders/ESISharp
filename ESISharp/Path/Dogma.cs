@@ -1,8 +1,8 @@
 ﻿using ESISharp.Web;
-using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
+    /// <summary>Public Dogma Information Paths</summary>
     public class Dogma
     {
         protected ESIEve EasyObject;
@@ -13,74 +13,41 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get Dogma attribute IDs</summary>
-        /// <returns>JSON Array of attribute ID integers</returns>
-        public string GetAttributes()
-        {
-            return GetAttributesAsync().Result;
-        }
-
-        /// <summary>Get Dogma attribute IDs</summary>
-        /// <returns>JSON Array of attribute ID integers</returns>
-        public async Task<string> GetAttributesAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAttributes()
         {
             var Path = "/dogma/attributes/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get Dogma Attribute information</summary>
         /// <param name="AttributeID">(Int32) Attribute ID</param>
-        /// <returns>JSON Object containing Dogma attribute information</returns>
-        public string GetAttributeInformation(int AttributeID)
-        {
-            return GetAttributeInformationAsync(AttributeID).Result;
-        }
-
-        /// <summary>Get Dogma Attribute information</summary>
-        /// <param name="AttributeID">(Int32) Attribute ID</param>
-        /// <returns>JSON Object containing Dogma attribute information</returns>
-        public async Task<string> GetAttributeInformationAsync(int AttributeID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAttributeInformation(int AttributeID)
         {
             var Path = $"/dogma/attributes/{AttributeID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get Dogma effect IDs</summary>
-        /// <returns>JSON Array of effect ID integers</returns>
-        public string GetEffects()
-        {
-            return GetEffectsAsync().Result;
-        }
-
-        /// <summary>Get Dogma effect IDs</summary>
-        /// <returns>JSON Array of effect ID integers</returns>
-        public async Task<string> GetEffectsAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetEffects()
         {
             var Path = "/dogma/effects/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get Dogma Effect information</summary>
         /// <param name="EffectID">(Int32) Effect ID</param>
-        /// <returns>JOSN Object containing Dogma effect information</returns>
-        public string GetEffectInformation(int EffectID)
-        {
-            return GetEffectInformationAsync(EffectID).Result;
-        }
-
-        /// <summary>Get Dogma Effect information</summary>
-        /// <param name="EffectID">(Int32) Effect ID</param>
-        /// <returns>JOSN Object containing Dogma effect information</returns>
-        public async Task<string> GetEffectInformationAsync(int EffectID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetEffectInformation(int EffectID)
         {
             var Path = $"/dogma/effects/{EffectID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 
+    /// <summary>Public and Authenticated Dogma Information Paths</summary>
     public class AuthDogma : Dogma
     {
         internal AuthDogma(ESIEve EasyEve) : base(EasyEve)

@@ -1,5 +1,4 @@
 ﻿using ESISharp.Web;
-using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
@@ -14,19 +13,11 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get List of Incursions</summary>
-        /// <returns>JSON Array of Objects containing incursion information</returns>
-        public string GetList()
-        {
-            return GetListAsync().Result;
-        }
-
-        /// <summary>Get List of Incursions</summary>
-        /// <returns>JSON Array of Objects containing incursion information</returns>
-        public async Task<string> GetListAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetList()
         {
             var Path = "/incursions/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 
