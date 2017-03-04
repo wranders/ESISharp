@@ -25,6 +25,7 @@ Request examples:
 * Route and DataSource specifications can be use together and in any order.
 
 `EsiResponse` object structure:
+
 | Parameter Name | Parameter Type            |
 | -------------- | ------------------------- |
 | `Body`         | String                    |
@@ -32,6 +33,7 @@ Request examples:
 | `Headers`      | EsiResponseHeaders        |
 
 `EsiResponseHeaders` object structure:
+
 | Parameter Name | Parameter Type | Description                                             |
 | -------------- | -------------- | ------------------------------------------------------- | 
 | `ContentType`  | String         | Response body format                                    |
