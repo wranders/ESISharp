@@ -13,21 +13,19 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get All Sovereignty Campaigns</summary>
-        /// <returns>JSON Array of Objects containing campaign information</returns>
-        public string GetCampaigns()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetCampaigns()
         {
             var Path = "/sovereignty/campaigns/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get All Sovereignty Stuctures</summary>
-        /// <returns>JSON Array of Objects containing structure information</returns>
-        public string GetStructures()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStructures()
         {
             var Path = "/sovereignty/structures/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

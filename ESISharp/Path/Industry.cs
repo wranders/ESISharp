@@ -13,21 +13,19 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get List of Industry Facilities</summary>
-        /// <returns>JSON Array of Objects containing Facility information</returns>
-        public string GetFacilities()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetFacilities()
         {
             var Path = "/industry/facilities/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get List of Solar System Cost Indices</summary>
-        /// <returns>JSON Array of Objects containing Solar System ID and related activities and cost indices</returns>
-        public string GetIndices()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetIndices()
         {
             var Path = "/industry/systems/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

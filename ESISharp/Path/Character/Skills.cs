@@ -15,23 +15,21 @@ namespace ESISharp.ESIPath.Character
         /// <summary>Get Character's current Skill Queue</summary>
         /// <remarks>Requires SSO Authentication, using "read_skillqueue" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects representing individual skills in queue</returns>
-        public string GetQueue(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetQueue(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/skillqueue/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Get Character's Skills</summary>
         /// <remarks>Requires SSO Authentication, using "read_skills" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing total skill points and Array of Objects representing individual skills</returns>
-        public string GetSkills(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSkills(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/skills/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
     }
 }

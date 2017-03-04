@@ -18,12 +18,11 @@ namespace ESISharp.ESIPath.Character
         /// <summary>Get All Character's Fittings</summary>
         /// <remarks>Requires SSO Authentication, using "read_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects representing fits</returns>
-        public string GetAll(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/fittings/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Create A Fitting</summary>
@@ -33,8 +32,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="Description">(String) Fitting Description</param>
         /// <param name="ShipTypeId">(Int32) Ship Type ID</param>
         /// <param name="FittingItems">(FittingItem List) Fitting Items</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Create(int CharacterID, string FittingName, string Description, int ShipTypeId, List<FittingItem> FittingItems)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Create(int CharacterID, string FittingName, string Description, int ShipTypeId, IEnumerable<FittingItem> FittingItems)
         {
             var Fitting = new Fitting(FittingName, Description, ShipTypeId, FittingItems);
             return Create(CharacterID, Fitting);
@@ -44,8 +43,8 @@ namespace ESISharp.ESIPath.Character
         /// <remarks>Requires SSO Authentication, using "write_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Fitting">(Fitting) Fitting</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Create(int CharacterID, Fitting Fitting)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Create(int CharacterID, Fitting Fitting)
         {
             var Path = $"/characters/{CharacterID.ToString()}/fittings/";
             var Data = new
@@ -55,20 +54,18 @@ namespace ESISharp.ESIPath.Character
                 ship_type_id = Fitting.ShipTypeID,
                 items = Fitting.Items.Select(item => new { type_id = item.TypeID, quantity = item.Quantity, flag = item.Flag }).ToArray()
             };
-            EsiAuthRequest EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Delete A Fitting</summary>
         /// <remarks>Requires SSO Authentication, using "write_fittings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="FittingID">(Int32) Fitting ID</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Delete(int CharacterID, int FittingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Delete(int CharacterID, int FittingID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/fittings/{FittingID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
     }
 }

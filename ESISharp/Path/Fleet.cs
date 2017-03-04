@@ -16,20 +16,19 @@ namespace ESISharp.ESIPath
         /// <summary>Get Fleet Information</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
-        /// <returns>JSON Object containing free move status, registered status, voice enabled status, and MOTD</returns>
-        public string GetInformation(long FleetID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetInformation(long FleetID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Update Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MOTD">(String) Fleet Message of the Day (MOTD)</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Update(long FleetID, string MOTD)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Update(long FleetID, string MOTD)
         {
             return Update(FleetID, MOTD, null);
         }
@@ -38,8 +37,8 @@ namespace ESISharp.ESIPath
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="FreeMove">(Boolean) Free-Move status</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Update(long FleetID, bool FreeMove)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Update(long FleetID, bool FreeMove)
         {
             return Update(FleetID, null, FreeMove);
         }
@@ -49,32 +48,30 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MOTD">(String) Fleet Message of the Day (MOTD)</param>
         /// <param name="FreeMove">(Boolean) Free-Move status</param>
-        /// <returns>Normally nothing, error if one is encountered</returns>
-        public string Update(long FleetID, string MOTD, bool? FreeMove)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Update(long FleetID, string MOTD, bool? FreeMove)
         {
             var Path = $"/fleets/{FleetID.ToString()}/";
             var Data = new { motd = MOTD, is_free_move = FreeMove };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Put(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, Data);
         }
 
         /// <summary>Get Fleet Members</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
-        /// <returns>JSON Array of Objects containing member information</returns>
-        public string GetMembers(long FleetID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMembers(long FleetID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/members/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Invite a Character to Fleet as Squad Member</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID)
         {
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, null, null);
         }
@@ -84,8 +81,8 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, long WingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, long WingID)
         {
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, WingID, null);
         }
@@ -96,8 +93,8 @@ namespace ESISharp.ESIPath
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, long WingID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, long WingID, long SquadID)
         {
             return Invite(FleetID, CharacterID, FleetRole.SquadMember.Value, WingID, SquadID);
         }
@@ -107,8 +104,8 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Role">(FleetRole) Role</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, FleetRole Role)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, FleetRole Role)
         {
             return Invite(FleetID, CharacterID, Role.Value, null, null);
         }
@@ -118,8 +115,8 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Role">(String) Role</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, string Role)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, string Role)
         {
             return Invite(FleetID, CharacterID, Role, null, null);
         }
@@ -130,8 +127,8 @@ namespace ESISharp.ESIPath
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Role">(FleetRole) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, FleetRole Role, long WingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, FleetRole Role, long WingID)
         {
             return Invite(FleetID, CharacterID, Role.Value, WingID, null);
         }
@@ -142,8 +139,8 @@ namespace ESISharp.ESIPath
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Role">(String) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, string Role, long WingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, string Role, long WingID)
         {
             return Invite(FleetID, CharacterID, Role, WingID, null);
         }
@@ -155,8 +152,8 @@ namespace ESISharp.ESIPath
         /// <param name="Role">(FleetRole) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, FleetRole Role, long WingID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, FleetRole Role, long WingID, long SquadID)
         {
             return Invite(FleetID, CharacterID, Role.Value, WingID, SquadID);
         }
@@ -168,8 +165,8 @@ namespace ESISharp.ESIPath
         /// <param name="Role">(String) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string Invite(long FleetID, int CharacterID, string Role, long? WingID, long? SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest Invite(long FleetID, int CharacterID, string Role, long? WingID, long? SquadID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/members/";
             var Data = new
@@ -179,20 +176,18 @@ namespace ESISharp.ESIPath
                 squad_id = SquadID,
                 wing_id = WingID
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Kick Member from Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="MemberID">(Int32) Member's Character ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string KickMember(long FleetID, int MemberID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest KickMember(long FleetID, int MemberID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
 
         /// <summary>Move Fleet Member</summary>
@@ -201,8 +196,8 @@ namespace ESISharp.ESIPath
         /// <param name="MemberID">(Int32) Member's Character ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string MoveMember(long FleetID, int MemberID, long WingID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest MoveMember(long FleetID, int MemberID, long WingID, long SquadID)
         {
             return MoveMember(FleetID, MemberID, FleetRole.SquadMember.Value, WingID, SquadID);
         }
@@ -214,8 +209,8 @@ namespace ESISharp.ESIPath
         /// <param name="Role">(FleetRole) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string MoveMember(long FleetID, int MemberID, FleetRole Role, long WingID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest MoveMember(long FleetID, int MemberID, FleetRole Role, long WingID, long SquadID)
         {
             return MoveMember(FleetID, MemberID, Role.Value, WingID, SquadID);
         }
@@ -227,8 +222,8 @@ namespace ESISharp.ESIPath
         /// <param name="Role">(String) Role</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string MoveMember(long FleetID, int MemberID, string Role, long WingID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest MoveMember(long FleetID, int MemberID, string Role, long WingID, long SquadID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/members/{MemberID.ToString()}/";
             var Data = new
@@ -237,20 +232,18 @@ namespace ESISharp.ESIPath
                 squad_id = SquadID,
                 wing_id = WingID
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Put(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, Data);
         }
 
         /// <summary>Delete Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string DeleteSquad(long FleetID, long SquadID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest DeleteSquad(long FleetID, long SquadID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
 
         /// <summary>Rename Squad</summary>
@@ -258,50 +251,47 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="SquadID">(Int32) Squad ID</param>
         /// <param name="Name">(String) Squad Name</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string RenameSquad(long FleetID, long SquadID, string Name)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest RenameSquad(long FleetID, long SquadID, string Name)
         {
             var Path = $"/fleets/{FleetID.ToString()}/squads/{SquadID.ToString()}/";
             var Data = new
             {
                 name = Name
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Put(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, Data);
         }
 
         /// <summary>Get Wings in Fleet</summary>
         /// <remarks>Requires SSO Authentication, using "read_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string GetWings(long FleetID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetWings(long FleetID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/wings/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Create a Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string CreateWing(long FleetID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CreateWing(long FleetID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/wings/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(new { });
+            var Data = new { };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Delete Wing</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string DeleteWing(long FleetID, long WingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest DeleteWing(long FleetID, long WingID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
 
         /// <summary>Rename Wing</summary>
@@ -309,25 +299,24 @@ namespace ESISharp.ESIPath
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
         /// <param name="Name">(String) Wing Name</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string RenameWing(long FleetID, long WingID, string Name)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest RenameWing(long FleetID, long WingID, string Name)
         {
             var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/";
             var Data = new { name = Name };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Put(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, Data);
         }
 
         /// <summary>Create Squad</summary>
         /// <remarks>Requires SSO Authentication, using "write_fleet" scope</remarks>
         /// <param name="FleetID">(Int64) Fleet ID</param>
         /// <param name="WingID">(Int32) Wing ID</param>
-        /// <returns>Normally nothing, error is one was encountered</returns>
-        public string CreateSquad(long FleetID, long WingID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CreateSquad(long FleetID, long WingID)
         {
             var Path = $"/fleets/{FleetID.ToString()}/wings/{WingID.ToString()}/squads/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(new { });
+            var Data = new { };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
     }
 }

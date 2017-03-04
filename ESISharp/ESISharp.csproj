@@ -56,10 +56,13 @@
     <Compile Include="Enumerations\MarketOrderType.cs" />
     <Compile Include="Enumerations\OAuthGrant.cs" />
     <Compile Include="Enumerations\SearchCategory.cs" />
+    <Compile Include="Enumerations\StructureVulnerability.cs" />
     <Compile Include="ESIEve.SSO.Operations.cs" />
     <Compile Include="ESIEve.SSO.cs" />
+    <Compile Include="Object\EsiResponse.cs" />
     <Compile Include="Object\Fitting.cs" />
     <Compile Include="Object\EveMail.cs" />
+    <Compile Include="Object\StructureVulnerabilityPeriod.cs" />
     <Compile Include="Path\Alliance.cs" />
     <Compile Include="Enumerations\DataSource.cs" />
     <Compile Include="Enumerations\ResponseType.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Path\Character\Skills.cs" />
     <Compile Include="Path\Character\Wallet.cs" />
     <Compile Include="Path\Corporation.cs" />
+    <Compile Include="Path\Dogma.cs" />
     <Compile Include="Path\Fleet.cs" />
     <Compile Include="Path\Incursion.cs" />
     <Compile Include="Path\Industry.cs" />
@@ -94,9 +98,9 @@
     <Compile Include="Path\UserInterface.cs" />
     <Compile Include="Path\Wars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\EsiAuthRequest.cs" />
     <Compile Include="Web\EsiRequest.cs" />
     <Compile Include="Web\Utils.cs" />
+    <Compile Include="Web\WebMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ESISharp.ruleset" />

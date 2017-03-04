@@ -13,12 +13,11 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get List of Incursions</summary>
-        /// <returns>JSON Array of Objects containing incursion information</returns>
-        public string GetList()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetList()
         {
             var Path = "/incursions/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

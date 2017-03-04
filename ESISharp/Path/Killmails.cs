@@ -15,12 +15,11 @@ namespace ESISharp.ESIPath
         /// <summary>Get A Single Killmail</summary>
         /// <param name="KillmailID">(Int32) Killmail ID</param>
         /// <param name="KillmailHash">(String) Base64 Killmail Hash</param>
-        /// <returns>JSON Object containing Killmail information</returns>
-        public string GetSingle(int KillmailID, string KillmailHash)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSingle(int KillmailID, string KillmailHash)
         {
-            var Path = $"/killmails/{KillmailID.ToString()}/{KillmailHash}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            var Path = $"/killmails/{KillmailID.ToString()}/{KillmailHash.ToString()}/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

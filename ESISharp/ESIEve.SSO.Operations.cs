@@ -30,7 +30,7 @@ namespace ESISharp
             var LocalRequestedScopes = RequestedScopes;
             var PipeName = Guid.NewGuid().ToString();
 
-            var SsoBuilder = new UriBuilder("https://login.eveonline.com/oauth/authorize");
+            var SsoBuilder = new UriBuilder("https://login.eveonline.com/oauth/authorize/");
             var Query = HttpUtility.ParseQueryString(SsoBuilder.Query);
             if (GrantType == OAuthGrant.Authorization && SecretKey != null)
             {
@@ -148,7 +148,6 @@ namespace ESISharp
         {
             string ResponseString;
             SsoClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(ClientID + ":" + SecretKey));
-            SsoClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage Response = await SsoClient.PostAsync(new Uri("https://login.eveonline.com/oauth/token"), new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("grant_type", Grant),
@@ -243,7 +242,14 @@ namespace ESISharp
 
                 var Json = Response.Content.ReadAsStringAsync().Result;
                 var Result = JsonConvert.DeserializeObject<TokenVerification>(Json);
-                return Result;
+                if (!RequestedScopes.Contains(Scope.None) && !RequestedScopes.TrueForAll(x => Result.Scopes.Contains(x)))
+                {
+                    ReauthorizeScopes = true;
+                }
+                else
+                {
+                    return Result;
+                }
             }
             return null;
         }
@@ -312,13 +318,20 @@ namespace ESISharp
             }
         }
 
+        /// <summary>Verified SSO Token Information</summary>
         public class TokenVerification
         {
+            /// <summary>Character ID</summary>
             public int CharacterID { get; set; }
+            /// <summary>Character Name</summary>
             public string CharacterName { get; set; }
+            /// <summary>Token Expiration Time</summary>
             public DateTime ExpiresOn { get; set; }
+            /// <summary>Authorized Scopes</summary>
             public List<Scope> Scopes { get; set; } = new List<Scope>();
+            /// <summary>Token Type</summary>
             public string TokenType { get; set; }
+            /// <summary>Character Owner Hash</summary>
             public string CharacterOwnerHash { get; set; }
 
             [JsonConstructor]

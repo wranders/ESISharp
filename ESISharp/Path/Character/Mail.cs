@@ -19,8 +19,8 @@ namespace ESISharp.ESIPath.Character
         /// <summary>Return Mail Headers (50 most recent)</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID)
         {
             return GetHeaders(CharacterID, null, null);
         }
@@ -29,18 +29,18 @@ namespace ESISharp.ESIPath.Character
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Label">(Int64) Mail Label</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID, long Label)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID, long Label)
         {
-            return GetHeaders(CharacterID, new List<long>() { Label }, null);
+            return GetHeaders(CharacterID, new long[] { Label }, null);
         }
 
         /// <summary>Return Mail Headers with the specified label</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Labels">(Int64) Mail Label</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID, List<long> Labels)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID, IEnumerable<long> Labels)
         {
             return GetHeaders(CharacterID, Labels, null);
         }
@@ -49,8 +49,8 @@ namespace ESISharp.ESIPath.Character
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="LastMailID">(Int32) Last Mail ID to include</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID, int LastMailID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID, int LastMailID)
         {
             return GetHeaders(CharacterID, null, LastMailID);
         }
@@ -60,10 +60,10 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Label">(Int64) Mail Label</param>
         /// <param name="LastMailID">(Int32) Last Mail ID to include</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID, long Label, int LastMailID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID, long Label, int LastMailID)
         {
-            return GetHeaders(CharacterID, new List<long>() { Label }, LastMailID);
+            return GetHeaders(CharacterID, new long[] { Label }, LastMailID);
         }
 
         /// <summary>Return Mail Headers with the specified label</summary>
@@ -71,13 +71,12 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Labels">(Int64) Mail Label</param>
         /// <param name="LastMailID">(Int32) Last Mail ID to include</param>
-        /// <returns>JSON Array of Objects representing mails</returns>
-        public string GetHeaders(int CharacterID, List<long> Labels, int? LastMailID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetHeaders(int CharacterID, IEnumerable<long> Labels, int? LastMailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/";
             var Data = new { labels = Labels.ToArray(), last_mail_id = LastMailID };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
         /// <summary>Send a new Mail</summary>
@@ -87,8 +86,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="RecipientID">(Int32) Recipient Character ID</param>
         /// <param name="RecipientType">(String) Recipient Type</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, int RecipientID, string RecipientType)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, int RecipientID, string RecipientType)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, RecipientID, RecipientType));
         }
@@ -100,8 +99,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="RecipientID">(Int32) Recipient Character ID</param>
         /// <param name="RecipientType">(MailRecipientType) Recipient Type</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, int RecipientID, MailRecipientType RecipientType)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, int RecipientID, MailRecipientType RecipientType)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, RecipientID, RecipientType));
         }
@@ -112,8 +111,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailBody">(String) Message Body</param>
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipient">(Recipient) Recipient Object</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, Recipient MailRecipient)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, Recipient MailRecipient)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipient));
         }
@@ -124,8 +123,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailBody">(String) Message Body</param>
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipients">(Recipient List) Recipient Objects</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, List<Recipient> MailRecipients)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, List<Recipient> MailRecipients)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipients));
         }
@@ -137,8 +136,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipient">(Recipient) Recipient Object</param>
         /// <param name="ApprovedCost">(Int32) Approved CSPA cost</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, Recipient MailRecipient, int ApprovedCost)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, Recipient MailRecipient, int ApprovedCost)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipient, ApprovedCost));
         }
@@ -150,8 +149,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailSubject">(String) Message Subject</param>
         /// <param name="MailRecipients">(Recipient List) Recipient Object</param>
         /// <param name="ApprovedCost">(Int32) Approved CSPA cost</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, string MailBody, string MailSubject, List<Recipient> MailRecipients, int ApprovedCost)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, string MailBody, string MailSubject, List<Recipient> MailRecipients, int ApprovedCost)
         {
             return SendNew(CharacterID, new EveMail(MailBody, MailSubject, MailRecipients, ApprovedCost));
         }
@@ -160,8 +159,8 @@ namespace ESISharp.ESIPath.Character
         /// <remarks>Requires SSO Authentication, using "send_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Mail">(EveMail) Eve Mail Object</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string SendNew(int CharacterID, EveMail Mail)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SendNew(int CharacterID, EveMail Mail)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/";
             var Data = new
@@ -171,27 +170,25 @@ namespace ESISharp.ESIPath.Character
                 recipients = Mail.Recipients.Select(r => new { recipient_id = r.RecipientID, recipient_type = r.RecipientType }).ToArray(),
                 subject = Mail.Subject
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Get Mail Labels</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing total unread count and array of label objects containing label information</returns>
-        public string GetLabels(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetLabels(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Create a Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string CreateLabel(int CharacterID, string Name)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CreateLabel(int CharacterID, string Name)
         {
             return CreateLabel(CharacterID, Name, MailLabelColor.White);
         }
@@ -201,8 +198,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
         /// <param name="Color">(MailLabelColor) MailLabelColor enumeration</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string CreateLabel(int CharacterID, string Name, MailLabelColor Color)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CreateLabel(int CharacterID, string Name, MailLabelColor Color)
         {
             return CreateLabel(CharacterID, Name, Color.Value);
         }
@@ -212,8 +209,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Name">(String) Label Name</param>
         /// <param name="Color">(String) Hexadecimal Color</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string CreateLabel(int CharacterID, string Name, string Color)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CreateLabel(int CharacterID, string Name, string Color)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/labels/";
             var Data = new
@@ -221,55 +218,50 @@ namespace ESISharp.ESIPath.Character
                 color = Color,
                 name = Name
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Delete Mail Label</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="LabelID">(Int32) Mail Label ID</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string DeleteLabel(int CharacterID, int LabelID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest DeleteLabel(int CharacterID, int LabelID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/labels/{LabelID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
 
         /// <summary>Get All Mailing List Subscriptions</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects containing mailing list name and mailing list ID</returns>
-        public string GetMailingListSubscriptions(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMailingListSubscriptions(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/lists/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Delete Mail</summary>
         /// <remarks>Requires SSO Authentication, using "organize_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string DeleteMail(int CharacterID, int MailID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest DeleteMail(int CharacterID, int MailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Delete();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete);
         }
 
         /// <summary>Get A Single Mail</summary>
         /// <remarks>Requires SSO Authentication, using "read_mail" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
-        /// <returns>JSON Object representing an Eve Mail</returns>
-        public string GetMail(int CharacterID, int MailID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMail(int CharacterID, int MailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Update Mail Metadata</summary>
@@ -277,8 +269,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
         /// <param name="Read">(Boolean) Read</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string UpdateMail(int CharacterID, int MailID, bool Read)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest UpdateMail(int CharacterID, int MailID, bool Read)
         {
             return UpdateMail(CharacterID, MailID, null, Read);
         }
@@ -288,8 +280,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MailID">(Int32) Mail ID</param>
         /// <param name="LabelID">(Int32) Mail Label ID</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string UpdateMail(int CharacterID, int MailID, int LabelID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest UpdateMail(int CharacterID, int MailID, int LabelID)
         {
             return UpdateMail(CharacterID, MailID, new List<int>() { LabelID }, null);
         }
@@ -300,8 +292,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailID">(Int32) Mail ID</param>
         /// <param name="LabelID">(Int32) Mail Label ID</param>
         /// <param name="Read">(Boolean) Read</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string UpdateMail(int CharacterID, int MailID, int LabelID, bool Read)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest UpdateMail(int CharacterID, int MailID, int LabelID, bool Read)
         {
             return UpdateMail(CharacterID, MailID, new List<int>() { LabelID }, Read);
         }
@@ -312,8 +304,8 @@ namespace ESISharp.ESIPath.Character
         /// <param name="MailID">(Int32) Mail ID</param>
         /// <param name="LabelIDs">(Int32 List) Mail Label IDs</param>
         /// <param name="Read">(Boolean) Read</param>
-        /// <returns>Normally nothing, error if one was encountered</returns>
-        public string UpdateMail(int CharacterID, int MailID, List<int> LabelIDs, bool? Read)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest UpdateMail(int CharacterID, int MailID, IEnumerable<int> LabelIDs, bool? Read)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/{MailID.ToString()}/";
             var Data = new
@@ -321,8 +313,7 @@ namespace ESISharp.ESIPath.Character
                 labels = LabelIDs,
                 read = Read
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Put(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, Data);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace ESISharp.ESIPath
         /// <summary>Add a waypoint to the current route</summary>
         /// <remarks> Requires SSO Authentication and "write_waypoint" scope</remarks>
         /// <param name="DestinationID">(Int64) Destination ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string SetWaypoint(long DestinationID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SetWaypoint(long DestinationID)
         {
             return SetWaypoint(DestinationID, false, false);
         }
@@ -27,8 +27,8 @@ namespace ESISharp.ESIPath
         /// <remarks> Requires SSO Authentication and "write_waypoint" scope</remarks>
         /// <param name="DestinationID">(Int64) Destination ID</param>
         /// <param name="ClearWaypoints">(Boolean) Clear Current Waypoints</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string SetWaypoint(long DestinationID, bool ClearWaypoints)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SetWaypoint(long DestinationID, bool ClearWaypoints)
         {
             return SetWaypoint(DestinationID, ClearWaypoints, false);
         }
@@ -40,76 +40,72 @@ namespace ESISharp.ESIPath
         /// <param name="DestinationID">(Int64) Destination ID</param>
         /// <param name="ClearWaypoints">(Boolean) Clear Current Waypoints</param>
         /// <param name="AddToBeginning">(Boolean) Prepend waypoint to the current route</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string SetWaypoint(long DestinationID, bool ClearWaypoints, bool AddToBeginning)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest SetWaypoint(long DestinationID, bool ClearWaypoints, bool AddToBeginning)
         {
             var Path = "/ui/autopilot/waypoint/";
             var Data = new { destination_id = DestinationID, clear_other_waypoints = ClearWaypoints, add_to_beginning = AddToBeginning };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(null, Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, null, Data);
         }
 
         /// <summary>Open Contract Window</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="ContractID">(Int32) Contract ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string OpenContract(int ContractID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest OpenContract(int ContractID)
         {
             var Path = "/ui/openwindow/contract/";
             var Data = new { contract_id = ContractID };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(null, Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, null, Data);
         }
 
         /// <summary>Open Information Window</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="TargetID">(Int32) Target ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string OpenInfo(int TargetID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest OpenInfo(int TargetID)
         {
             var Path = "/ui/openwindow/information/";
             var Data = new { target_id = TargetID };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(null, Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, null, Data);
         }
 
         /// <summary>Open Market Details</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="TypeID">(Int32) Type ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string OpenMarketDetails(int TypeID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest OpenMarketDetails(int TypeID)
         {
             var Path = "/ui/openwindow/marketdetails/";
             var Data = new { type_id = TypeID };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(null, Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, null, Data);
         }
 
         /// <summary>Open empty mail composer</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail()
         {
-            return NewMail(string.Empty, string.Empty, new List<int>() { 0 }, 0, 0);
+            return NewMail(string.Empty, string.Empty, new int[] { 0 }, 0, 0);
         }
 
         /// <summary>Open mail composer with filled body</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body)
         {
-            return NewMail(Body, string.Empty, new List<int>() { 0 }, 0, 0);
+            return NewMail(Body, string.Empty, new int[] { 0 }, 0, 0);
         }
 
         /// <summary>Open mail composer with filled body and subject</summary>
         /// <remarks> Requires SSO Authentication and "open_window" scope</remarks>
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject)
         {
-            return NewMail(Body, Subject, new List<int>() { 0 }, 0, 0);
+            return NewMail(Body, Subject, new int[] { 0 }, 0, 0);
         }
 
         /// <summary>Open mail composer with filled body and subject with one recipient</summary>
@@ -117,10 +113,10 @@ namespace ESISharp.ESIPath
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipient">(Int32) Message Recipient Character ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, int Recipient)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, int Recipient)
         {
-            return NewMail(Body, Subject, new List<int>() { Recipient }, 0, 0);
+            return NewMail(Body, Subject, new int[] { Recipient }, 0, 0);
         }
 
         /// <summary>Open mail composer with filled body and subject, with one recipient and Corporation/Alliance group. 
@@ -130,10 +126,10 @@ namespace ESISharp.ESIPath
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipient">(Int32) Message Recipient Character ID</param>
         /// <param name="CorpOrAllianceID">(Int32) Corporation/Alliance ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, int Recipient, int CorpOrAllianceID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, int Recipient, int CorpOrAllianceID)
         {
-            return NewMail(Body, Subject, new List<int>() { Recipient }, CorpOrAllianceID, 0);
+            return NewMail(Body, Subject, new int[] { Recipient }, CorpOrAllianceID, 0);
         }
 
         /// <summary>Open mail composer with filled body and subject, with one recipient, Corporation/Alliance, and Mailing List. 
@@ -145,10 +141,10 @@ namespace ESISharp.ESIPath
         /// <param name="Recipient">(Int32) Recipient Character ID</param>
         /// <param name="CorpOrAllianceID">(Int32) Corporation/Alliance ID</param>
         /// <param name="MailingListID">(Int32) Mailing List ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, int Recipient, int CorpOrAllianceID, int MailingListID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, int Recipient, int CorpOrAllianceID, int MailingListID)
         {
-            return NewMail(Body, Subject, new List<int>() { Recipient }, CorpOrAllianceID, MailingListID);
+            return NewMail(Body, Subject, new int[] { Recipient }, CorpOrAllianceID, MailingListID);
         }
 
         /// <summary>Open mail composer with filled body and subject, with list of recipients</summary>
@@ -156,8 +152,8 @@ namespace ESISharp.ESIPath
         /// <param name="Body">(String) Message Body</param>
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipients">(Int32 List) Recipient Character IDs</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, List<int> Recipients)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, IEnumerable<int> Recipients)
         {
             return NewMail(Body, Subject, Recipients, 0, 0);
         }
@@ -168,8 +164,8 @@ namespace ESISharp.ESIPath
         /// <param name="Subject">(String) Message Subject</param>
         /// <param name="Recipients">(Int32 List) Recipient Character IDs</param>
         /// <param name="CorpOrAllianceID">(Int32) Corporation/Alliance ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, List<int> Recipients, int CorpOrAllianceID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, IEnumerable<int> Recipients, int CorpOrAllianceID)
         {
             return NewMail(Body, Subject, Recipients, CorpOrAllianceID, 0);
         }
@@ -183,8 +179,8 @@ namespace ESISharp.ESIPath
         /// <param name="Recipients">(Int32 List) Recipient Character IDs</param>
         /// <param name="CorpOrAllianceID">(Int32) Coporation/Alliance ID</param>
         /// <param name="MailingListID">(Int32) Mailing List ID</param>
-        /// <returns>Normally nothing, error if one was encountered.</returns>
-        public string NewMail(string Body, string Subject, List<int> Recipients, int CorpOrAllianceID, int MailingListID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest NewMail(string Body, string Subject, IEnumerable<int> Recipients, int CorpOrAllianceID, int MailingListID)
         {
             var Path = "/ui/openwindow/newmail/";
             var Data = new
@@ -195,8 +191,7 @@ namespace ESISharp.ESIPath
                 to_corp_or_alliance_id = CorpOrAllianceID,
                 to_mailing_list_id = MailingListID
             };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
     }
 }

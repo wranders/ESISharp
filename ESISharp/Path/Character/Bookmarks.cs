@@ -15,23 +15,21 @@ namespace ESISharp.ESIPath.Character
         /// <summary>Get All Character's Bookmarks</summary>
         /// <remarks>Requires SSO Authentication, uses "read_character_bookmarks" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects representing bookmarks</returns>
-        public string GetAll(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAll(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/bookmarks/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Get Character's Bookmark Folders</summary>
         /// <remarks>Requires SSO Authentication, uses "read_character_bookmarks" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects representing folders</returns>
-        public string GetFolders(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetFolders(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/bookmarks/folders/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
     }
 }

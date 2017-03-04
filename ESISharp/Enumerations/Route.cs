@@ -4,11 +4,11 @@
     public class Route
     {
         /// <summary>Latest</summary>
-        public static readonly Route Latest = new Route("/latest");
+        public static readonly Route Latest = new Route("latest");
         /// <summary>Legacy</summary>
-        public static readonly Route Legacy = new Route("/legacy");
+        public static readonly Route Legacy = new Route("legacy");
         /// <summary>Development</summary>
-        public static readonly Route Development = new Route("/dev");
+        public static readonly Route Development = new Route("dev");
 
         internal Route(string val)
         {

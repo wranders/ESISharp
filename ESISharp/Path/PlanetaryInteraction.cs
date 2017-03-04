@@ -14,12 +14,11 @@ namespace ESISharp.ESIPath
 
         /// <summary>Get Planetary Interaction Schematic</summary>
         /// <param name="SchematicID">(Int32) Schematic ID</param>
-        /// <returns>JSON Object containing Schematic name and cycle time</returns>
-        public string GetSchematicInfo(int SchematicID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSchematicInfo(int SchematicID)
         {
             var Path = $"/universe/schematics/{SchematicID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

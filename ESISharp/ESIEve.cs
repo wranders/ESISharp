@@ -1,6 +1,7 @@
 ﻿using ESISharp.Enumerations;
 using ESISharp.ESIPath;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace ESISharp
 {
@@ -16,7 +17,8 @@ namespace ESISharp
 
         internal ESIEve()
         {
-
+            QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+            QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
@@ -45,6 +47,8 @@ namespace ESISharp
         public void SetUserAgent(string ApplicationUserAgent)
         {
             UserAgent = ApplicationUserAgent;
+            QueryClient.DefaultRequestHeaders.UserAgent.Clear();
+            QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
         }
 
         /// <summary>Public API paths</summary>
@@ -56,6 +60,8 @@ namespace ESISharp
             public CharacterMain Character;
             /// <summary>Public Corporation paths</summary>
             public Corporation Corporation;
+            /// <summary>Public Dogma paths</summary>
+            public Dogma Dogma;
             /// <summary>Public Incursions paths</summary>
             public Incursions Incursions;
             /// <summary>Public Industry paths</summary>
@@ -85,6 +91,7 @@ namespace ESISharp
                 Alliance = new Alliance(this);
                 Character = new CharacterMain(this);
                 Corporation = new Corporation(this);
+                Dogma = new Dogma(this);
                 Incursions = new Incursions(this);
                 Industry = new Industry(this);
                 Insurance = new Insurance(this);
@@ -110,6 +117,8 @@ namespace ESISharp
             public AuthCharacterMain Character;
             /// <summary>Public and Authenticated Corporation paths</summary>
             public AuthCorporation Corporation;
+            /// <summary>Public and Authenticated Dogma paths</summary>
+            public AuthDogma Dogma;
             /// <summary>Authenticated Fleet paths</summary>
             public Fleet Fleet;
             /// <summary>Public and Authenticated Incursion paths</summary>
@@ -159,6 +168,7 @@ namespace ESISharp
                 Alliance = new AuthAlliance(this);
                 Character = new AuthCharacterMain(this);
                 Corporation = new AuthCorporation(this);
+                Dogma = new AuthDogma(this);
                 Fleet = new Fleet(this);
                 Incursions = new AuthIncursions(this);
                 Industry = new AuthIndustry(this);

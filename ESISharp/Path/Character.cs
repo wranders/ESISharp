@@ -1,6 +1,7 @@
 ﻿using ESISharp.ESIPath.Character;
 using ESISharp.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ESISharp.ESIPath
 {
@@ -16,51 +17,47 @@ namespace ESISharp.ESIPath
 
         /// <summary>Get Character's Name</summary>
         /// <param name="CharacterID">(Int64) CharacterID</param>
-        /// <returns>JSON Array with Object containing character ID and name</returns>
-        public string GetNames(long CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetNames(long CharacterID)
         {
-            return GetNames(new List<long>() { CharacterID });
+            return GetNames(new long[] { CharacterID });
         }
 
         /// <summary>Get Character's Name</summary>
         /// <param name="CharacterIDs">(Int64 List) CharacterIDs</param>
-        /// <returns>JSON Array with Objects containing character IDs and names</returns>
-        public string GetNames(List<long> CharacterIDs)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetNames(IEnumerable<long> CharacterIDs)
         {
             var Path = "/characters/names/";
             var Data = new { character_ids = CharacterIDs.ToArray() };
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get Character's Public Information</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing character's public information</returns>
-        public string GetPublicInformation(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetPublicInformation(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get Character's Corporation History</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Array of Objects containing corporation ID, active status, record ID, and start date</returns>
-        public string GetCorporationHistory(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetCorporationHistory(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/corporationhistory/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get Character's Portraits</summary>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing URLs for 64x64, 128x128, 256x256, and 512x512 portraits</returns>
-        public string GetPortraits(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetPortraits(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/portrait/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return EsiRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 
@@ -114,45 +111,42 @@ namespace ESISharp.ESIPath
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) CharacterID</param>
         /// <param name="CharacterToCheck">(Int32) Character ID of contact</param>
-        /// <returns>JSON Object containing cost in hundredths</returns>
-        public string CalculateCSPACharge(int CharacterID, int CharacterToCheck)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CalculateCSPACharge(int CharacterID, int CharacterToCheck)
         {
-            return CalculateCSPACharge(CharacterID, new List<int>() { CharacterToCheck });
+            return CalculateCSPACharge(CharacterID, new int[] { CharacterToCheck });
         }
 
         /// <summary>Get CSPA charge</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) CharacterID</param>
         /// <param name="CharactersToCheck">(Int32) Character IDs of contacts</param>
-        /// <returns>JSON Object containing cost in hundredths</returns>
-        public string CalculateCSPACharge(int CharacterID, List<int> CharactersToCheck)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest CalculateCSPACharge(int CharacterID, IEnumerable<int> CharactersToCheck)
         {
             var Path = $"/characters/{CharacterID.ToString()}/cspa/";
             var Data = new { characters = CharactersToCheck.ToArray() };
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Post(Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
         /// <summary>Get Character's Location</summary>
         /// <remarks>Requires SSO Authentication, using "read_location" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing character's current solar system ID, and structure ID if docked</returns>
-        public string GetLocation(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetLocation(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/location/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Get Character's current ship</summary>
         /// <remarks>Requires SSO Authentication, using "read_ship" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>JSON Object containing character's current ship id, name, and type ID</returns>
-        public string GetCurrentShip(int CharacterID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetCurrentShip(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/ship/";
-            var EsiAuthRequest = new EsiAuthRequest(EasyObject, Path);
-            return EsiAuthRequest.Get();
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
     }
 }
