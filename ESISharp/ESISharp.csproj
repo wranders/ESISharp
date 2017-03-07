@@ -59,6 +59,7 @@
     <Compile Include="Enumerations\StructureVulnerability.cs" />
     <Compile Include="ESIEve.SSO.Operations.cs" />
     <Compile Include="ESIEve.SSO.cs" />
+    <Compile Include="Object\EsiResponse.cs" />
     <Compile Include="Object\Fitting.cs" />
     <Compile Include="Object\EveMail.cs" />
     <Compile Include="Object\StructureVulnerabilityPeriod.cs" />
@@ -97,9 +98,9 @@
     <Compile Include="Path\UserInterface.cs" />
     <Compile Include="Path\Wars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\EsiAuthRequest.cs" />
     <Compile Include="Web\EsiRequest.cs" />
     <Compile Include="Web\Utils.cs" />
+    <Compile Include="Web\WebMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ESISharp.ruleset" />

@@ -1,5 +1,4 @@
 ﻿using ESISharp.Web;
-using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
@@ -14,35 +13,19 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get All Sovereignty Campaigns</summary>
-        /// <returns>JSON Array of Objects containing campaign information</returns>
-        public string GetCampaigns()
-        {
-            return GetCampaignsAsync().Result;
-        }
-
-        /// <summary>Get All Sovereignty Campaigns</summary>
-        /// <returns>JSON Array of Objects containing campaign information</returns>
-        public async Task<string> GetCampaignsAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetCampaigns()
         {
             var Path = "/sovereignty/campaigns/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
         /// <summary>Get All Sovereignty Stuctures</summary>
-        /// <returns>JSON Array of Objects containing structure information</returns>
-        public string GetStructures()
-        {
-            return GetStructuresAsync().Result;
-        }
-
-        /// <summary>Get All Sovereignty Stuctures</summary>
-        /// <returns>JSON Array of Objects containing structure information</returns>
-        public async Task<string> GetStructuresAsync()
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStructures()
         {
             var Path = "/sovereignty/structures/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 

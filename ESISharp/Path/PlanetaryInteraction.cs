@@ -1,5 +1,4 @@
 ﻿using ESISharp.Web;
-using System.Threading.Tasks;
 
 namespace ESISharp.ESIPath
 {
@@ -15,20 +14,11 @@ namespace ESISharp.ESIPath
 
         /// <summary>Get Planetary Interaction Schematic</summary>
         /// <param name="SchematicID">(Int32) Schematic ID</param>
-        /// <returns>JSON Object containing Schematic name and cycle time</returns>
-        public string GetSchematicInfo(int SchematicID)
-        {
-            return GetSchematicInfoAsync(SchematicID).Result;
-        }
-
-        /// <summary>Get Planetary Interaction Schematic</summary>
-        /// <param name="SchematicID">(Int32) Schematic ID</param>
-        /// <returns>JSON Object containing Schematic name and cycle time</returns>
-        public async Task<string> GetSchematicInfoAsync(int SchematicID)
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSchematicInfo(int SchematicID)
         {
             var Path = $"/universe/schematics/{SchematicID.ToString()}/";
-            var EsiRequest = new EsiRequest(EasyObject, Path);
-            return await EsiRequest.GetAsync().ConfigureAwait(false);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
     }
 
