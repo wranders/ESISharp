@@ -2,6 +2,8 @@
 using ESISharp.ESIPath;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
 
 namespace ESISharp
 {
@@ -12,13 +14,17 @@ namespace ESISharp
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
 
-        internal HttpClient QueryClient = new HttpClient();
+        internal Web.RetryHandler ClientHandler = new Web.RetryHandler();
+        internal HttpClient QueryClient;
         internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp)";
 
         internal ESIEve()
         {
+            QueryClient = new HttpClient(ClientHandler);
             QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
             QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            QueryClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+            QueryClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
@@ -49,6 +55,20 @@ namespace ESISharp
             UserAgent = ApplicationUserAgent;
             QueryClient.DefaultRequestHeaders.UserAgent.Clear();
             QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+        }
+
+        /// <summary>Set the number of times ESISharp will retry failed requests and the delay between each try</summary>
+        /// <param name="Delays">The time to wait before each retry. An empty set disables retries.</param>
+        public void SetRetryStrategy(IEnumerable<TimeSpan> Delays)
+        {
+            ClientHandler.SetRetryStrategy(Delays);
+        }
+
+        /// <summary>Set the delay before requests timeout</summary>
+        /// <param name="Timeout"></param>
+        public void SetTimeout(TimeSpan Timeout)
+        {
+            QueryClient.Timeout = Timeout;
         }
 
         /// <summary>Public API paths</summary>
