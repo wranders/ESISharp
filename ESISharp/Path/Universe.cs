@@ -195,6 +195,22 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
+        /// <summary>Get System Jumps</summary>
+        /// <returns></returns>
+        public EsiRequest GetSystemJumps()
+        {
+            var Path = "/universe/system_jumps/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+        }
+
+        /// <summary>Get System Kills (NPC, Ship, & Pod)</summary>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSystemKills()
+        {
+            var Path = "/universe/system_kills/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+        }
+
         /// <summary>Get Solar Systems</summary>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetSystems()

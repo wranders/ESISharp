@@ -107,6 +107,24 @@ namespace ESISharp.ESIPath
             Wallet = new CharacterWallet(EasyObject);
         }
 
+        /// <summary>Get list of agent research infromation</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAgentResearch(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/agents_research/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Chat Channels that the Character is owner or operator of</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetChatChannels(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/chat_channels/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
         /// <summary>Get CSPA charge</summary>
         /// <remarks>Requires SSO Authentication, using "read_contacts" scope</remarks>
         /// <param name="CharacterID">(Int32) CharacterID</param>
@@ -139,6 +157,15 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
+        /// <summary>Get Character's Medals</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMedals(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/medals/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
         /// <summary>Get Character's current ship</summary>
         /// <remarks>Requires SSO Authentication, using "read_ship" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -146,6 +173,15 @@ namespace ESISharp.ESIPath
         public EsiRequest GetCurrentShip(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/ship/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Character's NPC standings</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStandings(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/standings/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
     }

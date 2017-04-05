@@ -20,6 +20,14 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
 
+        /// <summary>Get System and their Sovereignty information</summary>
+        /// <returns></returns>
+        public EsiRequest GetSystems()
+        {
+            var Path = "/sovereignty/map/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+        }
+
         /// <summary>Get All Sovereignty Stuctures</summary>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetStructures()
