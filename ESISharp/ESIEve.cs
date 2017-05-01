@@ -100,6 +100,8 @@ namespace ESISharp
             public Search Search;
             /// <summary>Public Sovereignty paths</summary>
             public Sovereignty Sovereignty;
+            /// <summary>Public Server Status paths</summary>
+            public Status Status;
             /// <summary>Public Universe paths</summary>
             public Universe Universe;
             /// <summary>Public Wars paths</summary>
@@ -121,6 +123,7 @@ namespace ESISharp
                 PlanetaryInteraction = new PlanetaryInteraction(this);
                 Search = new Search(this);
                 Sovereignty = new Sovereignty(this);
+                Status = new Status(this);
                 Universe = new Universe(this);
                 Wars = new Wars(this);
             }

@@ -94,6 +94,7 @@
     <Compile Include="Path\PlanetaryInteraction.cs" />
     <Compile Include="Path\Search.cs" />
     <Compile Include="Path\Sovereignty.cs" />
+    <Compile Include="Path\Status.cs" />
     <Compile Include="Path\Universe.cs" />
     <Compile Include="Path\UserInterface.cs" />
     <Compile Include="Path\Wars.cs" />
