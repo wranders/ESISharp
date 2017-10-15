@@ -53,7 +53,7 @@ You application will require permissions to write to the Registry to create the 
 
 By default, the router filename is *EveSSOAuthRouter* and must be located in the same directory as the ESISharp library.<br/>
 The default protocol is *eveosso*. (Full callback url is ***eveosso://***)<br/>
-To create or repair the required registry key, run `ESIEve.SSO.VerifyCallbackProtocolRegistyKey()`
+To create or repair the required registry key, run `ESIEve.SSO.VerifyCallbackProtocolRegistryKey()`
 
 ---
 
