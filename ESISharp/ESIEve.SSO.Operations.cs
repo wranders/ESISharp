@@ -106,7 +106,7 @@ namespace ESISharp
             {
                 ReplyHeaderChar = @"?";
             }
-            var UrlHeader = CallbackProtocol + @":///" + ReplyHeaderChar;
+            var UrlHeader = CallbackUrl + ReplyHeaderChar;
             var ReplyArgs = RouterReply.Split(new string[] { UrlHeader }, StringSplitOptions.None)
                             .SelectMany(p => p.Split('&'))
                             .Where(m => m.Contains('='))
