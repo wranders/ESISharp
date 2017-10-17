@@ -76,12 +76,16 @@ namespace ESISharp.ESIPath
         public CharacterContacts Contacts;
         /// <summary>Fittings paths</summary>
         public CharacterFittings Fittings;
+        /// <summary>Industry paths</summary>
+        public CharacterIndustry Industry;
         /// <summary>Killmails paths</summary>
         public CharacterKillMails Killmails;
         /// <summary>Loyalty Point paths</summary>
         public CharacterLoyalty Loyalty;
         /// <summary>Mail paths</summary>
         public CharacterMail Mail;
+        /// <summary>Market Paths</summary>
+        public CharacterMarket Market;
         /// <summary>Planetary Interaction (PI) paths</summary>
         public CharacterPlanetaryInteraction PlanetaryInteraction;
         /// <summary>Skills paths</summary>
@@ -99,9 +103,11 @@ namespace ESISharp.ESIPath
             Clones = new CharacterClones(EasyObject);
             Contacts = new CharacterContacts(EasyObject);
             Fittings = new CharacterFittings(EasyObject);
-            Loyalty = new CharacterLoyalty(EasyObject);
+            Industry = new CharacterIndustry(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);
+            Loyalty = new CharacterLoyalty(EasyObject);
             Mail = new CharacterMail(EasyObject);
+            Market = new CharacterMarket(EasyObject);
             PlanetaryInteraction = new CharacterPlanetaryInteraction(EasyObject);
             Skills = new CharacterSkills(EasyObject);
             Wallet = new CharacterWallet(EasyObject);
