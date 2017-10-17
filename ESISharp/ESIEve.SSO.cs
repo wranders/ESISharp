@@ -18,13 +18,14 @@ namespace ESISharp
 
         internal string AuthRouterFileDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         internal string AuthRouterFileName = "EveSSOAuthRouter";
-        internal string CallbackProtocol = "eveosso";
+        internal string CallbackProtocol = "eveauth-app";
         internal List<Scope> AuthorizedScopes = new List<Scope>() { Scope.None };
         internal List<Scope> RequestedScopes = new List<Scope>() { Scope.None };
         internal bool ReauthorizeScopes = false;
 
         internal string AuthRouterFilePath => Path.Combine(AuthRouterFileDirectory, AuthRouterFileName + ".exe");
-        internal string CallbackUrl => string.Concat(CallbackProtocol, @"://");
+        internal string CallBackPath => "callback/";
+        internal string CallbackUrl => string.Concat(CallbackProtocol, @"://", CallBackPath);
         internal string ScopesUrl => string.Join(" ", RequestedScopes.Select(s => s.Value));
 
         internal AuthToken AuthToken;

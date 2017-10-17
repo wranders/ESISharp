@@ -106,7 +106,7 @@ namespace ESISharp
             {
                 ReplyHeaderChar = @"?";
             }
-            var UrlHeader = CallbackProtocol + @":///" + ReplyHeaderChar;
+            var UrlHeader = CallbackUrl + ReplyHeaderChar;
             var ReplyArgs = RouterReply.Split(new string[] { UrlHeader }, StringSplitOptions.None)
                             .SelectMany(p => p.Split('&'))
                             .Where(m => m.Contains('='))
@@ -273,7 +273,7 @@ namespace ESISharp
         }
 
         /// <summary>Verify information of the callback protocol.<para>Key will be create if it doesn't exist, or overwritten if there is an error.</para></summary>
-        public void VerifyCallbackProtocolRegistyKey()
+        public void VerifyCallbackProtocolRegistryKey()
         {
             var Protocol = CallbackProtocol;
             var RouterCommand = @"""" + @AuthRouterFilePath + @""" ""%1""";
