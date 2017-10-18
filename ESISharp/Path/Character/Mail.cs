@@ -75,7 +75,11 @@ namespace ESISharp.ESIPath.Character
         public EsiRequest GetHeaders(int CharacterID, IEnumerable<long> Labels, int? LastMailID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/mail/";
-            var Data = new { labels = Labels.ToArray(), last_mail_id = LastMailID };
+            var Data = new
+            {
+                labels = Labels,
+                last_mail_id = LastMailID
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
