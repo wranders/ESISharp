@@ -6,11 +6,11 @@ using System.Linq;
 namespace ESISharp.ESIPath
 {
     /// <summary>Public Corporation paths</summary>
-    public class Corporation
+    public class CorporationMain
     {
         protected ESIEve EasyObject;
 
-        internal Corporation(ESIEve EasyEve)
+        internal CorporationMain(ESIEve EasyEve)
         {
             EasyObject = EasyEve;
         }
@@ -62,7 +62,7 @@ namespace ESISharp.ESIPath
     }
 
     /// <summary>Public and Authenticated Corporation paths</summary>
-    public class AuthCorporation : Corporation
+    public class AuthCorporation : CorporationMain
     {
         internal AuthCorporation(ESIEve EasyEve) : base(EasyEve)
         {

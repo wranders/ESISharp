@@ -79,7 +79,7 @@ namespace ESISharp
             /// <summary>Public Character paths</summary>
             public CharacterMain Character;
             /// <summary>Public Corporation paths</summary>
-            public Corporation Corporation;
+            public CorporationMain Corporation;
             /// <summary>Public Dogma paths</summary>
             public Dogma Dogma;
             /// <summary>Public Incursions paths</summary>
@@ -112,7 +112,7 @@ namespace ESISharp
             {
                 Alliance = new Alliance(this);
                 Character = new CharacterMain(this);
-                Corporation = new Corporation(this);
+                Corporation = new CorporationMain(this);
                 Dogma = new Dogma(this);
                 Incursions = new Incursions(this);
                 Industry = new Industry(this);
