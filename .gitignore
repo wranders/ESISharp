@@ -1,6 +1,9 @@
 .sonarqube/**
 Test.ESISharp/**
 ESISharp-Test.sln
+ConsoleTest/**
+ESISharpTest
+SQAnalyze.bat
 .vs/
 *.suo
 [Dd]ebug/
