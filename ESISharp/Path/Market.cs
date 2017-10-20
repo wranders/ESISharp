@@ -118,7 +118,7 @@ namespace ESISharp.ESIPath
         /// <summary>
         /// Get type IDs with active orders in a Region (First Page)
         /// </summary>
-        /// <param name="RegionID"></param>
+        /// <param name="RegionID">(Int32 Region ID)</param>
         /// <returns></returns>
         public EsiRequest GetMarketTypes(int RegionID)
         {
