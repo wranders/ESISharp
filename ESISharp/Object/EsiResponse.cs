@@ -41,6 +41,8 @@ namespace ESISharp
         public DateTime Expires { get; set; }
         /// <summary>Time Request was last modified</summary>
         public DateTime LastModified { get; set; }
+        /// <summary>Number of pages the resource has</summary>
+        public int Pages { get; set; }
         /// <summary>ESI warning message</summary>
         public string Warning { get; set; }
 
@@ -50,6 +52,7 @@ namespace ESISharp
             IEnumerable<string> OutDate;
             IEnumerable<string> OutExpires;
             IEnumerable<string> OutLastModified;
+            IEnumerable<string> OutPages;
             IEnumerable<string> OutWarning;
 
             if (ResponseHeaders.TryGetValues("Content-Type", out OutContentType))
@@ -63,6 +66,9 @@ namespace ESISharp
 
             if (ResponseHeaders.TryGetValues("Last-Modified", out OutLastModified))
                 LastModified = DateTime.Parse(OutLastModified.First());
+
+            if (ResponseHeaders.TryGetValues("X-Pages", out OutPages))
+                Pages = int.Parse(OutPages.First());
 
             if (ResponseHeaders.TryGetValues("Warning", out OutWarning))
                 Warning = OutWarning.First();
