@@ -75,6 +75,7 @@
     <Compile Include="Path\Character\Clones.cs" />
     <Compile Include="Path\Character\Contacts.cs" />
     <Compile Include="Path\Character.cs" />
+    <Compile Include="Path\Character\Contracts.cs" />
     <Compile Include="Path\Character\Fittings.cs" />
     <Compile Include="Path\Character\Industry.cs" />
     <Compile Include="Path\Character\Killmails.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Path\Corporation\Assets.cs" />
     <Compile Include="Path\Corporation\Bookmarks.cs" />
     <Compile Include="Path\Corporation\Contacts.cs" />
+    <Compile Include="Path\Corporation\Contracts.cs" />
     <Compile Include="Path\Dogma.cs" />
     <Compile Include="Path\Fleet.cs" />
     <Compile Include="Path\Incursion.cs" />

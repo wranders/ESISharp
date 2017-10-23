@@ -94,6 +94,8 @@ namespace ESISharp.ESIPath
         public CharacterClones Clones;
         /// <summary>Contacts paths</summary>
         public CharacterContacts Contacts;
+        /// <summary>Contracts paths</summary>
+        public CharacterContracts Contracts;
         /// <summary>Fittings paths</summary>
         public CharacterFittings Fittings;
         /// <summary>Industry paths</summary>
@@ -122,6 +124,7 @@ namespace ESISharp.ESIPath
             Calendar = new CharacterCalendar(EasyObject);
             Clones = new CharacterClones(EasyObject);
             Contacts = new CharacterContacts(EasyObject);
+            Contracts = new CharacterContracts(EasyObject);
             Fittings = new CharacterFittings(EasyObject);
             Industry = new CharacterIndustry(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);

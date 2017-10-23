@@ -71,10 +71,17 @@ namespace ESISharp.ESIPath
         public CorporationBookmarks Bookmarks;
         /// <summary>Contacts paths</summary>
         public CorporationContacts Contacts;
+        /// <summary>Contracts paths</summary>
+        public CorporationContracts Contracts;
 
         internal AuthCorporationMain(ESIEve EasyEve) : base(EasyEve)
         {
-            EasyObject = EasyEve;
+            EasyObject = (ESIEve.Authenticated)EasyEve;
+
+            Assets = new CorporationAssets(EasyObject);
+            Bookmarks = new CorporationBookmarks(EasyObject);
+            Contacts = new CorporationContacts(EasyObject);
+            Contracts = new CorporationContracts(EasyObject);
         }
 
         /// <summary>Get Corporation's Members</summary>
