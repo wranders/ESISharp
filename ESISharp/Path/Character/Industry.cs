@@ -33,7 +33,7 @@ namespace ESISharp.ESIPath.Character
             {
                 page = Page
             };
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Page);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
         /// <summary>Get list of character's industry jobs</summary>
