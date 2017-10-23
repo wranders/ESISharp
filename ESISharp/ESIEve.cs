@@ -148,7 +148,7 @@ namespace ESISharp
             /// <summary>Public and Authenticated Faction Warfare paths</summary>
             public AuthFactionWarfare FactionWarfare;
             /// <summary>Authenticated Fleet paths</summary>
-            public Fleet Fleet;
+            public AuthFleet Fleet;
             /// <summary>Public and Authenticated Incursion paths</summary>
             public AuthIncursions Incursions;
             /// <summary>Public and Authenticated Industry paths</summary>
@@ -198,7 +198,7 @@ namespace ESISharp
                 Corporation = new AuthCorporationMain(this);
                 Dogma = new AuthDogma(this);
                 FactionWarfare = new AuthFactionWarfare(this);
-                Fleet = new Fleet(this);
+                Fleet = new AuthFleet(this);
                 Incursions = new AuthIncursions(this);
                 Industry = new AuthIndustry(this);
                 Insurance = new AuthInsurance(this);

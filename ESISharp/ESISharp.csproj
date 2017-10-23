@@ -77,6 +77,7 @@
     <Compile Include="Path\Character.cs" />
     <Compile Include="Path\Character\Contracts.cs" />
     <Compile Include="Path\Character\Fittings.cs" />
+    <Compile Include="Path\Character\Fleet.cs" />
     <Compile Include="Path\Character\Industry.cs" />
     <Compile Include="Path\Character\Killmails.cs" />
     <Compile Include="Path\Character\Loyalty.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Path\Corporation\Contracts.cs" />
     <Compile Include="Path\Corporation\Industry.cs" />
     <Compile Include="Path\Dogma.cs" />
+    <Compile Include="Path\FactionWarfare.cs" />
     <Compile Include="Path\Fleet.cs" />
     <Compile Include="Path\Incursion.cs" />
     <Compile Include="Path\Industry.cs" />

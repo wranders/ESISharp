@@ -4,11 +4,11 @@ using ESISharp.Web;
 namespace ESISharp.ESIPath
 {
     /// <summary>Authenticated Fleet paths</summary>
-    public class Fleet
+    public class AuthFleet
     {
         protected ESIEve EasyObject;
 
-        internal Fleet(ESIEve EasyEve)
+        internal AuthFleet(ESIEve EasyEve)
         {
             EasyObject = EasyEve;
         }

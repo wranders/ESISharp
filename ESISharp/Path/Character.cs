@@ -98,6 +98,8 @@ namespace ESISharp.ESIPath
         public CharacterContracts Contracts;
         /// <summary>Fittings paths</summary>
         public CharacterFittings Fittings;
+        /// <summary>Fleet paths</summary>
+        public CharacterFleet Fleet;
         /// <summary>Industry paths</summary>
         public CharacterIndustry Industry;
         /// <summary>Killmails paths</summary>
@@ -126,6 +128,7 @@ namespace ESISharp.ESIPath
             Contacts = new CharacterContacts(EasyObject);
             Contracts = new CharacterContracts(EasyObject);
             Fittings = new CharacterFittings(EasyObject);
+            Fleet = new CharacterFleet(EasyObject);
             Industry = new CharacterIndustry(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);
             Loyalty = new CharacterLoyalty(EasyObject);
