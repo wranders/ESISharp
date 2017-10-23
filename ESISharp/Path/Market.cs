@@ -114,6 +114,32 @@ namespace ESISharp.ESIPath
             var Path = $"/markets/groups/{GroupID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
         }
+
+        /// <summary>
+        /// Get type IDs with active orders in a Region (First Page)
+        /// </summary>
+        /// <param name="RegionID">(Int32 Region ID)</param>
+        /// <returns></returns>
+        public EsiRequest GetMarketTypes(int RegionID)
+        {
+            return GetMarketTypes(RegionID, 1);
+        }
+
+        /// <summary>
+        /// Get type IDs with active orders in a Region
+        /// </summary>
+        /// <param name="RegionID">(Int32 Region ID)</param>
+        /// <param name="Page">(Int32) Page number</param>
+        /// <returns></returns>
+        public EsiRequest GetMarketTypes(int RegionID, int Page)
+        {
+            var Path = $"/markets/{RegionID.ToString()}/types/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
+        }
     }
 
     /// <summary>Public and Authenticated Market paths</summary>
