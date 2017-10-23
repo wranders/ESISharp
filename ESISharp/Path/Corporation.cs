@@ -69,6 +69,8 @@ namespace ESISharp.ESIPath
         public CorporationAssets Assets;
         /// <summary>Bookmark paths</summary>
         public CorporationBookmarks Bookmarks;
+        /// <summary>Contacts paths</summary>
+        public CorporationContacts Contacts;
 
         internal AuthCorporationMain(ESIEve EasyEve) : base(EasyEve)
         {

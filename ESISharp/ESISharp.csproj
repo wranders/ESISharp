@@ -87,6 +87,7 @@
     <Compile Include="Path\Corporation.cs" />
     <Compile Include="Path\Corporation\Assets.cs" />
     <Compile Include="Path\Corporation\Bookmarks.cs" />
+    <Compile Include="Path\Corporation\Contacts.cs" />
     <Compile Include="Path\Dogma.cs" />
     <Compile Include="Path\Fleet.cs" />
     <Compile Include="Path\Incursion.cs" />
