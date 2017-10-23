@@ -139,7 +139,7 @@ namespace ESISharp
             /// <summary>Public and Authenticated Character paths</summary>
             public AuthCharacterMain Character;
             /// <summary>Public and Authenticated Corporation paths</summary>
-            public AuthCorporation Corporation;
+            public AuthCorporationMain Corporation;
             /// <summary>Public and Authenticated Dogma paths</summary>
             public AuthDogma Dogma;
             /// <summary>Authenticated Fleet paths</summary>
@@ -190,7 +190,7 @@ namespace ESISharp
             {
                 Alliance = new AuthAlliance(this);
                 Character = new AuthCharacterMain(this);
-                Corporation = new AuthCorporation(this);
+                Corporation = new AuthCorporationMain(this);
                 Dogma = new AuthDogma(this);
                 Fleet = new Fleet(this);
                 Incursions = new AuthIncursions(this);

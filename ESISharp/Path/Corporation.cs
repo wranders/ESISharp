@@ -1,4 +1,5 @@
-﻿using ESISharp.Object;
+﻿using ESISharp.ESIPath.Corporation;
+using ESISharp.Object;
 using ESISharp.Web;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,9 +63,14 @@ namespace ESISharp.ESIPath
     }
 
     /// <summary>Public and Authenticated Corporation paths</summary>
-    public class AuthCorporation : CorporationMain
+    public class AuthCorporationMain : CorporationMain
     {
-        internal AuthCorporation(ESIEve EasyEve) : base(EasyEve)
+        /// <summary>Assets paths</summary>
+        public CorporationAssets Assets;
+        /// <summary>Bookmark paths</summary>
+        public CorporationBookmarks Bookmarks;
+
+        internal AuthCorporationMain(ESIEve EasyEve) : base(EasyEve)
         {
             EasyObject = EasyEve;
         }
