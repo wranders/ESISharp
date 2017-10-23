@@ -82,6 +82,8 @@ namespace ESISharp
             public CorporationMain Corporation;
             /// <summary>Public Dogma paths</summary>
             public Dogma Dogma;
+            /// <summary>Public Faction Warfare paths</summary>
+            public FactionWarfare FactionWarfare;
             /// <summary>Public Incursions paths</summary>
             public Incursions Incursions;
             /// <summary>Public Industry paths</summary>
@@ -114,6 +116,7 @@ namespace ESISharp
                 Character = new CharacterMain(this);
                 Corporation = new CorporationMain(this);
                 Dogma = new Dogma(this);
+                FactionWarfare = new FactionWarfare(this);
                 Incursions = new Incursions(this);
                 Industry = new Industry(this);
                 Insurance = new Insurance(this);
@@ -142,6 +145,8 @@ namespace ESISharp
             public AuthCorporationMain Corporation;
             /// <summary>Public and Authenticated Dogma paths</summary>
             public AuthDogma Dogma;
+            /// <summary>Public and Authenticated Faction Warfare paths</summary>
+            public AuthFactionWarfare FactionWarfare;
             /// <summary>Authenticated Fleet paths</summary>
             public Fleet Fleet;
             /// <summary>Public and Authenticated Incursion paths</summary>
@@ -192,6 +197,7 @@ namespace ESISharp
                 Character = new AuthCharacterMain(this);
                 Corporation = new AuthCorporationMain(this);
                 Dogma = new AuthDogma(this);
+                FactionWarfare = new AuthFactionWarfare(this);
                 Fleet = new Fleet(this);
                 Incursions = new AuthIncursions(this);
                 Industry = new AuthIndustry(this);
