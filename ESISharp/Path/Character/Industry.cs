@@ -36,13 +36,28 @@ namespace ESISharp.ESIPath.Character
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
-        /// <summary>Get list of character's industry jobs</summary>
+        /// <summary>Get Character's Industry Jobs, Excluding Completed</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_character_jobs" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetJobs(int CharacterID)
         {
+            return GetJobs(CharacterID, false);
+        }
+
+        /// <summary>Get list of character's industry jobs</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_character_jobs" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <param name="IncludeCompleted">(Boolean) Include Completed Jobs</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetJobs(int CharacterID, bool IncludeCompleted)
+        {
             var Path = $"/characters/{CharacterID.ToString()}/industry/jobs/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+            var Data = new
+            {
+                include_completed = IncludeCompleted
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
     }
 }
