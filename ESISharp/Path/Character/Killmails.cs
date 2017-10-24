@@ -12,7 +12,7 @@ namespace ESISharp.ESIPath.Character
             EasyObject = EasyEve;
         }
 
-        /// <summary>Get Recent Killmails (50 max)</summary>
+        /// <summary>Get Character's Recent Killmails (50 max)</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
@@ -21,7 +21,7 @@ namespace ESISharp.ESIPath.Character
             return GetRecent(CharacterID, 50, null);
         }
 
-        /// <summary>Get Recent Killmails</summary>
+        /// <summary>Get Character's Recent Killmails</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MaxCount">(Int32) Max number if killmails to return</param>
@@ -31,7 +31,7 @@ namespace ESISharp.ESIPath.Character
             return GetRecent(CharacterID, MaxCount, null);
         }
 
-        /// <summary>Get Recent Killmails</summary>
+        /// <summary>Get Character's Recent Killmails</summary>
         /// <remarks>Requires SSO Authentication, using "read_killmails" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="MaxCount">(Int32) Max number if killmails to return</param>
@@ -40,7 +40,11 @@ namespace ESISharp.ESIPath.Character
         public EsiRequest GetRecent(int CharacterID, int MaxCount, int? MaxKillID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/killmails/recent/";
-            var Data = new { max_count = MaxCount, max_kill_id = MaxKillID };
+            var Data = new
+            {
+                max_count = MaxCount,
+                max_kill_id = MaxKillID
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
     }
