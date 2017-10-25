@@ -104,6 +104,8 @@ namespace ESISharp.ESIPath
         public CharacterIndustry Industry;
         /// <summary>Killmails paths</summary>
         public CharacterKillMails Killmails;
+        /// <summary>Location paths</summary>
+        public CharacterLocation Location;
         /// <summary>Loyalty Point paths</summary>
         public CharacterLoyalty Loyalty;
         /// <summary>Mail paths</summary>
@@ -131,6 +133,7 @@ namespace ESISharp.ESIPath
             Fleet = new CharacterFleet(EasyObject);
             Industry = new CharacterIndustry(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);
+            Location = new CharacterLocation(EasyObject);
             Loyalty = new CharacterLoyalty(EasyObject);
             Mail = new CharacterMail(EasyObject);
             Market = new CharacterMarket(EasyObject);
@@ -194,16 +197,6 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
-        /// <summary>Get Character's Location</summary>
-        /// <remarks>Requires SSO Authentication, using "read_location" scope</remarks>
-        /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest GetLocation(int CharacterID)
-        {
-            var Path = $"/characters/{CharacterID.ToString()}/location/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
-        }
-
         /// <summary>Get Character's Medals</summary>
         /// <remarks>Requires SSO Authentication, uses "read_medals" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
@@ -237,16 +230,6 @@ namespace ESISharp.ESIPath
         public EsiRequest GetRoles(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/roles/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
-        }
-
-        /// <summary>Get Character's current ship</summary>
-        /// <remarks>Requires SSO Authentication, using "read_ship" scope</remarks>
-        /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest GetCurrentShip(int CharacterID)
-        {
-            var Path = $"/characters/{CharacterID.ToString()}/ship/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 

@@ -80,6 +80,7 @@
     <Compile Include="Path\Character\Fleet.cs" />
     <Compile Include="Path\Character\Industry.cs" />
     <Compile Include="Path\Character\Killmails.cs" />
+    <Compile Include="Path\Character\Location.cs" />
     <Compile Include="Path\Character\Loyalty.cs" />
     <Compile Include="Path\Character\Mail.cs" />
     <Compile Include="Path\Character\Market.cs" />
