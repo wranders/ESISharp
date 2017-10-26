@@ -28,7 +28,10 @@ namespace ESISharp.ESIPath
         public EsiRequest GetRegionMarketHistory(int RegionID, int TypeID)
         {
             var Path = $"/markets/{RegionID.ToString()}/history/";
-            var Data = new { type_id = TypeID };
+            var Data = new
+            {
+                type_id = TypeID
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
@@ -111,8 +114,21 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetMarketGroupInfo(int GroupID)
         {
+            return GetMarketGroupInfo(GroupID, Language.English);
+        }
+
+        /// <summary>Get Market Group Information</summary>
+        /// <param name="GroupID">(Int32) Market Group ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMarketGroupInfo(int GroupID, Language Language)
+        {
             var Path = $"/markets/groups/{GroupID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>
