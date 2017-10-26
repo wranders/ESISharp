@@ -36,8 +36,21 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetItemCategoryInfo(int CategoryID)
         {
+            return GetItemCategoryInfo(CategoryID, Language.English);
+        }
+
+        /// <summary>Get Item Category information</summary>
+        /// <param name="CategoryID">(Int32) Catergory ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetItemCategoryInfo(int CategoryID, Language Language)
+        {
             var Path = $"/universe/categories/{CategoryID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get Constellations</summary>
@@ -53,8 +66,21 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetConstellationInfo(int ConstellationID)
         {
+            return GetConstellationInfo(ConstellationID, Language.English);
+        }
+
+        /// <summary>Get Constellation Information</summary>
+        /// <param name="ConstellationID">(Int32) Constellation ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetConstellationInfo(int ConstellationID, Language Language)
+        {
             var Path = $"/universe/constellations/{ConstellationID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get Factions</summary>
@@ -76,7 +102,7 @@ namespace ESISharp.ESIPath
         /// <summary>Get Graphic information</summary>
         /// <param name="GraphicID">(Int32) Graphic ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetGraphicInformation(int GraphicID)
+        public EsiRequest GetGraphicInfo(int GraphicID)
         {
             var Path = $"/universe/graphics/{GraphicID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
@@ -95,7 +121,10 @@ namespace ESISharp.ESIPath
         public EsiRequest GetItemGroups(int Page)
         {
             var Path = "/universe/groups/";
-            var Data = new { page = Page.ToString() };
+            var Data = new
+            {
+                page = Page
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
@@ -104,14 +133,27 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetItemGroupInfo(int GroupID)
         {
+            return GetItemGroupInfo(GroupID, Language.English);
+        }
+
+        /// <summary>Get Item Group Information</summary>
+        /// <param name="GroupID">(Int32) Item Group ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetItemGroupInfo(int GroupID, Language Language)
+        {
             var Path = $"/universe/groups/{GroupID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get Moon Information</summary>
         /// <param name="MoonID">(Int32) Moon ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetMoonInformation(int MoonID)
+        public EsiRequest GetMoonInfo(int MoonID)
         {
             var Path = $"/universe/moons/{MoonID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
@@ -131,14 +173,14 @@ namespace ESISharp.ESIPath
         public EsiRequest GetTypeNamesAndCategories(IEnumerable<int> TypeIDs)
         {
             var Path = "/universe/names/";
-            var Data = TypeIDs.ToArray();
+            var Data = TypeIDs;
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Post, Data);
         }
 
         /// <summary>Get Planet Information</summary>
         /// <param name="PlanetID">(Int32) Planet ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetPlanetInformation(int PlanetID)
+        public EsiRequest GetPlanetInfo(int PlanetID)
         {
             var Path = $"/universe/planets/{PlanetID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
@@ -163,16 +205,29 @@ namespace ESISharp.ESIPath
         /// <summary>Get Region Information</summary>
         /// <param name="RegionID">(Int32) Region ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetRegionInformation(int RegionID)
+        public EsiRequest GetRegionInfo(int RegionID)
+        {
+            return GetRegionInfo(RegionID, Language.English);
+        }
+
+        /// <summary>Get Region Information</summary>
+        /// <param name="RegionID">(Int32) Region ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetRegionInfo(int RegionID, Language Language)
         {
             var Path = $"/universe/regions/{RegionID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get Stargate Information</summary>
         /// <param name="StargateID">(Int32) Stargate ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetStargateInformation(int StargateID)
+        public EsiRequest GetStargateInfo(int StargateID)
         {
             var Path = $"/universe/stargates/{StargateID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
@@ -224,8 +279,21 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetSystemInfo(int SystemID)
         {
+            return GetSystemInfo(SystemID, Language.English);
+        }
+
+        /// <summary>Get Solar System Information</summary>
+        /// <param name="SystemID">(Int32) System ID</param>
+        /// <param name="Language">(Language) Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetSystemInfo(int SystemID, Language Language)
+        {
             var Path = $"/universe/systems/{SystemID.ToString()}/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
         /// <summary>Get All Type IDs (First Page)</summary>
@@ -241,7 +309,10 @@ namespace ESISharp.ESIPath
         public EsiRequest GetTypes(int Page)
         {
             var Path = "/universe/types/";
-            var Data = new { page = Page.ToString() };
+            var Data = new
+            {
+                page = Page.ToString()
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
@@ -250,7 +321,7 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetTypeInfo(int TypeID)
         {
-            return GetTypeInfo(TypeID, Language.English.Value);
+            return GetTypeInfo(TypeID, Language.English);
         }
 
         /// <summary>Get Type Information</summary>
@@ -259,17 +330,11 @@ namespace ESISharp.ESIPath
         /// <returns>EsiRequest</returns>
         public EsiRequest GetTypeInfo(int TypeID, Language Language)
         {
-            return GetTypeInfo(TypeID, Language.Value);
-        }
-
-        /// <summary>Get Type Information</summary>
-        /// <param name="TypeID">(Int32) Type ID</param>
-        /// <param name="Language">(String) Language</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest GetTypeInfo(int TypeID, string Language)
-        {
             var Path = $"/universe/types/{TypeID.ToString()}/";
-            var Data = new { language = Language };
+            var Data = new
+            {
+                language = Language.Value
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
     }
