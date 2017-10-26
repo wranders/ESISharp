@@ -96,6 +96,7 @@
     <Compile Include="Path\Corporation\Industry.cs" />
     <Compile Include="Path\Corporation\Killmails.cs" />
     <Compile Include="Path\Corporation\Market.cs" />
+    <Compile Include="Path\Corporation\Wallet.cs" />
     <Compile Include="Path\Dogma.cs" />
     <Compile Include="Path\FactionWarfare.cs" />
     <Compile Include="Path\Fleet.cs" />

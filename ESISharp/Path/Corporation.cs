@@ -87,6 +87,8 @@ namespace ESISharp.ESIPath
         public CorporationKillmails Killmails;
         /// <summary>Market paths</summary>
         public CorporationMarket Market;
+        /// <summary>Wallet paths</summary>
+        public CorporationWallet Wallet;
 
         internal AuthCorporationMain(ESIEve EasyEve) : base(EasyEve)
         {
@@ -99,6 +101,7 @@ namespace ESISharp.ESIPath
             Industry = new CorporationIndustry(EasyObject);
             Killmails = new CorporationKillmails(EasyObject);
             Market = new CorporationMarket(EasyObject);
+            Wallet = new CorporationWallet(EasyEve);
         }
 
         /// <summary>Get Corporation's Container Logs, First Page</summary>
