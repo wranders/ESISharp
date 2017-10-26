@@ -71,5 +71,65 @@ namespace ESISharp.ESIPath.Corporation
             };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
+
+        /// <summary>Get Corporation's Moon Chunk Extraction Timers</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_corporation_mining" scope</remarks>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMoonExtractionTimers(int CorporationID)
+        {
+            var Path = $"/corporation/{CorporationID.ToString()}/mining/extractions/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Corporation's Mining Observers</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_corporation_mining" scope</remarks>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMiningObservers(int CorporationID)
+        {
+            return GetMiningObservers(CorporationID, 1);
+        }
+
+        /// <summary>Get Corporation's Mining Observers</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_corporation_mining" scope</remarks>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMiningObservers(int CorporationID, int Page)
+        {
+            var Path = $"/corporation/{CorporationID.ToString()}/mining/observers/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
+
+        /// <summary>Get Corporation's Mining Record seen by the specified Observer</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_corporation_mining" scope</remarks>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="ObserverID">(Int32) Observing Entity ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetObservedMining(int CorporationID, int ObserverID)
+        {
+            return GetObservedMining(CorporationID, ObserverID, 1);
+        }
+
+        /// <summary>Get Corporation's Mining Record seen by the specified Observer</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_corporation_mining" scope</remarks>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="ObserverID">(Int32) Observing Entity ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetObservedMining(int CorporationID, int ObserverID, int Page)
+        {
+            var Path = $"/corporation/{CorporationID.ToString()}/mining/observers/{ObserverID.ToString()}/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
     }
 }

@@ -59,5 +59,29 @@ namespace ESISharp.ESIPath.Character
             };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
+
+        /// <summary>Get Character's Mining Ledger</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_character_mining" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMiningLedger(int CharacterID)
+        {
+            return GetMiningLedger(CharacterID, 1);
+        }
+
+        /// <summary>Get Character's Mining Ledger</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_character_mining" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMiningLedger(int CharacterID, int Page)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/mining/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
     }
 }
