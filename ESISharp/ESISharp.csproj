@@ -107,6 +107,7 @@
     <Compile Include="Path\Market.cs" />
     <Compile Include="Path\Opportunities.cs" />
     <Compile Include="Path\PlanetaryInteraction.cs" />
+    <Compile Include="Path\Routes.cs" />
     <Compile Include="Path\Search.cs" />
     <Compile Include="Path\Sovereignty.cs" />
     <Compile Include="Path\Status.cs" />
