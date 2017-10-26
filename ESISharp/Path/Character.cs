@@ -112,6 +112,8 @@ namespace ESISharp.ESIPath
         public CharacterMail Mail;
         /// <summary>Market Paths</summary>
         public CharacterMarket Market;
+        /// <summary>Opportunity paths</summary>
+        public CharacterOpportunities Opportunities;
         /// <summary>Planetary Interaction (PI) paths</summary>
         public CharacterPlanetaryInteraction PlanetaryInteraction;
         /// <summary>Skills paths</summary>
@@ -137,6 +139,7 @@ namespace ESISharp.ESIPath
             Loyalty = new CharacterLoyalty(EasyObject);
             Mail = new CharacterMail(EasyObject);
             Market = new CharacterMarket(EasyObject);
+            Opportunities = new CharacterOpportunities(EasyObject);
             PlanetaryInteraction = new CharacterPlanetaryInteraction(EasyObject);
             Skills = new CharacterSkills(EasyObject);
             Wallet = new CharacterWallet(EasyObject);

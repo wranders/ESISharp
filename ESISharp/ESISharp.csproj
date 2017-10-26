@@ -84,6 +84,7 @@
     <Compile Include="Path\Character\Loyalty.cs" />
     <Compile Include="Path\Character\Mail.cs" />
     <Compile Include="Path\Character\Market.cs" />
+    <Compile Include="Path\Character\Opportunities.cs" />
     <Compile Include="Path\Character\PlanetaryInteraction.cs" />
     <Compile Include="Path\Character\Skills.cs" />
     <Compile Include="Path\Character\Wallet.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Path\Killmails.cs" />
     <Compile Include="Path\Loyalty.cs" />
     <Compile Include="Path\Market.cs" />
+    <Compile Include="Path\Opportunities.cs" />
     <Compile Include="Path\PlanetaryInteraction.cs" />
     <Compile Include="Path\Search.cs" />
     <Compile Include="Path\Sovereignty.cs" />

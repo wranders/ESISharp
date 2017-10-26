@@ -96,6 +96,8 @@ namespace ESISharp
             public Loyalty Loyalty;
             /// <summary>Public Market paths</summary>
             public Market Market;
+            /// <summary>Public Opportunities paths</summary>
+            public Opportunities Opportunities;
             /// <summary>Public Planetary Interaction (PI) paths</summary>
             public PlanetaryInteraction PlanetaryInteraction;
             /// <summary>Public Search paths</summary>
@@ -123,6 +125,7 @@ namespace ESISharp
                 Killmails = new Killmails(this);
                 Loyalty = new Loyalty(this);
                 Market = new Market(this);
+                Opportunities = new Opportunities(this);
                 PlanetaryInteraction = new PlanetaryInteraction(this);
                 Search = new Search(this);
                 Sovereignty = new Sovereignty(this);
@@ -161,6 +164,8 @@ namespace ESISharp
             public AuthLoyalty Loyalty;
             /// <summary>Public and Authenticated Market paths</summary>
             public AuthMarket Market;
+            /// <summary>Public and Authenticated Opportunities paths</summary>
+            public AuthOpportunities Opportunities;
             /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
             public AuthPlanetaryInteraction PlanetaryInteraction;
             /// <summary>Public and Authenticated Search paths</summary>
@@ -205,6 +210,7 @@ namespace ESISharp
                 Killmails = new AuthKillmails(this);
                 Loyalty = new AuthLoyalty(this);
                 Market = new AuthMarket(this);
+                Opportunities = new AuthOpportunities(this);
                 PlanetaryInteraction = new AuthPlanetaryInteraction(this);
                 Search = new AuthSearch(this);
                 Sovereignty = new AuthSovereignty(this);
