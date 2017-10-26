@@ -100,6 +100,8 @@ namespace ESISharp
             public Opportunities Opportunities;
             /// <summary>Public Planetary Interaction (PI) paths</summary>
             public PlanetaryInteraction PlanetaryInteraction;
+            /// <summary>Public Routes paths</summary>
+            public Routes Routes;
             /// <summary>Public Search paths</summary>
             public Search Search;
             /// <summary>Public Sovereignty paths</summary>
@@ -127,6 +129,7 @@ namespace ESISharp
                 Market = new Market(this);
                 Opportunities = new Opportunities(this);
                 PlanetaryInteraction = new PlanetaryInteraction(this);
+                Routes = new Routes(this);
                 Search = new Search(this);
                 Sovereignty = new Sovereignty(this);
                 Status = new Status(this);
@@ -168,6 +171,8 @@ namespace ESISharp
             public AuthOpportunities Opportunities;
             /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
             public AuthPlanetaryInteraction PlanetaryInteraction;
+            /// <summary>Public and Authenticated Routes paths</summary>
+            public AuthRoutes Routes;
             /// <summary>Public and Authenticated Search paths</summary>
             public AuthSearch Search;
             /// <summary>Public and Authenticated Sovereignty paths</summary>
@@ -212,6 +217,7 @@ namespace ESISharp
                 Market = new AuthMarket(this);
                 Opportunities = new AuthOpportunities(this);
                 PlanetaryInteraction = new AuthPlanetaryInteraction(this);
+                Routes = new AuthRoutes(this);
                 Search = new AuthSearch(this);
                 Sovereignty = new AuthSovereignty(this);
                 Universe = new AuthUniverse(this);
