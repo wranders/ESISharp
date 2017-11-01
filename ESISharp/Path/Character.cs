@@ -245,5 +245,14 @@ namespace ESISharp.ESIPath
             var Path = $"/characters/{CharacterID.ToString()}/standings/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
+
+        /// <summary>Get Character's Titles</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetTitles(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/titles/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
     }
 }

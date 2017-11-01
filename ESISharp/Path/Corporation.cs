@@ -138,6 +138,55 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
+        /// <summary>Get Corporation's Facilities</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetFacilities(int CorporationID)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/facilities/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Corporation's Medals, First Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMedals(int CorporationID)
+        {
+            return GetMedals(CorporationID, 1);
+        }
+
+        /// <summary>Get Corporation's Medals, Specified Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMedals(int CorporationID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/medals/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
+
+        /// <summary>Get History of Medals Issued, First Page</summary>
+        /// <param name="CorporationID">(Int32) </param>
+        /// <returns></returns>
+        public EsiRequest GetMedalsIssued(int CorporationID)
+        {
+            return GetMedalsIssued(CorporationID, 1);
+        }
+
+        public EsiRequest GetMedalsIssued(int CorporationID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/medals/issued/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
+
         /// <summary>Get Corporation's Members</summary>
         /// <remarks>Requires SSO Authentication, using "read_corporation_membership" scope</remarks>
         /// <param name="CorporationID">(Int32) Corporation ID</param>
@@ -154,6 +203,15 @@ namespace ESISharp.ESIPath
         public EsiRequest GetMembersLimit(int CorporationID)
         {
             var Path = $"/corporations/{CorporationID.ToString()}/members/limit/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Corporation's Member's Titles</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetMemberTitles(int CorporationID)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/members/titles/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
@@ -175,6 +233,28 @@ namespace ESISharp.ESIPath
         {
             var Path = $"/corporations/{CorporationID.ToString()}/roles/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Role History, First Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetRoleHistory(int CorporationID)
+        {
+            return GetRoleHistory(CorporationID, 1);
+        }
+
+        /// <summary>Get Role History, Specified Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetRoleHistory(int CorporationID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/roles/history/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
         /// <summary>Get Corporation's Shareholders, First Page</summary>
@@ -221,6 +301,55 @@ namespace ESISharp.ESIPath
             var Data = new
             {
                 page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
+
+        /// <summary>Get Corporation's Starbases, First Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStarbases(int CorporationID)
+        {
+            return GetStarbases(CorporationID, 1);
+        }
+
+        /// <summary>Get Corporation's Starbases, Specified Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStarbases(int CorporationID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/starbases/";
+            var Data = new
+            {
+                page = Page
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
+        }
+
+        /// <summary>Get Starbase Information, First Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="SystemID">(Int32) System ID</param>
+        /// <param name="StarbaseID">(Int64) Starbase ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStarbaseInfo(int CorporationID, int SystemID, long StarbaseID)
+        {
+            return GetStarbaseInfo(CorporationID, SystemID, StarbaseID, 1);
+        }
+
+        /// <summary>Get Starbase Information, Specified Page</summary>
+        /// <param name="CorporationID">(Int32) Corporation ID</param>
+        /// <param name="SystemID">(Int32) System ID</param>
+        /// <param name="StarbaseID">(Int64) Starbase ID</param>
+        /// <param name="Page">(Int32) Page Number</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetStarbaseInfo(int CorporationID, int SystemID, long StarbaseID, int Page)
+        {
+            var Path = $"/corporations/{CorporationID.ToString()}/starbases/{StarbaseID.ToString()}/";
+            var Data = new
+            {
+                page = Page,
+                system_id = SystemID
             };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
