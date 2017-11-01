@@ -69,6 +69,7 @@
     <Compile Include="Enumerations\Route.cs" />
     <Compile Include="Enumerations\Scope.cs" />
     <Compile Include="ESIEve.cs" />
+    <Compile Include="Path\Alliance\Contacts.cs" />
     <Compile Include="Path\Character\Assets.cs" />
     <Compile Include="Path\Character\Bookmarks.cs" />
     <Compile Include="Path\Character\Calendar.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Path\Corporation\Industry.cs" />
     <Compile Include="Path\Corporation\Killmails.cs" />
     <Compile Include="Path\Corporation\Market.cs" />
+    <Compile Include="Path\Corporation\PlanetaryInteraction.cs" />
     <Compile Include="Path\Corporation\Wallet.cs" />
     <Compile Include="Path\Dogma.cs" />
     <Compile Include="Path\FactionWarfare.cs" />
@@ -125,6 +127,7 @@
     <None Include="ESISharp.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -75,7 +75,7 @@ namespace ESISharp
         public class Public : ESIEve
         {
             /// <summary>Public Alliance paths</summary>
-            public Alliance Alliance;
+            public AllianceMain Alliance;
             /// <summary>Public Character paths</summary>
             public CharacterMain Character;
             /// <summary>Public Corporation paths</summary>
@@ -116,7 +116,7 @@ namespace ESISharp
             /// <summary>Construct Public ESI interface</summary>
             public Public() : base()
             {
-                Alliance = new Alliance(this);
+                Alliance = new AllianceMain(this);
                 Character = new CharacterMain(this);
                 Corporation = new CorporationMain(this);
                 Dogma = new Dogma(this);
@@ -144,7 +144,7 @@ namespace ESISharp
             /// <summary>SSO Authentication settings</summary>
             public Sso SSO;
             /// <summary>Public and Authenticated Alliance paths</summary>
-            public AuthAlliance Alliance;
+            public AuthAllianceMain Alliance;
             /// <summary>Public and Authenticated Character paths</summary>
             public AuthCharacterMain Character;
             /// <summary>Public and Authenticated Corporation paths</summary>
@@ -203,7 +203,7 @@ namespace ESISharp
 
             private void AuthInit()
             {
-                Alliance = new AuthAlliance(this);
+                Alliance = new AuthAllianceMain(this);
                 Character = new AuthCharacterMain(this);
                 Corporation = new AuthCorporationMain(this);
                 Dogma = new AuthDogma(this);
