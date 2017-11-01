@@ -15,6 +15,23 @@ namespace ESISharp.ESIPath
             EasyObject = EasyEve;
         }
 
+        /// <summary>Get Character's Corporation, Alliance, and Faction Affiliations</summary>
+        /// <param name="CharacterID">(Int32) CharacterID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAffiliation(int CharacterID)
+        {
+            return GetAffiliation(new int[] { CharacterID });
+        }
+
+        /// <summary>Get Mulriple Character's Corporation, Alliance, and Faction Affiliations</summary>
+        /// <param name="CharacterIDs">(Int32 List) Character IDs</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAffiliation(IEnumerable<int> CharacterIDs)
+        {
+            var Path = "/characters/affiliation/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Post, CharacterIDs);
+        }
+
         /// <summary>Get Character's Name</summary>
         /// <param name="CharacterID">(Int64) CharacterID</param>
         /// <returns>EsiRequest</returns>
@@ -29,7 +46,10 @@ namespace ESISharp.ESIPath
         public EsiRequest GetNames(IEnumerable<long> CharacterIDs)
         {
             var Path = "/characters/names/";
-            var Data = new { character_ids = CharacterIDs.ToArray() };
+            var Data = new
+            {
+                character_ids = CharacterIDs.ToArray()
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
 
@@ -74,18 +94,26 @@ namespace ESISharp.ESIPath
         public CharacterClones Clones;
         /// <summary>Contacts paths</summary>
         public CharacterContacts Contacts;
+        /// <summary>Contracts paths</summary>
+        public CharacterContracts Contracts;
         /// <summary>Fittings paths</summary>
         public CharacterFittings Fittings;
+        /// <summary>Fleet paths</summary>
+        public CharacterFleet Fleet;
         /// <summary>Industry paths</summary>
         public CharacterIndustry Industry;
         /// <summary>Killmails paths</summary>
         public CharacterKillMails Killmails;
+        /// <summary>Location paths</summary>
+        public CharacterLocation Location;
         /// <summary>Loyalty Point paths</summary>
         public CharacterLoyalty Loyalty;
         /// <summary>Mail paths</summary>
         public CharacterMail Mail;
         /// <summary>Market Paths</summary>
         public CharacterMarket Market;
+        /// <summary>Opportunity paths</summary>
+        public CharacterOpportunities Opportunities;
         /// <summary>Planetary Interaction (PI) paths</summary>
         public CharacterPlanetaryInteraction PlanetaryInteraction;
         /// <summary>Skills paths</summary>
@@ -102,18 +130,23 @@ namespace ESISharp.ESIPath
             Calendar = new CharacterCalendar(EasyObject);
             Clones = new CharacterClones(EasyObject);
             Contacts = new CharacterContacts(EasyObject);
+            Contracts = new CharacterContracts(EasyObject);
             Fittings = new CharacterFittings(EasyObject);
+            Fleet = new CharacterFleet(EasyObject);
             Industry = new CharacterIndustry(EasyObject);
             Killmails = new CharacterKillMails(EasyObject);
+            Location = new CharacterLocation(EasyObject);
             Loyalty = new CharacterLoyalty(EasyObject);
             Mail = new CharacterMail(EasyObject);
             Market = new CharacterMarket(EasyObject);
+            Opportunities = new CharacterOpportunities(EasyObject);
             PlanetaryInteraction = new CharacterPlanetaryInteraction(EasyObject);
             Skills = new CharacterSkills(EasyObject);
             Wallet = new CharacterWallet(EasyObject);
         }
 
         /// <summary>Get list of agent research infromation</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_agents_research" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetAgentResearch(int CharacterID)
@@ -123,6 +156,7 @@ namespace ESISharp.ESIPath
         }
 
         /// <summary>Get Chat Channels that the Character is owner or operator of</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_chat_channels" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetChatChannels(int CharacterID)
@@ -149,21 +183,25 @@ namespace ESISharp.ESIPath
         public EsiRequest CalculateCSPACharge(int CharacterID, IEnumerable<int> CharactersToCheck)
         {
             var Path = $"/characters/{CharacterID.ToString()}/cspa/";
-            var Data = new { characters = CharactersToCheck.ToArray() };
+            var Data = new
+            {
+                characters = CharactersToCheck.ToArray()
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, Data);
         }
 
-        /// <summary>Get Character's Location</summary>
-        /// <remarks>Requires SSO Authentication, using "read_location" scope</remarks>
+        /// <summary>Get Character's Jump Fatigue Information (Fatigue Expiration, Last Jump, Last Update)</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_fatigue" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetLocation(int CharacterID)
+        public EsiRequest GetJumpFatigue(int CharacterID)
         {
-            var Path = $"/characters/{CharacterID.ToString()}/location/";
+            var Path = $"/characters/{CharacterID.ToString()}/fatigue/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
         /// <summary>Get Character's Medals</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_medals" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetMedals(int CharacterID)
@@ -172,22 +210,48 @@ namespace ESISharp.ESIPath
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
-        /// <summary>Get Character's current ship</summary>
-        /// <remarks>Requires SSO Authentication, using "read_ship" scope</remarks>
-        /// <param name="CharacterID">(Int32) Character ID</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest GetCurrentShip(int CharacterID)
+        /// <summary>Get Character's Notifications</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_notifications" scope</remarks>
+        /// <param name="CharacterID"></param>
+        /// <returns></returns>
+        public EsiRequest GetNotifications(int CharacterID)
         {
-            var Path = $"/characters/{CharacterID.ToString()}/ship/";
+            var Path = $"/character/{CharacterID.ToString()}/notifications/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
 
-        /// <summary>Get Character's NPC standings</summary>
+        /// <summary>Get Characters's Notifications for when they've been added as a Contact</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_notifications" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetContactNotifications(int CharacterID)
+        {
+            var Path = $"/character/{CharacterID.ToString()}/notifications/contacts/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        public EsiRequest GetRoles(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/roles/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Character's standings from Agents, NPC Corporations, and Factions</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_standings" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetStandings(int CharacterID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/standings/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
+        /// <summary>Get Character's Titles</summary>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetTitles(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/titles/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
     }

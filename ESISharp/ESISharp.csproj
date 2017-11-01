@@ -69,21 +69,38 @@
     <Compile Include="Enumerations\Route.cs" />
     <Compile Include="Enumerations\Scope.cs" />
     <Compile Include="ESIEve.cs" />
+    <Compile Include="Path\Alliance\Contacts.cs" />
     <Compile Include="Path\Character\Assets.cs" />
     <Compile Include="Path\Character\Bookmarks.cs" />
     <Compile Include="Path\Character\Calendar.cs" />
     <Compile Include="Path\Character\Clones.cs" />
     <Compile Include="Path\Character\Contacts.cs" />
     <Compile Include="Path\Character.cs" />
+    <Compile Include="Path\Character\Contracts.cs" />
     <Compile Include="Path\Character\Fittings.cs" />
+    <Compile Include="Path\Character\Fleet.cs" />
+    <Compile Include="Path\Character\Industry.cs" />
     <Compile Include="Path\Character\Killmails.cs" />
+    <Compile Include="Path\Character\Location.cs" />
     <Compile Include="Path\Character\Loyalty.cs" />
     <Compile Include="Path\Character\Mail.cs" />
+    <Compile Include="Path\Character\Market.cs" />
+    <Compile Include="Path\Character\Opportunities.cs" />
     <Compile Include="Path\Character\PlanetaryInteraction.cs" />
     <Compile Include="Path\Character\Skills.cs" />
     <Compile Include="Path\Character\Wallet.cs" />
     <Compile Include="Path\Corporation.cs" />
+    <Compile Include="Path\Corporation\Assets.cs" />
+    <Compile Include="Path\Corporation\Bookmarks.cs" />
+    <Compile Include="Path\Corporation\Contacts.cs" />
+    <Compile Include="Path\Corporation\Contracts.cs" />
+    <Compile Include="Path\Corporation\Industry.cs" />
+    <Compile Include="Path\Corporation\Killmails.cs" />
+    <Compile Include="Path\Corporation\Market.cs" />
+    <Compile Include="Path\Corporation\PlanetaryInteraction.cs" />
+    <Compile Include="Path\Corporation\Wallet.cs" />
     <Compile Include="Path\Dogma.cs" />
+    <Compile Include="Path\FactionWarfare.cs" />
     <Compile Include="Path\Fleet.cs" />
     <Compile Include="Path\Incursion.cs" />
     <Compile Include="Path\Industry.cs" />
@@ -91,7 +108,9 @@
     <Compile Include="Path\Killmails.cs" />
     <Compile Include="Path\Loyalty.cs" />
     <Compile Include="Path\Market.cs" />
+    <Compile Include="Path\Opportunities.cs" />
     <Compile Include="Path\PlanetaryInteraction.cs" />
+    <Compile Include="Path\Routes.cs" />
     <Compile Include="Path\Search.cs" />
     <Compile Include="Path\Sovereignty.cs" />
     <Compile Include="Path\Status.cs" />
@@ -108,6 +127,7 @@
     <None Include="ESISharp.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

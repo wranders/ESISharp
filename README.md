@@ -52,7 +52,7 @@ It's filename, location, and operating protocol is fully configurable for your a
 You application will require permissions to write to the Registry to create the forwarding protocol for the AuthRouter.
 
 By default, the router filename is *EveSSOAuthRouter* and must be located in the same directory as the ESISharp library.<br/>
-The default protocol is *eveauth-app* and the default path is *callback/*. (Full callback url is ***eveauth-app://callback/***)<br/>
+The default protocol is *eveauth-app* and the default path is *callback/*. (Full callback url is <b><i>eveauth-app://callback/</i></b>)<br/>
 To create or repair the required registry key, run `ESIEve.SSO.VerifyCallbackProtocolRegistryKey()`
 
 ---

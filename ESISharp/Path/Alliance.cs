@@ -1,15 +1,16 @@
-﻿using ESISharp.Web;
+﻿using ESISharp.ESIPath.Alliance;
+using ESISharp.Web;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ESISharp.ESIPath
 {
     /// <summary>Public Alliance paths</summary>
-    public class Alliance
+    public class AllianceMain
     {
         protected ESIEve EasyObject;
 
-        internal Alliance(ESIEve EasyEve)
+        internal AllianceMain(ESIEve EasyEve)
         {
             EasyObject = EasyEve;
         }
@@ -69,11 +70,16 @@ namespace ESISharp.ESIPath
     }
 
     /// <summary>Public and Authenticated Alliance paths</summary>
-    public class AuthAlliance : Alliance
+    public class AuthAllianceMain : AllianceMain
     {
-        internal AuthAlliance(ESIEve EasyEve) : base(EasyEve)
+        /// <summary>Contacts paths</summary>
+        public AllianceContacts Contacts;
+
+        internal AuthAllianceMain(ESIEve EasyEve) : base(EasyEve)
         {
             EasyObject = EasyEve;
+
+            Contacts = new AllianceContacts(EasyObject);
         }
     }
 }

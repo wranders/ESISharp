@@ -75,13 +75,15 @@ namespace ESISharp
         public class Public : ESIEve
         {
             /// <summary>Public Alliance paths</summary>
-            public Alliance Alliance;
+            public AllianceMain Alliance;
             /// <summary>Public Character paths</summary>
             public CharacterMain Character;
             /// <summary>Public Corporation paths</summary>
-            public Corporation Corporation;
+            public CorporationMain Corporation;
             /// <summary>Public Dogma paths</summary>
             public Dogma Dogma;
+            /// <summary>Public Faction Warfare paths</summary>
+            public FactionWarfare FactionWarfare;
             /// <summary>Public Incursions paths</summary>
             public Incursions Incursions;
             /// <summary>Public Industry paths</summary>
@@ -94,8 +96,12 @@ namespace ESISharp
             public Loyalty Loyalty;
             /// <summary>Public Market paths</summary>
             public Market Market;
+            /// <summary>Public Opportunities paths</summary>
+            public Opportunities Opportunities;
             /// <summary>Public Planetary Interaction (PI) paths</summary>
             public PlanetaryInteraction PlanetaryInteraction;
+            /// <summary>Public Routes paths</summary>
+            public Routes Routes;
             /// <summary>Public Search paths</summary>
             public Search Search;
             /// <summary>Public Sovereignty paths</summary>
@@ -110,17 +116,20 @@ namespace ESISharp
             /// <summary>Construct Public ESI interface</summary>
             public Public() : base()
             {
-                Alliance = new Alliance(this);
+                Alliance = new AllianceMain(this);
                 Character = new CharacterMain(this);
-                Corporation = new Corporation(this);
+                Corporation = new CorporationMain(this);
                 Dogma = new Dogma(this);
+                FactionWarfare = new FactionWarfare(this);
                 Incursions = new Incursions(this);
                 Industry = new Industry(this);
                 Insurance = new Insurance(this);
                 Killmails = new Killmails(this);
                 Loyalty = new Loyalty(this);
                 Market = new Market(this);
+                Opportunities = new Opportunities(this);
                 PlanetaryInteraction = new PlanetaryInteraction(this);
+                Routes = new Routes(this);
                 Search = new Search(this);
                 Sovereignty = new Sovereignty(this);
                 Status = new Status(this);
@@ -135,15 +144,17 @@ namespace ESISharp
             /// <summary>SSO Authentication settings</summary>
             public Sso SSO;
             /// <summary>Public and Authenticated Alliance paths</summary>
-            public AuthAlliance Alliance;
+            public AuthAllianceMain Alliance;
             /// <summary>Public and Authenticated Character paths</summary>
             public AuthCharacterMain Character;
             /// <summary>Public and Authenticated Corporation paths</summary>
-            public AuthCorporation Corporation;
+            public AuthCorporationMain Corporation;
             /// <summary>Public and Authenticated Dogma paths</summary>
             public AuthDogma Dogma;
+            /// <summary>Public and Authenticated Faction Warfare paths</summary>
+            public AuthFactionWarfare FactionWarfare;
             /// <summary>Authenticated Fleet paths</summary>
-            public Fleet Fleet;
+            public AuthFleet Fleet;
             /// <summary>Public and Authenticated Incursion paths</summary>
             public AuthIncursions Incursions;
             /// <summary>Public and Authenticated Industry paths</summary>
@@ -156,8 +167,12 @@ namespace ESISharp
             public AuthLoyalty Loyalty;
             /// <summary>Public and Authenticated Market paths</summary>
             public AuthMarket Market;
+            /// <summary>Public and Authenticated Opportunities paths</summary>
+            public AuthOpportunities Opportunities;
             /// <summary>Public and Authenticated Planetary Interaction (PI) paths</summary>
             public AuthPlanetaryInteraction PlanetaryInteraction;
+            /// <summary>Public and Authenticated Routes paths</summary>
+            public AuthRoutes Routes;
             /// <summary>Public and Authenticated Search paths</summary>
             public AuthSearch Search;
             /// <summary>Public and Authenticated Sovereignty paths</summary>
@@ -188,18 +203,21 @@ namespace ESISharp
 
             private void AuthInit()
             {
-                Alliance = new AuthAlliance(this);
+                Alliance = new AuthAllianceMain(this);
                 Character = new AuthCharacterMain(this);
-                Corporation = new AuthCorporation(this);
+                Corporation = new AuthCorporationMain(this);
                 Dogma = new AuthDogma(this);
-                Fleet = new Fleet(this);
+                FactionWarfare = new AuthFactionWarfare(this);
+                Fleet = new AuthFleet(this);
                 Incursions = new AuthIncursions(this);
                 Industry = new AuthIndustry(this);
                 Insurance = new AuthInsurance(this);
                 Killmails = new AuthKillmails(this);
                 Loyalty = new AuthLoyalty(this);
                 Market = new AuthMarket(this);
+                Opportunities = new AuthOpportunities(this);
                 PlanetaryInteraction = new AuthPlanetaryInteraction(this);
+                Routes = new AuthRoutes(this);
                 Search = new AuthSearch(this);
                 Sovereignty = new AuthSovereignty(this);
                 Universe = new AuthUniverse(this);

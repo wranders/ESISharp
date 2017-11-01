@@ -12,6 +12,16 @@ namespace ESISharp.ESIPath.Character
             EasyObject = EasyEve;
         }
 
+        /// <summary>Get Character's Attributes</summary>
+        /// <remarks>Requires SSO Authentication, using "read_skills" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAttributes(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/attributes/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
+
         /// <summary>Get Character's current Skill Queue</summary>
         /// <remarks>Requires SSO Authentication, using "read_skillqueue" scope</remarks>
         /// <param name="CharacterID">(Int32) Character ID</param>
