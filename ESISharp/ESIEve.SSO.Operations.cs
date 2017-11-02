@@ -166,7 +166,6 @@ namespace ESISharp
         internal bool IsTokenValid()
         {
             DateTime Expires;
-            int TimeDifference;
             if (GrantType == OAuthGrant.Authorization)
             {
                 Expires = AuthToken.Expires;
@@ -175,15 +174,8 @@ namespace ESISharp
             {
                 Expires = ImplicitToken.Expires;
             }
-            TimeDifference = DateTime.Compare(Expires, DateTime.UtcNow);
-            if (TimeDifference < 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+            return Expires > DateTime.UtcNow;
         }
 
         internal bool VerifyCredentials()
