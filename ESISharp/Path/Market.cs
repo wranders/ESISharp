@@ -54,7 +54,7 @@ namespace ESISharp.ESIPath
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <param name="OrderType">(MarketOrderType) Market Order Type</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetRegionOrders(int RegionID, int TypeID, MarketOrderType OrderType)
+        public EsiRequest GetRegionOrders(int RegionID, int? TypeID, MarketOrderType OrderType)
         {
             return GetRegionOrders(RegionID, TypeID, OrderType.Value, 1);
         }
@@ -64,7 +64,7 @@ namespace ESISharp.ESIPath
         /// <param name="TypeID">(Int32) Type ID</param>
         /// <param name="OrderType">(String) Market Order Type</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetRegionOrders(int RegionID, int TypeID, string OrderType)
+        public EsiRequest GetRegionOrders(int RegionID, int? TypeID, string OrderType)
         {
             return GetRegionOrders(RegionID, TypeID, OrderType, 1);
         }
@@ -75,7 +75,7 @@ namespace ESISharp.ESIPath
         /// <param name="OrderType">(MarketOrderType) Market Order Type</param>
         /// <param name="Page">(Int32) Page number</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetRegionOrders(int RegionID, int TypeID, MarketOrderType OrderType, int Page)
+        public EsiRequest GetRegionOrders(int RegionID, int? TypeID, MarketOrderType OrderType, int Page)
         {
             return GetRegionOrders(RegionID, TypeID, OrderType.Value, Page);
         }
