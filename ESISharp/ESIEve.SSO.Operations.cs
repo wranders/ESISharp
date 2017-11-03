@@ -130,7 +130,7 @@ namespace ESISharp
                 "refresh_token",
                 "refresh_token",
                 AuthToken.RefreshToken);
-            AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessToken(GetAccessTokenTask.Result));
+            AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessTokenTask.Result);
             AuthToken = new AuthToken(Token.access_token, Token.token_type, Token.refresh_token, Token.expires_in);
         }
 
