@@ -130,7 +130,7 @@ namespace ESISharp
                 "refresh_token",
                 "refresh_token",
                 AuthToken.RefreshToken);
-            AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessToken(GetAccessTokenTask.Result));
+            AccessToken Token = JsonConvert.DeserializeObject<AccessToken>(GetAccessTokenTask.Result);
             AuthToken = new AuthToken(Token.access_token, Token.token_type, Token.refresh_token, Token.expires_in);
         }
 
@@ -166,7 +166,6 @@ namespace ESISharp
         internal bool IsTokenValid()
         {
             DateTime Expires;
-            int TimeDifference;
             if (GrantType == OAuthGrant.Authorization)
             {
                 Expires = AuthToken.Expires;
@@ -175,15 +174,8 @@ namespace ESISharp
             {
                 Expires = ImplicitToken.Expires;
             }
-            TimeDifference = DateTime.Compare(Expires, DateTime.UtcNow);
-            if (TimeDifference < 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+            return Expires > DateTime.UtcNow;
         }
 
         internal bool VerifyCredentials()

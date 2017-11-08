@@ -39,7 +39,7 @@ namespace ESISharp.ESIPath.Corporation
         /// <returns>EsiRequest</returns>
         public EsiRequest GetJournal(int CorporationID, int Division, long? FromID)
         {
-            var Path = $"";
+            var Path = $"/corporations/{CorporationID.ToString()}/wallets/{Division.ToString()}/journal/";
             var Data = new
             {
                 from_id = FromID
