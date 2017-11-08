@@ -81,6 +81,8 @@ namespace ESISharp.ESIPath
         public CorporationContacts Contacts;
         /// <summary>Contracts paths</summary>
         public CorporationContracts Contracts;
+        /// <summary>Faction Warfare paths</summary>
+        public CorporationFactionWarfare FactionWarfare;
         /// <summary>Industry paths</summary>
         public CorporationIndustry Industry;
         /// <summary>Killmails paths</summary>
@@ -98,6 +100,7 @@ namespace ESISharp.ESIPath
             Bookmarks = new CorporationBookmarks(EasyObject);
             Contacts = new CorporationContacts(EasyObject);
             Contracts = new CorporationContracts(EasyObject);
+            FactionWarfare = new CorporationFactionWarfare(EasyObject);
             Industry = new CorporationIndustry(EasyObject);
             Killmails = new CorporationKillmails(EasyObject);
             Market = new CorporationMarket(EasyObject);
