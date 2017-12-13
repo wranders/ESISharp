@@ -1,2 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SonarQube - ESISharp Sonar way" ToolsVersion="14.0" />
+<RuleSet Name="SonarQube - ESISharp Sonar way" ToolsVersion="15.0">
+  <Include Path="..\sonarqube\wranders_esisharp_dev-restructurecsharp.ruleset" Action="Default" />
+</RuleSet>

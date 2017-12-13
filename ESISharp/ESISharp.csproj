@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ESISharp</RootNamespace>
     <AssemblyName>ESISharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,89 +47,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations\CalendarResponse.cs" />
-    <Compile Include="Enumerations\FittingFlag.cs" />
-    <Compile Include="Enumerations\FleetRole.cs" />
-    <Compile Include="Enumerations\Language.cs" />
-    <Compile Include="Enumerations\MailLabelColor.cs" />
-    <Compile Include="Enumerations\MailRecipientType.cs" />
-    <Compile Include="Enumerations\MarketOrderType.cs" />
-    <Compile Include="Enumerations\OAuthGrant.cs" />
-    <Compile Include="Enumerations\SearchCategory.cs" />
-    <Compile Include="Enumerations\StructureVulnerability.cs" />
-    <Compile Include="ESIEve.SSO.Operations.cs" />
-    <Compile Include="ESIEve.SSO.cs" />
-    <Compile Include="Object\EsiResponse.cs" />
-    <Compile Include="Object\Fitting.cs" />
-    <Compile Include="Object\EveMail.cs" />
-    <Compile Include="Object\StructureVulnerabilityPeriod.cs" />
-    <Compile Include="Path\Alliance.cs" />
-    <Compile Include="Enumerations\DataSource.cs" />
-    <Compile Include="Enumerations\ResponseType.cs" />
-    <Compile Include="Enumerations\Route.cs" />
-    <Compile Include="Enumerations\Scope.cs" />
-    <Compile Include="ESIEve.cs" />
-    <Compile Include="Path\Alliance\Contacts.cs" />
-    <Compile Include="Path\Character\Assets.cs" />
-    <Compile Include="Path\Character\Bookmarks.cs" />
-    <Compile Include="Path\Character\Calendar.cs" />
-    <Compile Include="Path\Character\Clones.cs" />
-    <Compile Include="Path\Character\Contacts.cs" />
-    <Compile Include="Path\Character.cs" />
-    <Compile Include="Path\Character\Contracts.cs" />
-    <Compile Include="Path\Character\FactionWarfare.cs" />
-    <Compile Include="Path\Character\Fittings.cs" />
-    <Compile Include="Path\Character\Fleet.cs" />
-    <Compile Include="Path\Character\Industry.cs" />
-    <Compile Include="Path\Character\Killmails.cs" />
-    <Compile Include="Path\Character\Location.cs" />
-    <Compile Include="Path\Character\Loyalty.cs" />
-    <Compile Include="Path\Character\Mail.cs" />
-    <Compile Include="Path\Character\Market.cs" />
-    <Compile Include="Path\Character\Opportunities.cs" />
-    <Compile Include="Path\Character\PlanetaryInteraction.cs" />
-    <Compile Include="Path\Character\Skills.cs" />
-    <Compile Include="Path\Character\Wallet.cs" />
-    <Compile Include="Path\Corporation.cs" />
-    <Compile Include="Path\Corporation\Assets.cs" />
-    <Compile Include="Path\Corporation\Bookmarks.cs" />
-    <Compile Include="Path\Corporation\Contacts.cs" />
-    <Compile Include="Path\Corporation\Contracts.cs" />
-    <Compile Include="Path\Corporation\FactionWarfare.cs" />
-    <Compile Include="Path\Corporation\Industry.cs" />
-    <Compile Include="Path\Corporation\Killmails.cs" />
-    <Compile Include="Path\Corporation\Market.cs" />
-    <Compile Include="Path\Corporation\PlanetaryInteraction.cs" />
-    <Compile Include="Path\Corporation\Wallet.cs" />
-    <Compile Include="Path\Dogma.cs" />
-    <Compile Include="Path\FactionWarfare.cs" />
-    <Compile Include="Path\Fleet.cs" />
-    <Compile Include="Path\Incursion.cs" />
-    <Compile Include="Path\Industry.cs" />
-    <Compile Include="Path\Insurance.cs" />
-    <Compile Include="Path\Killmails.cs" />
-    <Compile Include="Path\Loyalty.cs" />
-    <Compile Include="Path\Market.cs" />
-    <Compile Include="Path\Opportunities.cs" />
-    <Compile Include="Path\PlanetaryInteraction.cs" />
-    <Compile Include="Path\Routes.cs" />
-    <Compile Include="Path\Search.cs" />
-    <Compile Include="Path\Sovereignty.cs" />
-    <Compile Include="Path\Status.cs" />
-    <Compile Include="Path\Universe.cs" />
-    <Compile Include="Path\UserInterface.cs" />
-    <Compile Include="Path\Wars.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Authenticated.cs" />
+    <Compile Include="Enumeration\Access.cs" />
+    <Compile Include="Enumeration\CalendarResponse.cs" />
+    <Compile Include="Enumeration\DataSource.cs" />
+    <Compile Include="Enumeration\FittingFlag.cs" />
+    <Compile Include="Enumeration\FleetRole.cs" />
+    <Compile Include="Enumeration\Language.cs" />
+    <Compile Include="Enumeration\MailLabelColor.cs" />
+    <Compile Include="Enumeration\MailRecipientType.cs" />
+    <Compile Include="Enumeration\MarketOrderType.cs" />
+    <Compile Include="Enumeration\OAuthGrant.cs" />
+    <Compile Include="Enumeration\ResponseType.cs" />
+    <Compile Include="Enumeration\Route.cs" />
+    <Compile Include="Enumeration\SearchCategory.cs" />
+    <Compile Include="Enumeration\StructureVulnerability.cs" />
+    <Compile Include="Enumeration\WebMethod.cs" />
+    <Compile Include="Model\Abstract\ApiPath.cs" />
+    <Compile Include="Model\Abstract\EsiConnection.cs" />
+    <Compile Include="Model\Abstract\FakeEnumerator.cs" />
+    <Compile Include="Model\Attribute\PathAttribute.cs" />
+    <Compile Include="Model\Object\EsiResponse.cs" />
+    <Compile Include="Model\Object\EsiResponseHeaders.cs" />
+    <Compile Include="Model\Object\EveMail.cs" />
+    <Compile Include="Model\Object\EveMailRecipient.cs" />
+    <Compile Include="Model\Object\Fitting.cs" />
+    <Compile Include="Model\Object\FittingItem.cs" />
+    <Compile Include="Model\Object\EsiRequestData.cs" />
+    <Compile Include="Model\Object\SsoAccessToken.cs" />
+    <Compile Include="Model\Object\SsoToken.cs" />
+    <Compile Include="Model\Object\SsoTokenVerification.cs" />
+    <Compile Include="Model\Object\StructureVulnerabilityPeriod.cs" />
+    <Compile Include="Paths\Public\Alliance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public.cs" />
+    <Compile Include="Sso\Scopes\Scope.Alliance.cs" />
+    <Compile Include="Sso\Scopes\Scope.Assets.cs" />
+    <Compile Include="Sso\Scopes\Scope.Bookmarks.cs" />
+    <Compile Include="Sso\Scopes\Scope.Calendar.cs" />
+    <Compile Include="Sso\Scopes\Scope.Character.cs" />
+    <Compile Include="Sso\Scopes\Scope.Clones.cs" />
+    <Compile Include="Sso\Scopes\Scope.Contracts.cs" />
+    <Compile Include="Sso\Scopes\Scope.Corporation.cs" />
+    <Compile Include="Sso\Scopes\Scope.cs" />
+    <Compile Include="Sso\Scopes\Scope.Fittings.cs" />
+    <Compile Include="Sso\Scopes\Scope.Fleets.cs" />
+    <Compile Include="Sso\Scopes\Scope.Industry.cs" />
+    <Compile Include="Sso\Scopes\Scope.Killmails.cs" />
+    <Compile Include="Sso\Scopes\Scope.Location.cs" />
+    <Compile Include="Sso\Scopes\Scope.Mail.cs" />
+    <Compile Include="Sso\Scopes\Scope.Markets.cs" />
+    <Compile Include="Sso\Scopes\Scope.Planets.cs" />
+    <Compile Include="Sso\Scopes\Scope.Search.cs" />
+    <Compile Include="Sso\Scopes\Scope.Skills.cs" />
+    <Compile Include="Sso\Scopes\Scope.Ui.cs" />
+    <Compile Include="Sso\Scopes\Scope.Universe.cs" />
+    <Compile Include="Sso\Scopes\Scope.Wallet.cs" />
     <Compile Include="Web\EsiRequest.cs" />
     <Compile Include="Web\RetryHandler.cs" />
-    <Compile Include="Web\Utils.cs" />
-    <Compile Include="Web\WebMethod.cs" />
+    <Compile Include="Web\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ESISharp.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Paths\Authenticated\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.6.0.3969\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.6.0.3969\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.6.0.3969\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

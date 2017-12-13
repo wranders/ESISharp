@@ -1,9 +1,8 @@
-.sonarqube/**
-Test.ESISharp/**
-ESISharp-Test.sln
-ConsoleTest/**
-ESISharpTest
-SQAnalyze.bat
+ESISharp.Test/dev_secret.json
+sonar-project-analyze.bat
+.sonarqube/
+opencover.xml
+TestResult.xml
 .vs/
 *.suo
 [Dd]ebug/

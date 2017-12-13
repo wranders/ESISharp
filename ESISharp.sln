@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISharp", "ESISharp\ESISharp.csproj", "{83C7ADD4-F276-4A38-A3A5-3E6640B2C28C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EveSSOAuthRouter", "EveSSOAuthRouter\EveSSOAuthRouter.csproj", "{8810FCDF-CD7D-449D-B474-71312095C2F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ESISharp", "Test.ESISharp\Test.ESISharp.csproj", "{638585EE-AE5C-4108-9C26-8866AF282F8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISharp.Test", "ESISharp.Test\ESISharp.Test.csproj", "{43375715-A607-4760-83F4-9BE3685E8852}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,10 @@ Global
 		{83C7ADD4-F276-4A38-A3A5-3E6640B2C28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83C7ADD4-F276-4A38-A3A5-3E6640B2C28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83C7ADD4-F276-4A38-A3A5-3E6640B2C28C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8810FCDF-CD7D-449D-B474-71312095C2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8810FCDF-CD7D-449D-B474-71312095C2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8810FCDF-CD7D-449D-B474-71312095C2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8810FCDF-CD7D-449D-B474-71312095C2F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{638585EE-AE5C-4108-9C26-8866AF282F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{638585EE-AE5C-4108-9C26-8866AF282F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{638585EE-AE5C-4108-9C26-8866AF282F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{638585EE-AE5C-4108-9C26-8866AF282F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43375715-A607-4760-83F4-9BE3685E8852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43375715-A607-4760-83F4-9BE3685E8852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43375715-A607-4760-83F4-9BE3685E8852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43375715-A607-4760-83F4-9BE3685E8852}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

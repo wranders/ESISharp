@@ -1,235 +1,173 @@
-﻿using ESISharp.Enumerations;
+﻿using ESISharp.Enumeration;
+using ESISharp.Model.Abstract;
+using ESISharp.Model.Object;
 using Newtonsoft.Json;
-using System.Net;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ESISharp.Web
 {
-    /// <summary>Fluent ESI Request Object</summary>
     public class EsiRequest
     {
-        private readonly string BaseUrl = "https://esi.tech.ccp.is";
-        private readonly string Path;
+        private delegate Task<EsiResponse> RequestMethodDelegate();
+
+        private readonly UriBuilder Url;
+        private readonly ApiPath.Path Path;
+        private readonly NameValueCollection Query;
         private Route PathRoute;
-        private DataSource PathDataSource;
-        private string RequestUrl => $"{BaseUrl}/{PathRoute.Value}{Path}?datasource={PathDataSource.Value}";
 
-        private readonly ESIEve EasyObject;
-        private delegate Task<EsiResponse> RequestMethodDelegate(params object[] Data);
-        private readonly RequestMethodDelegate RequestMethod;
-        private readonly object[] Data;
-
-        private readonly string CredentialErrorMessage = JsonConvert.SerializeObject(new { error = "ESISharp - There was an error with the supplied credentials." });
-
-        internal EsiRequest(ESIEve EsiObject, string RequestPath, EsiWebMethod Method, params object[] RequestData)
+        private string RequestUrl
         {
-            EasyObject = EsiObject;
-            Path = RequestPath;
-            Data = RequestData;
-            PathRoute = EasyObject.Route;
-            PathDataSource = EasyObject.DataSource;
-
-            switch(Method)
+            get
             {
-                case EsiWebMethod.Get:
+                Url.Path = PathRoute.Value + Path;
+                Url.Query = Query.ToString();
+                return Url.ToString();
+            }
+        }
+
+        private readonly EsiConnection EsiConnection;
+        private readonly RequestMethodDelegate RequestMethod;
+        private readonly Access Access;
+        private readonly string DataBody;
+
+        internal EsiRequest(EsiConnection esiconnection, ApiPath.Path path, WebMethods method)
+        {
+            EsiConnection = esiconnection;
+            Path = path;
+            PathRoute = esiconnection.Route;
+            Url = new UriBuilder
+            {
+                Scheme = "https",
+                Host = "esi.tech.ccp.is"
+            };
+            Query = HttpUtility.ParseQueryString(Url.Query);
+            Query["datasource"] = esiconnection.DataSource.Value;
+            Access = esiconnection.Access;
+            switch (method)
+            {
+                case WebMethods.GET:
                     RequestMethod = new RequestMethodDelegate(GetAsync);
                     break;
-                case EsiWebMethod.Post:
+                case WebMethods.POST:
                     RequestMethod = new RequestMethodDelegate(PostAsync);
                     break;
-                case EsiWebMethod.AuthGet:
-                    RequestMethod = new RequestMethodDelegate(AuthGetAsync);
+                case WebMethods.PUT:
+                    RequestMethod = new RequestMethodDelegate(PutAsync);
                     break;
-                case EsiWebMethod.AuthPost:
-                    RequestMethod = new RequestMethodDelegate(AuthPostAsync);
-                    break;
-                case EsiWebMethod.AuthPut:
-                    RequestMethod = new RequestMethodDelegate(AuthPutAsync);
-                    break;
-                case EsiWebMethod.AuthDelete:
-                    RequestMethod = new RequestMethodDelegate(AuthDeleteAsync);
+                case WebMethods.DELETE:
+                    RequestMethod = new RequestMethodDelegate(DeleteAsync);
                     break;
             }
         }
 
-        /// <summary>Change the Route of the Current Request</summary>
-        /// <param name="Route">(Route) Route</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest Route(Route Route)
+        internal EsiRequest(EsiConnection esiconnection, ApiPath.Path path, WebMethods method, EsiRequestData data) : this(esiconnection, path, method)
         {
-            PathRoute = Route;
+            if (data.Query != null)
+            {
+                foreach (KeyValuePair<string, dynamic> q in data.Query)
+                {
+                    Query[q.Key] = Utility.GetPropertyValue(q.Value);
+                }
+            }
+
+            if (data.BodyKvp != null && data.Body != null)
+            {
+                // TODO: Create Invalid Data Exception
+            }
+            else if (data.BodyKvp != null || data.Body != null)
+            {
+                if (data.BodyKvp != null)
+                {
+                    DataBody = JsonConvert.SerializeObject(data.BodyKvp);
+                }
+                if (data.Body != null)
+                {
+                    DataBody = JsonConvert.SerializeObject(data.Body);
+                }
+            }
+        }
+
+        public EsiRequest Route(Route route)
+        {
+            PathRoute = route;
             return this;
         }
 
-        /// <summary>Change the Route of the Current Request</summary>
-        /// <param name="Route">(String) Route</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest Route(string Route)
+        public EsiRequest Route(string route)
         {
-            PathRoute = new Route(Route);
+            PathRoute = new Route(route);
             return this;
         }
 
-        /// <summary>Change the Data Source Server of the current Request</summary>
-        /// <param name="DataSource">(DataSource) Data Source Server</param>
-        /// <returns>EsiRequest</returns>
-        public EsiRequest DataSource(DataSource DataSource)
+        public EsiRequest DataSource(DataSource datasource)
         {
-            PathDataSource = DataSource;
+            Query["datasource"] = datasource.Value;
             return this;
         }
 
-        /// <summary>Execute the ESI Request</summary>
-        /// <returns>EsiResponse</returns>
-        public EsiResponse Execute()
+        public EsiResponse Execute() => ExecuteAsync().Result;
+
+        public async Task<EsiResponse> ExecuteAsync() => await RequestMethod().ConfigureAwait(false);
+
+        private async Task<EsiResponse> GetAsync()
         {
-            return ExecuteAsync().Result;
+            var url = RequestUrl;
+            EsiConnection connection;
+            if (Access == Access.Public)
+            {
+                connection = (Public)EsiConnection;
+            }
+            else
+            {
+                connection = (Authenticated)EsiConnection;
+
+                // TODO: Impliment Token verification here.
+
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "PLACEHOLDER"); // TODO: Method to retrieve active access token
+            }
+
+            var response = await connection.QueryClient.GetAsync(url).ConfigureAwait(false);
+            var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
         }
 
-        /// <summary>Asynchronous Execution of the ESI Request</summary>
-        /// <returns>EsiResponse</returns>
-        public async Task<EsiResponse> ExecuteAsync()
+        private async Task<EsiResponse> PostAsync()
         {
-            return await RequestMethod(Data).ConfigureAwait(false);
+            var url = RequestUrl;
+            EsiConnection connection;
+            if (Access == Access.Public)
+            {
+                connection = (Public)EsiConnection;
+            }
+            else
+            {
+                connection = (Authenticated)EsiConnection;
+
+                // TODO: Impliment Token verification here.
+
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "PLACEHOLDER"); // TODO: Method to retrieve active access token
+            }
+
+            var postdata = new StringContent(DataBody, Encoding.UTF8, "application/json");
+            var response = await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false);
+            var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
         }
 
-        private async Task<EsiResponse> GetAsync(params object[] RequestData)
+        private async Task<EsiResponse> PutAsync()
         {
-            var Url = RequestUrl;
-            if(RequestData != null && RequestData.Length != 0)
-            {
-                var ArgString = Utils.ConstructUrlArgs(RequestData[0]);
-                Url = string.Concat(Url, ArgString);
-            }
-            var Response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
-            var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
+            throw new NotImplementedException();
         }
 
-        private async Task<EsiResponse> PostAsync(params object[] RequestData)
+        private async Task<EsiResponse> DeleteAsync()
         {
-            var Url = RequestUrl;
-            var JsonString = JsonConvert.SerializeObject(RequestData[0]);
-            var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response = await EasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
-            var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-        }
-
-        private string ActiveAccessToken()
-        {
-            var AuthObject = (ESIEve.Authenticated)EasyObject;
-            if(AuthObject.SSO.AuthToken != null || AuthObject.SSO.ImplicitToken != null)
-            {
-                if(AuthObject.SSO.GrantType == OAuthGrant.Authorization)
-                {
-                    return AuthObject.SSO.AuthToken.AccessToken;
-                }
-                else
-                {
-                    return AuthObject.SSO.ImplicitToken.AccessToken;
-                }
-            }
-            return string.Empty;
-        }
-
-        private async Task<EsiResponse> AuthGetAsync(params object[] RequestData)
-        {
-            var Url = RequestUrl;
-            var AuthObject = (ESIEve.Authenticated)EasyObject;
-
-            if (RequestData != null && RequestData.Length != 0)
-            {
-                var ArgString = Utils.ConstructUrlArgs(RequestData[0]);
-                Url = string.Concat(Url, ArgString);
-            }
-
-            while(AuthObject.SSO.VerifyCredentials())
-            {
-                AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                var Response = await AuthObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
-                var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-            }
-            return new EsiResponse(CredentialErrorMessage, HttpStatusCode.BadRequest);
-        }
-
-        private async Task<EsiResponse> AuthPostAsync(params object[] RequestData)
-        {
-            var Url = RequestUrl;
-            var AuthObject = (ESIEve.Authenticated)EasyObject;
-
-            if(RequestData.Length == 2)
-            {
-                var ArgString = Utils.ConstructUrlArgs(RequestData[1]);
-                Url = string.Concat(Url, ArgString);
-            }
-
-            while (AuthObject.SSO.VerifyCredentials())
-            {
-                AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                var JsonString = JsonConvert.SerializeObject(RequestData[0]);
-                var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                var Response = await AuthObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
-                var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-            }
-            return new EsiResponse(CredentialErrorMessage, HttpStatusCode.BadRequest);
-        }
-
-        private async Task<EsiResponse> AuthPutAsync(params object[] RequestData)
-        {
-            var Url = RequestUrl;
-            var AuthObject = (ESIEve.Authenticated)EasyObject;
-
-            if(RequestData.Length == 2)
-            {
-                var ArgString = Utils.ConstructUrlArgs(RequestData[1]);
-                Url = string.Concat(Url, ArgString);
-            }
-
-            while(AuthObject.SSO.VerifyCredentials())
-            {
-                AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                var JsonString = JsonConvert.SerializeObject(RequestData[0]);
-                var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                var Response = await AuthObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false);
-                var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-            }
-            return new EsiResponse(CredentialErrorMessage, HttpStatusCode.BadRequest);
-        }
-
-        private async Task<EsiResponse> AuthDeleteAsync(params object[] RequestData)
-        {
-            var Url = RequestUrl;
-            var AuthObject = (ESIEve.Authenticated)EasyObject;
-
-            while(AuthObject.SSO.VerifyCredentials())
-            {
-                HttpResponseMessage Response;
-                AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-
-                if(RequestData != null && RequestData.Length != 0)
-                {
-                    var JsonString = JsonConvert.SerializeObject(RequestData[0]);
-                    var Message = new HttpRequestMessage(HttpMethod.Delete, Url);
-                    Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                    Response = await AuthObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-                    var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-                }
-                else
-                {
-                    Response = await AuthObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false);
-                    var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
-                }
-            }
-            return new EsiResponse(CredentialErrorMessage, HttpStatusCode.BadRequest);
+            throw new NotImplementedException();
         }
     }
 }
