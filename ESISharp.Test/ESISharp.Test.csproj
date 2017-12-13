@@ -57,6 +57,7 @@
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
     <Compile Include="Paths\Public\Alliance.cs" />
+    <Compile Include="Paths\Public\Character.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

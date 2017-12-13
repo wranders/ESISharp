@@ -68,6 +68,7 @@
     <Compile Include="Model\Abstract\EsiConnection.cs" />
     <Compile Include="Model\Abstract\FakeEnumerator.cs" />
     <Compile Include="Model\Attribute\PathAttribute.cs" />
+    <Compile Include="Model\Object\EsiRequestPath.cs" />
     <Compile Include="Model\Object\EsiResponse.cs" />
     <Compile Include="Model\Object\EsiResponseHeaders.cs" />
     <Compile Include="Model\Object\EveMail.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Model\Object\SsoTokenVerification.cs" />
     <Compile Include="Model\Object\StructureVulnerabilityPeriod.cs" />
     <Compile Include="Paths\Public\Alliance.cs" />
+    <Compile Include="Paths\Public\Character.cs" />
+    <Compile Include="Paths\Public\Corporation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public.cs" />
     <Compile Include="Sso\Scopes\Scope.Alliance.cs" />

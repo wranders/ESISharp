@@ -17,7 +17,7 @@ namespace ESISharp.Web
         private delegate Task<EsiResponse> RequestMethodDelegate();
 
         private readonly UriBuilder Url;
-        private readonly ApiPath.Path Path;
+        private readonly EsiRequestPath Path;
         private readonly NameValueCollection Query;
         private Route PathRoute;
 
@@ -36,7 +36,7 @@ namespace ESISharp.Web
         private readonly Access Access;
         private readonly string DataBody;
 
-        internal EsiRequest(EsiConnection esiconnection, ApiPath.Path path, WebMethods method)
+        internal EsiRequest(EsiConnection esiconnection, EsiRequestPath path, WebMethods method)
         {
             EsiConnection = esiconnection;
             Path = path;
@@ -66,7 +66,7 @@ namespace ESISharp.Web
             }
         }
 
-        internal EsiRequest(EsiConnection esiconnection, ApiPath.Path path, WebMethods method, EsiRequestData data) : this(esiconnection, path, method)
+        internal EsiRequest(EsiConnection esiconnection, EsiRequestPath path, WebMethods method, EsiRequestData data) : this(esiconnection, path, method)
         {
             if (data.Query != null)
             {
