@@ -58,6 +58,15 @@
     <Compile Include="Model\Object\SwaggerSpec.cs" />
     <Compile Include="Paths\Public\Alliance.cs" />
     <Compile Include="Paths\Public\Character.cs" />
+    <Compile Include="Paths\Public\Corporation.cs" />
+    <Compile Include="Paths\Public\Dogma.cs" />
+    <Compile Include="Paths\Public\FactionWarfare.cs" />
+    <Compile Include="Paths\Public\Incursions.cs" />
+    <Compile Include="Paths\Public\Industry.cs" />
+    <Compile Include="Paths\Public\Insurance.cs" />
+    <Compile Include="Paths\Public\Killmails.cs" />
+    <Compile Include="Paths\Public\Loyalty.cs" />
+    <Compile Include="Paths\Public\Markets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

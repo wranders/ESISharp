@@ -14,7 +14,7 @@ namespace ESISharp.Paths.Public
         [Path("/characters/{character_id}/", WebMethods.GET)]
         public EsiRequest GetInformation(int characterid)
         {
-            var path = new EsiRequestPath() { "characters", characterid.ToString() };
+            var path = new EsiRequestPath { "characters", characterid.ToString() };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
@@ -26,8 +26,8 @@ namespace ESISharp.Paths.Public
         [Path("/characters/affiliation/", WebMethods.POST)]
         public EsiRequest GetAffiliation(IEnumerable<int> characterids)
         {
-            var path = new EsiRequestPath() { "characters", "affiliation" };
-            var data = new EsiRequestData()
+            var path = new EsiRequestPath { "characters", "affiliation" };
+            var data = new EsiRequestData
             {
                 Body = characterids
             };
@@ -42,8 +42,8 @@ namespace ESISharp.Paths.Public
         [Path("/characters/names/", WebMethods.GET)]
         public EsiRequest GetNames(IEnumerable<long> characterids)
         {
-            var path = new EsiRequestPath() { "characters", "names" };
-            var data = new EsiRequestData()
+            var path = new EsiRequestPath { "characters", "names" };
+            var data = new EsiRequestData
             {
                 Query = new Dictionary<string, dynamic>()
                 {
@@ -56,14 +56,14 @@ namespace ESISharp.Paths.Public
         [Path("/characters/{character_id}/portrait/", WebMethods.GET)]
         public EsiRequest GetPortraits(int characterid)
         {
-            var path = new EsiRequestPath() { "characters", characterid.ToString(), "portrait" };
+            var path = new EsiRequestPath { "characters", characterid.ToString(), "portrait" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
         [Path("/characters/{character_id}/corporationhistory/", WebMethods.GET)]
         public EsiRequest GetCorporationHistory(int characterid)
         {
-            var path = new EsiRequestPath() { "characters", characterid.ToString(), "corporationhistory" };
+            var path = new EsiRequestPath { "characters", characterid.ToString(), "corporationhistory" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
     }

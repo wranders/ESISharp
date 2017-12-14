@@ -72,6 +72,8 @@ namespace ESISharp.Web
             {
                 foreach (KeyValuePair<string, dynamic> q in data.Query)
                 {
+                    if (q.Value == null)
+                        continue;
                     Query[q.Key] = Utility.GetPropertyValue(q.Value);
                 }
             }

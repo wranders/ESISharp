@@ -7,6 +7,7 @@ namespace ESISharp.Test.Model.Abstract
         public readonly bool CredsExist;
         public readonly string ClientID;
         public readonly string SecretKey;
+        public string RefreshToken;
 
         public readonly Public Public;
         public readonly Authenticated Authenticated;

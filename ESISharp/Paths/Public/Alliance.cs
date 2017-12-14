@@ -14,14 +14,14 @@ namespace ESISharp.Paths.Public
         [Path("/alliances/{alliance_id}/", WebMethods.GET)]
         public EsiRequest GetInformation(int allianceid)
         {
-            var path = new EsiRequestPath() { "alliances", allianceid.ToString() };
+            var path = new EsiRequestPath { "alliances", allianceid.ToString() };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
         [Path("/alliances/{alliance_id}/corporations/", WebMethods.GET)]
         public EsiRequest GetCorporations(int allianceid)
         {
-            var path = new EsiRequestPath() { "alliances", allianceid.ToString(), "corporations" };
+            var path = new EsiRequestPath { "alliances", allianceid.ToString(), "corporations" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
@@ -33,8 +33,8 @@ namespace ESISharp.Paths.Public
         [Path("/alliances/names/", WebMethods.GET)]
         public EsiRequest GetNames(IEnumerable<long> allianceids)
         {
-            var path = new EsiRequestPath() { "alliances", "names" };
-            var data = new EsiRequestData()
+            var path = new EsiRequestPath { "alliances", "names" };
+            var data = new EsiRequestData
             {
                 Query = new Dictionary<string, dynamic>()
                 {
@@ -47,14 +47,14 @@ namespace ESISharp.Paths.Public
         [Path("/alliances/{alliance_id}/icons/", WebMethods.GET)]
         public EsiRequest GetIcons(int allianceid)
         {
-            var path = new EsiRequestPath() { "alliances", allianceid.ToString(), "icons" };
+            var path = new EsiRequestPath { "alliances", allianceid.ToString(), "icons" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
         [Path("/alliances/", WebMethods.GET)]
         public EsiRequest GetAll()
         {
-            var path = new EsiRequestPath() { "alliances" };
+            var path = new EsiRequestPath { "alliances" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
     }
