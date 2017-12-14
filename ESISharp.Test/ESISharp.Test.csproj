@@ -67,6 +67,9 @@
     <Compile Include="Paths\Public\Killmails.cs" />
     <Compile Include="Paths\Public\Loyalty.cs" />
     <Compile Include="Paths\Public\Markets.cs" />
+    <Compile Include="Paths\Public\Opportunities.cs" />
+    <Compile Include="Paths\Public\PlanetaryInteraction.cs" />
+    <Compile Include="Paths\Public\Routes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

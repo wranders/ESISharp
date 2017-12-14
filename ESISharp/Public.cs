@@ -18,6 +18,9 @@ namespace ESISharp
         private readonly Killmails _Killmails;
         private readonly Loyalty _Loyalty;
         private readonly Markets _Markets;
+        private readonly Opportunities _Opportunities;
+        private readonly PlanetaryInteraction _PlanetaryInteraction;
+        private readonly Routes _Routes;
 
         public Alliance Alliance => _Alliance;
         public Character Character => _Character;
@@ -30,6 +33,9 @@ namespace ESISharp
         public Killmails Killmails => _Killmails;
         public Loyalty Loyalty => _Loyalty;
         public Markets Markets => _Markets;
+        public Opportunities Opportunities => _Opportunities;
+        public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
+        public Routes Routes => _Routes;
 
         public Public() : base()
         {
@@ -44,6 +50,9 @@ namespace ESISharp
             _Killmails = new Killmails(this);
             _Loyalty = new Loyalty(this);
             _Markets = new Markets(this);
+            _Opportunities = new Opportunities(this);
+            _PlanetaryInteraction = new PlanetaryInteraction(this);
+            _Routes = new Routes(this);
         }
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Enumeration\OAuthGrant.cs" />
     <Compile Include="Enumeration\ResponseType.cs" />
     <Compile Include="Enumeration\Route.cs" />
+    <Compile Include="Enumeration\RouteFlag.cs" />
     <Compile Include="Enumeration\SearchCategory.cs" />
     <Compile Include="Enumeration\StructureVulnerability.cs" />
     <Compile Include="Enumeration\WebMethod.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Model\Object\Fitting.cs" />
     <Compile Include="Model\Object\FittingItem.cs" />
     <Compile Include="Model\Object\EsiRequestData.cs" />
+    <Compile Include="Model\Object\RouteConnection.cs" />
+    <Compile Include="Model\Object\RouteFilter.cs" />
     <Compile Include="Model\Object\SsoAccessToken.cs" />
     <Compile Include="Model\Object\SsoToken.cs" />
     <Compile Include="Model\Object\SsoTokenVerification.cs" />
@@ -91,6 +94,9 @@
     <Compile Include="Paths\Public\Killmails.cs" />
     <Compile Include="Paths\Public\Loyalty.cs" />
     <Compile Include="Paths\Public\Markets.cs" />
+    <Compile Include="Paths\Public\Opportunities.cs" />
+    <Compile Include="Paths\Public\PlanetaryInteraction.cs" />
+    <Compile Include="Paths\Public\Routes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public.cs" />
     <Compile Include="Sso\Scopes\Scope.Alliance.cs" />
