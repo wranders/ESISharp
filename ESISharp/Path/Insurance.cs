@@ -1,4 +1,5 @@
-﻿using ESISharp.Web;
+﻿using ESISharp.Enumerations;
+using ESISharp.Web;
 
 namespace ESISharp.ESIPath
 {
@@ -12,12 +13,24 @@ namespace ESISharp.ESIPath
             EasyObject = EasyEve;
         }
 
-        /// <summary>Get Insurace Information</summary>
+        /// <summary>Get Insurance Information</summary>
         /// <returns>EsiRequest</returns>
         public EsiRequest GetPrices()
         {
+            return GetPrices(Language.English);
+        }
+
+        /// <summary>Get Insurace Information</summary>
+        /// <param name="Language">(Language) Result Language</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetPrices(Language Language)
+        {
             var Path = "/insurance/prices/";
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get);
+            var Data = new
+            {
+                language = Language.Value
+            };
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.Get, Data);
         }
     }
 

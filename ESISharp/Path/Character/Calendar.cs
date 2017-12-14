@@ -68,5 +68,16 @@ namespace ESISharp.ESIPath.Character
             var Data = new { response = Response };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
+
+        /// <summary>Get specific Calendar Event's Attendees and their responses</summary>
+        /// <remarks>Requires SSO Authentication, using "read_calendar_events" scope</remarks>
+        /// <param name="CharacterID">(Int32) Character ID</param>
+        /// <param name="EventID">(Int32) EventID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetAttendees(int CharacterID, int EventID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/calendar/{EventID.ToString()}/attendees/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
     }
 }

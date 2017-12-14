@@ -32,8 +32,7 @@ namespace ESISharp.ESIPath.Character
         public EsiRequest DeleteContacts(int CharacterID, IEnumerable<int> CharactersToDelete)
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            var Data = CharactersToDelete.ToArray();
-            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete, Data);
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthDelete, CharactersToDelete);
         }
 
         /// <summary>Get Character's Contacts (First Page)</summary>
@@ -42,7 +41,7 @@ namespace ESISharp.ESIPath.Character
         /// <returns>EsiRequest</returns>
         public EsiRequest GetContacts(int CharacterID)
         {
-            return GetContacts(CharacterID, null);
+            return GetContacts(CharacterID, 1);
         }
 
         /// <summary>Get Character's Contacts (Specified Page)</summary>
@@ -50,10 +49,13 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="Page">(Int32) Page</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetContacts(int CharacterID, int? Page)
+        public EsiRequest GetContacts(int CharacterID, int Page)
         {
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
-            var Data = new { page = Page };
+            var Data = new
+            {
+                page = Page
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet, Data);
         }
 
@@ -129,7 +131,12 @@ namespace ESISharp.ESIPath.Character
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var PostData = NewContactCharacterIDs.ToArray();
             var Label = (LabelID == null) ? 0 : LabelID;
-            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
+            var UrlData = new
+            {
+                standing = Standing.ToString("N2"),
+                watched = Watch.ToString(),
+                label_id = Label.ToString()
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPost, PostData, UrlData);
         }
 
@@ -205,7 +212,12 @@ namespace ESISharp.ESIPath.Character
             var Path = $"/characters/{CharacterID.ToString()}/contacts/";
             var PutData = ContactCharacterIDs.ToArray();
             var Label = (LabelID == null) ? 0 : LabelID;
-            var UrlData = new { standing = Standing.ToString("N2"), watched = Watch.ToString(), label_id = Label.ToString() };
+            var UrlData = new
+            {
+                standing = Standing.ToString("N2"),
+                watched = Watch.ToString(),
+                label_id = Label.ToString()
+            };
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthPut, PutData, UrlData);
         }
 

@@ -27,7 +27,7 @@ namespace ESISharp.ESIPath.Character
         /// <param name="CharacterID">(Int32) Character ID</param>
         /// <param name="PlanetID">(Int32) Planet ID</param>
         /// <returns>EsiRequest</returns>
-        public EsiRequest GetColonyLayoutAsync(int CharacterID, int PlanetID)
+        public EsiRequest GetColonyLayout(int CharacterID, int PlanetID)
         {
             var Path = $"/characters/{CharacterID.ToString()}/planets/{PlanetID.ToString()}/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);

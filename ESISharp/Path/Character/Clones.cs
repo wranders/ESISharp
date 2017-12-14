@@ -21,5 +21,15 @@ namespace ESISharp.ESIPath.Character
             var Path = $"/characters/{CharacterID.ToString()}/clones/";
             return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
         }
+
+        /// <summary>Get Character's Current Clone's Implants</summary>
+        /// <remarks>Requires SSO Authentication, uses "read_implants" scope</remarks>
+        /// <param name="CharacterID">(Int32) CharacterID</param>
+        /// <returns>EsiRequest</returns>
+        public EsiRequest GetImplants(int CharacterID)
+        {
+            var Path = $"/characters/{CharacterID.ToString()}/implants/";
+            return new EsiRequest(EasyObject, Path, EsiWebMethod.AuthGet);
+        }
     }
 }
