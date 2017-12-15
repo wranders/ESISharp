@@ -1,5 +1,4 @@
-﻿using ESISharp.Enumeration;
-using ESISharp.Test.Model.Abstract;
+﻿using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
 using System.Net;
 

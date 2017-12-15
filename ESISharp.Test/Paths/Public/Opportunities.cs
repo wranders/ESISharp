@@ -1,17 +1,14 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESISharp.Test.Paths.Public
 {
     public class Opportunities : PathTest
     {
+#pragma warning disable S1144
+
         static object[] GetGroupInfo_TestOne =
         {
             new object[] { 100, Language.English },
@@ -21,6 +18,8 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 105, Language.Japanese },
             new object[] { 106, Language.Chinese },
         };
+
+#pragma warning restore    
 
         [Property("Public", "Opportunities")]
         [Test]

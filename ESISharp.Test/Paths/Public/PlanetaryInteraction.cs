@@ -1,6 +1,5 @@
 ﻿using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
-using System;
 using System.Net;
 
 namespace ESISharp.Test.Paths.Public
@@ -13,7 +12,6 @@ namespace ESISharp.Test.Paths.Public
         {
             var r = Public.PlanetaryInteraction.GetSchematicInfo(schematicid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
-            Console.Write(r.Body);
         }
     }
 }

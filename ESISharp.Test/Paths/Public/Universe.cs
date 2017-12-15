@@ -1,7 +1,6 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -368,7 +367,6 @@ namespace ESISharp.Test.Paths.Public
         public void GetStarInfo(int starid)
         {
             var r = Public.Universe.GetStarInfo(starid).Execute();
-            Console.Write(r.Body);
             Assert.True(r.Code == HttpStatusCode.OK);
         }
     }
