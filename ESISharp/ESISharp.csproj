@@ -97,6 +97,11 @@
     <Compile Include="Paths\Public\Opportunities.cs" />
     <Compile Include="Paths\Public\PlanetaryInteraction.cs" />
     <Compile Include="Paths\Public\Routes.cs" />
+    <Compile Include="Paths\Public\Search.cs" />
+    <Compile Include="Paths\Public\Sovereignty.cs" />
+    <Compile Include="Paths\Public\Status.cs" />
+    <Compile Include="Paths\Public\Universe.cs" />
+    <Compile Include="Paths\Public\Wars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public.cs" />
     <Compile Include="Sso\Scopes\Scope.Alliance.cs" />

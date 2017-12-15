@@ -21,6 +21,11 @@ namespace ESISharp
         private readonly Opportunities _Opportunities;
         private readonly PlanetaryInteraction _PlanetaryInteraction;
         private readonly Routes _Routes;
+        private readonly Search _Search;
+        private readonly Sovereignty _Sovereignty;
+        private readonly Status _Status;
+        private readonly Universe _Universe;
+        private readonly Wars _Wars;
 
         public Alliance Alliance => _Alliance;
         public Character Character => _Character;
@@ -36,6 +41,11 @@ namespace ESISharp
         public Opportunities Opportunities => _Opportunities;
         public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
         public Routes Routes => _Routes;
+        public Search Search => _Search;
+        public Sovereignty Sovereignty => _Sovereignty;
+        public Status Status => _Status;
+        public Universe Universe => _Universe;
+        public Wars Wars => _Wars;
 
         public Public() : base()
         {
@@ -53,6 +63,11 @@ namespace ESISharp
             _Opportunities = new Opportunities(this);
             _PlanetaryInteraction = new PlanetaryInteraction(this);
             _Routes = new Routes(this);
+            _Search = new Search(this);
+            _Sovereignty = new Sovereignty(this);
+            _Status = new Status(this);
+            _Universe = new Universe(this);
+            _Wars = new Wars(this);
         }
     }
 }

@@ -15,6 +15,5 @@
         public static readonly SearchCategory Region = new SearchCategory("region");
         public static readonly SearchCategory SolarSystem = new SearchCategory("solarsystem");
         public static readonly SearchCategory Station = new SearchCategory("station");
-        public static readonly SearchCategory Wormhole = new SearchCategory("wormhole");
     }
 }

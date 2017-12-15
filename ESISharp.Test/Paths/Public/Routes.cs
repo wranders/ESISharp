@@ -2,11 +2,8 @@
 using ESISharp.Model.Object;
 using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace ESISharp.Test.Paths.Public
 {
