@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
+using Polly;
 
 namespace ESISharp
 {
@@ -14,17 +15,26 @@ namespace ESISharp
         internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
 
-        internal Web.RetryHandler ClientHandler = new Web.RetryHandler();
+        internal IAsyncPolicy<HttpResponseMessage> HttpResiliencePolicy;
         internal HttpClient QueryClient;
         internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp)";
 
         internal ESIEve()
         {
-            QueryClient = new HttpClient(ClientHandler);
+            // Set up a HTTP handler to automatically decompress responses
+            var httpClientHandler = new HttpClientHandler()
+            {
+                AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+            };
+
+            QueryClient = new HttpClient(httpClientHandler);
             QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
             QueryClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             QueryClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             QueryClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+
+            // Set the request policy not to retry by default
+            SetRetryStrategy(new TimeSpan[] { });
         }
 
         /// <summary>Set the Eve Server to retrieve data from</summary>
@@ -57,11 +67,25 @@ namespace ESISharp
             QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
         }
 
+        /// <summary>Set the Polly policy under which ESISharp should execute HTTP requests</summary>
+        /// <param name="policy">The Polly policy to use for executing HTTP requests</param>
+        public void SetHttpPolicy(IAsyncPolicy<HttpResponseMessage> policy)
+        {
+            HttpResiliencePolicy = policy;
+        }
+
         /// <summary>Set the number of times ESISharp will retry failed requests and the delay between each try</summary>
         /// <param name="Delays">The time to wait before each retry. An empty set disables retries.</param>
         public void SetRetryStrategy(IEnumerable<TimeSpan> Delays)
         {
-            ClientHandler.SetRetryStrategy(Delays);
+            HttpResiliencePolicy = Policy<HttpResponseMessage>
+                .Handle<Exception>()
+                .OrResult(r =>
+                       r.StatusCode == System.Net.HttpStatusCode.InternalServerError
+                    || r.StatusCode == System.Net.HttpStatusCode.BadGateway
+                    || r.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable // This can indicate the server is offline, but it also happens randomly at other times.
+                    || r.StatusCode == System.Net.HttpStatusCode.GatewayTimeout)
+                .WaitAndRetryAsync(Delays);
         }
 
         /// <summary>Set the delay before requests timeout</summary>
