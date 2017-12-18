@@ -1,9 +1,10 @@
 ﻿using ESISharp.Enumeration;
+using ESISharp.Model.Abstract;
 using ESISharp.Paths.Public;
 
 namespace ESISharp
 {
-    public class Public : Model.Abstract.EsiConnection
+    public class Public : EsiConnection
     {
         internal new Access Access = Access.Public;
 

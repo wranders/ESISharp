@@ -134,7 +134,8 @@ namespace ESISharp.Web
                 connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "PLACEHOLDER"); // TODO: Method to retrieve active access token
             }
 
-            var response = await connection.QueryClient.GetAsync(url).ConfigureAwait(false);
+            var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async () =>
+                await connection.QueryClient.GetAsync(url).ConfigureAwait(false)).ConfigureAwait(false);
             var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
         }
@@ -157,7 +158,8 @@ namespace ESISharp.Web
             }
 
             var postdata = new StringContent(DataBody, Encoding.UTF8, "application/json");
-            var response = await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false);
+            var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async () =>
+                await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
             var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
         }

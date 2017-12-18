@@ -22,6 +22,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>ESISharp.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +37,9 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Polly, Version=5.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.5.6.1\lib\net45\Polly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -83,6 +88,9 @@
     <Compile Include="Model\Object\SsoToken.cs" />
     <Compile Include="Model\Object\SsoTokenVerification.cs" />
     <Compile Include="Model\Object\StructureVulnerabilityPeriod.cs" />
+    <Compile Include="Paths\Authenticated\Alliance\Contacts.cs" />
+    <Compile Include="Paths\Authenticated\Alliance\Main.cs" />
+    <Compile Include="Paths\Authenticated\Character\Main.cs" />
     <Compile Include="Paths\Public\Alliance.cs" />
     <Compile Include="Paths\Public\Character.cs" />
     <Compile Include="Paths\Public\Corporation.cs" />
@@ -127,16 +135,13 @@
     <Compile Include="Sso\Scopes\Scope.Universe.cs" />
     <Compile Include="Sso\Scopes\Scope.Wallet.cs" />
     <Compile Include="Web\EsiRequest.cs" />
-    <Compile Include="Web\RetryHandler.cs" />
     <Compile Include="Web\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ESISharp.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Paths\Authenticated\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
