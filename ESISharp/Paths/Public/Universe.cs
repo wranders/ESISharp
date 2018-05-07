@@ -333,5 +333,47 @@ namespace ESISharp.Paths.Public
             var path = new EsiRequestPath { "universe", "stars", starid.ToString() };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
+
+        public EsiRequest GetAncestries()
+        {
+            return GetAncestries(Language.English);
+        }
+
+        [Path("/universe/ancestries/", WebMethods.GET)]
+        public EsiRequest GetAncestries(Language language)
+        {
+            var path = new EsiRequestPath { "universe", "ancestries" };
+            var data = new EsiRequestData
+            {
+                Query = new Dictionary<string, dynamic>
+                {
+                    ["language"] = language.Value
+                }
+            };
+            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
+        }
+
+        [Path("/universe/asteroid_belts/{asteroid_belt_id}/", WebMethods.GET)]
+        public EsiRequest GetAsteroidBeltInfo(int beltid)
+        {
+            var path = new EsiRequestPath { "universe", "asteroid_belts", beltid.ToString() };
+            return new EsiRequest(EsiConnection, path, WebMethods.GET);
+        }
+
+        public EsiRequest GetIds(string item)
+        {
+            return GetIds(new List<string> { item });
+        }
+
+        [Path("/universe/ids/", WebMethods.POST)]
+        public EsiRequest GetIds(IEnumerable<string> items)
+        {
+            var path = new EsiRequestPath { "universe", "ids" };
+            var data = new EsiRequestData
+            {
+                Body = items
+            };
+            return new EsiRequest(EsiConnection, path, WebMethods.POST, data);
+        }
     }
 }

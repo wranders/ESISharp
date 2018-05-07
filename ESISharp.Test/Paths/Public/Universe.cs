@@ -64,6 +64,21 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 20000006, Language.Russian }
         };
 
+        static object[] GetAncestries_One =
+        {
+            new object[] { Language.Chinese },
+            new object[] { Language.French },
+            new object[] { Language.German },
+            new object[] { Language.Japanese },
+            new object[] { Language.Russian }
+        };
+
+        static object[] GetIds_One =
+        {
+            new object[] { new List<string> { "Jita" } },
+            new object[] { new List<string> { "Condor", "Jufvitte" } }
+        };
+
 #pragma warning restore
 
         [Property("Public", "Universe")]
@@ -367,6 +382,47 @@ namespace ESISharp.Test.Paths.Public
         public void GetStarInfo(int starid)
         {
             var r = Public.Universe.GetStarInfo(starid).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        [Property("Public", "Universe")]
+        [Test]
+        public void GetAncestries()
+        {
+            var r = Public.Universe.GetAncestries().Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        [Property("Public", "Universe")]
+        [Test, TestCaseSource("GetAncestries_One")]
+        public void GetAncestries(Language lang)
+        {
+            var r = Public.Universe.GetAncestries(lang).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        [Property("Public", "Universe")]
+        [TestCase(40149471)]
+        public void GetAsteroidBeltInfo(int beltid)
+        {
+            var r = Public.Universe.GetAsteroidBeltInfo(beltid).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        [Property("Public", "Universe")]
+        [TestCase("Condor")]
+        [TestCase("Jufvitte")]
+        public void GetIds(string item)
+        {
+            var r = Public.Universe.GetIds(item).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        [Property("Public", "Universe")]
+        [Test, TestCaseSource("GetIds_One")]
+        public void GetIds(IEnumerable<string> items)
+        {
+            var r = Public.Universe.GetIds(items).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
     }
