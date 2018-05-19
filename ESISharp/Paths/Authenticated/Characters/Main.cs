@@ -58,7 +58,7 @@ namespace ESISharp.Paths.Authenticated.Characters
                     ["page"] = page
                 }
             };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET);
+            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
         }
 
         public EsiRequest CalculateCspaCharge(int characterid, int charactertocheck)
