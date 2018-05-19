@@ -19,6 +19,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         private readonly Clones _Clones;
         private readonly Contacts _Contacts;
         private readonly Contracts _Contracts;
+        private readonly FactionWarfare _FactionWarfare;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -26,6 +27,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         public Clones Clones => _Clones;
         public Contacts Contacts => _Contacts;
         public Contracts Contracts => _Contracts;
+        public FactionWarfare FactionWarfare => _FactionWarfare;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -35,6 +37,7 @@ namespace ESISharp.Paths.Authenticated.Characters
             _Clones = new Clones(esiconnection);
             _Contacts = new Contacts(esiconnection);
             _Contracts = new Contracts(esiconnection);
+            _FactionWarfare = new FactionWarfare(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]

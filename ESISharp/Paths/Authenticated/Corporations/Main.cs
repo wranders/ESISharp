@@ -17,11 +17,13 @@ namespace ESISharp.Paths.Authenticated.Corporations
         private readonly Bookmarks _Bookmarks;
         private readonly Contacts _Contacts;
         private readonly Contracts _Contracts;
+        private readonly FactionWarfare _FactionWarfare;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
         public Contacts Contacts => _Contacts;
         public Contracts Contracts => _Contracts;
+        public FactionWarfare FactionWarfare => _FactionWarfare;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -29,6 +31,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
             _Bookmarks = new Bookmarks(esiconnection);
             _Contacts = new Contacts(esiconnection);
             _Contracts = new Contracts(esiconnection);
+            _FactionWarfare = new FactionWarfare(esiconnection);
         }
 
         public EsiRequest GetBlueprints(int corporationid)

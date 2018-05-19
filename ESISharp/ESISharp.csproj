@@ -97,11 +97,13 @@
     <Compile Include="Paths\Authenticated\Characters\Clones.cs" />
     <Compile Include="Paths\Authenticated\Characters\Contacts.cs" />
     <Compile Include="Paths\Authenticated\Characters\Contracts.cs" />
+    <Compile Include="Paths\Authenticated\Characters\FactionWarfare.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Contacts.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Contracts.cs" />
+    <Compile Include="Paths\Authenticated\Corporations\FactionWarfare.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Main.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
