@@ -25,6 +25,13 @@ namespace ESISharp.Paths.Public
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
+        [Path("/corporations/{corporation_id}/icons/", WebMethods.GET)]
+        public EsiRequest GetIcons(int corporationid)
+        {
+            var path = new EsiRequestPath { "corporations", corporationid.ToString(), "icons" };
+            return new EsiRequest(EsiConnection, path, WebMethods.GET);
+        }
+
         public EsiRequest GetNames(long corporationid)
             => GetNames(new long[] { corporationid });
 
@@ -40,13 +47,6 @@ namespace ESISharp.Paths.Public
                 }
             };
             return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
-        }
-
-        [Path("/corporations/{corporation_id}/icons/", WebMethods.GET)]
-        public EsiRequest GetIcons(int corporationid)
-        {
-            var path = new EsiRequestPath { "corporations", corporationid.ToString(), "icons" };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
         [Path("/corporations/npccorps/", WebMethods.GET)]
