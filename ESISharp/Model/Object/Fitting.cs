@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ESISharp.Model.Object
 {
-    class Fitting
+    public class Fitting
     {
         private string _Name;
         private string _Description;
