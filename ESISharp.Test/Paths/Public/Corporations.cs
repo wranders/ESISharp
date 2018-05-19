@@ -6,44 +6,44 @@ namespace ESISharp.Test.Paths.Public
 {
     public class Corporation : PathTest
     {
-        [Property("Public", "Corporation")]
+        [Property("Public", "Corporations")]
         [TestCase(109299958)]
         public void GetInformation(int corporationid)
         {
-            var r = Public.Corporation.GetInformation(corporationid).Execute();
+            var r = Public.Corporations.GetInformation(corporationid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
 
-        [Property("Public", "Corporation")]
+        [Property("Public", "Corporations")]
         [TestCase(109299958)]
         public void GetAllianceHistory(int corporationid)
         {
-            var r = Public.Corporation.GetAllianceHistory(corporationid).Execute();
+            var r = Public.Corporations.GetAllianceHistory(corporationid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
 
-        [Property("Public", "Corporation")]
+        [Property("Public", "Corporations")]
         [TestCase(109299958)]
         [TestCase(new long[] { 109299958, 216121397 })]
         public void GetNames(dynamic corporationid)
         {
-            var r = Public.Corporation.GetNames(corporationid).Execute();
+            var r = Public.Corporations.GetNames(corporationid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
 
-        [Property("Public", "Corporation")]
+        [Property("Public", "Corporations")]
         [TestCase(109299958)]
         public void GetIcons(int corporationid)
         {
-            var r = Public.Corporation.GetIcons(corporationid).Execute();
+            var r = Public.Corporations.GetIcons(corporationid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
 
-        [Property("Public", "Corporation")]
+        [Property("Public", "Corporations")]
         [Test]
         public void GetNpcCorps()
         {
-            var r = Public.Corporation.GetNpcCorps().Execute();
+            var r = Public.Corporations.GetNpcCorps().Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
     }

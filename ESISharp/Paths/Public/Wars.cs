@@ -12,9 +12,7 @@ namespace ESISharp.Paths.Public
         internal Wars(EsiConnection esiconnection) : base(esiconnection) { }
 
         public EsiRequest Get()
-        {
-            return Get(-1);
-        }
+            => Get(-1);
 
         [Path("/wars/", WebMethods.GET)]
         public EsiRequest Get(int maxwarid)
@@ -37,9 +35,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetKillmails(int warid)
-        {
-            return GetKillmails(warid, 1);
-        }
+            => GetKillmails(warid, 1);
 
         [Path("/wars/{war_id}/killmails/", WebMethods.GET)]
         public EsiRequest GetKillmails(int warid, int page)

@@ -8,17 +8,20 @@ namespace ESISharp
         internal new Access Access = Access.Authenticated;
 
         private readonly Sso.Client _SsoClient;
-        private readonly Paths.Authenticated.Alliance.Main _Alliance;
-        private readonly Paths.Authenticated.Character.Main _Character;
+        private readonly Paths.Authenticated.Alliances.Main _Alliances;
+        private readonly Paths.Authenticated.Characters.Main _Characters;
+        private readonly Paths.Authenticated.Corporations.Main _Corporations;
 
         public Sso.Client SsoClient => _SsoClient;
-        public Paths.Authenticated.Alliance.Main Alliance => _Alliance;
-        public Paths.Authenticated.Character.Main Character => _Character;
+        public Paths.Authenticated.Alliances.Main Alliances => _Alliances;
+        public Paths.Authenticated.Characters.Main Characters => _Characters;
+        public Paths.Authenticated.Corporations.Main Corporations => _Corporations;
 
         private Authenticated() : base()
         {
-            _Alliance = new Paths.Authenticated.Alliance.Main(this);
-            _Character = new Paths.Authenticated.Character.Main(this);
+            _Alliances = new Paths.Authenticated.Alliances.Main(this);
+            _Characters = new Paths.Authenticated.Characters.Main(this);
+            _Corporations = new Paths.Authenticated.Corporations.Main(this);
         }
 
         public Authenticated(string clientid) : this()

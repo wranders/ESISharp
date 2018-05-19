@@ -56,9 +56,9 @@
     <Compile Include="Model\Helpers\DevCredentials.cs" />
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
-    <Compile Include="Paths\Public\Alliance.cs" />
-    <Compile Include="Paths\Public\Character.cs" />
-    <Compile Include="Paths\Public\Corporation.cs" />
+    <Compile Include="Paths\Public\Alliances.cs" />
+    <Compile Include="Paths\Public\Characters.cs" />
+    <Compile Include="Paths\Public\Corporations.cs" />
     <Compile Include="Paths\Public\Dogma.cs" />
     <Compile Include="Paths\Public\FactionWarfare.cs" />
     <Compile Include="Paths\Public\Incursions.cs" />

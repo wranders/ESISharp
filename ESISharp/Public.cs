@@ -8,9 +8,9 @@ namespace ESISharp
     {
         internal new Access Access = Access.Public;
 
-        private readonly Alliance _Alliance;
-        private readonly Character _Character;
-        private readonly Corporation _Corporation;
+        private readonly Alliances _Alliances;
+        private readonly Characters _Characters;
+        private readonly Corporations _Corporations;
         private readonly Dogma _Dogma;
         private readonly FactionWarfare _FactionWarfare;
         private readonly Incursions _Incursions;
@@ -28,9 +28,9 @@ namespace ESISharp
         private readonly Universe _Universe;
         private readonly Wars _Wars;
 
-        public Alliance Alliance => _Alliance;
-        public Character Character => _Character;
-        public Corporation Corporation => _Corporation;
+        public Alliances Alliances => _Alliances;
+        public Characters Characters => _Characters;
+        public Corporations Corporations => _Corporations;
         public Dogma Dogma => _Dogma;
         public FactionWarfare FactionWarfare => _FactionWarfare;
         public Incursions Incursions => _Incursions;
@@ -50,9 +50,9 @@ namespace ESISharp
 
         public Public() : base()
         {
-            _Alliance = new Alliance(this);
-            _Character = new Character(this);
-            _Corporation = new Corporation(this);
+            _Alliances = new Alliances(this);
+            _Characters = new Characters(this);
+            _Corporations = new Corporations(this);
             _Dogma = new Dogma(this);
             _FactionWarfare = new FactionWarfare(this);
             _Incursions = new Incursions(this);

@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace ESISharp.Paths.Public
 {
-    public class Character : ApiPath
+    public class Characters : ApiPath
     {
-        internal Character(EsiConnection esiconnection) : base(esiconnection) { }
+        internal Characters(EsiConnection esiconnection) : base(esiconnection) { }
 
         [Path("/characters/{character_id}/", WebMethods.GET)]
         public EsiRequest GetInformation(int characterid)
@@ -19,9 +19,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetAffiliation(int characterid)
-        {
-            return GetAffiliation(new int[] { characterid });
-        }
+            => GetAffiliation(new int[] { characterid });
 
         [Path("/characters/affiliation/", WebMethods.POST)]
         public EsiRequest GetAffiliation(IEnumerable<int> characterids)
@@ -35,9 +33,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetNames(long characterid)
-        {
-            return GetNames(new long[] { characterid });
-        }
+            => GetNames(new long[] { characterid });
 
         [Path("/characters/names/", WebMethods.GET)]
         public EsiRequest GetNames(IEnumerable<long> characterids)

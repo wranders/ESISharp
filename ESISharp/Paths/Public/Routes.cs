@@ -13,19 +13,13 @@ namespace ESISharp.Paths.Public
         internal Routes(EsiConnection esiconnection) : base(esiconnection) { }
 
         public EsiRequest GetRoute(int originid, int destinationid)
-        {
-            return GetRoute(originid, destinationid, RouteFlag.Shortest, new RouteFilter());
-        }
+            => GetRoute(originid, destinationid, RouteFlag.Shortest, new RouteFilter());
 
         public EsiRequest GetRoute(int originid, int destinationid, RouteFlag flag)
-        {
-            return GetRoute(originid, destinationid, flag, new RouteFilter());
-        }
+            => GetRoute(originid, destinationid, flag, new RouteFilter());
 
         public EsiRequest GetRoute(int originid, int destinationid, RouteFilter routefilter)
-        {
-            return GetRoute(originid, destinationid, RouteFlag.Shortest, routefilter);
-        }
+            => GetRoute(originid, destinationid, RouteFlag.Shortest, routefilter);
 
         [Path("/route/{origin}/{destination}/", WebMethods.GET)]
         public EsiRequest GetRoute(int originid, int destinationid, RouteFlag flag, RouteFilter routefilter)

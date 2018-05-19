@@ -19,9 +19,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetGroupInfo(int groupid)
-        {
-            return GetGroupInfo(groupid, Language.English);
-        }
+            => GetGroupInfo(groupid, Language.English);
 
         [Path("/opportunities/groups/{group_id}/", WebMethods.GET)]
         public EsiRequest GetGroupInfo(int groupid, Language language)

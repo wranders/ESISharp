@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace ESISharp.Paths.Public
 {
-    public class Corporation : ApiPath
+    public class Corporations : ApiPath
     {
-        internal Corporation(EsiConnection esiconnection) : base(esiconnection) { }
+        internal Corporations(EsiConnection esiconnection) : base(esiconnection) { }
 
         [Path("/corporations/{corporation_id}/", WebMethods.GET)]
         public EsiRequest GetInformation(int corporationid)
@@ -26,9 +26,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetNames(long corporationid)
-        {
-            return GetNames(new long[] { corporationid });
-        }
+            => GetNames(new long[] { corporationid });
 
         [Path("/corporations/names/", WebMethods.GET)]
         public EsiRequest GetNames(IEnumerable<long> corporationids)

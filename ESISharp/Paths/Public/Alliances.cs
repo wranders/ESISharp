@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace ESISharp.Paths.Public
 {
-    public class Alliance : ApiPath
+    public class Alliances : ApiPath
     {
-        internal Alliance(EsiConnection esiconnection) : base(esiconnection) { }
+        internal Alliances(EsiConnection esiconnection) : base(esiconnection) { }
 
         [Path("/alliances/{alliance_id}/", WebMethods.GET)]
         public EsiRequest GetInformation(int allianceid)
@@ -26,9 +26,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetNames(long allianceid)
-        {
-            return GetNames(new long[] { allianceid });
-        }
+            => GetNames(new long[] { allianceid });
 
         [Path("/alliances/names/", WebMethods.GET)]
         public EsiRequest GetNames(IEnumerable<long> allianceids)

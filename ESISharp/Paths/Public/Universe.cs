@@ -26,9 +26,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetSystemInfo(int systemid)
-        {
-            return GetSystemInfo(systemid, Language.English);
-        }
+            => GetSystemInfo(systemid, Language.English);
 
         [Path("/universe/systems/{system_id}/", WebMethods.GET)]
         public EsiRequest GetSystemInfo(int systemid, Language language)
@@ -52,9 +50,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetTypeInfo(int typeid)
-        {
-            return GetTypeInfo(typeid, Language.English);
-        }
+            => GetTypeInfo(typeid, Language.English);
 
         [Path("/universe/types/{type_id}/", WebMethods.GET)]
         public EsiRequest GetTypeInfo(int typeid, Language language)
@@ -71,9 +67,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetTypes()
-        {
-            return GetTypes(1);
-        }
+            => GetTypes(1);
 
         [Path("/universe/types/", WebMethods.GET)]
         public EsiRequest GetTypes(int page)
@@ -90,9 +84,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetItemGroups()
-        {
-            return GetItemGroups(1);
-        }
+            => GetItemGroups(1);
 
         [Path("/universe/groups/", WebMethods.GET)]
         public EsiRequest GetItemGroups(int page)
@@ -109,9 +101,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetItemGroupInfo(int groupid)
-        {
-            return GetItemGroupInfo(groupid, Language.English);
-        }
+            => GetItemGroupInfo(groupid, Language.English);
 
         [Path("/universe/groups/{group_id}/", WebMethods.GET)]
         public EsiRequest GetItemGroupInfo(int groupid, Language language)
@@ -135,9 +125,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetItemCategoryInfo(int categoryid)
-        {
-            return GetItemCategoryInfo(categoryid, Language.English);
-        }
+            => GetItemCategoryInfo(categoryid, Language.English);
 
         [Path("/universe/categories/{category_id}/", WebMethods.GET)]
         public EsiRequest GetItemCategoryInfo(int categoryid, Language language)
@@ -154,9 +142,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetItemNameAndCategory(int id)
-        {
-            return GetItemNameAndCategory(new int[] { id });
-        }
+            => GetItemNameAndCategory(new int[] { id });
 
         [Path("/universe/names/", WebMethods.POST)]
         public EsiRequest GetItemNameAndCategory(IEnumerable<int> ids)
@@ -177,9 +163,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetCharacterRaces()
-        {
-            return GetCharacterRaces(Language.English);
-        }
+            => GetCharacterRaces(Language.English);
 
         [Path("/universe/races/", WebMethods.GET)]
         public EsiRequest GetCharacterRaces(Language language)
@@ -196,9 +180,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetFactions()
-        {
-            return GetFactions(Language.English);
-        }
+            => GetFactions(Language.English);
 
         [Path("/universe/factions/", WebMethods.GET)]
         public EsiRequest GetFactions(Language language)
@@ -215,9 +197,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetBloodlines()
-        {
-            return GetBloodlines(Language.English);
-        }
+            => GetBloodlines(Language.English);
 
         [Path("/universe/bloodlines/", WebMethods.GET)]
         public EsiRequest GetBloodlines(Language language)
@@ -241,9 +221,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetRegionInfo(int regionid)
-        {
-            return GetRegionInfo(regionid, Language.English);
-        }
+            => GetRegionInfo(regionid, Language.English);
 
         [Path("/universe/regions/{region_id}/", WebMethods.GET)]
         public EsiRequest GetRegionInfo(int regionid, Language language)
@@ -267,9 +245,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetConstellationInfo(int constellationid)
-        {
-            return GetConstellationInfo(constellationid, Language.English);
-        }
+            => GetConstellationInfo(constellationid, Language.English);
 
         [Path("/universe/constellations/{constellation_id}/", WebMethods.GET)]
         public EsiRequest GetConstellationInfo(int constellationid, Language language)
@@ -335,9 +311,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetAncestries()
-        {
-            return GetAncestries(Language.English);
-        }
+            => GetAncestries(Language.English);
 
         [Path("/universe/ancestries/", WebMethods.GET)]
         public EsiRequest GetAncestries(Language language)
@@ -361,9 +335,7 @@ namespace ESISharp.Paths.Public
         }
 
         public EsiRequest GetIds(string item)
-        {
-            return GetIds(new List<string> { item });
-        }
+            => GetIds(new List<string> { item });
 
         [Path("/universe/ids/", WebMethods.POST)]
         public EsiRequest GetIds(IEnumerable<string> items)

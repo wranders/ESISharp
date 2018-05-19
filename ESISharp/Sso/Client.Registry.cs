@@ -41,11 +41,9 @@ namespace ESISharp.Sso
                 try
                 {
                     RegistryKey defaultIconKey = protoRoot.OpenSubKey("DefaultIcon");
-                    RegistryKey sh = protoRoot.OpenSubKey("Shell");
-                    RegistryKey open = sh.OpenSubKey("Open");
-                    RegistryKey commKey = open.OpenSubKey("Command");
+                    RegistryKey commKey = protoRoot.OpenSubKey("Shell").OpenSubKey("Open").OpenSubKey("Command");
 
-                    if (defaultIconKey == null || sh == null || open == null || commKey == null)
+                    if (defaultIconKey == null || commKey == null)
                     {
                         CreateKey(proto, comm);
                         return;

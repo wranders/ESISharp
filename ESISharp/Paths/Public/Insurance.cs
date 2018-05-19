@@ -12,9 +12,7 @@ namespace ESISharp.Paths.Public
         internal Insurance(EsiConnection esiconnection) : base(esiconnection) { }
 
         public EsiRequest GetPrices()
-        {
-            return GetPrices(Language.English);
-        }
+            => GetPrices(Language.English);
 
         [Path("/insurance/prices/", WebMethods.GET)]
         public EsiRequest GetPrices(Language language)

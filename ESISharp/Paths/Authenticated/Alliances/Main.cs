@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISharp.Paths.Authenticated.Character
+namespace ESISharp.Paths.Authenticated.Alliances
 {
-    public partial class Main : Public.Character
+    public class Main : Public.Alliances
     {
+        private readonly Contacts _Contacts;
+
+        public Contacts Contacts => _Contacts;
+
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
-
+            _Contacts = new Contacts(esiconnection);
         }
     }
 }

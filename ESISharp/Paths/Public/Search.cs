@@ -13,29 +13,19 @@ namespace ESISharp.Paths.Public
         internal Search(EsiConnection esiconnection) : base(esiconnection) { }
 
         public EsiRequest SubString(string searchquery, SearchCategory category)
-        {
-            return SubString(searchquery, new SearchCategory[] { category }, false, Language.English);
-        }
+            => SubString(searchquery, new SearchCategory[] { category }, false, Language.English);
 
         public EsiRequest SubString(string searchquery, IEnumerable<SearchCategory> categories)
-        {
-            return SubString(searchquery, categories, false, Language.English);
-        }
+            => SubString(searchquery, categories, false, Language.English);
 
         public EsiRequest SubString(string searchquery, SearchCategory category, bool strict)
-        {
-            return SubString(searchquery, new SearchCategory[] { category }, strict, Language.English);
-        }
+            => SubString(searchquery, new SearchCategory[] { category }, strict, Language.English);
 
         public EsiRequest SubString(string searchquery, IEnumerable<SearchCategory> categories, bool strict)
-        {
-            return SubString(searchquery, categories, strict, Language.English);
-        }
+            => SubString(searchquery, categories, strict, Language.English);
 
         public EsiRequest SubString(string searchquery, SearchCategory category, bool strict, Language language)
-        {
-            return SubString(searchquery, new SearchCategory[] { category }, strict, language);
-        }
+            => SubString(searchquery, new SearchCategory[] { category }, strict, language);
 
         [Path("/search/", WebMethods.GET)]
         public EsiRequest SubString(string searchquery, IEnumerable<SearchCategory> categories, bool strict, Language language)
