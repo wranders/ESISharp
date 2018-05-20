@@ -121,6 +121,7 @@
     <Compile Include="Paths\Authenticated\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Search.cs" />
     <Compile Include="Paths\Authenticated\Universe.cs" />
+    <Compile Include="Paths\Authenticated\UserInterface.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
     <Compile Include="Paths\Public\Corporations.cs" />
