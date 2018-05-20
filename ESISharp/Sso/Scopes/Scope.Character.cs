@@ -6,7 +6,6 @@
         {
             public static readonly Scope ReadAgentsResearch = new Scope("esi-characters.read_agents_research.v1");
             public static readonly Scope ReadBlueprints = new Scope("esi-characters.read_blueprints.v1");
-            public static readonly Scope ReadChatChannels = new Scope("esi-characters.read_chat_channels.v1");
             public static readonly Scope ReadContacts = new Scope("esi-characters.read_contacts.v1");
             public static readonly Scope ReadCorporationRoles = new Scope("esi-characters.read_corporation_roles.v1");
             public static readonly Scope ReadFatigue = new Scope("esi-characters.read_fatigue.v1");

@@ -18,7 +18,6 @@
             public static readonly Scope ReadStructures = new Scope("esi-corporations.read_structures.v1");
             public static readonly Scope ReadTitles = new Scope("esi-corporations.read_titles.v1");
             public static readonly Scope TrackMembers = new Scope("esi-corporations.track_members.v1");
-            public static readonly Scope WriteStructures = new Scope("esi-corporations.write_structures.v1");
         }
     }
 }
