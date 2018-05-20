@@ -22,6 +22,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
         private readonly Killmails _Killmails;
         private readonly Markets _Markets;
         private readonly PlanetaryInteraction _PlanetaryInteraction;
+        private readonly Wallet _Wallet;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -32,6 +33,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
         public Killmails Killmails => _Killmails;
         public Markets Markets => _Markets;
         public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
+        public Wallet Wallet => _Wallet;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -44,6 +46,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
             _Killmails = new Killmails(esiconnection);
             _Markets = new Markets(esiconnection);
             _PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
+            _Wallet = new Wallet(esiconnection);
         }
 
         public EsiRequest GetBlueprints(int corporationid)

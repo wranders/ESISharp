@@ -108,6 +108,7 @@
     <Compile Include="Paths\Authenticated\Characters\Opportunities.cs" />
     <Compile Include="Paths\Authenticated\Characters\PlanetaryInteraction.cs" />
     <Compile Include="Paths\Authenticated\Characters\Skills.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Wallet.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Contacts.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Paths\Authenticated\Corporations\Main.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Markets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\PlanetaryInteraction.cs" />
+    <Compile Include="Paths\Authenticated\Corporations\Wallet.cs" />
     <Compile Include="Paths\Authenticated\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Markets.cs" />
     <Compile Include="Paths\Authenticated\Search.cs" />
