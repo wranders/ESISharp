@@ -18,16 +18,24 @@ namespace ESISharp.Test
         {
             var scopes = Scope.All;
             var specscopes = SwaggerSpec.SecurityDefinitions.EveSso.Scopes;
-            List<string> diff = new List<string>();
-            foreach (KeyValuePair<string, string> s in specscopes)
-            {
-                if (!scopes.Any(x => x.Value == s.Key))
-                {
-                    diff.Add(s.Key);
-                    Console.WriteLine(s.Key);
-                }
-            }
-            Assert.IsEmpty(diff);
+            List<string> diffnew = specscopes
+                                    .Where(kv => !scopes.Any(s => s.Value == kv.Key))
+                                    .Select(kv => kv.Key)
+                                    .ToList();
+            Assert.IsEmpty(diffnew, "\n\n" + 
+                "---     Missing Scopes:     ---\n" + 
+                "-------------------------------\n" + 
+                String.Join("\n", diffnew) + "\n" +
+                "-------------------------------\n");
+            List<string> diffold = scopes
+                                    .Where(s => !specscopes.Any(kv => s.Value == kv.Key))
+                                    .Select(s => (string)s.Value)
+                                    .ToList();
+            Assert.IsEmpty(diffold, "\n\n" +
+                "---     Removed Scopes:     ---\n" +
+                "---------------------------------\n" +
+                String.Join("\n", diffold) + "\n" +
+                "---------------------------------\n");
         }
 
         [Test]
