@@ -101,6 +101,7 @@
     <Compile Include="Paths\Authenticated\Characters\Fittings.cs" />
     <Compile Include="Paths\Authenticated\Characters\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Industry.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Killmails.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Paths\Authenticated\Corporations\Contracts.cs" />
     <Compile Include="Paths\Authenticated\Corporations\FactionWarfare.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Industry.cs" />
+    <Compile Include="Paths\Authenticated\Corporations\Killmails.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Main.cs" />
     <Compile Include="Paths\Authenticated\Fleets.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
