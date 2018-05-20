@@ -27,6 +27,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         private readonly Location _Location;
         private readonly Loyalty _Loyalty;
         private readonly Mail _Mail;
+        private readonly Markets _Markets;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -42,6 +43,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         public Location Location => _Location;
         public Loyalty Loyalty => _Loyalty;
         public Mail Mail => _Mail;
+        public Markets Markets => _Markets;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -59,6 +61,7 @@ namespace ESISharp.Paths.Authenticated.Characters
             _Location = new Location(esiconnection);
             _Loyalty = new Loyalty(esiconnection);
             _Mail = new Mail(esiconnection);
+            _Markets = new Markets(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]

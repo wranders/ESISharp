@@ -104,6 +104,7 @@
     <Compile Include="Paths\Authenticated\Characters\Loyalty.cs" />
     <Compile Include="Paths\Authenticated\Characters\Mail.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Markets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Contacts.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Paths\Authenticated\Corporations\Industry.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Killmails.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Main.cs" />
+    <Compile Include="Paths\Authenticated\Corporations\Markets.cs" />
     <Compile Include="Paths\Authenticated\Fleets.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
