@@ -1,4 +1,5 @@
 ﻿using ESISharp.Enumeration;
+using Newtonsoft.Json;
 
 namespace ESISharp.Model.Object
 {
@@ -8,8 +9,13 @@ namespace ESISharp.Model.Object
         private int _Quantity;
         private int _Flag;
 
+        [JsonProperty(PropertyName = "type_id")]
         public int TypeID { get => _TypeID; set => _TypeID = value; }
+
+        [JsonProperty(PropertyName = "quantity")]
         public int Quantity { get => _Quantity; set => _Quantity = value; }
+
+        [JsonProperty(PropertyName = "flag")]
         public int Flag { get => _Flag; set => _Flag = value; }
 
         public FittingItem(int typeid, int quantity, int flag)

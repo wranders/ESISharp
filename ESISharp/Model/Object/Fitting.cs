@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESISharp.Model.Object
 {
@@ -13,9 +11,16 @@ namespace ESISharp.Model.Object
         private int _ShipTypeID;
         private IEnumerable<FittingItem> _Items;
 
+        [JsonProperty(PropertyName = "name")]
         public string Name { get => _Name; set => _Name = value; }
+
+        [JsonProperty(PropertyName = "description")]
         public string Description { get => _Description; set => _Description = value; }
+
+        [JsonProperty(PropertyName = "ship_type_id")]
         public int ShipTypeID { get => _ShipTypeID; set => _ShipTypeID = value; }
+
+        [JsonProperty(PropertyName = "items")]
         public IEnumerable<FittingItem> Items { get => _Items; set => _Items = value; }
 
         public Fitting(string name, string description, int shipttypeid)
