@@ -22,20 +22,24 @@ namespace ESISharp.Test
                                     .Where(kv => !scopes.Any(s => s.Value == kv.Key))
                                     .Select(kv => kv.Key)
                                     .ToList();
-            Assert.IsEmpty(diffnew, "\n\n" + 
-                "---     Missing Scopes:     ---\n" + 
-                "-------------------------------\n" + 
-                String.Join("\n", diffnew) + "\n" +
-                "-------------------------------\n");
             List<string> diffold = scopes
                                     .Where(s => !specscopes.Any(kv => s.Value == kv.Key))
                                     .Select(s => (string)s.Value)
                                     .ToList();
-            Assert.IsEmpty(diffold, "\n\n" +
-                "---     Removed Scopes:     ---\n" +
-                "---------------------------------\n" +
-                String.Join("\n", diffold) + "\n" +
-                "---------------------------------\n");
+            Assert.Multiple(() =>
+            {
+                Assert.IsEmpty(diffnew, "\n\n" +
+                    "---     Missing Scopes:     ---\n" +
+                    "-------------------------------\n" +
+                    String.Join("\n", diffnew) + "\n" +
+                    "-------------------------------\n");
+
+                Assert.IsEmpty(diffold, "\n\n" +
+                    "---     Removed Scopes:     ---\n" +
+                    "---------------------------------\n" +
+                    String.Join("\n", diffold) + "\n" +
+                    "---------------------------------\n");
+            });
         }
 
         [Test]
