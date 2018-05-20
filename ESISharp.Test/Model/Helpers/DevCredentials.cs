@@ -1,5 +1,6 @@
 ﻿using ESISharp.Test.Model.Object;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace ESISharp.Test.Model.Helpers
@@ -8,12 +9,12 @@ namespace ESISharp.Test.Model.Helpers
     {
         public static bool CredentialsExist()
         {
-            return File.Exists("dev_secrets.json");
+            return File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dev_secret.json"));
         }
 
         public static DevSecret GetCredentials()
         {
-            using (StreamReader r = new StreamReader("dev_secret.json"))
+            using (StreamReader r = new StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dev_secret.json")))
             {
                 var j = r.ReadToEnd();
                 return JsonConvert.DeserializeObject<DevSecret>(j);

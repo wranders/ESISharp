@@ -1,5 +1,4 @@
 ﻿using ESISharp.Test.Model.Helpers;
-using System;
 
 namespace ESISharp.Test.Model.Abstract
 {
@@ -18,9 +17,6 @@ namespace ESISharp.Test.Model.Abstract
             Public = new Public();
 
             CredsExist = DevCredentials.CredentialsExist();
-
-            Console.WriteLine("=== Dev Credentials Present: " + CredsExist.ToString() + " ===");
-
             if (CredsExist)
             {
                 var c = DevCredentials.GetCredentials();
