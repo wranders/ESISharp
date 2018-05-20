@@ -10,7 +10,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
     {
         internal FactionWarfare(EsiConnection esiconnection) : base(esiconnection) { }
 
-        [Path("/corporations/{character_id}/fw/stats/", WebMethods.GET)]
+        [Path("/corporations/{corporation_id}/fw/stats/", WebMethods.GET)]
         public EsiRequest GetOverview(int characterid)
         {
             var path = new EsiRequestPath { "corporations", characterid.ToString(), "fw", "stats" };
