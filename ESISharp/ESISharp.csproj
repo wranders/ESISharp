@@ -105,6 +105,7 @@
     <Compile Include="Paths\Authenticated\Characters\Mail.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
     <Compile Include="Paths\Authenticated\Characters\Markets.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Opportunities.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Contacts.cs" />
