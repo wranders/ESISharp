@@ -29,6 +29,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         private readonly Mail _Mail;
         private readonly Markets _Markets;
         private readonly Opportunities _Opportunities;
+        private readonly PlanetaryInteraction _PlanetaryInteraction;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -46,6 +47,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         public Mail Mail => _Mail;
         public Markets Markets => _Markets;
         public Opportunities Opportunities => _Opportunities;
+        public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -65,6 +67,7 @@ namespace ESISharp.Paths.Authenticated.Characters
             _Mail = new Mail(esiconnection);
             _Markets = new Markets(esiconnection);
             _Opportunities = new Opportunities(esiconnection);
+            _PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]
