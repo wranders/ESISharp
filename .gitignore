@@ -1,6 +1,6 @@
 ESISharp.Test/dev_secret.json
 sonar-project-analyze.bat
-.sonarqube/
+.sonarlint/
 opencover.xml
 TestResult.xml
 .vs/
