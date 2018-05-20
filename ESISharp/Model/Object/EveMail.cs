@@ -1,4 +1,5 @@
 ﻿using ESISharp.Enumeration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,16 @@ namespace ESISharp.Model.Object
         private string _Subject;
         private IEnumerable<EveMailRecipient> _Recipients;
 
+        [JsonProperty(PropertyName = "approved_cost")]
         public int ApprovedCost { get => _ApprovedCost; set => _ApprovedCost = value; }
+
+        [JsonProperty(PropertyName = "body")]
         public string Body { get => _Body; set => _Body = value; }
+
+        [JsonProperty(PropertyName = "subject")]
         public string Subject { get => _Subject; set => _Subject = value; }
+
+        [JsonProperty(PropertyName = "recipients")]
         public IEnumerable<EveMailRecipient> Recipients { get => _Recipients; set => _Recipients = value; }
 
         private EveMail(string body, string subject)
