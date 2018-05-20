@@ -24,6 +24,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         private readonly Fleets _Fleets;
         private readonly Industry _Industry;
         private readonly Killmails _Killmails;
+        private readonly Location _Location;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -36,6 +37,7 @@ namespace ESISharp.Paths.Authenticated.Characters
         public Fleets Fleets => _Fleets;
         public Industry Industry => _Industry;
         public Killmails Killmails => _Killmails;
+        public Location Location => _Location;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -50,6 +52,7 @@ namespace ESISharp.Paths.Authenticated.Characters
             _Fleets = new Fleets(esiconnection);
             _Industry = new Industry(esiconnection);
             _Killmails = new Killmails(esiconnection);
+            _Location = new Location(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]

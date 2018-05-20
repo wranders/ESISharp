@@ -102,6 +102,7 @@
     <Compile Include="Paths\Authenticated\Characters\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Industry.cs" />
     <Compile Include="Paths\Authenticated\Characters\Killmails.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Location.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
