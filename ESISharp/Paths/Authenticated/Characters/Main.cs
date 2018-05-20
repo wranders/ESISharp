@@ -20,6 +20,9 @@ namespace ESISharp.Paths.Authenticated.Characters
         private readonly Contacts _Contacts;
         private readonly Contracts _Contracts;
         private readonly FactionWarfare _FactionWarfare;
+        private readonly Fittings _Fittings;
+        private readonly Fleets _Fleets;
+        private readonly Industry _Industry;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
@@ -28,6 +31,9 @@ namespace ESISharp.Paths.Authenticated.Characters
         public Contacts Contacts => _Contacts;
         public Contracts Contracts => _Contracts;
         public FactionWarfare FactionWarfare => _FactionWarfare;
+        public Fittings Fittings => _Fittings;
+        public Fleets Fleets => _Fleets;
+        public Industry Industry => _Industry;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -38,6 +44,9 @@ namespace ESISharp.Paths.Authenticated.Characters
             _Contacts = new Contacts(esiconnection);
             _Contracts = new Contracts(esiconnection);
             _FactionWarfare = new FactionWarfare(esiconnection);
+            _Fittings = new Fittings(esiconnection);
+            _Fleets = new Fleets(esiconnection);
+            _Industry = new Industry(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]

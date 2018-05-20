@@ -18,12 +18,14 @@ namespace ESISharp.Paths.Authenticated.Corporations
         private readonly Contacts _Contacts;
         private readonly Contracts _Contracts;
         private readonly FactionWarfare _FactionWarfare;
+        private readonly Industry _Industry;
 
         public Assets Assets => _Assets;
         public Bookmarks Bookmarks => _Bookmarks;
         public Contacts Contacts => _Contacts;
         public Contracts Contracts => _Contracts;
         public FactionWarfare FactionWarfare => _FactionWarfare;
+        public Industry Industry => _Industry;
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
@@ -32,6 +34,7 @@ namespace ESISharp.Paths.Authenticated.Corporations
             _Contacts = new Contacts(esiconnection);
             _Contracts = new Contracts(esiconnection);
             _FactionWarfare = new FactionWarfare(esiconnection);
+            _Industry = new Industry(esiconnection);
         }
 
         public EsiRequest GetBlueprints(int corporationid)
