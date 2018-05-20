@@ -13,6 +13,7 @@ namespace ESISharp
         private readonly Paths.Authenticated.Corporations.Main _Corporations;
         private readonly Paths.Authenticated.Fleets _Fleets;
         private readonly Paths.Authenticated.Search _Search;
+        private readonly Paths.Authenticated.Universe _Universe;
 
         public Sso.Client SsoClient => _SsoClient;
         public Paths.Authenticated.Alliances.Main Alliances => _Alliances;
@@ -20,6 +21,7 @@ namespace ESISharp
         public Paths.Authenticated.Corporations.Main Corporations => _Corporations;
         public Paths.Authenticated.Fleets Fleets => _Fleets;
         public Paths.Authenticated.Search Search => _Search;
+        public Paths.Authenticated.Universe Universe => _Universe;
 
         private Authenticated() : base()
         {
@@ -28,6 +30,7 @@ namespace ESISharp
             _Corporations = new Paths.Authenticated.Corporations.Main(this);
             _Fleets = new Paths.Authenticated.Fleets(this);
             _Search = new Paths.Authenticated.Search(this);
+            _Universe = new Paths.Authenticated.Universe(this);
         }
 
         public Authenticated(string clientid) : this()
