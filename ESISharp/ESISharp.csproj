@@ -68,7 +68,6 @@
     <Compile Include="Enumeration\Route.cs" />
     <Compile Include="Enumeration\RouteFlag.cs" />
     <Compile Include="Enumeration\SearchCategory.cs" />
-    <Compile Include="Enumeration\StructureVulnerability.cs" />
     <Compile Include="Enumeration\WebMethod.cs" />
     <Compile Include="Model\Abstract\ApiPath.cs" />
     <Compile Include="Model\Abstract\EsiConnection.cs" />
@@ -88,7 +87,6 @@
     <Compile Include="Model\Object\SsoAccessToken.cs" />
     <Compile Include="Model\Object\SsoToken.cs" />
     <Compile Include="Model\Object\SsoTokenVerification.cs" />
-    <Compile Include="Model\Object\StructureVulnerabilityPeriod.cs" />
     <Compile Include="Paths\Authenticated\Alliances\Contacts.cs" />
     <Compile Include="Paths\Authenticated\Alliances\Main.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
@@ -104,6 +102,7 @@
     <Compile Include="Paths\Authenticated\Characters\Killmails.cs" />
     <Compile Include="Paths\Authenticated\Characters\Location.cs" />
     <Compile Include="Paths\Authenticated\Characters\Loyalty.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Mail.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Assets.cs" />
     <Compile Include="Paths\Authenticated\Corporations\Bookmarks.cs" />
