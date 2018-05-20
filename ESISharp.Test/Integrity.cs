@@ -18,14 +18,8 @@ namespace ESISharp.Test
         {
             var scopes = Scope.All;
             var specscopes = SwaggerSpec.SecurityDefinitions.EveSso.Scopes;
-            List<string> diffnew = specscopes
-                                    .Where(kv => !scopes.Any(s => s.Value == kv.Key))
-                                    .Select(kv => kv.Key)
-                                    .ToList();
-            List<string> diffold = scopes
-                                    .Where(s => !specscopes.Any(kv => s.Value == kv.Key))
-                                    .Select(s => (string)s.Value)
-                                    .ToList();
+            List<string> diffnew = specscopes.Where(kv => !scopes.Any(s => s.Value == kv.Key)).Select(kv => kv.Key).ToList();
+            List<string> diffold = scopes.Where(s => !specscopes.Any(kv => s.Value == kv.Key)).Select(s => (string)s.Value).ToList();
             Assert.Multiple(() =>
             {
                 Assert.IsEmpty(diffnew, "\n\n" +
