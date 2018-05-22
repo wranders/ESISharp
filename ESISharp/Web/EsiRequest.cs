@@ -113,6 +113,12 @@ namespace ESISharp.Web
             return this;
         }
 
+        public EsiRequest ETag(string etag)
+        {
+            //TODO: Impliment Entity Tag logic with cache system
+            return this;
+        }
+
         public EsiResponse Execute() => ExecuteAsync().Result;
 
         public async Task<EsiResponse> ExecuteAsync() => await RequestMethod().ConfigureAwait(false);
@@ -137,7 +143,7 @@ namespace ESISharp.Web
             var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async () =>
                 await connection.QueryClient.GetAsync(url).ConfigureAwait(false)).ConfigureAwait(false);
             var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
+            return new EsiResponse(responsebody, response.StatusCode, new EsiContentHeaders(response.Content.Headers), new EsiResponseHeaders(response.Headers));
         }
 
         private async Task<EsiResponse> PostAsync()
@@ -161,7 +167,7 @@ namespace ESISharp.Web
             var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async () =>
                 await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
             var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return new EsiResponse(responsebody, response.StatusCode, new EsiResponseHeaders(response.Headers));
+            return new EsiResponse(responsebody, response.StatusCode, new EsiContentHeaders(response.Content.Headers), new EsiResponseHeaders(response.Headers));
         }
 
         private async Task<EsiResponse> PutAsync()
