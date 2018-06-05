@@ -37,5 +37,12 @@ namespace ESISharp.Paths.Public
             var path = new EsiRequestPath { "dogma", "effects", effectid.ToString() };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
+
+        [Path("/dogma/dynamic/items/{type_id}/{item_id}/", WebMethods.GET)]
+        public EsiRequest GetDynamicItemInformation(int typeid, int itemid)
+        {
+            var path = new EsiRequestPath { "dogma", "dynamic", "items", typeid.ToString(), itemid.ToString() };
+            return new EsiRequest(EsiConnection, path, WebMethods.GET);
+        }
     }
 }
