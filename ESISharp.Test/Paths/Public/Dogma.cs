@@ -43,7 +43,8 @@ namespace ESISharp.Test.Paths.Public
         public void GetDynamicItemInformation(int typeid, int itemid)
         {
             //TODO: Figure out how this endpoint works and what it's for, then write a test.
-            Assert.AreEqual(typeid, itemid);
+            var a = Public.Dogma.GetDynamicItemInformation(typeid, itemid).Execute();
+            Assert.NotNull(a.Code);
         }
     }
 }

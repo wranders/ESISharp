@@ -13,7 +13,6 @@ namespace ESISharp.Model.Abstract
     public abstract class EsiConnection
     {
         internal DataSource DataSource = DataSource.Tranquility;
-        internal ResponseType ResponseType = ResponseType.Json;
         internal Route Route = Route.Latest;
 
         internal IAsyncPolicy<HttpResponseMessage> HttpResiliencePolicy;
@@ -41,8 +40,6 @@ namespace ESISharp.Model.Abstract
         }
 
         public void SetDataSource(DataSource datasource) => DataSource = datasource;
-
-        public void SetResponseType(ResponseType responsetype) => ResponseType = responsetype;
 
         public void SetHttpPolicy(IAsyncPolicy<HttpResponseMessage> policy) => HttpResiliencePolicy = policy;
 
@@ -78,6 +75,7 @@ namespace ESISharp.Model.Abstract
         public void CacheDisable()
         {
             UseCache = false;
+            QueryClient.DefaultRequestHeaders.Remove("If-None-Match");
         }
 
         public void CacheDestroy()
@@ -85,7 +83,5 @@ namespace ESISharp.Model.Abstract
             UseCache = false;
             EsiCache = null;
         }
-
-        public ObjectCache Cache() => EsiCache;
     }
 }
