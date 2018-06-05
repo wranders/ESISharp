@@ -15,6 +15,7 @@ namespace ESISharp.Test.Model.Abstract
         protected PathTest()
         {
             Public = new Public();
+            Public.SetUserAgent(@"ESISharp Test (github.com/wranders/ESISharp)");
 
             CredsExist = DevCredentials.CredentialsExist();
             if (CredsExist)

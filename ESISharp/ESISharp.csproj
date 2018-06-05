@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -171,6 +172,7 @@
     <Compile Include="Sso\Scopes\Scope.Ui.cs" />
     <Compile Include="Sso\Scopes\Scope.Universe.cs" />
     <Compile Include="Sso\Scopes\Scope.Wallet.cs" />
+    <Compile Include="Web\Cache.cs" />
     <Compile Include="Web\EsiRequest.cs" />
     <Compile Include="Web\Utility.cs" />
   </ItemGroup>

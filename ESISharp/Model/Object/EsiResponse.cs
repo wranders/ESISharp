@@ -8,6 +8,7 @@ namespace ESISharp.Model.Object
         public HttpStatusCode Code { get; private set; }
         public EsiContentHeaders ContentHeaders { get; private set; }
         public EsiResponseHeaders ResponseHeaders { get; private set; }
+        public bool IsCached { get; internal set; }
 
         internal EsiResponse(string body, HttpStatusCode code)
         {

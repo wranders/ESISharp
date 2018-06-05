@@ -22,7 +22,7 @@ namespace ESISharp.Model.Object
                 Date = DateTime.Parse(outDate.First());
 
             if (responseheaders.TryGetValues("ETag", out IEnumerable<string> outETag))
-                ETag = outETag.First();
+                ETag = outETag.First().Trim('"');
 
             if (responseheaders.TryGetValues("X-Pages", out IEnumerable<string> outPages))
                 Pages = int.Parse(outPages.First());

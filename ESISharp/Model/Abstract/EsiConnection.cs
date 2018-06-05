@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.Caching;
 
 namespace ESISharp.Model.Abstract
 {
@@ -17,7 +18,9 @@ namespace ESISharp.Model.Abstract
 
         internal IAsyncPolicy<HttpResponseMessage> HttpResiliencePolicy;
         internal HttpClient QueryClient;
-        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp)";
+        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp) [DEFAULT, CHANGE_ME]";
+        internal bool UseCache = false;
+        internal ObjectCache EsiCache;
 
         internal Access Access;
 
@@ -65,5 +68,24 @@ namespace ESISharp.Model.Abstract
             QueryClient.DefaultRequestHeaders.UserAgent.Clear();
             QueryClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
         }
+
+        public void CacheEnable(ObjectCache objectcache)
+        {
+            UseCache = true;
+            EsiCache = objectcache;
+        }
+
+        public void CacheDisable()
+        {
+            UseCache = false;
+        }
+
+        public void CacheDestroy()
+        {
+            UseCache = false;
+            EsiCache = null;
+        }
+
+        public ObjectCache Cache() => EsiCache;
     }
 }
