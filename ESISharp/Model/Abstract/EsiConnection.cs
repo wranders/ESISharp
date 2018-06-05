@@ -18,7 +18,7 @@ namespace ESISharp.Model.Abstract
 
         internal IAsyncPolicy<HttpResponseMessage> HttpResiliencePolicy;
         internal HttpClient QueryClient;
-        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp) [DEFAULT, CHANGE_ME]";
+        internal string UserAgent = @"ESISharp (github.com/wranders/ESISharp) CHANGE_ME";
         internal bool UseCache = false;
         internal ObjectCache EsiCache;
 

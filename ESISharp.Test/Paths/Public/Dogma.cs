@@ -39,11 +39,11 @@ namespace ESISharp.Test.Paths.Public
         }
 
         [Property("Public", "Dogma")]
-        [Test]
+        [TestCase(1, 1)]
         public void GetDynamicItemInformation(int typeid, int itemid)
         {
             //TODO: Figure out how this endpoint works and what it's for, then write a test.
-            Assert.True(true);
+            Assert.AreEqual(typeid, itemid);
         }
     }
 }
