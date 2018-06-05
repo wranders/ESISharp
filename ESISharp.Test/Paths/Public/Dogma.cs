@@ -37,5 +37,13 @@ namespace ESISharp.Test.Paths.Public
             var r = Public.Dogma.GetEffectInformation(effectid).Execute();
             Assert.True(r.Code == HttpStatusCode.OK);
         }
+
+        [Property("Public", "Dogma")]
+        [Test]
+        public void GetDynamicItemInformation(int typeid, int itemid)
+        {
+            //TODO: Figure out how this endpoint works and what it's for, then write a test.
+            Assert.True(true);
+        }
     }
 }
