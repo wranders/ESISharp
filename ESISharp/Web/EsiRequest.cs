@@ -36,7 +36,7 @@ namespace ESISharp.Web
         private readonly Access Access;
         private readonly string DataBody;
 
-        private Cache _Cache;
+        private readonly Cache _Cache;
 
         internal EsiRequest(EsiConnection esiconnection, EsiRequestPath path, WebMethods method)
         {
