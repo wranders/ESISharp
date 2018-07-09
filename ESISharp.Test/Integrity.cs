@@ -29,10 +29,10 @@ namespace ESISharp.Test
                     "-------------------------------\n");
 
                 Assert.IsEmpty(diffold, "\n\n" +
-                    "---     Removed Scopes:     ---\n" +
-                    "-------------------------------\n" +
+                    "---     Removed/Invalid Scopes:     ---\n" +
+                    "---------------------------------------\n" +
                     String.Join("\n", diffold) + "\n" +
-                    "-------------------------------\n");
+                    "---------------------------------------\n");
             });
         }
 
@@ -47,7 +47,7 @@ namespace ESISharp.Test
                         .ToList();
             var paths = assypaths.Select(x => new { x.GetCustomAttribute<PathAttribute>().Path, Method = x.GetCustomAttribute<PathAttribute>().Method.ToString() }).ToList();
             var specpaths = SwaggerSpec.Paths;
-            List<object> diff = new List<object>();
+            List<object> diffnew = new List<object>();
             foreach (KeyValuePair<string, Dictionary<string, SwaggerSpec.SwaggerMethodInfo>> sp in specpaths)
             {
                 var lp = paths.Where(x => x.Path == sp.Key).ToList();
@@ -56,12 +56,26 @@ namespace ESISharp.Test
                 {
                     if (!lp.Any(x => String.Equals(x.Method, spm.Key, StringComparison.OrdinalIgnoreCase)))
                     {
-                        diff.Add(new { sp.Key, Value = spm.Key });
+                        diffnew.Add(new { sp.Key, Value = spm.Key });
                         Console.WriteLine(sp.Key + "  :  " + spm.Key.ToUpper());
                     }
                 }
             }
-            Assert.IsEmpty(diff);
+            List<object> diffold = paths.Where(p => !specpaths.Any(sp => sp.Key == p.Path)).Select(x => new { x.Path, x.Method }).ToList<object>();
+            Assert.Multiple(() =>
+            {
+                Assert.IsEmpty(diffnew, "\n\n" +
+                    "---     Missing Paths:     ---\n" +
+                    "------------------------------\n" +
+                    String.Join("\n", diffnew) + "\n" +
+                    "------------------------------\n");
+
+                Assert.IsEmpty(diffold, "\n\n" +
+                    "---     Removed/Invalid Paths:     ---\n" +
+                    "--------------------------------------\n" +
+                    String.Join("\n", diffold) + "\n" +
+                    "--------------------------------------\n");
+            });
         }
     }
 }
