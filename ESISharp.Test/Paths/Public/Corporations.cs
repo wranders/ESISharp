@@ -24,15 +24,6 @@ namespace ESISharp.Test.Paths.Public
 
         [Property("Public", "Corporations")]
         [TestCase(109299958)]
-        [TestCase(new long[] { 109299958, 216121397 })]
-        public void GetNames(dynamic corporationid)
-        {
-            var r = Public.Corporations.GetNames(corporationid).Execute();
-            Assert.True(r.Code == HttpStatusCode.OK);
-        }
-
-        [Property("Public", "Corporations")]
-        [TestCase(109299958)]
         public void GetIcons(int corporationid)
         {
             var r = Public.Corporations.GetIcons(corporationid).Execute();

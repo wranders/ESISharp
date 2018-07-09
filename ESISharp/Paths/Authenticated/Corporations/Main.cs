@@ -159,30 +159,6 @@ namespace ESISharp.Paths.Authenticated.Corporations
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
         }
 
-        public EsiRequest GetOutposts(int corporationid)
-            => GetOutposts(corporationid, 1);
-
-        [Path("/corporations/{corporation_id}/outposts/", WebMethods.GET)]
-        public EsiRequest GetOutposts(int corporationid, int page)
-        {
-            var path = new EsiRequestPath { "corporations", corporationid.ToString(), "outposts" };
-            var data = new EsiRequestData
-            {
-                Query = new Dictionary<string, dynamic>
-                {
-                    ["page"] = page
-                }
-            };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
-        }
-
-        [Path("/corporations/{corporation_id}/outposts/{outpost_id}/", WebMethods.GET)]
-        public EsiRequest GetOutpostDetails(int corporationid, int outpostid)
-        {
-            var path = new EsiRequestPath { "corporations", corporationid.ToString(), "outposts", outpostid.ToString() };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET);
-        }
-
         [Path("/corporations/{corporation_id}/roles/", WebMethods.GET)]
         public EsiRequest GetRoles(int corporationid)
         {

@@ -32,23 +32,6 @@ namespace ESISharp.Paths.Public
             return new EsiRequest(EsiConnection, path, WebMethods.POST, data);
         }
 
-        public EsiRequest GetNames(long characterid)
-            => GetNames(new long[] { characterid });
-
-        [Path("/characters/names/", WebMethods.GET)]
-        public EsiRequest GetNames(IEnumerable<long> characterids)
-        {
-            var path = new EsiRequestPath { "characters", "names" };
-            var data = new EsiRequestData
-            {
-                Query = new Dictionary<string, dynamic>()
-                {
-                    ["character_ids"] = characterids
-                }
-            };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
-        }
-
         [Path("/characters/{character_id}/portrait/", WebMethods.GET)]
         public EsiRequest GetPortraits(int characterid)
         {

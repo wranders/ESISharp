@@ -25,15 +25,6 @@ namespace ESISharp.Test.Paths.Public
 
         [Property("Public", "Alliances")]
         [TestCase(1354830081)]
-        [TestCase(new long[] { 1354830081, 498125261 })]
-        public void GetNames(dynamic allianceids)
-        {
-            var r = Public.Alliances.GetNames(allianceids).Execute();
-            Assert.True(r.Code == HttpStatusCode.OK);
-        }
-
-        [Property("Public", "Alliances")]
-        [TestCase(1354830081)]
         public void GetIcons(int allianceid)
         {
             var r = Public.Alliances.GetIcons(allianceid).Execute();

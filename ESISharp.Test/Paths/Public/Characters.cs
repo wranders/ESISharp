@@ -25,15 +25,6 @@ namespace ESISharp.Test.Paths.Public
 
         [Property("Public", "Characters")]
         [TestCase(91105772)]
-        [TestCase(new long[] { 91105772, 92168909 })]
-        public void GetNames(dynamic characterids)
-        {
-            var r = Public.Characters.GetNames(characterids).Execute();
-            Assert.True(r.Code == HttpStatusCode.OK);
-        }
-
-        [Property("Public", "Characters")]
-        [TestCase(91105772)]
         public void GetPortraits(int characterid)
         {
             var r = Public.Characters.GetPortraits(characterid).Execute();

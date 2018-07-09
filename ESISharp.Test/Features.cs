@@ -18,13 +18,13 @@ namespace ESISharp.Test
         {
             var m = new MemoryCache("CacheTest");
             Public.CacheEnable(m);
-            var rgo = Public.Characters.GetNames(91105772).Execute();
-            var rgt = Public.Characters.GetNames(91105772).Execute();
+            var rgo = Public.Characters.GetInformation(91105772).Execute();
+            var rgt = Public.Characters.GetInformation(91105772).Execute();
             Public.CacheDisable();
-            var rgth = Public.Characters.GetNames(91105772).Execute();
+            var rgth = Public.Characters.GetInformation(91105772).Execute();
             var ci = m.Count();
             Public.CacheDestroy();
-            var rgf = Public.Characters.GetNames(91105772).Execute();
+            var rgf = Public.Characters.GetInformation(91105772).Execute();
 
             Assert.Multiple(() =>
             {

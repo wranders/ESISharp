@@ -3,7 +3,6 @@ using ESISharp.Model.Abstract;
 using ESISharp.Model.Attribute;
 using ESISharp.Model.Object;
 using ESISharp.Web;
-using System.Collections.Generic;
 
 namespace ESISharp.Paths.Public
 {
@@ -23,23 +22,6 @@ namespace ESISharp.Paths.Public
         {
             var path = new EsiRequestPath { "alliances", allianceid.ToString(), "corporations" };
             return new EsiRequest(EsiConnection, path, WebMethods.GET);
-        }
-
-        public EsiRequest GetNames(long allianceid)
-            => GetNames(new long[] { allianceid });
-
-        [Path("/alliances/names/", WebMethods.GET)]
-        public EsiRequest GetNames(IEnumerable<long> allianceids)
-        {
-            var path = new EsiRequestPath { "alliances", "names" };
-            var data = new EsiRequestData
-            {
-                Query = new Dictionary<string, dynamic>()
-                {
-                    ["alliance_ids"] = allianceids
-                }
-            };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
         }
 
         [Path("/alliances/{alliance_id}/icons/", WebMethods.GET)]
