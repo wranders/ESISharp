@@ -148,8 +148,10 @@
     <Compile Include="Paths\Public\Wars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public.cs" />
+    <Compile Include="Sso\Authentication.cs" />
     <Compile Include="Sso\Client.cs" />
     <Compile Include="Sso\Client.Registry.cs" />
+    <Compile Include="Sso\Main.cs" />
     <Compile Include="Sso\Scopes\Scope.Alliance.cs" />
     <Compile Include="Sso\Scopes\Scope.Assets.cs" />
     <Compile Include="Sso\Scopes\Scope.Bookmarks.cs" />

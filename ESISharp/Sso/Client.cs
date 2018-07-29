@@ -14,12 +14,10 @@ namespace ESISharp.Sso
 {
     public class Client
     {
-        internal string _ClientID;
-        internal string _SecretKey;
-        internal string _RefreshToken;
+        private readonly Main _Main;
 
-        internal string _AuthorizerFileDirectory;
-        internal string _AuthorizerFileName;
+        internal string _AuthRelayFileDirectory;
+        internal string _AuthRelayFileName;
         internal string _CallbackPath;
         internal string _CallbackProtocol;
         internal List<Scopes.Scope> _ScopesAuthorized;
@@ -28,9 +26,9 @@ namespace ESISharp.Sso
         internal SsoToken _Token;
         internal OAuthGrant _GrantType;
 
-        public string AuthorizerFileDirectory => _AuthorizerFileDirectory;
-        public string AuthorizerFileName => _AuthorizerFileName;
-        public string AuthorizerFilePath => Path.Combine(_AuthorizerFileDirectory, _AuthorizerFileName + ".exe");
+        public string AuthorizerFileDirectory => _AuthRelayFileDirectory;
+        public string AuthorizerFileName => _AuthRelayFileName;
+        public string AuthorizerFilePath => Path.Combine(_AuthRelayFileDirectory, _AuthRelayFileName + ".exe");
         public string CallbackPath => _CallbackPath;
         public string CallbackProtocol => _CallbackProtocol;
         public string CallbackUrl => string.Concat(_CallbackProtocol, @"://", _CallbackPath);
@@ -50,10 +48,10 @@ namespace ESISharp.Sso
 
         private Client()
         {
-            _AuthorizerFileDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _AuthorizerFileName = "SsoAuthorizer";
+            _AuthRelayFileDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            _AuthRelayFileName = "ESISharp.AuthRelay";
             _CallbackPath = "callback/";
-            _CallbackProtocol = "eveauth-all";
+            _CallbackProtocol = "eveauth-app";
             _ScopesAuthorized = new List<Scopes.Scope>() { Scopes.Scope.None };
             _ScopesRequested = new List<Scopes.Scope>() { Scopes.Scope.None };
             _ScopesReauthorize = false;
@@ -70,32 +68,16 @@ namespace ESISharp.Sso
                 .Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public Client(string clientid) : this()
+        internal Client(Main main) : this()
         {
-            _ClientID = clientid;
+            _Main = main;
         }
 
-        public Client(string clientid, string secretkey) : this()
-        {
-            _ClientID = clientid;
-            _SecretKey = secretkey;
-        }
+        public void SetRefreshToken(string token) => _Main._RefreshToken = token;
 
-        public void SetClientId(string clientid) => _ClientID = clientid;
+        public void SetAuthorizerFileDirectory(string path) => _AuthRelayFileDirectory = path;
 
-        public void SetSecretKey(string secretkey) => _SecretKey = secretkey;
-
-        public void SetAppCredentials(string clientid, string secretkey)
-        {
-            _ClientID = clientid;
-            _SecretKey = secretkey;
-        }
-
-        public void SetRefreshToken(string token) => _RefreshToken = token;
-
-        public void SetAuthorizerFileDirectory(string path) => _AuthorizerFileDirectory = path;
-
-        public void SetAuthorizerFileName(string name) => _AuthorizerFileName = name;
+        public void SetAuthorizerFileName(string name) => _AuthRelayFileName = name;
 
         public void SetCallbackPath(string path) => _CallbackPath = path;
 

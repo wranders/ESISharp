@@ -46,7 +46,8 @@ namespace ESISharp.Web
             Url = new UriBuilder
             {
                 Scheme = "https",
-                Host = "esi.tech.ccp.is"
+                //Host = "esi.tech.ccp.is"
+                Host = "esi.evetech.net"
             };
             Query = HttpUtility.ParseQueryString(Url.Query);
             Query["datasource"] = esiconnection.DataSource.Value;

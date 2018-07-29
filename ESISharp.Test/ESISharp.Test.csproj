@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Features.cs" />
     <Compile Include="Integrity.cs" />
+    <Compile Include="Model\Abstract\CIIgnoreAttribute.cs" />
     <Compile Include="Model\Abstract\IntegrityTest.cs" />
     <Compile Include="Model\Abstract\PathTest.cs" />
     <Compile Include="Model\Helpers\DevCredentials.cs" />

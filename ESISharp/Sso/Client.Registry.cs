@@ -20,7 +20,7 @@ namespace ESISharp.Sso
             protoRoot.SetValue("URL Protocol", "");
 
             var defaultIcon = protoRoot.CreateSubKey("DefaultIcon");
-            defaultIcon.SetValue("", _Client._AuthorizerFileName + ".exe,1");
+            defaultIcon.SetValue("", _Client.AuthorizerFileName + ".exe,1");
 
             var sh = protoRoot.CreateSubKey("Shell");
             var open = sh.CreateSubKey("Open");

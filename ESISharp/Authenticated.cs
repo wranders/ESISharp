@@ -7,46 +7,36 @@ namespace ESISharp
     {
         internal new Access Access = Access.Authenticated;
 
-        private readonly Sso.Client _SsoClient;
-        private readonly Paths.Authenticated.Alliances.Main _Alliances;
-        private readonly Paths.Authenticated.Characters.Main _Characters;
-        private readonly Paths.Authenticated.Corporations.Main _Corporations;
-        private readonly Paths.Authenticated.Fleets _Fleets;
-        private readonly Paths.Authenticated.Markets _Markets;
-        private readonly Paths.Authenticated.Search _Search;
-        private readonly Paths.Authenticated.Universe _Universe;
-        private readonly Paths.Authenticated.UserInterface _UserInterface;
-
-        public Sso.Client SsoClient => _SsoClient;
-        public Paths.Authenticated.Alliances.Main Alliances => _Alliances;
-        public Paths.Authenticated.Characters.Main Characters => _Characters;
-        public Paths.Authenticated.Corporations.Main Corporations => _Corporations;
-        public Paths.Authenticated.Fleets Fleets => _Fleets;
-        public Paths.Authenticated.Markets Markets => _Markets;
-        public Paths.Authenticated.Search Search => _Search;
-        public Paths.Authenticated.Universe Universe => _Universe;
-        public Paths.Authenticated.UserInterface UserInterface => _UserInterface;
+        public Sso.Main Sso { get; }
+        public Paths.Authenticated.Alliances.Main Alliances { get; }
+        public Paths.Authenticated.Characters.Main Characters { get; }
+        public Paths.Authenticated.Corporations.Main Corporations { get; }
+        public Paths.Authenticated.Fleets Fleets { get; }
+        public Paths.Authenticated.Markets Markets { get; }
+        public Paths.Authenticated.Search Search { get; }
+        public Paths.Authenticated.Universe Universe { get; }
+        public Paths.Authenticated.UserInterface UserInterface { get; }
 
         private Authenticated() : base()
         {
-            _Alliances = new Paths.Authenticated.Alliances.Main(this);
-            _Characters = new Paths.Authenticated.Characters.Main(this);
-            _Corporations = new Paths.Authenticated.Corporations.Main(this);
-            _Fleets = new Paths.Authenticated.Fleets(this);
-            _Markets = new Paths.Authenticated.Markets(this);
-            _Search = new Paths.Authenticated.Search(this);
-            _Universe = new Paths.Authenticated.Universe(this);
-            _UserInterface = new Paths.Authenticated.UserInterface(this);
+            Alliances = new Paths.Authenticated.Alliances.Main(this);
+            Characters = new Paths.Authenticated.Characters.Main(this);
+            Corporations = new Paths.Authenticated.Corporations.Main(this);
+            Fleets = new Paths.Authenticated.Fleets(this);
+            Markets = new Paths.Authenticated.Markets(this);
+            Search = new Paths.Authenticated.Search(this);
+            Universe = new Paths.Authenticated.Universe(this);
+            UserInterface = new Paths.Authenticated.UserInterface(this);
         }
 
         public Authenticated(string clientid) : this()
         {
-            _SsoClient = new Sso.Client(clientid);
+            Sso = new Sso.Main(clientid);
         }
 
         public Authenticated(string clientid, string secretkey) : this()
         {
-            _SsoClient = new Sso.Client(clientid, secretkey);
+            Sso = new Sso.Main(clientid, secretkey);
         }
     }
 }
