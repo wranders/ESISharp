@@ -9,13 +9,11 @@ namespace ESISharp.Paths.Authenticated.Alliances
 {
     public class Main : Public.Alliances
     {
-        private readonly Contacts _Contacts;
-
-        public Contacts Contacts => _Contacts;
+        public Contacts Contacts { get; }
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
-            _Contacts = new Contacts(esiconnection);
+            Contacts = new Contacts(esiconnection);
         }
     }
 }

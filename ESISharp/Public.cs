@@ -1,6 +1,5 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Model.Abstract;
-using ESISharp.Paths.Public;
 
 namespace ESISharp
 {
@@ -8,67 +7,47 @@ namespace ESISharp
     {
         internal new Access Access = Access.Public;
 
-        private readonly Alliances _Alliances;
-        private readonly Characters _Characters;
-        private readonly Corporations _Corporations;
-        private readonly Dogma _Dogma;
-        private readonly FactionWarfare _FactionWarfare;
-        private readonly Incursions _Incursions;
-        private readonly Industry _Industry;
-        private readonly Insurance _Insurance;
-        private readonly Killmails _Killmails;
-        private readonly Loyalty _Loyalty;
-        private readonly Markets _Markets;
-        private readonly Opportunities _Opportunities;
-        private readonly PlanetaryInteraction _PlanetaryInteraction;
-        private readonly Routes _Routes;
-        private readonly Search _Search;
-        private readonly Sovereignty _Sovereignty;
-        private readonly Status _Status;
-        private readonly Universe _Universe;
-        private readonly Wars _Wars;
-
-        public Alliances Alliances => _Alliances;
-        public Characters Characters => _Characters;
-        public Corporations Corporations => _Corporations;
-        public Dogma Dogma => _Dogma;
-        public FactionWarfare FactionWarfare => _FactionWarfare;
-        public Incursions Incursions => _Incursions;
-        public Industry Industry => _Industry;
-        public Insurance Insurance => _Insurance;
-        public Killmails Killmails => _Killmails;
-        public Loyalty Loyalty => _Loyalty;
-        public Markets Markets => _Markets;
-        public Opportunities Opportunities => _Opportunities;
-        public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
-        public Routes Routes => _Routes;
-        public Search Search => _Search;
-        public Sovereignty Sovereignty => _Sovereignty;
-        public Status Status => _Status;
-        public Universe Universe => _Universe;
-        public Wars Wars => _Wars;
+        public Paths.Public.Alliances Alliances { get; }
+        public Paths.Public.Characters Characters { get; }
+        public Paths.Public.Corporations Corporations { get; }
+        public Paths.Public.Dogma Dogma { get; }
+        public Paths.Public.FactionWarfare FactionWarfare { get; }
+        public Paths.Public.Incursions Incursions { get; }
+        public Paths.Public.Industry Industry { get; }
+        public Paths.Public.Insurance Insurance { get; }
+        public Paths.Public.Killmails Killmails { get; }
+        public Paths.Public.Loyalty Loyalty { get; }
+        public Paths.Public.Markets Markets { get; }
+        public Paths.Public.Opportunities Opportunities { get; }
+        public Paths.Public.PlanetaryInteraction PlanetaryInteraction { get; }
+        public Paths.Public.Routes Routes { get; }
+        public Paths.Public.Search Search { get; }
+        public Paths.Public.Sovereignty Sovereignty { get; }
+        public Paths.Public.Status Status { get; }
+        public Paths.Public.Universe Universe { get; }
+        public Paths.Public.Wars Wars { get; }
 
         public Public() : base()
         {
-            _Alliances = new Alliances(this);
-            _Characters = new Characters(this);
-            _Corporations = new Corporations(this);
-            _Dogma = new Dogma(this);
-            _FactionWarfare = new FactionWarfare(this);
-            _Incursions = new Incursions(this);
-            _Industry = new Industry(this);
-            _Insurance = new Insurance(this);
-            _Killmails = new Killmails(this);
-            _Loyalty = new Loyalty(this);
-            _Markets = new Markets(this);
-            _Opportunities = new Opportunities(this);
-            _PlanetaryInteraction = new PlanetaryInteraction(this);
-            _Routes = new Routes(this);
-            _Search = new Search(this);
-            _Sovereignty = new Sovereignty(this);
-            _Status = new Status(this);
-            _Universe = new Universe(this);
-            _Wars = new Wars(this);
+            Alliances = new Paths.Public.Alliances(this);
+            Characters = new Paths.Public.Characters(this);
+            Corporations = new Paths.Public.Corporations(this);
+            Dogma = new Paths.Public.Dogma(this);
+            FactionWarfare = new Paths.Public.FactionWarfare(this);
+            Incursions = new Paths.Public.Incursions(this);
+            Industry = new Paths.Public.Industry(this);
+            Insurance = new Paths.Public.Insurance(this);
+            Killmails = new Paths.Public.Killmails(this);
+            Loyalty = new Paths.Public.Loyalty(this);
+            Markets = new Paths.Public.Markets(this);
+            Opportunities = new Paths.Public.Opportunities(this);
+            PlanetaryInteraction = new Paths.Public.PlanetaryInteraction(this);
+            Routes = new Paths.Public.Routes(this);
+            Search = new Paths.Public.Search(this);
+            Sovereignty = new Paths.Public.Sovereignty(this);
+            Status = new Paths.Public.Status(this);
+            Universe = new Paths.Public.Universe(this);
+            Wars = new Paths.Public.Wars(this);
         }
     }
 }

@@ -7,9 +7,9 @@ namespace ESISharp.Model.Object
 {
     public class EsiContentHeaders
     {
-        public string ContentType { get; private set; }
-        public DateTime Expires { get; private set; }
-        public DateTime LastModified { get; private set; }
+        public string ContentType { get; }
+        public DateTime Expires { get; }
+        public DateTime LastModified { get; }
 
         internal EsiContentHeaders(HttpContentHeaders contentheaders)
         {

@@ -10,22 +10,17 @@ namespace ESISharp.Model.Object
 {
     public class EveMail
     {
-        private int _ApprovedCost;
-        private string _Body;
-        private string _Subject;
-        private IEnumerable<EveMailRecipient> _Recipients;
-
         [JsonProperty(PropertyName = "approved_cost")]
-        public int ApprovedCost { get => _ApprovedCost; set => _ApprovedCost = value; }
+        public int ApprovedCost { get; set; }
 
         [JsonProperty(PropertyName = "body")]
-        public string Body { get => _Body; set => _Body = value; }
+        public string Body { get; set; }
 
         [JsonProperty(PropertyName = "subject")]
-        public string Subject { get => _Subject; set => _Subject = value; }
+        public string Subject { get; set; }
 
         [JsonProperty(PropertyName = "recipients")]
-        public IEnumerable<EveMailRecipient> Recipients { get => _Recipients; set => _Recipients = value; }
+        public IEnumerable<EveMailRecipient> Recipients { get; set; }
 
         private EveMail(string body, string subject)
         {

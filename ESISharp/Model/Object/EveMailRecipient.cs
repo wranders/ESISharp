@@ -5,14 +5,11 @@ namespace ESISharp.Model.Object
 {
     public class EveMailRecipient
     {
-        private int _RecipientID;
-        private string _RecipientType;
-
         [JsonProperty(PropertyName = "recipient_id")]
-        public int RecipientID { get => _RecipientID; set => _RecipientID = value; }
+        public int RecipientID { get; set; }
 
         [JsonProperty(PropertyName = "recipient_type")]
-        public string RecipientType { get => _RecipientType; set => _RecipientType = value; }
+        public string RecipientType { get; set; }
 
         public EveMailRecipient(int recipientid, string recipienttype)
         {

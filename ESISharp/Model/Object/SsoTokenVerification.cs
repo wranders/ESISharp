@@ -9,18 +9,11 @@ namespace ESISharp.Model.Object
 {
     public class SsoTokenVerification
     {
-        private int _CharacterID;
-        private string _CharacterName;
-        private string _TokenType;
-        private string _CharacterOwnerHash;
-        private DateTime _Expires;
-        private IEnumerable<ESISharp.Sso.Scopes.Scope> _Scopes;
-
-        public int CharacterID { get => _CharacterID; set => _CharacterID = value; }
-        public string CharacterName { get => _CharacterName; set => _CharacterName = value; }
-        public string TokenType { get => _TokenType; set => _TokenType = value; }
-        public string CharacterOwnerHash { get => _CharacterOwnerHash; set => _CharacterOwnerHash = value; }
-        public DateTime Expires { get => _Expires; set => _Expires = value; }
-        public IEnumerable<ESISharp.Sso.Scopes.Scope> Scopes { get => _Scopes; set => _Scopes = value; }
+        public int CharacterID { get; set; }
+        public string CharacterName { get; set; }
+        public string TokenType { get; set; }
+        public string CharacterOwnerHash { get; set; }
+        public DateTime Expires { get; set; }
+        public IEnumerable<Sso.Scopes.Scope> Scopes { get; set; }
     }
 }

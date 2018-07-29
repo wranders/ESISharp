@@ -13,40 +13,29 @@ namespace ESISharp.Paths.Authenticated.Corporations
 {
     public class Main : Public.Corporations
     {
-        private readonly Assets _Assets;
-        private readonly Bookmarks _Bookmarks;
-        private readonly Contacts _Contacts;
-        private readonly Contracts _Contracts;
-        private readonly FactionWarfare _FactionWarfare;
-        private readonly Industry _Industry;
-        private readonly Killmails _Killmails;
-        private readonly Markets _Markets;
-        private readonly PlanetaryInteraction _PlanetaryInteraction;
-        private readonly Wallet _Wallet;
-
-        public Assets Assets => _Assets;
-        public Bookmarks Bookmarks => _Bookmarks;
-        public Contacts Contacts => _Contacts;
-        public Contracts Contracts => _Contracts;
-        public FactionWarfare FactionWarfare => _FactionWarfare;
-        public Industry Industry => _Industry;
-        public Killmails Killmails => _Killmails;
-        public Markets Markets => _Markets;
-        public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
-        public Wallet Wallet => _Wallet;
+        public Assets Assets { get; }
+        public Bookmarks Bookmarks { get; }
+        public Contacts Contacts { get; }
+        public Contracts Contracts { get; }
+        public FactionWarfare FactionWarfare { get; }
+        public Industry Industry { get; }
+        public Killmails Killmails { get; }
+        public Markets Markets { get; }
+        public PlanetaryInteraction PlanetaryInteraction { get; }
+        public Wallet Wallet { get; }
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
-            _Assets = new Assets(esiconnection);
-            _Bookmarks = new Bookmarks(esiconnection);
-            _Contacts = new Contacts(esiconnection);
-            _Contracts = new Contracts(esiconnection);
-            _FactionWarfare = new FactionWarfare(esiconnection);
-            _Industry = new Industry(esiconnection);
-            _Killmails = new Killmails(esiconnection);
-            _Markets = new Markets(esiconnection);
-            _PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
-            _Wallet = new Wallet(esiconnection);
+            Assets = new Assets(esiconnection);
+            Bookmarks = new Bookmarks(esiconnection);
+            Contacts = new Contacts(esiconnection);
+            Contracts = new Contracts(esiconnection);
+            FactionWarfare = new FactionWarfare(esiconnection);
+            Industry = new Industry(esiconnection);
+            Killmails = new Killmails(esiconnection);
+            Markets = new Markets(esiconnection);
+            PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
+            Wallet = new Wallet(esiconnection);
         }
 
         public EsiRequest GetBlueprints(int corporationid)

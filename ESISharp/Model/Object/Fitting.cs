@@ -6,22 +6,17 @@ namespace ESISharp.Model.Object
 {
     public class Fitting
     {
-        private string _Name;
-        private string _Description;
-        private int _ShipTypeID;
-        private IEnumerable<FittingItem> _Items;
-
         [JsonProperty(PropertyName = "name")]
-        public string Name { get => _Name; set => _Name = value; }
+        public string Name { get; set; }
 
         [JsonProperty(PropertyName = "description")]
-        public string Description { get => _Description; set => _Description = value; }
+        public string Description { get; set; }
 
         [JsonProperty(PropertyName = "ship_type_id")]
-        public int ShipTypeID { get => _ShipTypeID; set => _ShipTypeID = value; }
+        public int ShipTypeID { get; set; }
 
         [JsonProperty(PropertyName = "items")]
-        public IEnumerable<FittingItem> Items { get => _Items; set => _Items = value; }
+        public IEnumerable<FittingItem> Items { get; set; }
 
         public Fitting(string name, string description, int shipttypeid)
         {

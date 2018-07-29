@@ -13,67 +13,47 @@ namespace ESISharp.Paths.Authenticated.Characters
 {
     public class Main : Public.Characters
     {
-        private readonly Assets _Assets;
-        private readonly Bookmarks _Bookmarks;
-        private readonly Calendar _Calendar;
-        private readonly Clones _Clones;
-        private readonly Contacts _Contacts;
-        private readonly Contracts _Contracts;
-        private readonly FactionWarfare _FactionWarfare;
-        private readonly Fittings _Fittings;
-        private readonly Fleets _Fleets;
-        private readonly Industry _Industry;
-        private readonly Killmails _Killmails;
-        private readonly Location _Location;
-        private readonly Loyalty _Loyalty;
-        private readonly Mail _Mail;
-        private readonly Markets _Markets;
-        private readonly Opportunities _Opportunities;
-        private readonly PlanetaryInteraction _PlanetaryInteraction;
-        private readonly Skills _Skills;
-        private readonly Wallet _Wallet;
-
-        public Assets Assets => _Assets;
-        public Bookmarks Bookmarks => _Bookmarks;
-        public Calendar Calendar => _Calendar;
-        public Clones Clones => _Clones;
-        public Contacts Contacts => _Contacts;
-        public Contracts Contracts => _Contracts;
-        public FactionWarfare FactionWarfare => _FactionWarfare;
-        public Fittings Fittings => _Fittings;
-        public Fleets Fleets => _Fleets;
-        public Industry Industry => _Industry;
-        public Killmails Killmails => _Killmails;
-        public Location Location => _Location;
-        public Loyalty Loyalty => _Loyalty;
-        public Mail Mail => _Mail;
-        public Markets Markets => _Markets;
-        public Opportunities Opportunities => _Opportunities;
-        public PlanetaryInteraction PlanetaryInteraction => _PlanetaryInteraction;
-        public Skills Skills => _Skills;
-        public Wallet Wallet => _Wallet;
+        public Assets Assets { get; }
+        public Bookmarks Bookmarks { get; }
+        public Calendar Calendar { get; }
+        public Clones Clones { get; }
+        public Contacts Contacts { get; }
+        public Contracts Contracts { get; }
+        public FactionWarfare FactionWarfare { get; }
+        public Fittings Fittings { get; }
+        public Fleets Fleets { get; }
+        public Industry Industry { get; }
+        public Killmails Killmails { get; }
+        public Location Location { get; }
+        public Loyalty Loyalty { get; }
+        public Mail Mail { get; }
+        public Markets Markets { get; }
+        public Opportunities Opportunities { get; }
+        public PlanetaryInteraction PlanetaryInteraction { get; }
+        public Skills Skills { get; }
+        public Wallet Wallet { get; }
 
         internal Main(EsiConnection esiconnection) : base(esiconnection)
         {
-            _Assets = new Assets(esiconnection);
-            _Bookmarks = new Bookmarks(esiconnection);
-            _Calendar = new Calendar(esiconnection);
-            _Clones = new Clones(esiconnection);
-            _Contacts = new Contacts(esiconnection);
-            _Contracts = new Contracts(esiconnection);
-            _FactionWarfare = new FactionWarfare(esiconnection);
-            _Fittings = new Fittings(esiconnection);
-            _Fleets = new Fleets(esiconnection);
-            _Industry = new Industry(esiconnection);
-            _Killmails = new Killmails(esiconnection);
-            _Location = new Location(esiconnection);
-            _Loyalty = new Loyalty(esiconnection);
-            _Mail = new Mail(esiconnection);
-            _Markets = new Markets(esiconnection);
-            _Opportunities = new Opportunities(esiconnection);
-            _PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
-            _Skills = new Skills(esiconnection);
-            _Wallet = new Wallet(esiconnection);
+            Assets = new Assets(esiconnection);
+            Bookmarks = new Bookmarks(esiconnection);
+            Calendar = new Calendar(esiconnection);
+            Clones = new Clones(esiconnection);
+            Contacts = new Contacts(esiconnection);
+            Contracts = new Contracts(esiconnection);
+            FactionWarfare = new FactionWarfare(esiconnection);
+            Fittings = new Fittings(esiconnection);
+            Fleets = new Fleets(esiconnection);
+            Industry = new Industry(esiconnection);
+            Killmails = new Killmails(esiconnection);
+            Location = new Location(esiconnection);
+            Loyalty = new Loyalty(esiconnection);
+            Mail = new Mail(esiconnection);
+            Markets = new Markets(esiconnection);
+            Opportunities = new Opportunities(esiconnection);
+            PlanetaryInteraction = new PlanetaryInteraction(esiconnection);
+            Skills = new Skills(esiconnection);
+            Wallet = new Wallet(esiconnection);
         }
 
         [Path("/characters/{character_id}/agents_research/", WebMethods.GET)]

@@ -7,11 +7,11 @@ namespace ESISharp.Model.Object
 {
     public class EsiResponseHeaders
     {
-        public string CacheControl { get; private set; }
-        public DateTime Date { get; private set; }
-        public string ETag { get; private set; }
-        public int Pages { get; private set; }
-        public string Warning { get; private set; }
+        public string CacheControl { get; }
+        public DateTime Date { get; }
+        public string ETag { get; }
+        public int Pages { get; }
+        public string Warning { get; }
 
         internal EsiResponseHeaders(HttpResponseHeaders responseheaders)
         {

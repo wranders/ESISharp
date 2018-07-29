@@ -5,18 +5,14 @@ namespace ESISharp.Model.Object
 {
     public class FittingItem
     {
-        private int _TypeID;
-        private int _Quantity;
-        private int _Flag;
-
         [JsonProperty(PropertyName = "type_id")]
-        public int TypeID { get => _TypeID; set => _TypeID = value; }
+        public int TypeID { get; set; }
 
         [JsonProperty(PropertyName = "quantity")]
-        public int Quantity { get => _Quantity; set => _Quantity = value; }
+        public int Quantity { get; set; }
 
         [JsonProperty(PropertyName = "flag")]
-        public int Flag { get => _Flag; set => _Flag = value; }
+        public int Flag { get; set; }
 
         public FittingItem(int typeid, int quantity, int flag)
         {
