@@ -129,6 +129,7 @@
     <Compile Include="Paths\Authenticated\UserInterface.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
+    <Compile Include="Paths\Public\Contracts.cs" />
     <Compile Include="Paths\Public\Corporations.cs" />
     <Compile Include="Paths\Public\Dogma.cs" />
     <Compile Include="Paths\Public\FactionWarfare.cs" />

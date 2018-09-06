@@ -9,6 +9,7 @@ namespace ESISharp
 
         public Paths.Public.Alliances Alliances { get; }
         public Paths.Public.Characters Characters { get; }
+        public Paths.Public.Contracts Contracts { get; }
         public Paths.Public.Corporations Corporations { get; }
         public Paths.Public.Dogma Dogma { get; }
         public Paths.Public.FactionWarfare FactionWarfare { get; }
@@ -31,6 +32,7 @@ namespace ESISharp
         {
             Alliances = new Paths.Public.Alliances(this);
             Characters = new Paths.Public.Characters(this);
+            Contracts = new Paths.Public.Contracts(this);
             Corporations = new Paths.Public.Corporations(this);
             Dogma = new Paths.Public.Dogma(this);
             FactionWarfare = new Paths.Public.FactionWarfare(this);
