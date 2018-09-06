@@ -1,13 +1,9 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESISharp.Test
 {
@@ -41,24 +37,44 @@ namespace ESISharp.Test
         [Test]
         public void AlternateRoute()
         {
-            var ro = Public.Alliances.GetAll().Route(Route.Development).Execute();
-            var rt = Public.Alliances.GetAll().Route("dev").Execute();
+            var d = Public.Alliances.GetAll().Route(Route.Development).Execute();
+            var dt = Public.Alliances.GetAll().Route("dev").Execute();
             Assert.Multiple(() =>
             {
-                Assert.True(ro.Code == HttpStatusCode.OK);
-                Assert.True(rt.Code == HttpStatusCode.OK);
+                Assert.True(d.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Route Enum:    ---\n" +
+                    "-------------------------\n" +
+                    d.Code.ToString() + "\n" +
+                    d.Body.ToString() + "\n" +
+                    "-------------------------\n");
+                Assert.True(dt.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Route String:    ---\n" +
+                    "---------------------------\n" +
+                    dt.Code.ToString() + "\n" +
+                    dt.Body.ToString() + "\n" +
+                    "---------------------------\n");
             });
         }
 
         [Test]
         public void AlternateDataSource()
         {
-            var ro = Public.Alliances.GetAll().DataSource(DataSource.Tranquility).Execute();
-            var rt = Public.Alliances.GetAll().DataSource(DataSource.Singularity).Execute();
+            var t = Public.Alliances.GetAll().DataSource(DataSource.Tranquility).Execute();
+            var s = Public.Alliances.GetAll().DataSource(DataSource.Singularity).Execute();
             Assert.Multiple(() =>
             {
-                Assert.True(ro.Code == HttpStatusCode.OK);
-                Assert.True(rt.Code == HttpStatusCode.OK);
+                Assert.True(t.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Tranquility:    ---\n" +
+                    "--------------------------\n" +
+                    t.Code.ToString() + "\n" +
+                    t.Body.ToString() + "\n" +
+                    "--------------------------\n");
+                Assert.True(s.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Singularity:    ---\n" +
+                    "--------------------------\n" +
+                    s.Code.ToString() + "\n" +
+                    s.Body.ToString() + "\n" +
+                    "--------------------------\n");
             });
         }
 
@@ -66,18 +82,48 @@ namespace ESISharp.Test
         public void DefaultRoute()
         {
             Public.SetRoute(Route.Development);
-            var a = Public.Alliances.GetAll().Execute();
+            var d = Public.Alliances.GetAll().Execute();
             Public.SetRoute(Route.Latest);
-            Assert.True(HttpStatusCode.OK == a.Code);
+            var l = Public.Alliances.GetAll().Execute();
+            Assert.Multiple(() =>
+            {
+                Assert.True(d.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Development:    ---\n" +
+                    "--------------------------\n" +
+                    d.Code.ToString() + "\n" +
+                    d.Body.ToString() + "\n" +
+                    "--------------------------\n");
+                Assert.True(l.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Latest:    ---\n" +
+                    "---------------------\n" +
+                    l.Code.ToString() + "\n" +
+                    l.Body.ToString() + "\n" +
+                    "---------------------\n");
+            });
         }
 
         [Test]
         public void DefaultDataSource()
         {
             Public.SetDataSource(DataSource.Singularity);
-            var a = Public.Alliances.GetAll().Execute();
+            var s = Public.Alliances.GetAll().Execute();
             Public.SetDataSource(DataSource.Tranquility);
-            Assert.True(HttpStatusCode.OK == a.Code);
+            var t = Public.Alliances.GetAll().Execute();
+            Assert.Multiple(() =>
+            {
+                Assert.True(s.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Singularity:    ---\n" +
+                    "--------------------------\n" +
+                    s.Code.ToString() + "\n" +
+                    s.Body.ToString() + "\n" +
+                    "--------------------------\n");
+                Assert.True(t.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Tranquility:    ---\n" +
+                    "--------------------------\n" +
+                    t.Code.ToString() + "\n" +
+                    t.Body.ToString() + "\n" +
+                    "--------------------------\n");
+            });
         }
     }
 }
