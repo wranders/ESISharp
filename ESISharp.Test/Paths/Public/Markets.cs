@@ -9,28 +9,28 @@ namespace ESISharp.Test.Paths.Public
     {
 #pragma warning disable S1144
 
-        static object[] GetRegionOrders_TestOne =
+        static readonly object[] GetRegionOrders_TestOne =
         {
             new object[] { 10000068, MarketOrderType.All },
             new object[] { 10000068, MarketOrderType.Buy },
             new object[] { 10000068, MarketOrderType.Sell }
         };
 
-        static object[] GetRegionOrders_TestTwo =
+        static readonly object[] GetRegionOrders_TestTwo =
         {
             new object[] { 10000068, 1230, MarketOrderType.All },
             new object[] { 10000068, 1230, MarketOrderType.Buy },
             new object[] { 10000068, 1230, MarketOrderType.Sell }
         };
 
-        static object[] GetRegionOrders_TestThree =
+        static readonly object[] GetRegionOrders_TestThree =
         {
             new object[] { 10000068, 1230, MarketOrderType.All, 1 },
             new object[] { 10000068, 1230, MarketOrderType.Buy, 2 },
             new object[] { 10000068, 1230, MarketOrderType.Sell, 3 }
         };
 
-        static object[] GetGroupInfo_TestOne =
+        static readonly object[] GetGroupInfo_TestOne =
         {
             new object[] { 516, Language.English },
             new object[] { 516, Language.German },

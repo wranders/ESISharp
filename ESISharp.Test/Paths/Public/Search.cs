@@ -10,7 +10,7 @@ namespace ESISharp.Test.Paths.Public
     {
 #pragma warning disable S1144
 
-        static object[] SubString_One =
+        static readonly object[] SubString_One =
         {
             new object[] { "Hasier Parcie", SearchCategory.Agent },
             new object[] { "Goonswarm Federation", SearchCategory.Alliance },
@@ -24,7 +24,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { "Jita IV - Moon 4 - Caldari Navy Assembly Plant", SearchCategory.Station }
         };
 
-        static object[] SubString_Two =
+        static readonly object[] SubString_Two =
         {
             new object[] { "Hasier Parcie", new SearchCategory[] { SearchCategory.Agent, SearchCategory.InventoryType } },
             new object[] { "Goonswarm Federation", new SearchCategory[] { SearchCategory.Alliance, SearchCategory.InventoryType } },
@@ -38,7 +38,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { "Jita IV - Moon 4 - Caldari Navy Assembly Plant", new SearchCategory[] { SearchCategory.Station, SearchCategory.InventoryType } }
         };
 
-        static object[] SubString_Three =
+        static readonly object[] SubString_Three =
         {
             new object[] { "Hasier Parcie", SearchCategory.Agent, true },
             new object[] { "Goonswarm Federation", SearchCategory.Alliance, true },
@@ -52,7 +52,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { "Jita IV - Moon 4 - Caldari Navy Assembly Plant", SearchCategory.Station, true }
         };
 
-        static object[] SubString_Four =
+        static readonly object[] SubString_Four =
         {
             new object[] { "Hasier Parcie", new SearchCategory[] { SearchCategory.Agent, SearchCategory.InventoryType }, true },
             new object[] { "Goonswarm Federation", new SearchCategory[] { SearchCategory.Alliance, SearchCategory.InventoryType }, true },
@@ -66,7 +66,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { "Jita IV - Moon 4 - Caldari Navy Assembly Plant", new SearchCategory[] { SearchCategory.Station, SearchCategory.InventoryType }, true }
         };
 
-        static object[] SubString_Five =
+        static readonly object[] SubString_Five =
         {
             new object[] { "Hasier Parcie", SearchCategory.Agent, true, Language.Chinese },
             new object[] { "Goonswarm Federation", SearchCategory.Alliance, true, Language.French },
@@ -80,7 +80,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { "Jita IV - Moon 4 - Caldari Navy Assembly Plant", SearchCategory.Station, true, Language.Russian }
         };
 
-        static object[] SubString_Six =
+        static readonly object[] SubString_Six =
         {
             new object[] { "Hasier Parcie", new SearchCategory[] { SearchCategory.Agent, SearchCategory.InventoryType }, true, Language.Chinese },
             new object[] { "Goonswarm Federation", new SearchCategory[] { SearchCategory.Alliance, SearchCategory.InventoryType }, true, Language.French },

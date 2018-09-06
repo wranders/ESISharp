@@ -11,21 +11,21 @@ namespace ESISharp.Test.Paths.Public
     {
 #pragma warning disable S1144
 
-        static object[] GetRoute_One =
+        static readonly object[] GetRoute_One =
         {
             new object[] { 30000142, 30002187, RouteFlag.Shortest },
             new object[] { 30000142, 30002187, RouteFlag.Secure },
             new object[] { 30000142, 30002187, RouteFlag.Insecure }
         };
 
-        static object[] GetRoute_Two =
+        static readonly object[] GetRoute_Two =
         {
             new object[] { 30000142, 30002187, new RouteFilter { Avoid = new List<int> { 30003504 } } },
             new object[] { 30000142, 30002187, new RouteFilter { Connections = new List<RouteConnection> { new RouteConnection( 30000142, 30000140 ), new RouteConnection( 30000140, 30000144 ) } } },
             new object[] { 30000142, 30002187, new RouteFilter { Avoid = new List<int> { 30003504 }, Connections = new List<RouteConnection> { new RouteConnection(30000142, 30000140), new RouteConnection(30000140, 30000144) } } }
         };
 
-        static object[] GetRoute_Three =
+        static readonly object[] GetRoute_Three =
         {
             new object[] { 30000142, 30002187, RouteFlag.Shortest, new RouteFilter { Avoid = new List<int> { 30003504 } } },
             new object[] { 30000142, 30002187, RouteFlag.Shortest, new RouteFilter { Connections = new List<RouteConnection> { new RouteConnection( 30000142, 30000140 ), new RouteConnection( 30000140, 30000144 ) } } },

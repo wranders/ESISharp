@@ -10,7 +10,7 @@ namespace ESISharp.Test.Paths.Public
     {
 #pragma warning disable S1144
 
-        static object[] GetSystemInfo_One =
+        static readonly object[] GetSystemInfo_One =
         {
             new object[] { 30000142, Language.Chinese },
             new object[] { 30000142, Language.French },
@@ -19,7 +19,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 30000142, Language.Russian }
         };
 
-        static object[] GetTypeInfo_One =
+        static readonly object[] GetTypeInfo_One =
         {
             new object[] { 34, Language.Chinese },
             new object[] { 34, Language.French },
@@ -28,7 +28,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 34, Language.Russian }
         };
 
-        static object[] GetItemGroupInfo_One =
+        static readonly object[] GetItemGroupInfo_One =
         {
             new object[] { 10, Language.Chinese },
             new object[] { 10, Language.French },
@@ -37,7 +37,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 10, Language.Russian }
         };
 
-        static object[] GetCharacterRaces_One =
+        static readonly object[] GetCharacterRaces_One =
         {
             new object[] { Language.Chinese },
             new object[] { Language.French },
@@ -46,7 +46,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { Language.Russian }
         };
 
-        static object[] GetRegionInfo_One =
+        static readonly object[] GetRegionInfo_One =
         {
             new object[] { 10000002, Language.Chinese },
             new object[] { 10000003, Language.French },
@@ -55,7 +55,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 10000006, Language.Russian }
         };
 
-        static object[] GetConstellationInfo_One =
+        static readonly object[] GetConstellationInfo_One =
         {
             new object[] { 20000002, Language.Chinese },
             new object[] { 20000003, Language.French },
@@ -64,7 +64,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 20000006, Language.Russian }
         };
 
-        static object[] GetAncestries_One =
+        static readonly object[] GetAncestries_One =
         {
             new object[] { Language.Chinese },
             new object[] { Language.French },
@@ -73,7 +73,7 @@ namespace ESISharp.Test.Paths.Public
             new object[] { Language.Russian }
         };
 
-        static object[] GetIds_One =
+        static readonly object[] GetIds_One =
         {
             new object[] { new List<string> { "Jita" } },
             new object[] { new List<string> { "Condor", "Jufvitte" } }

@@ -9,7 +9,7 @@ namespace ESISharp.Test.Paths.Public
     {
 #pragma warning disable S1144
 
-        static object[] Languages =
+        static readonly object[] Languages =
         {
             new object[] { Language.English },
             new object[] { Language.German },
