@@ -35,5 +35,11 @@ namespace ESISharp.Sso
             _ClientId = clientid;
             _SecretKey = secretkey;
         }
+
+        public bool ForceAuthentication()
+        {
+            var v = Authentication.VerifyCredentials();
+            return Client.Token != null && v;
+        }
     }
 }

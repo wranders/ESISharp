@@ -15,7 +15,8 @@ namespace ESISharp.Sso
 
         internal void CreateKey(string proto, string command)
         {
-            var protoRoot = Microsoft.Win32.Registry.ClassesRoot.CreateSubKey(proto);
+            var protoRoot = Microsoft.Win32.Registry.CurrentUser
+                .OpenSubKey("Software").OpenSubKey("Classes", true).CreateSubKey(proto);
             protoRoot.SetValue("", "URL:Eve Online SSO Protocol");
             protoRoot.SetValue("URL Protocol", "");
 
@@ -32,7 +33,8 @@ namespace ESISharp.Sso
         {
             var proto = _Client._CallbackProtocol;
             var comm = @"""" + @_Client.AuthorizerFilePath + @""" ""%1""";
-            var protoRoot = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(proto);
+            var protoRoot = Microsoft.Win32.Registry.CurrentUser
+                .OpenSubKey("Software").OpenSubKey("Classes", true).CreateSubKey(proto);
 
             if (protoRoot == null)
                 CreateKey(proto, comm);

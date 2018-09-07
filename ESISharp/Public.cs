@@ -5,8 +5,6 @@ namespace ESISharp
 {
     public class Public : EsiConnection
     {
-        internal new Access Access = Access.Public;
-
         public Paths.Public.Alliances Alliances { get; }
         public Paths.Public.Characters Characters { get; }
         public Paths.Public.Contracts Contracts { get; }

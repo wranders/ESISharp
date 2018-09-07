@@ -59,6 +59,7 @@
     <Compile Include="Model\Helpers\DevCredentials.cs" />
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
     <Compile Include="Paths\Public\Contracts.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Paths\Public\Universe.cs" />
     <Compile Include="Paths\Public\Wars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sso.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dev_secret.json" />
@@ -87,6 +89,10 @@
     <None Include="﻿dev_secret.json.template" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ESISharp.AuthRelay\ESISharp.AuthRelay.csproj">
+      <Project>{67acfbbe-ce2c-4b4c-bd60-aa392da7cba5}</Project>
+      <Name>ESISharp.AuthRelay</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ESISharp\ESISharp.csproj">
       <Project>{83c7add4-f276-4a38-a3a5-3e6640b2c28c}</Project>
       <Name>ESISharp</Name>
@@ -103,4 +109,5 @@
     <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
+  <ProjectExtensions />
 </Project>

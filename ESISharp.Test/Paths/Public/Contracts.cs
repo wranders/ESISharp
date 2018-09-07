@@ -33,7 +33,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContracts(int regionid)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Property("Public", "Contracts")]
@@ -41,7 +41,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContracts(int regionid, int page)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Property("Public", "Contracts")]
@@ -49,7 +49,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContractBids(int contractid)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Property("Public", "Contracts")]
@@ -57,7 +57,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContractBids(int contractid, int page)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Property("Public", "Contracts")]
@@ -65,7 +65,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContractItems(int contractid)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Property("Public", "Contracts")]
@@ -73,7 +73,7 @@ namespace ESISharp.Test.Paths.Public
         public void GetContractItems(int contractid, int page)
         {
             // TODO: Figure out how to test contracts.
-            Assert.True(true);
+            Assert.True(false);
         }
     }
 }

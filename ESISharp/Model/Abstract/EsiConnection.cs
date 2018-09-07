@@ -21,8 +21,6 @@ namespace ESISharp.Model.Abstract
         internal bool UseCache = false;
         internal ObjectCache EsiCache;
 
-        internal Access Access;
-
         protected EsiConnection()
         {
             var HttpClientHandler = new HttpClientHandler()

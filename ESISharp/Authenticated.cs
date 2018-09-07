@@ -5,8 +5,6 @@ namespace ESISharp
 {
     public class Authenticated : EsiConnection
     {
-        internal new Access Access = Access.Authenticated;
-
         public Sso.Main Sso { get; }
         public Paths.Authenticated.Alliances.Main Alliances { get; }
         public Paths.Authenticated.Characters.Main Characters { get; }

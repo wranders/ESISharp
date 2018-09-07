@@ -38,6 +38,8 @@ namespace ESISharp.Web
 
         private readonly Cache _Cache;
 
+        private readonly string _CredentialErrorMessage = JsonConvert.SerializeObject(new { error = "ESISharp - There was an error with the supplied credentials." });
+
         internal EsiRequest(EsiConnection esiconnection, EsiRequestPath path, WebMethods method)
         {
             EsiConnection = esiconnection;
@@ -50,7 +52,10 @@ namespace ESISharp.Web
             };
             Query = HttpUtility.ParseQueryString(Url.Query);
             Query["datasource"] = esiconnection.DataSource.Value;
-            Access = esiconnection.Access;
+            if (esiconnection is Public)
+                Access = Access.Public;
+            else
+                Access = Access.Authenticated;
             switch (method)
             {
                 case WebMethods.GET:
@@ -120,6 +125,15 @@ namespace ESISharp.Web
 
         public async Task<EsiResponse> ExecuteAsync() => await RequestMethod().ConfigureAwait(false);
 
+        private string VerifyCredentialsAndGetAccessToken(EsiConnection connection)
+        {
+            Authenticated authed = (Authenticated)connection;
+            var a = authed.Sso.Authentication.VerifyCredentials();
+            if (!a)
+                return string.Empty;
+            return authed.Sso.Client.Token != null ? authed.Sso.Client.Token.AccessToken : string.Empty;
+        }
+
         private async Task<EsiResponse> GetAsync()
         {
             var url = RequestUrl;
@@ -131,10 +145,10 @@ namespace ESISharp.Web
             else
             {
                 connection = (Authenticated)EsiConnection;
-
-                // TODO: Impliment Token verification here.
-
-                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "PLACEHOLDER"); // TODO: Method to retrieve active access token
+                string token = VerifyCredentialsAndGetAccessToken(connection);
+                if (token == string.Empty)
+                    return new EsiResponse(_CredentialErrorMessage, System.Net.HttpStatusCode.BadRequest);
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             }
 
             if (connection.UseCache)
@@ -178,10 +192,10 @@ namespace ESISharp.Web
             else
             {
                 connection = (Authenticated)EsiConnection;
-
-                // TODO: Impliment Token verification here.
-
-                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "PLACEHOLDER"); // TODO: Method to retrieve active access token
+                string token = VerifyCredentialsAndGetAccessToken(connection);
+                if (token == string.Empty)
+                    return new EsiResponse(_CredentialErrorMessage, System.Net.HttpStatusCode.BadRequest);
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             }
 
             var postdata = new StringContent(DataBody, Encoding.UTF8, "application/json");

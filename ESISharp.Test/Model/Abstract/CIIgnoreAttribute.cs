@@ -15,9 +15,12 @@ namespace ESISharp.Test.Model.Abstract
         public CIIgnoreAttribute() { }
 
         public void BeforeTest(ITest test)
-        {
-            //TODO: Add $evn:CI check
-            Assert.Ignore("Test requires user input, so is ignored in CI environments.");
+        { 
+            var a = Environment.GetEnvironmentVariable("CI");
+            if (a != null && a == "True")
+            {
+                Assert.Ignore("Test requires user input, so is ignored in CI environments.");
+            }
         }
 
         public void AfterTest(ITest test)

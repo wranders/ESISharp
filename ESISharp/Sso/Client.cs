@@ -42,9 +42,7 @@ namespace ESISharp.Sso
         internal HttpClient _HttpClient;
         internal readonly object _SsoLock;
 
-        private readonly Registry _Registry;
-
-        public Registry Registry => _Registry;
+        public Registry Registry { get; }
 
         private Client()
         {
@@ -60,7 +58,7 @@ namespace ESISharp.Sso
             _HttpClient = new HttpClient();
             _SsoLock = new object();
 
-            _Registry = new Registry(this);
+            Registry = new Registry(this);
 
             _HttpClient
                 .DefaultRequestHeaders

@@ -37,7 +37,7 @@ namespace ESISharp.Paths.Authenticated.Characters
             return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
         }
 
-        public EsiRequest GetLocations(int characterid, int item)
+        public EsiRequest GetLocations(int characterid, long item)
             => GetLocations(characterid, new long[] { item });
 
         [Path("/characters/{character_id}/assets/locations/", WebMethods.POST)]

@@ -10,6 +10,12 @@ namespace ESISharp.Model.Object
         public EsiResponseHeaders ResponseHeaders { get; }
         public bool IsCached { get; internal set; }
 
+        internal EsiResponse(string body, HttpStatusCode code)
+        {
+            Body = body;
+            Code = code;
+        }
+
         internal EsiResponse(string body, HttpStatusCode code, EsiContentHeaders contentheaders, EsiResponseHeaders responseheaders)
         {
             Body = body;
