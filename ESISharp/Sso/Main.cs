@@ -38,7 +38,7 @@ namespace ESISharp.Sso
 
         public bool ForceAuthentication()
         {
-            var v = Authentication.VerifyCredentials();
+            var v = Authentication.VerifyCredentials(true);
             return Client.Token != null && v;
         }
     }

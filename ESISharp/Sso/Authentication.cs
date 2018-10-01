@@ -222,8 +222,18 @@ namespace ESISharp.Sso
 
         internal bool VerifyCredentials()
         {
+            return VerifyCredentials(false);
+        }
+
+        internal bool VerifyCredentials(bool force)
+        {
             lock (_Main.Client._SsoLock)
             {
+                if (force)
+                {
+                    _Main.Client._ScopesReauthorize = force;
+                }
+
                 if (_Main.Client.Token == null)
                     return Authorize().Result;
                 else
