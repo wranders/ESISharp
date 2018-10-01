@@ -11,9 +11,9 @@ namespace ESISharp.Paths.Public
     {
         internal Contracts(EsiConnection esiconnection) : base(esiconnection) { }
 
-        public EsiRequest GetContracts(int contractid)
+        public EsiRequest GetContracts(int regionid)
         {
-            return GetContracts(contractid, 1);
+            return GetContracts(regionid, 1);
         }
 
         [Path("/contracts/public/{region_id}/", WebMethods.GET)]
