@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace ESISharp.Model.Object
@@ -8,7 +7,12 @@ namespace ESISharp.Model.Object
     {
         public override string ToString()
         {
-            return new StringBuilder().Append("/").Append(String.Join("/", ToArray())).Append("/").ToString();
+            var str = new StringBuilder().Append("/").Append(string.Join("/", ToArray()));
+
+            if (!this[Count - 1].Contains("."))
+                return str.Append("/").ToString();
+            else
+                return str.ToString().TrimEnd('.');
         }
     }
 }
