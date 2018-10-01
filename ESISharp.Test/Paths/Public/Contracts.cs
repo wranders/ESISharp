@@ -1,5 +1,7 @@
 ﻿using ESISharp.Test.Model.Abstract;
+using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Net;
 
 namespace ESISharp.Test.Paths.Public
@@ -14,66 +16,67 @@ namespace ESISharp.Test.Paths.Public
             new object[] { 10000002, 3 }
         };
 
-        static readonly object[] GetContractBids_TestOne =
-        {
-            new object[] { 000000000, 2 },  // Temporary zeros for contract ID until I can figure out how I can test contracts.
-            new object[] { 000000000, 3 }   // Temporary zeros for contract ID until I can figure out how I can test contracts.
-        };
-
-        static readonly object[] GetContractItems_TestOne =
-        {
-            new object[] { 000000000, 2 },  // Temporary zeros for contract ID until I can figure out how I can test contracts.
-            new object[] { 000000000, 3 }   // Temporary zeros for contract ID until I can figure out how I can test contracts.
-        };
-
 #pragma warning restore
 
         [Property("Public", "Contracts")]
         [TestCase(10000002)]
         public void GetContracts(int regionid)
         {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
+            var r = Public.Contracts.GetContracts(regionid).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
         }
 
         [Property("Public", "Contracts")]
         [Test, TestCaseSource("GetContracts_TestOne")]
         public void GetContracts(int regionid, int page)
         {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
+            var r = Public.Contracts.GetContracts(regionid, page).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
+        }
+
+        private int GetContractIDbyType(int regionid, string type)
+        {
+            var page = 1;
+            var output = -1;
+            while(output < 0)
+            {
+                var r = Public.Contracts.GetContracts(regionid, page).Execute();
+                if (r.Code == HttpStatusCode.OK)
+                {
+                    List<Dictionary<string, dynamic>> body = JsonConvert.DeserializeObject<List<Dictionary<string, dynamic>>>(r.Body);
+                    foreach (Dictionary<string, dynamic> contract in body)
+                    {
+                        if (contract["type"] == type)
+                        {
+                            output = (int)contract["contract_id"];
+                        }
+                    }
+                    page++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return output;
         }
 
         [Property("Public", "Contracts")]
-        [TestCase(000000000)]
-        public void GetContractBids(int contractid)
+        [Test]
+        public void GetContractBids()
         {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
+            var cid = GetContractIDbyType(10000002, "auction");
+            var r = Public.Contracts.GetContractBids(cid).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
         }
 
         [Property("Public", "Contracts")]
-        [Test, TestCaseSource("GetContractBids_TestOne")] 
-        public void GetContractBids(int contractid, int page)
+        [Test]
+        public void GetContractItems()
         {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
-        }
-
-        [Property("Public", "Contracts")]
-        [TestCase(000000000)]
-        public void GetContractItems(int contractid)
-        {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
-        }
-
-        [Property("Public", "Contracts")]
-        [Test, TestCaseSource("GetContractItems_TestOne")]
-        public void GetContractItems(int contractid, int page)
-        {
-            // TODO: Figure out how to test contracts.
-            Assert.True(false);
+            var cid = GetContractIDbyType(10000002, "item_exchange");
+            var r = Public.Contracts.GetContractItems(cid).Execute();
+            Assert.True(r.Code == HttpStatusCode.OK);
         }
     }
 }
