@@ -1,9 +1,11 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Net;
 using System.Runtime.Caching;
+using System.Threading;
 
 namespace ESISharp.Test
 {
@@ -21,16 +23,26 @@ namespace ESISharp.Test
             var ci = m.Count();
             Public.CacheDestroy();
             var rgf = Public.Characters.GetInformation(91105772).Execute();
+            Public.CacheEnable(m);
+            var rsi = Public.Status.Get().Execute();
+            var rss = Public.Status.Get().Execute();
+            var t = Math.Abs(Convert.ToInt32(DateTime.Now.Subtract(rss.ContentHeaders.Expires).Milliseconds));
+            Thread.Sleep(t);
+            var rsf = Public.Status.Get().Execute();
+            Public.CacheDestroy();
 
             Assert.Multiple(() =>
             {
-                Assert.True(HttpStatusCode.OK == rgo.Code);
+                Assert.True(rgo.Code == HttpStatusCode.OK);
                 Assert.True(rgt.IsCached);
-                Assert.True(HttpStatusCode.OK == rgth.Code);
-                Assert.True(!rgth.IsCached);
+                Assert.True(rgth.Code == HttpStatusCode.OK);
+                Assert.False(rgth.IsCached);
                 Assert.True(ci > 0);
                 Assert.IsNull(Public.EsiCache);
-                Assert.True(HttpStatusCode.OK == rgf.Code);
+                Assert.True(rgf.Code == HttpStatusCode.OK);
+                Assert.True(rsi.Code == HttpStatusCode.OK);
+                Assert.True(rss.IsCached);
+                Assert.True(rsf.Code == HttpStatusCode.NotModified || rsf.Code == HttpStatusCode.OK);
             });
         }
 
