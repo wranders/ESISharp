@@ -1,7 +1,9 @@
 ﻿using ESISharp.Enumeration;
 using ESISharp.Test.Model.Helpers;
+using Newtonsoft.Json;
 using Polly;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
@@ -45,6 +47,19 @@ namespace ESISharp.Test.Model.Abstract
                 Authenticated.Sso.Client.SetGrantType(OAuthGrant.Authorization);
                 Authenticated.Sso.Client.Registry.EnsureKey();
             }
+        }
+
+        public string GetToken()
+        {
+            Authenticated.Sso.Authentication.VerifyCredentials();
+            return Authenticated.Sso.Client.Token.AccessToken;
+        }
+
+        public int GetCharacterId()
+        {
+            var r = Public.Meta.Verify(GetToken()).Execute();
+            var b = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(r.Body);
+            return (int)b["CharacterID"];
         }
     }
 }

@@ -17,6 +17,7 @@ namespace ESISharp
         public Paths.Public.Killmails Killmails { get; }
         public Paths.Public.Loyalty Loyalty { get; }
         public Paths.Public.Markets Markets { get; }
+        public Paths.Public.Meta Meta { get; }
         public Paths.Public.Opportunities Opportunities { get; }
         public Paths.Public.PlanetaryInteraction PlanetaryInteraction { get; }
         public Paths.Public.Routes Routes { get; }
@@ -40,6 +41,7 @@ namespace ESISharp
             Killmails = new Paths.Public.Killmails(this);
             Loyalty = new Paths.Public.Loyalty(this);
             Markets = new Paths.Public.Markets(this);
+            Meta = new Paths.Public.Meta(this);
             Opportunities = new Paths.Public.Opportunities(this);
             PlanetaryInteraction = new Paths.Public.PlanetaryInteraction(this);
             Routes = new Paths.Public.Routes(this);

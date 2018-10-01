@@ -62,7 +62,9 @@
     <Compile Include="Model\Helpers\DevCredentials.cs" />
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
+    <Compile Include="Paths\Authenticated\Meta.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
     <Compile Include="Paths\Public\Contracts.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Paths\Public\Killmails.cs" />
     <Compile Include="Paths\Public\Loyalty.cs" />
     <Compile Include="Paths\Public\Markets.cs" />
+    <Compile Include="Paths\Public\Meta.cs" />
     <Compile Include="Paths\Public\Opportunities.cs" />
     <Compile Include="Paths\Public\PlanetaryInteraction.cs" />
     <Compile Include="Paths\Public\Routes.cs" />
