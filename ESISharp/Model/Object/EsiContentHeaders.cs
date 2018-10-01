@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -17,10 +18,22 @@ namespace ESISharp.Model.Object
                 ContentType = outContentType.First();
 
             if (contentheaders.TryGetValues("Expires", out IEnumerable<string> outExpires))
-                Expires = DateTime.Parse(outExpires.First());
+                Expires = CheckTimeZone(outExpires.First());
 
             if (contentheaders.TryGetValues("Last-Modified", out IEnumerable<string> outLastModified))
-                LastModified = DateTime.Parse(outLastModified.First());
+                LastModified = CheckTimeZone(outLastModified.First());
+        }
+
+        private DateTime CheckTimeZone(string time)
+        {
+            if (time.Substring(time.Length - 3) == "UTC")
+                return DateTime.ParseExact(time,
+                    "ddd, dd MMM yyyy HH:mm:ss UTC",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal
+                );
+            else
+                return DateTime.Parse(time);
         }
     }
 }
