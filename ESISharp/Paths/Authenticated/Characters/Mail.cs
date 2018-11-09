@@ -97,17 +97,17 @@ namespace ESISharp.Paths.Authenticated.Characters
         }
 
         public EsiRequest CreateLabel(int characterid, string name)
-            => CreateLabel(characterid, name, "#ffffff");
+            => CreateLabel(characterid, name, MailLabelColor.White);
 
         [Path("/characters/{character_id}/mail/labels/", WebMethods.POST)]
-        public EsiRequest CreateLabel(int characterid, string name, string color)
+        public EsiRequest CreateLabel(int characterid, string name, MailLabelColor color)
         {
             var path = new EsiRequestPath { "characters", characterid.ToString(), "mail", "labels" };
             var data = new EsiRequestData
             {
                 BodyKvp = new Dictionary<string, dynamic>
                 {
-                    ["color"] = color,
+                    ["color"] = color.Value,
                     ["name"] = name
                 }
             };
