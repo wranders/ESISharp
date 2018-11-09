@@ -9,7 +9,7 @@ namespace ESISharp.Test.Paths.Authenticated.Characters
         [Untestable]
         [Property("AuthedCharacters", "Fleets")]
         [Test]
-        public void GetAll()
+        public void GetInfo()
         {
             var a = Authenticated.Characters.Fleets.GetInfo(GetCharacterId()).Execute();
             Assert.True(a.Code == HttpStatusCode.OK);
