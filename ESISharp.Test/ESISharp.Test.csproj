@@ -78,6 +78,7 @@
     <Compile Include="Paths\Authenticated\Characters\Loyalty.cs" />
     <Compile Include="Paths\Authenticated\Characters\Mail.cs" />
     <Compile Include="Paths\Authenticated\Characters\Main.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Markets.cs" />
     <Compile Include="Paths\Authenticated\Meta.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />

@@ -3,7 +3,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net;
 
-
 namespace ESISharp.Test.Paths.Authenticated.Characters
 {
     public class Main : PathTest
