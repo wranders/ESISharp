@@ -59,12 +59,14 @@
     <Compile Include="Model\Abstract\CIIgnoreAttribute.cs" />
     <Compile Include="Model\Abstract\IntegrityTest.cs" />
     <Compile Include="Model\Abstract\PathTest.cs" />
+    <Compile Include="Model\Abstract\UntestableAttribute.cs" />
     <Compile Include="Model\Helpers\DevCredentials.cs" />
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
     <Compile Include="Paths\Authenticated\Characters\Calendar.cs" />
     <Compile Include="Paths\Authenticated\Characters\Clones.cs" />
     <Compile Include="Paths\Authenticated\Characters\Contacts.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Contracts.cs" />
     <Compile Include="Paths\Authenticated\Characters\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
