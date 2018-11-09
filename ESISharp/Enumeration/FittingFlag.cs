@@ -62,6 +62,7 @@
         public static readonly FittingFlag GasHold = new FittingFlag(135);
         public static readonly FittingFlag MineralHold = new FittingFlag(136);
         public static readonly FittingFlag AmmoHold = new FittingFlag(143);
+        public static readonly FittingFlag Loaded = new FittingFlag(5);
 
         public static readonly FittingFlag StructureService0 = new FittingFlag(164);
         public static readonly FittingFlag StructureService1 = new FittingFlag(165);
