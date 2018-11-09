@@ -63,6 +63,7 @@
     <Compile Include="Model\Object\DevSecret.cs" />
     <Compile Include="Model\Object\SwaggerSpec.cs" />
     <Compile Include="Paths\Authenticated\Characters\Calendar.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Clones.cs" />
     <Compile Include="Paths\Authenticated\Characters\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
