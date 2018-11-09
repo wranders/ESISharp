@@ -81,6 +81,7 @@
     <Compile Include="Paths\Authenticated\Characters\Markets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Opportunities.cs" />
     <Compile Include="Paths\Authenticated\Characters\PlanetaryInteraction.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Skills.cs" />
     <Compile Include="Paths\Authenticated\Meta.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
