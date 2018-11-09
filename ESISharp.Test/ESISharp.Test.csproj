@@ -67,6 +67,7 @@
     <Compile Include="Paths\Authenticated\Characters\Clones.cs" />
     <Compile Include="Paths\Authenticated\Characters\Contacts.cs" />
     <Compile Include="Paths\Authenticated\Characters\Contracts.cs" />
+    <Compile Include="Paths\Authenticated\Characters\FactionWarfare.cs" />
     <Compile Include="Paths\Authenticated\Characters\Fleets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
