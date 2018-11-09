@@ -3,11 +3,6 @@ using ESISharp.Model.Abstract;
 using ESISharp.Model.Attribute;
 using ESISharp.Model.Object;
 using ESISharp.Web;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESISharp.Paths.Authenticated.Characters
 {
