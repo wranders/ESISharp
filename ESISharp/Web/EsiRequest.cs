@@ -235,7 +235,27 @@ namespace ESISharp.Web
 
         private async Task<EsiResponse> DeleteAsync()
         {
-            throw new NotImplementedException();
+            var url = RequestUrl;
+            EsiConnection connection;
+            if (Access == Access.Public)
+            {
+                connection = (Public)EsiConnection;
+            }
+            else
+            {
+                connection = (Authenticated)EsiConnection;
+                string token = VerifyCredentialsAndGetAccessToken(connection);
+                if (token == string.Empty)
+                    return new EsiResponse(_CredentialErrorMessage, System.Net.HttpStatusCode.BadRequest);
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
+            // TODO: Impliment Cache
+
+            var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
+                => await connection.QueryClient.DeleteAsync(url).ConfigureAwait(false)).ConfigureAwait(false);
+            var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return new EsiResponse(responsebody, response.StatusCode, new EsiContentHeaders(response.Content.Headers), new EsiResponseHeaders(response.Headers));
         }
     }
 }

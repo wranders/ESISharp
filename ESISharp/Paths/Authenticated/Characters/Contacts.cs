@@ -12,10 +12,10 @@ namespace ESISharp.Paths.Authenticated.Characters
         internal Contacts(EsiConnection esiconnection) : base(esiconnection) { }
 
         public EsiRequest DeleteContact(int characterid, int contactid)
-            => DeleteContacts(characterid, new int[] { contactid });
+            => DeleteContact(characterid, new int[] { contactid });
 
         [Path("/characters/{character_id}/contacts/", WebMethods.DELETE)]
-        public EsiRequest DeleteContacts(int characterid, IEnumerable<int> contactids)
+        public EsiRequest DeleteContact(int characterid, IEnumerable<int> contactids)
         {
             var path = new EsiRequestPath { "characters", characterid.ToString(), "contacts" };
             var data = new EsiRequestData
