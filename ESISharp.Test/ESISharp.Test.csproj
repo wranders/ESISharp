@@ -73,6 +73,7 @@
     <Compile Include="Paths\Authenticated\Characters\Bookmarks.cs" />
     <Compile Include="Paths\Authenticated\Characters\Assets.cs" />
     <Compile Include="Paths\Authenticated\Characters\Industry.cs" />
+    <Compile Include="Paths\Authenticated\Characters\Killmails.cs" />
     <Compile Include="Paths\Authenticated\Meta.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />
