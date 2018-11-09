@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using System.Net;
 
-
 namespace ESISharp.Test.Paths.Authenticated.Characters
 {
     public class Killmails : PathTest
