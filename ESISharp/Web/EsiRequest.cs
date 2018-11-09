@@ -198,6 +198,8 @@ namespace ESISharp.Web
                 connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             }
 
+            // TODO: Impliment Cache
+
             var postdata = new StringContent(DataBody, Encoding.UTF8, "application/json");
             var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
                 => await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
@@ -207,7 +209,28 @@ namespace ESISharp.Web
 
         private async Task<EsiResponse> PutAsync()
         {
-            throw new NotImplementedException();
+            var url = RequestUrl;
+            EsiConnection connection;
+            if (Access == Access.Public)
+            {
+                connection = (Public)EsiConnection;
+            }
+            else
+            {
+                connection = (Authenticated)EsiConnection;
+                string token = VerifyCredentialsAndGetAccessToken(connection);
+                if (token == string.Empty)
+                    return new EsiResponse(_CredentialErrorMessage, System.Net.HttpStatusCode.BadRequest);
+                connection.QueryClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
+            // TODO: Impliment Cache
+
+            var putdata = new StringContent(DataBody, Encoding.UTF8, "application/json");
+            var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
+                => await connection.QueryClient.PutAsync(url, putdata).ConfigureAwait(false)).ConfigureAwait(false);
+            var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return new EsiResponse(responsebody, response.StatusCode, new EsiContentHeaders(response.Content.Headers), new EsiResponseHeaders(response.Headers));
         }
 
         private async Task<EsiResponse> DeleteAsync()
