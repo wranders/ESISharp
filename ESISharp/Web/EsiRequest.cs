@@ -11,7 +11,7 @@ namespace ESISharp.Web
     /// <summary>Fluent ESI Request Object</summary>
     public class EsiRequest
     {
-        private readonly string BaseUrl = "https://esi.tech.ccp.is";
+        private readonly string BaseUrl = "https://esi.evetech.net";
         private readonly string Path;
         private Route PathRoute;
         private DataSource PathDataSource;
