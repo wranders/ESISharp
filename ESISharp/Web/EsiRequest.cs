@@ -11,7 +11,7 @@ namespace ESISharp.Web
     /// <summary>Fluent ESI Request Object</summary>
     public class EsiRequest
     {
-        private readonly string BaseUrl = "https://esi.tech.ccp.is";
+        private readonly string BaseUrl = "https://esi.evetech.net";
         private readonly string Path;
         private Route PathRoute;
         private DataSource PathDataSource;
@@ -104,7 +104,8 @@ namespace ESISharp.Web
                 var ArgString = Utils.ConstructUrlArgs(RequestData[0]);
                 Url = string.Concat(Url, ArgString);
             }
-            var Response = await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
+            
+            var Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await EasyObject.QueryClient.GetAsync(Url).ConfigureAwait(false)).ConfigureAwait(false);
             var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
         }
@@ -114,7 +115,7 @@ namespace ESISharp.Web
             var Url = RequestUrl;
             var JsonString = JsonConvert.SerializeObject(RequestData[0]);
             var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-            var Response = await EasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
+            var Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await EasyObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false)).ConfigureAwait(false);
             var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
         }
@@ -150,7 +151,7 @@ namespace ESISharp.Web
             while(AuthObject.SSO.VerifyCredentials())
             {
                 AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
-                var Response = await AuthObject.QueryClient.GetAsync(Url).ConfigureAwait(false);
+                var Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await AuthObject.QueryClient.GetAsync(Url).ConfigureAwait(false)).ConfigureAwait(false);
                 var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
             }
@@ -173,7 +174,7 @@ namespace ESISharp.Web
                 AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
                 var JsonString = JsonConvert.SerializeObject(RequestData[0]);
                 var PostData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                var Response = await AuthObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false);
+                var Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await AuthObject.QueryClient.PostAsync(Url, PostData).ConfigureAwait(false)).ConfigureAwait(false);
                 var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
             }
@@ -196,7 +197,7 @@ namespace ESISharp.Web
                 AuthObject.QueryClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ActiveAccessToken());
                 var JsonString = JsonConvert.SerializeObject(RequestData[0]);
                 var PutData = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                var Response = await AuthObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false);
+                var Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await AuthObject.QueryClient.PutAsync(Url, PutData).ConfigureAwait(false)).ConfigureAwait(false);
                 var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
             }
@@ -218,13 +219,13 @@ namespace ESISharp.Web
                     var JsonString = JsonConvert.SerializeObject(RequestData[0]);
                     var Message = new HttpRequestMessage(HttpMethod.Delete, Url);
                     Message.Content = new StringContent(JsonString, Encoding.UTF8, "application/json");
-                    Response = await AuthObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                    Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await AuthObject.QueryClient.SendAsync(Message, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false)).ConfigureAwait(false);
                     var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
                 }
                 else
                 {
-                    Response = await AuthObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false);
+                    Response = await EasyObject.HttpResiliencePolicy.ExecuteAsync(async () => await AuthObject.QueryClient.DeleteAsync(Url).ConfigureAwait(false)).ConfigureAwait(false);
                     var ResponseBody = await Response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     return new EsiResponse(ResponseBody, Response.StatusCode, new EsiResponseHeaders(Response.Headers));
                 }
