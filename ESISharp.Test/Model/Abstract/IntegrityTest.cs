@@ -17,7 +17,7 @@ namespace ESISharp.Test.Model.Abstract
             Url = new UriBuilder()
             {
                 Scheme = "https",
-                Host = "esi.tech.ccp.is"
+                Host = "esi.evetech.net"
             };
             Url.Path = String.Join("/", new string[] { "latest", "swagger.json" });
             var Query = HttpUtility.ParseQueryString(Url.Query);
