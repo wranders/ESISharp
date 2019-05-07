@@ -109,7 +109,9 @@
     <Compile Include="Sso.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dev_secret.json" />
+    <None Include="dev_secret.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="﻿dev_secret.json.template" />
   </ItemGroup>
