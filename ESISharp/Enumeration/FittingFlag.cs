@@ -2,76 +2,55 @@
 {
     public class FittingFlag :Model.Abstract.FakeEnumerator
     {
-        internal FittingFlag(int value) : base(value) { }
+        internal FittingFlag(string value) : base(value) { }
 
-        public static readonly FittingFlag LowSlot0 = new FittingFlag(11);
-        public static readonly FittingFlag LowSlot1 = new FittingFlag(12);
-        public static readonly FittingFlag LowSlot2 = new FittingFlag(13);
-        public static readonly FittingFlag LowSlot3 = new FittingFlag(14);
-        public static readonly FittingFlag LowSlot4 = new FittingFlag(15);
-        public static readonly FittingFlag LowSlot5 = new FittingFlag(16);
-        public static readonly FittingFlag LowSlot6 = new FittingFlag(17);
-        public static readonly FittingFlag LowSlot7 = new FittingFlag(18);
+        public static readonly FittingFlag Low0 = new FittingFlag("LoSlot0");
+        public static readonly FittingFlag Low1 = new FittingFlag("LoSlot1");
+        public static readonly FittingFlag Low2 = new FittingFlag("LoSlot2");
+        public static readonly FittingFlag Low3 = new FittingFlag("LoSlot3");
+        public static readonly FittingFlag Low4 = new FittingFlag("LoSlot4");
+        public static readonly FittingFlag Low5 = new FittingFlag("LoSlot5");
+        public static readonly FittingFlag Low6 = new FittingFlag("LoSlot6");
+        public static readonly FittingFlag Low7 = new FittingFlag("LoSlot7");
 
-        public static readonly FittingFlag MidSlot0 = new FittingFlag(19);
-        public static readonly FittingFlag MidSlot1 = new FittingFlag(20);
-        public static readonly FittingFlag MidSlot2 = new FittingFlag(21);
-        public static readonly FittingFlag MidSlot3 = new FittingFlag(22);
-        public static readonly FittingFlag MidSlot4 = new FittingFlag(23);
-        public static readonly FittingFlag MidSlot5 = new FittingFlag(24);
-        public static readonly FittingFlag MidSlot6 = new FittingFlag(25);
-        public static readonly FittingFlag MidSlot7 = new FittingFlag(26);
+        public static readonly FittingFlag Med0 = new FittingFlag("MedSlot0");
+        public static readonly FittingFlag Med1 = new FittingFlag("MedSlot1");
+        public static readonly FittingFlag Med2 = new FittingFlag("MedSlot2");
+        public static readonly FittingFlag Med3 = new FittingFlag("MedSlot3");
+        public static readonly FittingFlag Med4 = new FittingFlag("MedSlot4");
+        public static readonly FittingFlag Med5 = new FittingFlag("MedSlot5");
+        public static readonly FittingFlag Med6 = new FittingFlag("MedSlot6");
+        public static readonly FittingFlag Med7 = new FittingFlag("MedSlot7");
 
-        public static readonly FittingFlag HighSlot0 = new FittingFlag(27);
-        public static readonly FittingFlag HighSlot1 = new FittingFlag(28);
-        public static readonly FittingFlag HighSlot2 = new FittingFlag(29);
-        public static readonly FittingFlag HighSlot3 = new FittingFlag(30);
-        public static readonly FittingFlag HighSlot4 = new FittingFlag(31);
-        public static readonly FittingFlag HighSlot5 = new FittingFlag(32);
-        public static readonly FittingFlag HighSlot6 = new FittingFlag(33);
-        public static readonly FittingFlag HighSlot7 = new FittingFlag(34);
+        public static readonly FittingFlag High0 = new FittingFlag("HiSlot0");
+        public static readonly FittingFlag High1 = new FittingFlag("HiSlot1");
+        public static readonly FittingFlag High2 = new FittingFlag("HiSlot2");
+        public static readonly FittingFlag High3 = new FittingFlag("HiSlot3");
+        public static readonly FittingFlag High4 = new FittingFlag("HiSlot4");
+        public static readonly FittingFlag High5 = new FittingFlag("HiSlot5");
+        public static readonly FittingFlag High6 = new FittingFlag("HiSlot6");
+        public static readonly FittingFlag High7 = new FittingFlag("HiSlot7");
 
-        public static readonly FittingFlag RigSlot0 = new FittingFlag(92);
-        public static readonly FittingFlag RigSlot1 = new FittingFlag(93);
-        public static readonly FittingFlag RigSlot2 = new FittingFlag(94);
-        public static readonly FittingFlag RigSlot3 = new FittingFlag(95);
-        public static readonly FittingFlag RigSlot4 = new FittingFlag(96);
-        public static readonly FittingFlag RigSlot5 = new FittingFlag(97);
-        public static readonly FittingFlag RigSlot6 = new FittingFlag(98);
-        public static readonly FittingFlag RigSlot7 = new FittingFlag(99);
+        public static readonly FittingFlag Rig0 = new FittingFlag("RigSlot0");
+        public static readonly FittingFlag Rig1 = new FittingFlag("RigSlot1");
+        public static readonly FittingFlag Rig2 = new FittingFlag("RigSlot2");
 
-        public static readonly FittingFlag SubSystemSlot0 = new FittingFlag(125);
-        public static readonly FittingFlag SubSystemSlot1 = new FittingFlag(126);
-        public static readonly FittingFlag SubSystemSlot2 = new FittingFlag(127);
-        public static readonly FittingFlag SubSystemSlot3 = new FittingFlag(128);
-        public static readonly FittingFlag SubSystemSlot4 = new FittingFlag(129);
-        public static readonly FittingFlag SubSystemSlot5 = new FittingFlag(130);
-        public static readonly FittingFlag SubSystemSlot6 = new FittingFlag(131);
-        public static readonly FittingFlag SubSystemSlot7 = new FittingFlag(132);
+        public static readonly FittingFlag SubSystem0 = new FittingFlag("SubSystemSlot0");
+        public static readonly FittingFlag SubSystem1 = new FittingFlag("SubSystemSlot1");
+        public static readonly FittingFlag SubSystem2 = new FittingFlag("SubSystemSlot2");
+        public static readonly FittingFlag SubSystem3 = new FittingFlag("SubSystemSlot3");
 
-        public static readonly FittingFlag DroneBay = new FittingFlag(87);
-        public static readonly FittingFlag FighterBay = new FittingFlag(158);
-        public static readonly FittingFlag FighterTube0 = new FittingFlag(159);
-        public static readonly FittingFlag FighterTube1 = new FittingFlag(160);
-        public static readonly FittingFlag FighterTube2 = new FittingFlag(161);
-        public static readonly FittingFlag FighterTube3 = new FittingFlag(162);
-        public static readonly FittingFlag FighterTube4 = new FittingFlag(163);
+        public static readonly FittingFlag DroneBay = new FittingFlag("DroneBay");
+        public static readonly FittingFlag FighterBay = new FittingFlag("FighterBay");
+        public static readonly FittingFlag Cargo = new FittingFlag("Cargo");
 
-        public static readonly FittingFlag FuelBay = new FittingFlag(133);
-        public static readonly FittingFlag OreHold = new FittingFlag(134);
-        public static readonly FittingFlag GasHold = new FittingFlag(135);
-        public static readonly FittingFlag MineralHold = new FittingFlag(136);
-        public static readonly FittingFlag AmmoHold = new FittingFlag(143);
-        public static readonly FittingFlag Loaded = new FittingFlag(5);
-
-        public static readonly FittingFlag StructureService0 = new FittingFlag(164);
-        public static readonly FittingFlag StructureService1 = new FittingFlag(165);
-        public static readonly FittingFlag StructureService2 = new FittingFlag(166);
-        public static readonly FittingFlag StructureService3 = new FittingFlag(167);
-        public static readonly FittingFlag StructureService4 = new FittingFlag(168);
-        public static readonly FittingFlag StructureService5 = new FittingFlag(169);
-        public static readonly FittingFlag StructureService6 = new FittingFlag(170);
-        public static readonly FittingFlag StructureService7 = new FittingFlag(171);
-        public static readonly FittingFlag StructureFuel = new FittingFlag(172);
+        public static readonly FittingFlag StructureService0 = new FittingFlag("ServiceSlot0");
+        public static readonly FittingFlag StructureService1 = new FittingFlag("ServiceSlot1");
+        public static readonly FittingFlag StructureService2 = new FittingFlag("ServiceSlot2");
+        public static readonly FittingFlag StructureService3 = new FittingFlag("ServiceSlot3");
+        public static readonly FittingFlag StructureService4 = new FittingFlag("ServiceSlot4");
+        public static readonly FittingFlag StructureService5 = new FittingFlag("ServiceSlot5");
+        public static readonly FittingFlag StructureService6 = new FittingFlag("ServiceSlot6");
+        public static readonly FittingFlag StructureService7 = new FittingFlag("ServiceSlot7");
     }
 }

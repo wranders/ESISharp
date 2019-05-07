@@ -18,23 +18,23 @@ namespace ESISharp.Test.Paths.Authenticated.Characters
                 "ESI Created Fitting", 
                 16240, // Catalyst
                 new List<FittingItem> {
-                    new FittingItem(520, 1, FittingFlag.LowSlot0), // Gyrostabilizer I
-                    new FittingItem(520, 1, FittingFlag.LowSlot1), // Gyrostabilizer I
-                    new FittingItem(520, 1, FittingFlag.LowSlot2), // Gyrostabilizer I
-                    new FittingItem(1973, 1, FittingFlag.MidSlot0), // Sensor Booster I
-                    new FittingItem(1973, 1, FittingFlag.MidSlot1), // Sensor Booster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot0), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot1), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot2), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot3), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot4), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot5), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot6), // Light Ion Blaster I
-                    new FittingItem(563, 1, FittingFlag.HighSlot7), // Light Ion Blaster I
-                    new FittingItem(31538, 1, FittingFlag.RigSlot0), // Small Hybrid Collision Accelerator I
-                    new FittingItem(31538, 1, FittingFlag.RigSlot1), // Small Hybrid Collision Accelerator I
-                    new FittingItem(222, 960, FittingFlag.Loaded), // Antimatter Charge S
-                    new FittingItem(29011, 2, FittingFlag.Loaded), // Scan Resolution Script
+                    new FittingItem(520, 1, FittingFlag.Low0), // Gyrostabilizer I
+                    new FittingItem(520, 1, FittingFlag.Low1), // Gyrostabilizer I
+                    new FittingItem(520, 1, FittingFlag.Low2), // Gyrostabilizer I
+                    new FittingItem(1973, 1, FittingFlag.Med0), // Sensor Booster I
+                    new FittingItem(1973, 1, FittingFlag.Med1), // Sensor Booster I
+                    new FittingItem(563, 1, FittingFlag.High0), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High1), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High2), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High3), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High4), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High5), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High6), // Light Ion Blaster I
+                    new FittingItem(563, 1, FittingFlag.High7), // Light Ion Blaster I
+                    new FittingItem(31538, 1, FittingFlag.Rig0), // Small Hybrid Collision Accelerator I
+                    new FittingItem(31538, 1, FittingFlag.Rig1), // Small Hybrid Collision Accelerator I
+                    new FittingItem(222, 960, FittingFlag.Cargo), // Antimatter Charge S
+                    new FittingItem(29011, 2, FittingFlag.Cargo), // Scan Resolution Script
                 }) }
         };
 

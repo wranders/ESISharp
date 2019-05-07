@@ -12,9 +12,9 @@ namespace ESISharp.Model.Object
         public int Quantity { get; set; }
 
         [JsonProperty(PropertyName = "flag")]
-        public int Flag { get; set; }
+        public string Flag { get; set; }
 
-        public FittingItem(int typeid, int quantity, int flag)
+        public FittingItem(int typeid, int quantity, string flag)
         {
             TypeID = typeid;
             Quantity = quantity;
@@ -22,6 +22,6 @@ namespace ESISharp.Model.Object
         }
 
         public FittingItem(int typeid, int quantity, FittingFlag flag) 
-            : this(typeid, quantity, (int)flag.Value) { }
+            : this(typeid, quantity, (string)flag.Value) { }
     }
 }
