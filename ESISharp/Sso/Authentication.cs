@@ -32,11 +32,11 @@ namespace ESISharp.Sso
             };
             _AuthUrl = new UriBuilder(loginUrl.Uri)
             {
-                Path = "oauth/authorize"
+                Path = "v2/oauth/authorize"
             };
             _VerifyUrl = new UriBuilder(loginUrl.Uri)
             {
-                Path = "oauth/token"
+                Path = "v2/oauth/token"
             };
         }
 
