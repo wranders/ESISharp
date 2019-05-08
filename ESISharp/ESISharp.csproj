@@ -35,11 +35,11 @@
     <CodeAnalysisRuleSet>ESISharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Polly, Version=6.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Polly.6.1.0\lib\netstandard2.0\Polly.dll</HintPath>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.7.1.0\lib\netstandard2.0\Polly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Authenticated.cs" />
     <Compile Include="Enumeration\Access.cs" />
     <Compile Include="Enumeration\CalendarResponse.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Enumeration\MailRecipientType.cs" />
     <Compile Include="Enumeration\MarketOrderType.cs" />
     <Compile Include="Enumeration\OAuthGrant.cs" />
-    <Compile Include="Enumeration\ResponseType.cs" />
     <Compile Include="Enumeration\Route.cs" />
     <Compile Include="Enumeration\RouteFlag.cs" />
     <Compile Include="Enumeration\SearchCategory.cs" />
