@@ -12,7 +12,9 @@ namespace ESISharp.Test.Model.Abstract
 
         public void BeforeTest(ITest test)
         {
-            Assert.Ignore("Test has prerequisites that are untestable using the current character.");
+            var m = "Test has prerequisites that are untestable for all circumstances. " +
+                    "The code presented in these tests show how the operation should be done, not a working example.";
+            Assert.Ignore(m);
         }
 
         public void AfterTest(ITest test)
