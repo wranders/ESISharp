@@ -13,3 +13,4 @@ Click the Badge below to view the latest Tests on [AppVeyor](https://www.appveyo
 * Create a developer application at [developers.eveonline.com](https://developers.eveonline.com/)
 * Copy `dev_secret.json.template` to `dev_secret.json`
 * Edit `dev_secret.json` and populate `ClientID` and `SecretKey` with the corresponding values in your application
+	* Add a `RefreshToken` if you don't want to have to log in every time your access token expires

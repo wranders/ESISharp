@@ -2,7 +2,6 @@
 
 C# Library for interacting with the Eve Online ESI API.
 
-[![GitHub release](https://img.shields.io/github/release/wranders/ESISharp.svg)](https://github.com/wranders/ESISharp/releases/latest)
 [![Build status](https://ci.appveyor.com/api/projects/status/i3opy3bvu3vfmmf2/branch/dev-restructure?svg=true)](https://ci.appveyor.com/project/wranders/esisharp)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=wranders%3Aesisharp%3Adev-restructure&metric=alert_status)](https://sonarcloud.io/dashboard?id=wranders%3Aesisharp%3Adev-restructure)
 [![Code Coverage](https://sonarcloud.io/api/project_badges/measure?project=wranders%3Aesisharp%3Adev-restructure&metric=coverage)](https://sonarcloud.io/dashboard?id=wranders%3Aesisharp%3Adev-restructure)
