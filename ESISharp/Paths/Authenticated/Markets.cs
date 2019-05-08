@@ -25,7 +25,7 @@ namespace ESISharp.Paths.Authenticated
                     ["page"] = page
                 }
             };
-            return new EsiRequest(EsiConnection, path, WebMethods.GET);
+            return new EsiRequest(EsiConnection, path, WebMethods.GET, data);
         }
     }
 }
