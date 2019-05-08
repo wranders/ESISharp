@@ -90,7 +90,11 @@ namespace ESISharp.Web
             {
                 // TODO: Create Invalid Data Exception
             }
-            else if (data.BodyKvp != null || data.Body != null)
+            else if (data.BodyKvp == null && data.Body == null)
+            {
+                DataBody = string.Empty;
+            }
+            else
             {
                 if (data.BodyKvp != null)
                 {

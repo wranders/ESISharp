@@ -75,13 +75,21 @@ namespace ESISharp.Paths.Authenticated
             return new EsiRequest(EsiConnection, path, WebMethods.POST, data);
         }
 
+        public EsiRequest OpenNewMailWindow(string body, int recipient, string subject)
+            => OpenNewMailWindow(body, new List<int> { recipient }, subject);
+
         [Path("/ui/openwindow/newmail/", WebMethods.POST)]
-        public EsiRequest OpenNewMailWindow(EveMail mail)
+        public EsiRequest OpenNewMailWindow(string body, IEnumerable<int> recipients, string subject)
         {
             var path = new EsiRequestPath { "ui", "openwindow", "newmail" };
             var data = new EsiRequestData
             {
-                Body = mail
+                BodyKvp = new Dictionary<string, dynamic>
+                {
+                    ["body"] = body,
+                    ["recipients"] = recipients,
+                    ["subject"] = subject
+                }
             };
             return new EsiRequest(EsiConnection, path, WebMethods.POST, data);
         }
