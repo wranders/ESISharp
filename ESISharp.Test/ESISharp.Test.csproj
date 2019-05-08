@@ -85,7 +85,10 @@
     <Compile Include="Paths\Authenticated\Characters\PlanetaryInteraction.cs" />
     <Compile Include="Paths\Authenticated\Characters\Skills.cs" />
     <Compile Include="Paths\Authenticated\Characters\Wallet.cs" />
+    <Compile Include="Paths\Authenticated\Markets.cs" />
     <Compile Include="Paths\Authenticated\Meta.cs" />
+    <Compile Include="Paths\Authenticated\Search.cs" />
+    <Compile Include="Paths\Authenticated\Universe.cs" />
     <Compile Include="Paths\Authenticated\UserInterface.cs" />
     <Compile Include="Paths\Public\Alliances.cs" />
     <Compile Include="Paths\Public\Characters.cs" />

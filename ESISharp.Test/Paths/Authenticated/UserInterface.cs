@@ -1,6 +1,4 @@
-﻿using ESISharp.Enumeration;
-using ESISharp.Model.Object;
-using ESISharp.Test.Model.Abstract;
+﻿using ESISharp.Test.Model.Abstract;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net;
@@ -9,7 +7,7 @@ namespace ESISharp.Test.Paths.Authenticated
 {
     public class UserInterface : PathTest
     {
-#pragma warning disable S1144, S3459, CS0649
+#pragma warning disable S1144
 
         static readonly object[] SetWaypoint_TestOne =
         {
