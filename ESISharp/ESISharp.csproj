@@ -73,7 +73,6 @@
     <Compile Include="Model\Abstract\FakeEnumerator.cs" />
     <Compile Include="Model\Attribute\PathAttribute.cs" />
     <Compile Include="Model\Object\EsiContentHeaders.cs" />
-    <Compile Include="Model\Object\EsiError.cs" />
     <Compile Include="Model\Object\EsiRequestPath.cs" />
     <Compile Include="Model\Object\EsiResponse.cs" />
     <Compile Include="Model\Object\EsiResponseHeaders.cs" />
