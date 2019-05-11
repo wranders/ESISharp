@@ -20,6 +20,7 @@ namespace ESISharp.Sso
     {
         private readonly Main _Main;
         private readonly UriBuilder _AuthUrl;
+        private readonly UriBuilder _TokenUrl;
         private readonly UriBuilder _VerifyUrl;
 
         internal Authentication(Main main)
@@ -34,9 +35,13 @@ namespace ESISharp.Sso
             {
                 Path = "v2/oauth/authorize"
             };
-            _VerifyUrl = new UriBuilder(loginUrl.Uri)
+            _TokenUrl = new UriBuilder(loginUrl.Uri)
             {
                 Path = "v2/oauth/token"
+            };
+            _VerifyUrl = new UriBuilder(loginUrl.Uri)
+            {
+                Path = "oauth/verify"
             };
         }
 
@@ -200,7 +205,7 @@ namespace ESISharp.Sso
         {
             string responseString = string.Empty;
             _Main.Client._HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(_Main._ClientId + ":" + _Main._SecretKey));
-            var response = await _Main.Client._HttpClient.PostAsync(_VerifyUrl.Uri, new FormUrlEncodedContent(new[]
+            var response = await _Main.Client._HttpClient.PostAsync(_TokenUrl.Uri, new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("grant_type", grant),
                 new KeyValuePair<string, string>(codetype, code)
@@ -248,6 +253,16 @@ namespace ESISharp.Sso
             return true;
         }
 
-        // TODO: Impliment Public, on-demand token verification
+        public SsoTokenVerification VerifyToken() => VerifyTokenAsync().Result;
+
+        public async Task<SsoTokenVerification> VerifyTokenAsync()
+        {
+            string responseString = string.Empty;
+            string accessToken = _Main.Client._Token.AccessToken;
+            _Main.Client._HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = await _Main.Client._HttpClient.GetAsync(_VerifyUrl.Uri);
+            responseString = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<SsoTokenVerification>(responseString);
+        }
     }
 }

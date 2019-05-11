@@ -24,5 +24,24 @@ namespace ESISharp.Test
                 Assert.True(t.Expires > DateTime.UtcNow);
             });
         }
+
+        [CIIgnore]
+        [Test]
+        public void VerifyToken()
+        {
+            var a = Authenticated.Sso.ForceAuthentication();
+            var v = Authenticated.Sso.Authentication.VerifyToken();
+            Assert.Multiple(() =>
+            {
+                Assert.True(a);
+                Assert.IsNotNull(v.CharacterID);
+                Assert.IsNotEmpty(v.CharacterName);
+                Assert.IsNotEmpty(v.CharacterOwnerHash);
+                Assert.AreNotEqual(v.Expires, DateTime.MinValue);
+                Assert.AreEqual(v.IntellectualProperty, "EVE");
+                Assert.IsNotEmpty(v.Scopes);
+                Assert.AreEqual(v.TokenType, "Character");
+            });
+        }
     }
 }

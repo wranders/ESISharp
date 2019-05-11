@@ -38,7 +38,7 @@ namespace ESISharp.Web
 
         private readonly Cache _Cache;
 
-        private readonly string _CredentialErrorMessage = JsonConvert.SerializeObject(new { error = "ESISharp - There was an error with the supplied credentials." });
+        private readonly string _CredentialErrorMessage = JsonConvert.SerializeObject(new { error = "[ESISharp] There was an error with the supplied credentials." });
 
         internal EsiRequest(EsiConnection esiconnection, EsiRequestPath path, WebMethods method)
         {
