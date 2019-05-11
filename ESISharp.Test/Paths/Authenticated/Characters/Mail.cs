@@ -59,16 +59,19 @@ namespace ESISharp.Test.Paths.Authenticated.Characters
                 new EveMailRecipient(GetCharacterId(), MailRecipientType.Character)
                 );
             var a = Authenticated.Characters.Mail.SendMail(GetCharacterId(), mail).Execute();
-            Assert.True(a.Code == HttpStatusCode.Created);
             var aid = int.Parse(a.Body);
             var b = Authenticated.Characters.Mail.GetContents(GetCharacterId(), aid).Execute();
-            Assert.True(b.Code == HttpStatusCode.OK);
             var c = Authenticated.Characters.Mail.UpdateMail(GetCharacterId(), aid, 1, true).Execute();
-            Assert.True(c.Code == HttpStatusCode.NoContent);
             var d = Authenticated.Characters.Mail.UpdateMail(GetCharacterId(), aid, new int[] { 1, 2 }, false).Execute();
-            Assert.True(d.Code == HttpStatusCode.NoContent);
             var e = Authenticated.Characters.Mail.DeleteMail(GetCharacterId(), aid).Execute();
-            Assert.True(e.Code == HttpStatusCode.NoContent);
+            Assert.Multiple(() =>
+            {
+                Assert.True(a.Code == HttpStatusCode.Created);
+                Assert.True(b.Code == HttpStatusCode.OK);
+                Assert.True(c.Code == HttpStatusCode.NoContent);
+                Assert.True(d.Code == HttpStatusCode.NoContent);
+                Assert.True(e.Code == HttpStatusCode.NoContent);
+            });
         }
 
         [Property("AuthedCharacters", "Mail")]
@@ -84,15 +87,18 @@ namespace ESISharp.Test.Paths.Authenticated.Characters
         public void CreateDeleteLabel()
         {
             var a = Authenticated.Characters.Mail.CreateLabel(GetCharacterId(), "Test").Execute();
-            Assert.True(a.Code == HttpStatusCode.Created);
             var aid = int.Parse(a.Body);
             var b = Authenticated.Characters.Mail.DeleteLabel(GetCharacterId(), aid).Execute();
-            Assert.True(b.Code == HttpStatusCode.NoContent);
             var c = Authenticated.Characters.Mail.CreateLabel(GetCharacterId(), "TestColor", MailLabelColor.RedOrange).Execute();
-            Assert.True(c.Code == HttpStatusCode.Created);
             var cid = int.Parse(c.Body);
             var d = Authenticated.Characters.Mail.DeleteLabel(GetCharacterId(), cid).Execute();
-            Assert.True(d.Code == HttpStatusCode.NoContent);
+            Assert.Multiple(() =>
+            {
+                Assert.True(a.Code == HttpStatusCode.Created);
+                Assert.True(b.Code == HttpStatusCode.NoContent);
+                Assert.True(c.Code == HttpStatusCode.Created);
+                Assert.True(d.Code == HttpStatusCode.NoContent);
+            });
         }
 
         [Property("AuthedCharacters", "Mail")]
