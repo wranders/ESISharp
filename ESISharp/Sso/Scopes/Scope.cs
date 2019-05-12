@@ -34,10 +34,8 @@ namespace ESISharp.Sso.Scopes
                 return null;
 
             var jsonValueList = reader.Value.ToString().Split(' ');
-            var scopesList = (existingValue as IEnumerable<Scope> ?? new List<Scope>());
-
-            scopesList = Scope.Lookup.Where(l => jsonValueList.Contains(l.Key)).Select(s => s.Value).ToList();
-            if (scopesList.Count() == 0)
+            var scopesList = Scope.Lookup.Where(l => jsonValueList.Contains(l.Key)).Select(s => s.Value).ToList();
+            if (!scopesList.Any())
             {
                 scopesList = new List<Scope>() { Scope.None };
             }
