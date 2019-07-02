@@ -55,6 +55,8 @@ namespace ESISharp.Model.Abstract
 
         public void SetRoute(Route route) => Route = route;
 
+        public void SetRoute(string route) => Route = new Route(route);
+
         public void SetTimeout(TimeSpan timespan) => QueryClient.Timeout = timespan;
 
         public void SetUserAgent(string useragent)
