@@ -1,5 +1,3 @@
-ESISharp.Test/dev_secret.json
-ESISharp.Test/dev_secret_encode.ps1
 sonar-project-analyze.bat
 .sonarlint/
 opencover.xml
