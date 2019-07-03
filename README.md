@@ -8,23 +8,61 @@ C# Library for interacting with the Eve Online ESI API.
 
 ---
 
-To use, utilize the ***ESISharp*** namespace and create one of the following objects:
+## Getting Started
+
+Use the **ESISharp** namespace and create one of the following objects:
 
 * `ESISharp.Public()`
 * `ESISharp.Authenticated( ClientID, SecretKey )`
-    * **ClientID** is required for authenticated access.
-	* **SecretKey** is optional, but will grant you a Refresh Token for future access.
+  * **ClientID** is required for authenticated access.
+  * **SecretKey** is optional, but will grant you a Refresh Token for future access.
 
 The Authenticated object has access to both Public and Authenticated paths.
 
 Requests are made with a fluent builder pattern. Requests return the EsiResponse object.
 
 Request examples:
-* `ESISharp.Public.Alliance.GetAll().Execute()` - Request, returns **EsiResponse**
-* `ESISharp.Public.Alliance.GetAll().ExecuteAsync()` - Request, returns **Task\<EsiResponse>** 
-* `ESISharp.Public.Alliance.GetAll().Route("v1").Execute()` - Request a specific route/version
-* `ESISharp.Public.Alliance.GetAll().DataSource( DataSource.Singularity ).Execute()` - Request a specific DataSource
-* Route and DataSource specifications can be use together and in any order.
+
+* Request from `tranquility` server and `latest` ESI route
+
+  ```csharp
+  ESISharp.Public.Alliance.GetAll();
+  ```
+
+* Request a specific route/version
+
+  ```csharp
+  ESISharp.Public.Alliance.GetAll().Route("v1");
+  ```
+
+* Request a specific DataSource
+
+  ```csharp
+  ESISharp.Public.Alliance.GetAll().DataSource( ESISharp.Enumeration.DataSource.Singularity );
+  ```
+
+Route and DataSource specifications can be use together and in any order.
+
+Route and DataSource can also be set globally on the client:
+
+```csharp
+ESISharp.Public.SetRoute("v1");
+ESISharp.Public.SetDataSource( ESISharp.Enumeration.DataSource.Singularity );
+```
+
+All the above path examples return the **ESIRequest** object, which is then used to send the request.
+
+* Blocking, returns **EsiResponse**
+
+  ```csharp
+  ESISharp.Public.Alliance.GetAll().Execute();
+  ```
+
+* Non-Blocking, returns **Task\<EsiResponse>**
+  
+  ```csharp
+  ESISharp.Public.Alliance.GetAll().ExecuteAsync();
+  ```
 
 Caching is disabled by default but can be enabled using any caching scheme deriving from `System.Runtime.Caching.ObjectCache`:
 
@@ -42,12 +80,12 @@ esiconn.CacheEnable(cache);
 | `Code`            | System.Net.HttpStatusCode | HTTP Status Code (ie. 200, 404, etc)  |
 | `ContentHeaders`  | EsiContentHeaders         | Content headers                       |
 | `ResponseHeaders` | EsiResponseHeaders        | Response headers                      |
-| `IsCached`		| Boolean					| Is the response returned from cache	|
+| `IsCached`        | Boolean                   | Is the response returned from cache   |
 
 `EsiContentHeaders` object structure:
 
 | Parameter Name | Parameter Type  | Description                                             |
-| -------------- | --------------- | ------------------------------------------------------- | 
+| -------------- | --------------- | ------------------------------------------------------- |
 | `ContentType`  | String          | Response body format                                    |
 | `Expires`      | System.DateTime | Time the request data will be invalid                   |
 | `LastModified` | System.DateTime | Time the request data was last modified by CCP          |
@@ -55,7 +93,7 @@ esiconn.CacheEnable(cache);
 `EsiResponseHeaders` object structure:
 
 | Parameter Name | Parameter Type  | Description                                             |
-| -------------- | --------------- | ------------------------------------------------------- | 
+| -------------- | --------------- | ------------------------------------------------------- |
 | `CacheControl` | String          | Directive for caching mechanism                         |
 | `Date`         | System.DateTime | Time the request was made                               |
 | `ETag`         | String          | Entity Tag hash of the response                         |
@@ -64,19 +102,120 @@ esiconn.CacheEnable(cache);
 
 ---
 
-***<u>This information is subject to change and, for now, should be disregarded as the entire authentication process is being reworked.</u>***
+## Authenticated Requests
 
-~~The refresh token can be retrieved using `ESISharp.SSO.Client.GetRefreshToken()`<br/>~~
-~~The refresh token can be set using `ESISharp.SSO.Client.SetRefreshToken( Token )`~~
+### Client
 
-~~ESISharp includes an executable that catches the response from Eve SSO and routes it back to ESISharp.<br/>~~
-~~It's filename, location, and operating protocol is fully configurable for your application.<br/>~~
-~~You application will require permissions to write to the Registry to create the forwarding protocol for the AuthRouter.~~
+```csharp
+var esiconn = new ESISharp.Authenticated("[client id]","[secret key]");
+esiconn.SetUserAgent("My ESI App");
+```
 
-~~By default, the router filename is *EveSSOAuthRouter* and must be located in the same directory as the ESISharp library.<br/>~~
-~~The default protocol is *eveauth-app* and the default path is *callback/*. (Full callback url is <b><i>eveauth-app://callback/</i></b>)<br/>~~
-~~To create or repair the required registry key, run `ESISharp.SSO.Registry.EnsureKey()`~~
+### Callback
+
+The authenticated client uses the `ESISharp.AuthRelay` to capture the ESI callback and complete the authentication process.
+
+The default callback is `eveauth-app://callback/`. This can be changed by setting the callback protocol and path:
+
+```csharp
+esiconn.Sso.Client.SetCallbackProtocol("myesiapp");
+esiconn.Sso.Client.SetCallbackPath("root/");
+esiconn.Sso.Client.Registry.EnsureKey();
+```
+
+This will set the AuthRelay to respond to `myesiapp://root/`. Callback paths must include the trailing slash.
+
+If the AuthRelay is moved to a different directory than the one containing the `ESISharp.dll`, and/or renamed, the following should be used to set the new path:
+
+```csharp
+esiconn.Sso.Client.SetAuthorizerFileDirectory(@"C:\esi\");
+esiconn.Sso.Client.SetAuthorizerFileName("myappauth");
+esiconn.Sso.Client.Registry.EnsureKey();
+```
+
+This will set the callback to be opened with the AuthRelay located at `C:\esi\myappauth.exe`.
+
+> **Note:** Any changes to the callback URL or the AuthRelay filename or path requires an `ESISharp.Authenticated.Sso.Client.Registry.EnsureKey()` call for the authentication process to work.
+
+### Refresh Tokens
+
+By default, the authenticated client uses an `implicit` grant. If an `authorization` grant is required (for refresh tokens):
+
+```csharp
+esiconn.Sso.Client.SetGrantType(ESISharp.Enumeration.OAuthGrant.Authorization);
+```
+
+If the refresh token needs to be immediately available without sending a request:
+
+```csharp
+esiconn.Sso.ForceAuthentication();
+```
+
+Once authenticated, refresh tokens can be retrieved by:
+
+```csharp
+string token = esiconn.Sso.Client.GetRefreshToken();
+```
+
+Stored refresh tokens can be set on the client using:
+
+```csharp
+esiconn.Sso.Client.SetRefreshToken("[refreshtoken]");
+```
+
+### Scopes
+
+Scopes are added using the `ESISharp.Sso.Scopes.Scope` enumeration, either one at a time or in any list that implements `IEnumerable`.
+
+```csharp
+esiconn.Sso.Client.AddScope(ESISharp.Sso.Scopes.Scope.Assets.ReadAssets);
+
+var skillScope = new List()
+{
+    ESISharp.Sso.Scopes.Scope.Skills.ReadSkillQueue,
+    ESISharp.Sso.Scopes.Scope.Skills.ReadSkills
+};
+esiconn.Sso.Client.AddScope(skillScope);
+```
+
+Scopes can also be removed individually or by any list that implements `IEnumerable`.
+
+```csharp
+esiconn.Sso.Client.RemoveScope(ESISharp.Sso.Scopes.Scope.Skills.ReadSkillQueue);
+
+var remScopes = new List()
+{
+    ESISharp.Sso.Scopes.Scope.Assets.ReadAssets,
+    ESISharp.Sso.Scopes.Scope.Skills.ReadSkills
+};
+esiconn.Sso.Client.RemoveScope(remScopes);
+```
+
+All scopes, requested and authorized, can be removed using:
+
+```csharp
+esiconn.Sso.Client.RemoveAllScopes();
+```
+
+If only new requested scopes need to be removed, use:
+
+```csharp
+esiconn.Sso.Client.ClearRequestedScopes();
+```
+
+Lists of requested and authorized scopes can be retrieved using:
+
+```csharp
+List<ESISharp.Sso.Scopes.Scope> requested = esiconn.Sso.Client.GetRequestedScopes();
+List<ESISharp.Sso.Scopes.Scope> authorized = esiconn.Sso.Client.GetAuthorizedScopes();
+```
+
+Requests with scopes different (removed or added) than what were previously authorized will automatically require reauthentication. Reauthentication can be done on-the-fly if your application allows users to change requests:
+
+```csharp
+esiconn.Sso.ForceAuthentication();
+```
 
 ---
 
-EVE Online © 2018 [CCP hf.](https://www.ccpgames.com/)
+EVE Online © 2019 [CCP hf.](https://www.ccpgames.com/)
