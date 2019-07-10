@@ -8,14 +8,24 @@ A C# Library for interacting with the Eve Online ESI API.
 
 ---
 
+- [Getting Started](#getting-started)
+- [Response Structure](#response-structure)
+- [Authenticated Requests](#authenticated-requests)
+  - [Client](#client)
+  - [Callback](#callback)
+  - [Refresh Tokens](#refresh-tokens)
+  - [Scopes](#scopes)
+
+---
+
 ## Getting Started
 
 Use the **ESISharp** namespace and create one of the following objects:
 
-* `ESISharp.Public()`
-* `ESISharp.Authenticated( ClientID, SecretKey )`
-  * **ClientID** is required for authenticated access.
-  * **SecretKey** is optional, but will grant you a Refresh Token for future access.
+- `ESISharp.Public()`
+- `ESISharp.Authenticated( ClientID, SecretKey )`
+  - **ClientID** is required for authenticated access.
+  - **SecretKey** is optional, but will grant you a Refresh Token for future access.
 
 The Authenticated object has access to both Public and Authenticated paths.
 
@@ -23,19 +33,19 @@ Requests are made with a fluent builder pattern. Requests return the EsiResponse
 
 Request examples:
 
-* Request from `tranquility` server and `latest` ESI route
+- Request from `tranquility` server and `latest` ESI route
 
   ```csharp
   ESISharp.Public.Alliance.GetAll();
   ```
 
-* Request a specific route/version
+- Request a specific route/version
 
   ```csharp
   ESISharp.Public.Alliance.GetAll().Route("v1");
   ```
 
-* Request a specific DataSource
+- Request a specific DataSource
 
   ```csharp
   ESISharp.Public.Alliance.GetAll().DataSource( ESISharp.Enumeration.DataSource.Singularity );
@@ -52,13 +62,13 @@ ESISharp.Public.SetDataSource( ESISharp.Enumeration.DataSource.Singularity );
 
 All the above path examples return the **ESIRequest** object, which is then used to send the request.
 
-* Blocking, returns **EsiResponse**
+- Blocking, returns **EsiResponse**
 
   ```csharp
   ESISharp.Public.Alliance.GetAll().Execute();
   ```
 
-* Non-Blocking, returns **Task\<EsiResponse>**
+- Non-Blocking, returns **Task\<EsiResponse>**
   
   ```csharp
   ESISharp.Public.Alliance.GetAll().ExecuteAsync();
@@ -72,33 +82,37 @@ var esiconn = new ESISharp.Public();
 esiconn.CacheEnable(cache);
 ```
 
-`EsiResponse` object structure:
+---
 
-| Parameter Name    | Parameter Type            | Description                           |
-| ----------------- | ------------------------- | ------------------------------------- |
-| `Body`            | String                    | Content of the response               |
-| `Code`            | System.Net.HttpStatusCode | HTTP Status Code (ie. 200, 404, etc)  |
-| `ContentHeaders`  | EsiContentHeaders         | Content headers                       |
-| `ResponseHeaders` | EsiResponseHeaders        | Response headers                      |
-| `IsCached`        | Boolean                   | Is the response returned from cache   |
+## Response Structure
 
-`EsiContentHeaders` object structure:
+`ESISharp.Model.Object.EsiResponse` structure:
+
+| Parameter Name    | Parameter Type                           | Description                          |
+| ----------------- | ---------------------------------------- | ------------------------------------ |
+| `Body`            | System.String                            | Content of the response              |
+| `Code`            | System.Net.HttpStatusCode                | HTTP Status Code (ie. 200, 404, etc) |
+| `ContentHeaders`  | ESISharp.Model.Object.EsiContentHeaders  | Content headers                      |
+| `ResponseHeaders` | ESISharp.Model.Object.EsiResponseHeaders | Response headers                     |
+| `IsCached`        | System.Boolean                           | Is the response returned from cache  |
+
+`ESISharp.Model.Object.EsiContentHeaders` structure:
 
 | Parameter Name | Parameter Type  | Description                                             |
 | -------------- | --------------- | ------------------------------------------------------- |
-| `ContentType`  | String          | Response body format                                    |
+| `ContentType`  | System.String   | Response body format                                    |
 | `Expires`      | System.DateTime | Time the request data will be invalid                   |
 | `LastModified` | System.DateTime | Time the request data was last modified by CCP          |
 
-`EsiResponseHeaders` object structure:
+`ESISharp.Model.Object.EsiResponseHeaders` structure:
 
 | Parameter Name | Parameter Type  | Description                                             |
 | -------------- | --------------- | ------------------------------------------------------- |
-| `CacheControl` | String          | Directive for caching mechanism                         |
+| `CacheControl` | System.String   | Directive for caching mechanism                         |
 | `Date`         | System.DateTime | Time the request was made                               |
-| `ETag`         | String          | Entity Tag hash of the response                         |
-| `Pages`        | Integer (32)    | Number of pages in the response                         |
-| `Warning`      | String          | (Optional) Response warning message if one was returned |
+| `ETag`         | System.String   | Entity Tag hash of the response                         |
+| `Pages`        | System.Int32    | Number of pages in the response                         |
+| `Warning`      | System.String   | (Optional) Response warning message if one was returned |
 
 ---
 
