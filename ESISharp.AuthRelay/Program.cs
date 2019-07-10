@@ -1,39 +1,62 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipes;
-using System.Text;
 using System.Web;
 
 namespace ESISharp.AuthRelay
 {
-    static class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            if (args.Length == 0 || args[0].IndexOf("state=", StringComparison.InvariantCulture) < 0)
+            if (args.Length == 0)
                 return;
 
-            var Query = HttpUtility.ParseQueryString(args[0]);
-            NamedPipeClientStream Client = new NamedPipeClientStream(Query["state"]);
-            StreamWriter Writer = new StreamWriter(Client);
+            if (string.IsNullOrWhiteSpace(args[0]))
+                return;
+
+            Uri uri;
+            try
+            {
+                uri = new Uri(args[0]);
+            }
+            catch(UriFormatException)
+            {
+                return;
+            }
+
+            if (uri.Query == null)
+                return;
+
+            var query = HttpUtility.ParseQueryString(uri.Query);
+
+            if (query["state"] == null)
+                return;
+
+            var client = new NamedPipeClientStream(query["state"]);
+            var writer = new StreamWriter(client);
 
             try
             {
-                Client.Connect(10000);
+                client.Connect(10000);
 
-                Writer.WriteLine(args[0]);
-                Writer.Flush();
+                writer.WriteLine(args[0]);
+                writer.Flush();
 
-                Client.WaitForPipeDrain();
-                Client.Close();
+                client.WaitForPipeDrain();
+                client.Close();
             }
-            catch(TimeoutException)
+            catch (TimeoutException)
             {
-                Client.Dispose();
+                client.Dispose();
             }
-            catch(IOException)
+            catch (IOException)
             {
-                Client.Dispose();
+                client.Dispose();
+            }
+            catch (ObjectDisposedException)
+            {
+                return;
             }
         }
     }
