@@ -47,5 +47,13 @@ namespace ESISharp.Web
                 return new EsiResponse(responsebody, httpresponse.StatusCode, new EsiContentHeaders(httpresponse.Content.Headers), new EsiResponseHeaders(httpresponse.Headers));
             }
         }
+
+        internal bool IsCacheable(HttpResponseMessage httpresponse)
+        {
+            if (httpresponse.Content.Headers.Expires == null)
+                return false;
+
+            return true;
+        }
     }
 }

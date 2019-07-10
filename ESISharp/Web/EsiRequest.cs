@@ -173,7 +173,8 @@ namespace ESISharp.Web
                         => await connection.QueryClient.GetAsync(url).ConfigureAwait(false)).ConfigureAwait(false);
                     var rb = await r.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var er = new EsiResponse(rb, r.StatusCode, new EsiContentHeaders(r.Content.Headers), new EsiResponseHeaders(r.Headers));
-                    _Cache.SetCacheItem(connection, hash, r, er);
+                    if (_Cache.IsCacheable(r))
+                        _Cache.SetCacheItem(connection, hash, r, er);
                     return er;
                 }
 
@@ -203,30 +204,6 @@ namespace ESISharp.Web
             }
 
             var postdata = new StringContent(DataBody, Encoding.UTF8, "application/json");
-
-            if (connection.UseCache)
-            {
-                HttpResponseMessage r;
-                var hash = _Cache.HashRequest(WebMethods.POST.ToString(), url);
-                var entitytag = _Cache.GetETag(connection, hash);
-                if (entitytag != null)
-                {
-                    connection.QueryClient.DefaultRequestHeaders.Add("If-None-Match", entitytag);
-                    r = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
-                        => await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
-                    return await _Cache.GetCacheItem(connection, entitytag, r);
-                }
-                else
-                {
-                    r = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
-                        => await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
-                    var rb = await r.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var er = new EsiResponse(rb, r.StatusCode, new EsiContentHeaders(r.Content.Headers), new EsiResponseHeaders(r.Headers));
-                    _Cache.SetCacheItem(connection, hash, r, er);
-                    return er;
-                }
-            }
-
             var response = await EsiConnection.HttpResiliencePolicy.ExecuteAsync(async ()
                 => await connection.QueryClient.PostAsync(url, postdata).ConfigureAwait(false)).ConfigureAwait(false);
             var responsebody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
