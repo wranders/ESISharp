@@ -12,7 +12,7 @@ namespace ESISharp.Test.Model.Abstract
 
         public void BeforeTest(ITest test)
         {
-            var m = "Test has prerequisites that are untestable for all circumstances. " +
+            var m = "Test has prerequisites or parameters that are untestable or unreliable for all circumstances. " +
                     "The code presented in these tests show how the operation should be done, not a working example.";
             Assert.Ignore(m);
         }
