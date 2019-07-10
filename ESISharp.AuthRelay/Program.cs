@@ -56,7 +56,7 @@ namespace ESISharp.AuthRelay
             }
             catch (ObjectDisposedException)
             {
-                return;
+                // Do nothing, pipe is closed.
             }
         }
     }
