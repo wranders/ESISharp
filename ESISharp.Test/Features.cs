@@ -97,6 +97,8 @@ namespace ESISharp.Test
             var d = Public.Alliances.GetAll().Execute();
             Public.SetRoute(Route.Latest);
             var l = Public.Alliances.GetAll().Execute();
+            Public.SetRoute("latest");
+            var ls = Public.Alliances.GetAll().Execute();
             Assert.Multiple(() =>
             {
                 Assert.True(d.Code == HttpStatusCode.OK, "\n\n" +
@@ -106,6 +108,12 @@ namespace ESISharp.Test
                     d.Body.ToString() + "\n" +
                     "--------------------------\n");
                 Assert.True(l.Code == HttpStatusCode.OK, "\n\n" +
+                    "---    Latest:    ---\n" +
+                    "---------------------\n" +
+                    l.Code.ToString() + "\n" +
+                    l.Body.ToString() + "\n" +
+                    "---------------------\n");
+                Assert.True(ls.Code == HttpStatusCode.OK, "\n\n" +
                     "---    Latest:    ---\n" +
                     "---------------------\n" +
                     l.Code.ToString() + "\n" +
